@@ -601,7 +601,8 @@ var DEFAULT_TX=[
   {id:30,name:"Republic Services",amount:168.12,day:4,day2:null,type:"bill",freq:"monthly",auto:true,skip:false,notes:"",onetime:false,cat:"bills"},
   {id:31,name:"Lowes",amount:87.30,day:4,day2:null,type:"bill",freq:"monthly",auto:false,skip:false,notes:"",onetime:false,cat:"bills"},
   {id:32,name:"Groceries",amount:282.35,day:5,day2:null,type:"auto",freq:"biweekly",auto:false,skip:false,notes:"",onetime:false,cat:"food"},
-  {id:33,name:"Gas",amount:95.48,day:5,day2:null,type:"auto",freq:"biweekly",auto:false,skip:false,notes:"",onetime:false,cat:"transport"}
+  {id:33,name:"Gas (vehicle fuel)",amount:232.50,day:5,day2:19,type:"auto",freq:"biweekly",auto:false,skip:false,notes:"$465/mo, from 7 months of statements (12 Dec 2025 - 11 Jul 2026): 81 fills, $3,246.32, average $40.08. Split into two $232.50 halves to smooth the projection. Mean not median ($410.80) because the two highest months are the two most recent - $213 in Feb rising to $749 in Jun. Was $95.48, understating it by about $370/mo.",onetime:false,cat:"transport"},
+  {id:40,name:"Vehicle Maintenance",amount:54.67,day:12,day2:null,type:"auto",freq:"monthly",auto:false,skip:false,notes:"$382.67 of repairs at Lebanon Friendly Auto since December over 7 months. Previously not budgeted at all. Protected - deferring maintenance on the cars that get you to work is false economy.",onetime:false,cat:"transport"}
 ].concat(LATE_ADDITIONS).concat(CHASE_CARDS);
 
 // ─── State ───────────────────────────────────────────────────────────────────
