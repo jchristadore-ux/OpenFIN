@@ -36,25 +36,58 @@ you where things stand:
 
 ---
 
-## Turning on sync between phones
+## First-time setup, step by step
 
-Without this the page still works, but each device keeps its own progress. About
-fifteen minutes, one time, free.
+Do these in order. Step 3 must come before step 4 — changing the passphrase also
+changes the sync address, so re-keying after Firebase is connected wipes shared
+progress.
 
-**1. Create a Firebase project**
+### 1. Get the page live
 
-Go to [console.firebase.google.com](https://console.firebase.google.com) → **Add project**.
-Name it anything. Google Analytics is not needed — turn it off.
+Merge the open pull requests, then visit:
 
-**2. Create a Realtime Database**
+```
+https://jchristadore-ux.github.io/TogetherLedger/plan/
+```
 
-In the left sidebar: **Build → Realtime Database → Create Database**. Pick the
-region closest to New Jersey (`us-central1` is fine). When it asks about security
-rules, choose **Start in locked mode** — the next step replaces them.
+GitHub Pages takes a minute or two after a merge. You should see a lock screen
+and nothing else. If you get a 404, check **Settings → Pages** and confirm the
+site is building from `main` at the repository root.
 
-**3. Set the security rules**
+### 2. Confirm it unlocks
 
-Open the **Rules** tab, replace everything with this, and click **Publish**:
+Enter the passphrase. You should get the full plan. Before going further, view
+the page source — you should see base64 and no readable figures. That is the
+whole security model working.
+
+### 3. Choose your own passphrase
+
+You need Node 18+ and a clone of this repository.
+
+```bash
+git clone https://github.com/jchristadore-ux/TogetherLedger.git
+cd TogetherLedger/plan
+node tools/plan-tool.mjs rekey "current passphrase" "the one you both agree on"
+git commit -am "Change plan passphrase"
+git push
+```
+
+Pick something you will both remember and neither will write in a text message.
+Four unrelated words beats a short complicated string. **There is no reset** — if
+you both forget it, the page is gone.
+
+### 4. Create the Firebase project
+
+1. Go to [console.firebase.google.com](https://console.firebase.google.com) and
+   click **Add project**. Any name. Turn Google Analytics **off** — it is not needed.
+2. In the left sidebar: **Build → Realtime Database → Create Database**.
+3. Choose a location near New Jersey (`us-central1` is fine).
+4. When asked about security rules, choose **Start in locked mode**. The next
+   step replaces them.
+
+### 5. Publish the security rules
+
+Open the **Rules** tab, replace everything, and click **Publish**:
 
 ```json
 {
@@ -69,19 +102,17 @@ Open the **Rules** tab, replace everything with this, and click **Publish**:
 }
 ```
 
-This allows read and write only to someone who already knows a full 32-character
-room address, and never allows listing what rooms exist. Your room address is
-derived from the passphrase — 128 bits, not guessable.
+This permits read and write only to someone who already knows a full
+32-character room address, and never permits listing what rooms exist. Your room
+address is derived from the passphrase — 128 bits, not guessable.
 
-**4. Copy the database URL**
+### 6. Connect the page to it
 
-At the top of the Realtime Database page, something like:
+Copy the database URL from the top of the Realtime Database page. It looks like:
 
 ```
 https://your-project-default-rtdb.firebaseio.com
 ```
-
-**5. Paste it into the page**
 
 In `plan/index.html`, find this near the top of the `<script>` block:
 
@@ -91,12 +122,43 @@ In `plan/index.html`, find this near the top of the `<script>` block:
   };
 ```
 
-Put the URL between the quotes, then commit and push. Within a minute or two
-GitHub Pages rebuilds and both phones are in sync.
+Paste the URL between the quotes, then:
+
+```bash
+git commit -am "Connect plan to Firebase"
+git push
+```
 
 > The database URL being public is fine and by design — Firebase URLs are not
-> secrets. The rules above plus the unguessable room address are what protect the
-> data, and the data is ciphertext regardless.
+> secrets. The rules above plus an unguessable room address are what protect the
+> data, and what is stored there is ciphertext regardless.
+
+### 7. Install it on both phones
+
+**iPhone (Safari):** open the URL → Share → **Add to Home Screen**.
+**Android (Chrome):** open the URL → menu → **Add to Home screen** or **Install app**.
+
+It launches without browser chrome and behaves like an app. Unlock once per
+session on each device.
+
+### 8. Test that sync actually works
+
+With the page open on both phones, tick something on one. It should appear on
+the other within about five seconds, and the badge should read **Updated just
+now**. If it stays on *This device only*, the `databaseURL` did not save — check
+step 6.
+
+---
+
+## Day to day
+
+- **Tick a payment** when it clears.
+- **Edit an amount** if it came out different from the plan.
+- **Defer** pushes an unsecured bill to next month and re-runs every balance.
+- **Update "Balance today"** whenever the account drifts from the projection.
+
+Watch the **Lowest point** tile. It is the early warning — it turns red and names
+the day you would go negative, before it happens.
 
 ---
 
