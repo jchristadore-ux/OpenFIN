@@ -423,6 +423,7 @@ body{
           <option value="monthly">Monthly</option>
           <option value="biweekly">Bi-weekly</option>
           <option value="weekly">Weekly</option>
+          <option value="quarterly">Quarterly</option>
         </select>
       </div>
     </div>
@@ -538,6 +539,20 @@ function ls(k,d){try{var v=localStorage.getItem(k);return v!=null?JSON.parse(v):
 function ss(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
 
 // ─── Default Data ────────────────────────────────────────────────────────────
+// Bills that were being paid outside the ledger — added Aug 2026.
+// Water and sewer are municipal: unpaid balances become liens on the house,
+// so they are tracked here even though neither is on autopay right now.
+var LATE_ADDITIONS=[
+  {id:34,name:"Clinton Water",amount:360.00,day:1,day2:null,type:"bill",freq:"quarterly",startMonth:8,auto:false,skip:false,onetime:false,cat:"bills",
+   notes:"Town of Clinton acct 1828-0. $1,457.45 delinquent as of 7/22/26 (4 quarters). Confirm the due-date cycle and payment-plan terms with the town: 908-735-2265."},
+  {id:35,name:"Clinton Twp Sewer",amount:300.00,day:1,day2:null,type:"bill",freq:"quarterly",startMonth:8,auto:false,skip:false,onetime:false,cat:"bills",
+   notes:"CTSA acct 267-0. $304.50 due 9/1/26 (incl. $4.50 interest). Bill says autopay is enrolled but no payment has cleared since 3/2/26 — verify with the clerk."},
+  {id:36,name:"Orthodontist",amount:129.47,day:24,day2:null,type:"bill",freq:"monthly",auto:false,skip:false,onetime:false,cat:"health",
+   notes:"Loew & Patel Orthodontics, 908-722-5233. Treatment plan payment."},
+  {id:37,name:"NJ Income Tax (2022)",amount:100.00,day:26,day2:null,type:"bill",freq:"monthly",auto:false,skip:false,onetime:false,cat:"bills",
+   notes:"NJ Division of Taxation, DLN 03553180302. Balance $3,799.54 as of 1/15/26 and still accruing. $100/mo plan lapsed after 11/28/25 — call 609-943-5000 to restart."}
+];
+
 var DEFAULT_TX=[
   {id:1,name:"John Paycheck",amount:2016.05,day:28,day2:11,type:"income",freq:"biweekly",auto:true,skip:false,notes:"",onetime:false,cat:"income"},
   {id:2,name:"Lez Paycheck",amount:2829.31,day:28,day2:null,type:"income",freq:"biweekly",auto:true,skip:false,notes:"",onetime:false,cat:"income"},
@@ -572,7 +587,7 @@ var DEFAULT_TX=[
   {id:31,name:"Lowes",amount:87.30,day:4,day2:null,type:"bill",freq:"monthly",auto:false,skip:false,notes:"",onetime:false,cat:"bills"},
   {id:32,name:"Groceries",amount:282.35,day:5,day2:null,type:"auto",freq:"biweekly",auto:false,skip:false,notes:"",onetime:false,cat:"food"},
   {id:33,name:"Gas",amount:95.48,day:5,day2:null,type:"auto",freq:"biweekly",auto:false,skip:false,notes:"",onetime:false,cat:"transport"}
-];
+].concat(LATE_ADDITIONS);
 
 // ─── State ───────────────────────────────────────────────────────────────────
 var tx=ls('cb_tx',DEFAULT_TX);
@@ -580,6 +595,24 @@ var balance=parseFloat(ls('cb_bal','-169.33'))||0;
 var adjustments=ls('cb_adj',[]);
 var onetimeTx=ls('cb_ot',[]);
 var exceptions=ls('cb_ex',[]);  // [{txId, date}] — suppresses a recurring occurrence on a specific date
+
+// One-time backfill: saved ledgers predate the bills in LATE_ADDITIONS, so merge
+// them in by name. Named migrations stay recorded, so this never runs twice and
+// never resurrects a bill the user has since deleted.
+(function backfill(){
+  var done=ls('cb_migrations',[]);
+  if(done.indexOf('bills-2026-08')>=0)return;
+  var have={};
+  tx.forEach(function(t){have[String(t.name).toLowerCase()]=true;});
+  var maxId=tx.reduce(function(m,t){return Math.max(m,t.id||0);},0);
+  LATE_ADDITIONS.forEach(function(b){
+    if(have[b.name.toLowerCase()])return;
+    tx.push(Object.assign({},b,{id:++maxId}));
+  });
+  done.push('bills-2026-08');
+  ss('cb_tx',tx);ss('cb_migrations',done);
+})();
+
 var nextId=Math.max.apply(null,[0].concat(tx.map(function(t){return t.id;})).concat(onetimeTx.map(function(t){return t.id||0;})))+1;
 var activeView='dashboard';
 var calYear=new Date().getFullYear();
@@ -628,6 +661,12 @@ function dayFires(t,d){
   if(t.freq==='monthly')return t.day===day;
   if(t.freq==='biweekly')return t.day===day||(t.day2!=null&&t.day2===day);
   if(t.freq==='weekly')return true;
+  // Quarterly fires every 3rd month from startMonth (0=Jan), on t.day.
+  if(t.freq==='quarterly'){
+    if(t.day!==day)return false;
+    var anchor=(t.startMonth==null?0:t.startMonth);
+    return ((d.getMonth()-anchor)%3+3)%3===0;
+  }
   return false;
 }
 
