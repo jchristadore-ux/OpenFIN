@@ -553,6 +553,18 @@ var LATE_ADDITIONS=[
    notes:"NJ Division of Taxation, DLN 03553180302. Balance $3,799.54 as of 1/15/26 and still accruing. $100/mo plan lapsed after 11/28/25 — call 609-943-5000 to restart."}
 ];
 
+// Second Chase-issued card, surfaced Aug 2026 when the single "Chase CC" line
+// turned out to be two accounts holding $7,526.56 between them.
+var CHASE_CARDS=[
+  {id:38,name:"Chase United Explorer",amount:107.76,day:18,day2:null,type:"bill",freq:"monthly",auto:false,skip:false,onetime:false,cat:"bills",
+   notes:"Balance $2,746.79, 31+ days past due as of 8/7/26. $322 brings it current; ~$108 is the estimated going-forward minimum. Confirm the reduced-APR plan covers this card too, not just the Prime Visa."}
+];
+
+var BILL_BATCHES=[
+  {key:'bills-2026-08', bills:LATE_ADDITIONS},
+  {key:'chase-2026-08', bills:CHASE_CARDS}
+];
+
 var DEFAULT_TX=[
   {id:1,name:"John Paycheck",amount:2016.05,day:28,day2:11,type:"income",freq:"biweekly",auto:true,skip:false,notes:"",onetime:false,cat:"income"},
   {id:2,name:"Lez Paycheck",amount:2829.31,day:28,day2:null,type:"income",freq:"biweekly",auto:true,skip:false,notes:"",onetime:false,cat:"income"},
@@ -566,7 +578,7 @@ var DEFAULT_TX=[
   {id:10,name:"Affirm #3",amount:21.75,day:1,day2:null,type:"bill",freq:"monthly",auto:true,skip:false,notes:"",onetime:false,cat:"bills"},
   {id:11,name:"One Main",amount:388.24,day:3,day2:null,type:"bill",freq:"monthly",auto:true,skip:false,notes:"",onetime:false,cat:"bills"},
   {id:12,name:"PNC",amount:95.18,day:9,day2:null,type:"bill",freq:"monthly",auto:true,skip:false,notes:"",onetime:false,cat:"bills"},
-  {id:13,name:"Chase CC",amount:402.00,day:18,day2:null,type:"bill",freq:"monthly",auto:false,skip:false,notes:"",onetime:false,cat:"bills"},
+  {id:13,name:"Chase Prime Visa",amount:168.00,day:18,day2:null,type:"bill",freq:"monthly",auto:false,skip:false,notes:"Balance $4,779.77, 31+ days past due as of 8/7/26. $502 brings it current; $168 is the going-forward minimum. Enrol in the reduced-payment-and-APR option instead - roughly $80/mo, closes the account.",onetime:false,cat:"bills"},
   {id:14,name:"Capital One",amount:163.00,day:17,day2:null,type:"bill",freq:"monthly",auto:false,skip:false,notes:"",onetime:false,cat:"bills"},
   {id:15,name:"Comcast",amount:147.69,day:17,day2:null,type:"bill",freq:"monthly",auto:true,skip:false,notes:"",onetime:false,cat:"bills"},
   {id:16,name:"CCU",amount:306.90,day:17,day2:null,type:"bill",freq:"monthly",auto:true,skip:false,notes:"",onetime:false,cat:"bills"},
@@ -587,7 +599,7 @@ var DEFAULT_TX=[
   {id:31,name:"Lowes",amount:87.30,day:4,day2:null,type:"bill",freq:"monthly",auto:false,skip:false,notes:"",onetime:false,cat:"bills"},
   {id:32,name:"Groceries",amount:282.35,day:5,day2:null,type:"auto",freq:"biweekly",auto:false,skip:false,notes:"",onetime:false,cat:"food"},
   {id:33,name:"Gas",amount:95.48,day:5,day2:null,type:"auto",freq:"biweekly",auto:false,skip:false,notes:"",onetime:false,cat:"transport"}
-].concat(LATE_ADDITIONS);
+].concat(LATE_ADDITIONS).concat(CHASE_CARDS);
 
 // ─── State ───────────────────────────────────────────────────────────────────
 var tx=ls('cb_tx',DEFAULT_TX);
@@ -600,17 +612,19 @@ var exceptions=ls('cb_ex',[]);  // [{txId, date}] — suppresses a recurring occ
 // them in by name. Named migrations stay recorded, so this never runs twice and
 // never resurrects a bill the user has since deleted.
 (function backfill(){
-  var done=ls('cb_migrations',[]);
-  if(done.indexOf('bills-2026-08')>=0)return;
-  var have={};
-  tx.forEach(function(t){have[String(t.name).toLowerCase()]=true;});
-  var maxId=tx.reduce(function(m,t){return Math.max(m,t.id||0);},0);
-  LATE_ADDITIONS.forEach(function(b){
-    if(have[b.name.toLowerCase()])return;
-    tx.push(Object.assign({},b,{id:++maxId}));
+  var done=ls('cb_migrations',[]), dirty=false;
+  BILL_BATCHES.forEach(function(batch){
+    if(done.indexOf(batch.key)>=0)return;
+    var have={};
+    tx.forEach(function(t){have[String(t.name).toLowerCase()]=true;});
+    var maxId=tx.reduce(function(m,t){return Math.max(m,t.id||0);},0);
+    batch.bills.forEach(function(b){
+      if(have[b.name.toLowerCase()])return;
+      tx.push(Object.assign({},b,{id:++maxId}));
+    });
+    done.push(batch.key); dirty=true;
   });
-  done.push('bills-2026-08');
-  ss('cb_tx',tx);ss('cb_migrations',done);
+  if(dirty){ss('cb_tx',tx);ss('cb_migrations',done);}
 })();
 
 var nextId=Math.max.apply(null,[0].concat(tx.map(function(t){return t.id;})).concat(onetimeTx.map(function(t){return t.id||0;})))+1;
