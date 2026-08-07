@@ -556,8 +556,8 @@ var LATE_ADDITIONS=[
 // Second Chase-issued card, surfaced Aug 2026 when the single "Chase CC" line
 // turned out to be two accounts holding $7,526.56 between them.
 var CHASE_CARDS=[
-  {id:38,name:"Chase United Explorer",amount:107.76,day:18,day2:null,type:"bill",freq:"monthly",auto:false,skip:false,onetime:false,cat:"bills",
-   notes:"Balance $2,746.79, 31+ days past due as of 8/7/26. $322 brings it current; ~$108 is the estimated going-forward minimum. Confirm the reduced-APR plan covers this card too, not just the Prime Visa."}
+  {id:38,name:"Chase United Explorer",amount:46.00,day:11,day2:null,type:"bill",freq:"monthly",auto:true,skip:false,onetime:false,cat:"bills",
+   notes:"Card ...6319. 60-month plan at 0.00% APR accepted 8/7/26: 60 x $46 = $2,760 against a $2,746.79 balance. Confirm the first-payment date at the Schedule Payments step; day set to the 11th to match the Prime Visa. 60 CONSECUTIVE payments - missing one voids the plan."}
 ];
 
 var BILL_BATCHES=[
@@ -572,13 +572,13 @@ var DEFAULT_TX=[
   {id:4,name:"Upstart Bills",amount:337.61,day:24,day2:null,type:"bill",freq:"monthly",auto:true,skip:false,notes:"Loan 14794931. CURRENT. $8,672.65 principal. The $86.46 payment reduction plan has ended, so this steps back up to $337.61 from 8/24/26.",onetime:false,cat:"bills"},
   {id:5,name:"Upstart Main",amount:161.00,day:15,day2:null,type:"bill",freq:"monthly",auto:true,skip:false,notes:"Loan 15434861. Jul+Aug 2026 deferred; $161 is the CONTRACTUAL MINIMUM, not a target. $2,245.83 principal left — resume ~$1,100/mo from Sept and clear it by late October.",onetime:false,cat:"bills"},
   {id:6,name:"KIA Car Loan",amount:678.66,day:16,day2:null,type:"bill",freq:"monthly",auto:true,skip:false,notes:"",onetime:false,cat:"bills"},
-  {id:7,name:"Upgrade Loan",amount:287.85,day:17,day2:null,type:"bill",freq:"monthly",auto:true,skip:false,notes:"",onetime:false,cat:"bills"},
+  {id:7,name:"Upgrade Loan",amount:86.36,day:18,day2:null,type:"bill",freq:"monthly",auto:false,skip:false,notes:"Acct 140763507. Balance $7,946.27. TEMPORARY 3-month reduction: $86.36 on Aug 18, Sep 18, Oct 18 2026 only. AUTOPAY IS OFF - send each one manually. Reverts after Oct 18, possibly above the old $287.85 if they re-amortize; reset this amount then.",onetime:false,cat:"bills"},
   {id:8,name:"Affirm #1",amount:73.07,day:28,day2:null,type:"bill",freq:"monthly",auto:true,skip:false,notes:"",onetime:false,cat:"bills"},
   {id:9,name:"Affirm #2",amount:24.75,day:1,day2:null,type:"bill",freq:"monthly",auto:true,skip:false,notes:"",onetime:false,cat:"bills"},
   {id:10,name:"Affirm #3",amount:21.75,day:1,day2:null,type:"bill",freq:"monthly",auto:true,skip:false,notes:"",onetime:false,cat:"bills"},
   {id:11,name:"One Main",amount:388.24,day:3,day2:null,type:"bill",freq:"monthly",auto:true,skip:false,notes:"",onetime:false,cat:"bills"},
   {id:12,name:"PNC",amount:95.18,day:9,day2:null,type:"bill",freq:"monthly",auto:true,skip:false,notes:"",onetime:false,cat:"bills"},
-  {id:13,name:"Chase Prime Visa",amount:168.00,day:18,day2:null,type:"bill",freq:"monthly",auto:false,skip:false,notes:"Balance $4,779.77, 31+ days past due as of 8/7/26. $502 brings it current; $168 is the going-forward minimum. Enrol in the reduced-payment-and-APR option instead - roughly $80/mo, closes the account.",onetime:false,cat:"bills"},
+  {id:13,name:"Chase Prime Visa",amount:80.00,day:11,day2:null,type:"bill",freq:"monthly",auto:true,skip:false,notes:"Card ...8026. 60-month plan at 0.00% APR accepted 8/7/26: 60 x $80 = $4,800 against a $4,779.77 balance. First payment Fri 8/21/26 (the 8/22 deadline is a Saturday), then the 11th monthly from TD ...1761. 60 CONSECUTIVE payments - missing one voids the plan and restores the original APR.",onetime:false,cat:"bills"},
   {id:14,name:"Capital One",amount:163.00,day:17,day2:null,type:"bill",freq:"monthly",auto:false,skip:false,notes:"",onetime:false,cat:"bills"},
   {id:15,name:"Comcast",amount:147.69,day:17,day2:null,type:"bill",freq:"monthly",auto:true,skip:false,notes:"",onetime:false,cat:"bills"},
   {id:16,name:"CCU",amount:306.90,day:17,day2:null,type:"bill",freq:"monthly",auto:true,skip:false,notes:"",onetime:false,cat:"bills"},
