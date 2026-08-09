@@ -16,6 +16,10 @@ Two properties make it safe to publish on GitHub Pages:
 
 `<meta name="robots" content="noindex,nofollow">` keeps it out of search results.
 
+> **No terminal required.** Everything in the setup below happens in a web
+> browser — the Firebase console and GitHub's own web editor. Nothing needs Node,
+> git on the command line, or a local checkout.
+
 ---
 
 ## Using it
@@ -36,58 +40,39 @@ you where things stand:
 
 ---
 
-## First-time setup, step by step
+## Setup, entirely in a browser
 
-Do these in order. Step 3 must come before step 4 — changing the passphrase also
-changes the sync address, so re-keying after Firebase is connected wipes shared
-progress.
+### 1. Check the page is live
 
-### 1. Get the page live
-
-Merge the open pull requests, then visit:
+Go to:
 
 ```
 https://jchristadore-ux.github.io/TogetherLedger/plan/
 ```
 
-GitHub Pages takes a minute or two after a merge. You should see a lock screen
-and nothing else. If you get a 404, check **Settings → Pages** and confirm the
-site is building from `main` at the repository root.
+You should see a lock screen and nothing else. Enter the passphrase and the plan
+appears.
 
-### 2. Confirm it unlocks
+*Getting a 404?* On GitHub go to **Settings → Pages** and confirm the site is
+building from the `main` branch, folder `/ (root)`. Give it a minute after any
+merge.
 
-Enter the passphrase. You should get the full plan. Before going further, view
-the page source — you should see base64 and no readable figures. That is the
-whole security model working.
+### 2. Create the Firebase project
 
-### 3. Choose your own passphrase
-
-You need Node 18+ and a clone of this repository.
-
-```bash
-git clone https://github.com/jchristadore-ux/TogetherLedger.git
-cd TogetherLedger/plan
-node tools/plan-tool.mjs rekey "current passphrase" "the one you both agree on"
-git commit -am "Change plan passphrase"
-git push
-```
-
-Pick something you will both remember and neither will write in a text message.
-Four unrelated words beats a short complicated string. **There is no reset** — if
-you both forget it, the page is gone.
-
-### 4. Create the Firebase project
+All browser, no install.
 
 1. Go to [console.firebase.google.com](https://console.firebase.google.com) and
-   click **Add project**. Any name. Turn Google Analytics **off** — it is not needed.
-2. In the left sidebar: **Build → Realtime Database → Create Database**.
-3. Choose a location near New Jersey (`us-central1` is fine).
-4. When asked about security rules, choose **Start in locked mode**. The next
+   click **Add project**. Any name will do. Turn Google Analytics **off** — it is
+   not needed and only adds screens.
+2. In the left sidebar choose **Build → Realtime Database**, then **Create Database**.
+3. Pick a location near New Jersey — `us-central1` is fine.
+4. When it asks about security rules, choose **Start in locked mode**. The next
    step replaces them.
 
-### 5. Publish the security rules
+### 3. Publish the security rules
 
-Open the **Rules** tab, replace everything, and click **Publish**:
+Open the **Rules** tab, select everything in the box, replace it with this, and
+click **Publish**:
 
 ```json
 {
@@ -106,47 +91,64 @@ This permits read and write only to someone who already knows a full
 32-character room address, and never permits listing what rooms exist. Your room
 address is derived from the passphrase — 128 bits, not guessable.
 
-### 6. Connect the page to it
+### 4. Copy the database URL
 
-Copy the database URL from the top of the Realtime Database page. It looks like:
+At the top of the Realtime Database page there is a URL like:
 
 ```
-https://your-project-default-rtdb.firebaseio.com
+https://your-project-name-default-rtdb.firebaseio.com
 ```
 
-In `plan/index.html`, find this near the top of the `<script>` block:
+Copy the whole thing, and drop any trailing slash.
 
-```js
-  var FIREBASE = {
-    databaseURL: ""
-  };
-```
+### 5. Paste it in, using GitHub's web editor
 
-Paste the URL between the quotes, then:
+1. Open **`plan/index.html`** on GitHub.
+2. Click the **pencil icon** (Edit this file) near the top right.
+3. Press <kbd>Ctrl</kbd>+<kbd>F</kbd> (<kbd>Cmd</kbd>+<kbd>F</kbd> on a Mac) and
+   search for `databaseURL`.
+4. You are looking for this:
 
-```bash
-git commit -am "Connect plan to Firebase"
-git push
-```
+   ```js
+     var FIREBASE = {
+       databaseURL: ""
+     };
+   ```
+
+5. Put your URL between the two quote marks, so it reads:
+
+   ```js
+     var FIREBASE = {
+       databaseURL: "https://your-project-name-default-rtdb.firebaseio.com"
+     };
+   ```
+
+6. Scroll to the bottom, choose **Commit directly to the `main` branch**, and
+   click **Commit changes**.
+
+The file is large and mostly base64 — that is expected. Change only what sits
+between those two quotes and leave the rest alone. GitHub Pages rebuilds in a
+minute or two.
 
 > The database URL being public is fine and by design — Firebase URLs are not
 > secrets. The rules above plus an unguessable room address are what protect the
 > data, and what is stored there is ciphertext regardless.
 
-### 7. Install it on both phones
+### 6. Install it on both phones
 
 **iPhone (Safari):** open the URL → Share → **Add to Home Screen**.
-**Android (Chrome):** open the URL → menu → **Add to Home screen** or **Install app**.
+**Android (Chrome):** open the URL → menu → **Add to Home screen** / **Install app**.
 
-It launches without browser chrome and behaves like an app. Unlock once per
-session on each device.
+It launches without browser chrome and behaves like an app. Each device asks for
+the passphrase once per session.
 
-### 8. Test that sync actually works
+### 7. Confirm sync actually works
 
-With the page open on both phones, tick something on one. It should appear on
-the other within about five seconds, and the badge should read **Updated just
-now**. If it stays on *This device only*, the `databaseURL` did not save — check
-step 6.
+With the page open on both phones, tick something on one. It should appear on the
+other within about five seconds, and the badge should read **Updated just now**.
+
+If it still says *This device only*, the URL did not save — go back to step 5 and
+check for a stray space or a missing `https://`.
 
 ---
 
@@ -162,50 +164,50 @@ the day you would go negative, before it happens.
 
 ---
 
-## Maintenance
+## Changing the passphrase, or the plan's contents
 
-`tools/plan-tool.mjs` edits the page without ever putting plaintext in the repo.
-Requires Node 18+.
+Both re-encrypt the whole page, which needs Node and a checkout. **If you don't
+work at a command line, ask for these as a pull request instead** — describe what
+you want changed and review the PR in the browser like any other.
 
-**Change the passphrase**
+Two things worth knowing before asking for a passphrase change:
+
+- **It resets the sync room.** Progress does not carry across. Finish the week, or
+  note where you are, before asking.
+- **There is no reset.** If you both forget the passphrase the page cannot be
+  recovered — the plaintext exists nowhere else. Write it down somewhere real.
+
+<details>
+<summary>Command-line details, if you ever do want them</summary>
+
+`tools/plan-tool.mjs` edits the page without putting plaintext in the repository.
+Needs Node 18+.
 
 ```bash
-node tools/plan-tool.mjs rekey "current passphrase" "new passphrase"
-```
-
-Re-encrypts in place and rotates the sync room. Commit and push, then everyone
-unlocks again with the new one. Progress does not carry across a rekey — finish
-the week first, or note where you are.
-
-**Edit the plan's content or figures**
-
-```bash
-node tools/plan-tool.mjs export "passphrase"          # → tools/payload.json
-# edit tools/payload.json
+node tools/plan-tool.mjs rekey  "current passphrase" "new passphrase"
+node tools/plan-tool.mjs export "passphrase"            # → tools/payload.json
 node tools/plan-tool.mjs import "passphrase" tools/payload.json
-rm tools/payload.json
 ```
 
-`payload.json` is plaintext and is gitignored. Delete it when you're done.
-
-Inside it, `plan` is the timeline. Each row is:
+`payload.json` is plaintext and gitignored. Delete it when you're done. Inside
+it, `plan` is the timeline, one row per entry:
 
 ```
 [ "MM-DD", "Name", "Sub-label", amount, kind, tier, deferrable ]
 ```
 
-`amount` is negative for money out and positive for money in. `kind` is
-`bill`, `living`, or `income`. `deferrable` is `true` if the page should offer a
-**Defer** button — reserve that for unsecured debts, never for housing,
-utilities, insurance, or the car.
+`amount` is negative for money out, positive for money in. `kind` is `bill`,
+`living`, or `income`. `deferrable` is `true` if the page should offer a **Defer**
+button — reserve that for unsecured debts, never for housing, utilities,
+insurance, or the car.
+
+</details>
 
 ---
 
 ## What this is not
 
-Progress lives in the browser and in your Firebase project. There's no account
-system and no password reset: **if you both forget the passphrase, the page cannot
-be recovered** — the plaintext exists nowhere else. Write it down somewhere real.
-
-The passphrase gate protects against someone finding the URL. It is not a defence
-against someone using a phone that's already unlocked and signed in.
+Progress lives in the browser and in your Firebase project. There is no account
+system and no password reset. The passphrase gate protects against someone
+finding the URL; it is not a defence against someone using a phone that is
+already unlocked and signed in.
