@@ -14,10 +14,12 @@
     "  last_message_hash ........ SHA-256 of the last daily brief body. Lets a rerun notice",
     "                             it would send an identical message."
   ],
-
-  "last_run_iso": null,
-  "last_known_balance": null,
-  "last_known_balance_iso": null,
-  "alerted_days": {},
-  "last_message_hash": null
+  "last_run_iso": "2026-08-10T11:28:58.007087-04:00",
+  "last_known_balance": "118.25",
+  "last_known_balance_iso": "2026-08-10T11:28:58.007087-04:00",
+  "alerted_days": {
+    "2026-08-11": "-81.75",
+    "2026-08-12": "-181.75"
+  },
+  "last_message_hash": "d1714f52991e323a5b7a14b4593742f965d3a25fc01c702368cb46b0832fb0ae"
 }

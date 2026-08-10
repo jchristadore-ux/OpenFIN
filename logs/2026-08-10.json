@@ -1,0 +1,426 @@
+{
+  "generated_at": "2026-08-10T11:28:58.007087-04:00",
+  "today": "2026-08-10",
+  "balance_now": "118.25",
+  "balance_method": "available-balance",
+  "accounts": [
+    {
+      "id": "ACT-c5ae9c36-9b99-4199-aad3-69a4e1009e31",
+      "name": "TD Bank (US) TD SIMPLE SAVINGS (3326)",
+      "balance": "300.02",
+      "available_balance": "0.00"
+    },
+    {
+      "id": "ACT-66ae8b29-0e9e-48c8-8ef5-4521b545fe42",
+      "name": "TD Bank (US) TD CONVENIENCE CHECKING (1761)",
+      "balance": "3563.10",
+      "available_balance": "118.25"
+    },
+    {
+      "id": "ACT-7ee7bff8-84d2-4887-b0be-63cc5f15a074",
+      "name": "TD Bank (US) TD Cash Secured (5929)",
+      "balance": "-283.98",
+      "available_balance": "0.00"
+    }
+  ],
+  "bills_today": [],
+  "discretionary_spent_today": "0.00",
+  "end_of_day": "18.25",
+  "projection": [
+    {
+      "date": "2026-08-11",
+      "closing": "-81.75",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-08-12",
+      "closing": "-181.75",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-08-13",
+      "closing": "2558.59",
+      "bills": [],
+      "income": [
+        [
+          "Branchburg BOE payroll",
+          "2840.34"
+        ]
+      ]
+    },
+    {
+      "date": "2026-08-14",
+      "closing": "5311.76",
+      "bills": [],
+      "income": [
+        [
+          "Primary payroll",
+          "2853.17"
+        ]
+      ]
+    },
+    {
+      "date": "2026-08-15",
+      "closing": "5211.76",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-08-16",
+      "closing": "3074.14",
+      "bills": [
+        [
+          "Mortgage",
+          "1801.62"
+        ],
+        [
+          "JCP&L",
+          "236.00"
+        ]
+      ],
+      "income": []
+    },
+    {
+      "date": "2026-08-17",
+      "closing": "2974.14",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-08-18",
+      "closing": "2874.14",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-08-19",
+      "closing": "2682.14",
+      "bills": [
+        [
+          "Trash pickup",
+          "92.00"
+        ]
+      ],
+      "income": []
+    },
+    {
+      "date": "2026-08-20",
+      "closing": "2437.14",
+      "bills": [
+        [
+          "Comcast",
+          "145.00"
+        ]
+      ],
+      "income": []
+    },
+    {
+      "date": "2026-08-21",
+      "closing": "5190.31",
+      "bills": [],
+      "income": [
+        [
+          "Primary payroll",
+          "2853.17"
+        ]
+      ]
+    },
+    {
+      "date": "2026-08-22",
+      "closing": "5090.31",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-08-23",
+      "closing": "4990.31",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-08-24",
+      "closing": "4311.67",
+      "bills": [
+        [
+          "Kia",
+          "578.64"
+        ]
+      ],
+      "income": []
+    },
+    {
+      "date": "2026-08-25",
+      "closing": "4211.67",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-08-26",
+      "closing": "4111.67",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-08-27",
+      "closing": "6852.01",
+      "bills": [],
+      "income": [
+        [
+          "Branchburg BOE payroll",
+          "2840.34"
+        ]
+      ]
+    },
+    {
+      "date": "2026-08-28",
+      "closing": "9605.18",
+      "bills": [],
+      "income": [
+        [
+          "Primary payroll",
+          "2853.17"
+        ]
+      ]
+    },
+    {
+      "date": "2026-08-29",
+      "closing": "9505.18",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-08-30",
+      "closing": "9405.18",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-08-31",
+      "closing": "9305.18",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-09-01",
+      "closing": "7099.06",
+      "bills": [
+        [
+          "Mortgage",
+          "1801.62"
+        ],
+        [
+          "Sewer",
+          "304.50"
+        ]
+      ],
+      "income": []
+    },
+    {
+      "date": "2026-09-02",
+      "closing": "6907.06",
+      "bills": [
+        [
+          "Trash pickup",
+          "92.00"
+        ]
+      ],
+      "income": []
+    },
+    {
+      "date": "2026-09-03",
+      "closing": "6807.06",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-09-04",
+      "closing": "9560.23",
+      "bills": [],
+      "income": [
+        [
+          "Primary payroll",
+          "2853.17"
+        ]
+      ]
+    },
+    {
+      "date": "2026-09-05",
+      "closing": "9460.23",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-09-06",
+      "closing": "9360.23",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-09-07",
+      "closing": "9260.23",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-09-08",
+      "closing": "9160.23",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-09-09",
+      "closing": "8310.23",
+      "bills": [
+        [
+          "Hanover Auto",
+          "750.00"
+        ]
+      ],
+      "income": []
+    },
+    {
+      "date": "2026-09-10",
+      "closing": "11050.57",
+      "bills": [],
+      "income": [
+        [
+          "Branchburg BOE payroll",
+          "2840.34"
+        ]
+      ]
+    },
+    {
+      "date": "2026-09-11",
+      "closing": "13803.74",
+      "bills": [],
+      "income": [
+        [
+          "Primary payroll",
+          "2853.17"
+        ]
+      ]
+    },
+    {
+      "date": "2026-09-12",
+      "closing": "13703.74",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-09-13",
+      "closing": "13603.74",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-09-14",
+      "closing": "13503.74",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-09-15",
+      "closing": "13403.74",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-09-16",
+      "closing": "11174.12",
+      "bills": [
+        [
+          "Mortgage",
+          "1801.62"
+        ],
+        [
+          "JCP&L",
+          "236.00"
+        ],
+        [
+          "Trash pickup",
+          "92.00"
+        ]
+      ],
+      "income": []
+    },
+    {
+      "date": "2026-09-17",
+      "closing": "11074.12",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-09-18",
+      "closing": "13827.29",
+      "bills": [],
+      "income": [
+        [
+          "Primary payroll",
+          "2853.17"
+        ]
+      ]
+    },
+    {
+      "date": "2026-09-19",
+      "closing": "13727.29",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-09-20",
+      "closing": "13482.29",
+      "bills": [
+        [
+          "Comcast",
+          "145.00"
+        ]
+      ],
+      "income": []
+    },
+    {
+      "date": "2026-09-21",
+      "closing": "13382.29",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-09-22",
+      "closing": "13282.29",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-09-23",
+      "closing": "13182.29",
+      "bills": [],
+      "income": []
+    },
+    {
+      "date": "2026-09-24",
+      "closing": "15343.99",
+      "bills": [
+        [
+          "Kia",
+          "578.64"
+        ]
+      ],
+      "income": [
+        [
+          "Branchburg BOE payroll",
+          "2840.34"
+        ]
+      ]
+    }
+  ],
+  "message": "CASH 08/10\nNow: $118.25 (incl pending)\nBills today: $0.00\nDisc spent: $0.00 of $100.00\nEnd of day: $18.25\n\nWATCH: 08/11 -$81.75\nNext 3 tight: 08/11 -82, 08/12 -182",
+  "alerts_sent": [
+    "2026-08-11"
+  ],
+  "critical_days_known": [
+    "2026-08-11",
+    "2026-08-12"
+  ],
+  "simplefin_errors": []
+}
