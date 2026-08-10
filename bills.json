@@ -130,6 +130,54 @@
       "active": true,
       "last_updated": "2026-08-10T00:00:00-04:00",
       "source": "manual"
+    },
+    {
+      "id": "lacrosse-2627-inst-1",
+      "name": "NJ Total Select 1of3",
+      "amount": 491.63,
+      "due_day": null,
+      "frequency": "once",
+      "due_date": "2026-10-06",
+      "anchor_date": null,
+      "autopay": false,
+      "match_keywords": ["total select", "nj total", "lacrosse"],
+      "active": true,
+      "needs_review": true,
+      "note": "ESTIMATED, not billed yet. Amount = $475.00 installment + $16.63 card convenience fee, the exact figure charged in both 2024-25 and 2025-26. Date mirrors the 2025-26 due date of 10/06. Replace with the real number once the club posts the 2026-27 schedule.",
+      "last_updated": "2026-08-10T00:00:00-04:00",
+      "source": "manual"
+    },
+    {
+      "id": "lacrosse-2627-inst-2",
+      "name": "NJ Total Select 2of3",
+      "amount": 491.63,
+      "due_day": null,
+      "frequency": "once",
+      "due_date": "2027-01-12",
+      "anchor_date": null,
+      "autopay": false,
+      "match_keywords": ["total select", "nj total", "lacrosse"],
+      "active": true,
+      "needs_review": true,
+      "note": "ESTIMATED, not billed yet. See lacrosse-2627-inst-1. Date mirrors the 2025-26 due date of 01/12.",
+      "last_updated": "2026-08-10T00:00:00-04:00",
+      "source": "manual"
+    },
+    {
+      "id": "lacrosse-2627-inst-3",
+      "name": "NJ Total Select 3of3",
+      "amount": 491.63,
+      "due_day": null,
+      "frequency": "once",
+      "due_date": "2027-03-09",
+      "anchor_date": null,
+      "autopay": false,
+      "match_keywords": ["total select", "nj total", "lacrosse"],
+      "active": true,
+      "needs_review": true,
+      "note": "ESTIMATED, not billed yet. See lacrosse-2627-inst-1. Date mirrors the 2025-26 due date of 03/09.",
+      "last_updated": "2026-08-10T00:00:00-04:00",
+      "source": "manual"
     }
   ]
 }
