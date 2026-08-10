@@ -28,6 +28,12 @@ Open the page, enter the passphrase, and it unlocks. It stays unlocked for that
 browser session — a refresh won't ask again, closing the tab will. **Lock** in the
 top bar signs out immediately.
 
+What you land on is the payment calendar and its checkboxes — the only thing you
+need day to day. The rest of the plan (the calls to make, the debt strategy, the
+September turn, the corrections log) sits below it as collapsed tiles. Tap a tile's
+title to open it, tap again to close. They start closed every time, so the top of
+the page stays short no matter how much the plan grows.
+
 Everything you change saves automatically. The dot next to the balance box tells
 you where things stand:
 
