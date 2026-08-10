@@ -109,6 +109,25 @@ If the log says `Local time is 20:31 EDT; send_hour_local is 07. Nothing to do.`
 
 If it says `CASH DATA STALE`, the bank feed failed. The reason is on the line below it in the message and in red in the log.
 
+**If the log says the message was sent but no text arrives**, look for the delivery lines:
+
+```
+  accepted by Twilio: +19085551234 sid=SM… status=queued
+  NOT DELIVERED: +19085551234: undelivered [30034] … -- the sending number is
+  not registered for A2P 10DLC. US carriers drop unregistered traffic.
+```
+
+Twilio answers `201 Created` the moment it queues a message; whether a carrier
+took it is decided seconds later. The run polls for that outcome and fails red
+if nothing was delivered. The common codes:
+
+| Code | Meaning | Fix |
+|---|---|---|
+| `30034` | Number not registered for A2P 10DLC | Register in Twilio, or switch to `email_gateway` meanwhile |
+| `21608` | Trial account, destination unverified | Add it under **Phone Numbers → Verified Caller IDs** |
+| `30007` | Carrier filtered it as spam | Usually A2P registration |
+| `21610` | That number replied STOP | It must reply START |
+
 ## 7. Upload a bill screenshot
 
 Click **inbox** → **Add file → Upload files**. Drag in a PNG, JPG, `.xlsx`, or `.csv`, scroll down, **Commit changes**. "Ingest uploaded bills" starts on its own and takes about a minute. You get a text like:
