@@ -1,0 +1,69 @@
+{
+  "_comments": [
+    "Daily cash-flow SMS system — settings. Edit the values below, never the keys.",
+    "Keys beginning with an underscore are documentation only and are ignored by the code.",
+    "",
+    "timezone .......................... IANA timezone name. All dates and the send-time",
+    "                                    check are evaluated in this zone. Handles EDT/EST",
+    "                                    automatically.",
+    "send_hour_local ................... Hour (0-23, local) the daily brief is sent. The",
+    "                                    workflow runs twice (11:00 and 12:00 UTC) and the",
+    "                                    script exits without sending unless the local hour",
+    "                                    matches this value. That is what makes the daylight",
+    "                                    saving switch a non-event.",
+    "sms_provider ...................... 'twilio' or 'email_gateway'. Selects which code path",
+    "                                    messaging.py uses. Both work; the gateway exists so",
+    "                                    Twilio A2P 10DLC registration cannot block you.",
+    "parser_model ...................... Anthropic model id used to read uploaded bill",
+    "                                    screenshots and spreadsheets. Change it here rather",
+    "                                    than in code.",
+    "projection_days ................... How many days forward to project, starting today.",
+    "low_balance_threshold ............. A projected day at or below this is CRITICAL.",
+    "warning_buffer .................... A projected day at or below this (but above the",
+    "                                    critical threshold) is a CAUTION.",
+    "daily_discretionary_allowance ..... Planned everyday spending per day, in dollars. Used",
+    "                                    for the forward projection and to work out how much",
+    "                                    of today's allowance is still unspent.",
+    "discretionary_exclude_keywords .... Case-insensitive substrings. A transaction whose",
+    "                                    description contains any of these is never counted",
+    "                                    as discretionary spending — transfers, card payments",
+    "                                    already modelled as bills, and so on.",
+    "account_ids ....................... SimpleFIN account ids to include. An empty list means",
+    "                                    every account the bridge returns.",
+    "paycheck_matching_keywords ........ Case-insensitive substrings used to recognise income",
+    "                                    deposits in the transaction feed."
+  ],
+
+  "timezone": "America/New_York",
+  "send_hour_local": 7,
+  "sms_provider": "twilio",
+  "parser_model": "claude-sonnet-5",
+
+  "projection_days": 45,
+  "low_balance_threshold": 0.00,
+  "warning_buffer": 100.00,
+  "daily_discretionary_allowance": 100.00,
+
+  "discretionary_exclude_keywords": [
+    "transfer",
+    "xfer",
+    "online payment",
+    "payment thank you",
+    "autopay",
+    "card payment",
+    "zelle",
+    "atm withdrawal",
+    "cash app",
+    "venmo"
+  ],
+
+  "account_ids": [],
+
+  "paycheck_matching_keywords": [
+    "payroll",
+    "direct dep",
+    "dir dep",
+    "board of ed",
+    "boe"
+  ]
+}

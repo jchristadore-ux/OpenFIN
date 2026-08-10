@@ -1,0 +1,23 @@
+{
+  "_comments": [
+    "Machine-written. Do not edit by hand unless you are deliberately resetting something.",
+    "",
+    "  last_run_iso ............. Timestamp of the last run that actually sent a brief.",
+    "                             Guards against a double send when both cron entries fire.",
+    "  last_known_balance ....... Most recent balance the bank API returned, in dollars.",
+    "  last_known_balance_iso ... When that balance was read. If the bank API is down, the",
+    "                             stale-data text quotes both of these so you know how old",
+    "                             the numbers are.",
+    "  alerted_days ............. ISO date -> the projected balance for that day at the time",
+    "                             it was last alerted about. Used to suppress repeat alerts",
+    "                             and to re-alert only when a day gets materially worse.",
+    "  last_message_hash ........ SHA-256 of the last daily brief body. Lets a rerun notice",
+    "                             it would send an identical message."
+  ],
+
+  "last_run_iso": null,
+  "last_known_balance": null,
+  "last_known_balance_iso": null,
+  "alerted_days": {},
+  "last_message_hash": null
+}

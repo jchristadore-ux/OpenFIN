@@ -1,0 +1,70 @@
+name: Ingest uploaded bills
+
+# Fires when you drag a screenshot or spreadsheet into inbox/ and commit it
+# from the GitHub web UI. inbox/processed/ is excluded so the workflow's own
+# tidy-up does not re-trigger it. (Pushes made with GITHUB_TOKEN don't trigger
+# workflows anyway — this is belt and braces.)
+on:
+  push:
+    paths:
+      - 'inbox/**'
+      - '!inbox/processed/**'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Show the diff without writing bills.json or sending a text'
+        type: boolean
+        required: false
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cashflow-bills
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install --quiet requests openpyxl
+
+      - name: Read the upload and diff it against bills.json
+        env:
+          PYTHONPATH: src
+          DRY_RUN: ${{ inputs.dry_run }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          TWILIO_FROM_NUMBER: ${{ secrets.TWILIO_FROM_NUMBER }}
+          ALERT_TO_NUMBERS: ${{ secrets.ALERT_TO_NUMBERS }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_APP_PASSWORD: ${{ secrets.SMTP_APP_PASSWORD }}
+          SMS_GATEWAY_ADDRESSES: ${{ secrets.SMS_GATEWAY_ADDRESSES }}
+        run: python src/parse_upload.py
+
+      - name: Verify the merged bill list still loads
+        env:
+          PYTHONPATH: src
+        run: python src/selftest.py
+
+      - name: Commit the updated bill list
+        if: always()
+        run: |
+          git config user.name  "cashflow-bot"
+          git config user.email "cashflow-bot@users.noreply.github.com"
+          git add bills.json inbox/
+          if git diff --cached --quiet; then
+            echo "Nothing changed."
+            exit 0
+          fi
+          git commit -m "Bills updated from upload"
+          git push

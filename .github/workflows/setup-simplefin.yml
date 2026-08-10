@@ -1,0 +1,77 @@
+name: Setup — claim SimpleFIN access URL
+
+# One-time. This is how the token exchange happens without a terminal.
+#
+# The SimpleFIN setup token is a base64-encoded claim URL that can be POSTed
+# exactly once. This workflow decodes it, claims it, and prints the resulting
+# permanent Access URL to the log.
+#
+# The Access URL contains a username and password. It is printed to the run
+# log because there is no other way to get it to you in a browser-only setup.
+# Save it as the SIMPLEFIN_ACCESS_URL secret and then DELETE THIS RUN — the
+# final step tells you exactly how.
+on:
+  workflow_dispatch:
+    inputs:
+      setup_token:
+        description: 'Paste the SimpleFIN setup token (the long base64 string)'
+        type: string
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  claim:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install --quiet requests
+
+      - name: Exchange the setup token for an access URL
+        env:
+          PYTHONPATH: src
+          SETUP_TOKEN: ${{ inputs.setup_token }}
+        run: |
+          python - <<'PY'
+          import os, sys
+          sys.path.insert(0, "src")
+          from simplefin_client import claim_access_url, SimpleFinError
+
+          try:
+              url = claim_access_url(os.environ["SETUP_TOKEN"])
+          except SimpleFinError as exc:
+              print(f"::error::{exc}")
+              sys.exit(1)
+
+          print("")
+          print("=" * 70)
+          print("  YOUR SIMPLEFIN ACCESS URL")
+          print("=" * 70)
+          print("")
+          print(f"  {url}")
+          print("")
+          print("=" * 70)
+          print("  DO THESE TWO THINGS NOW, IN THIS ORDER:")
+          print("")
+          print("  1. Copy the line above. Go to Settings -> Secrets and variables")
+          print("     -> Actions -> New repository secret. Name it exactly:")
+          print("")
+          print("       SIMPLEFIN_ACCESS_URL")
+          print("")
+          print("     Paste the URL as the value and save.")
+          print("")
+          print("  2. Delete this workflow run. It contains a live credential.")
+          print("     Actions -> this run -> the '...' menu, top right -> Delete run.")
+          print("")
+          print("  The setup token you pasted is now spent and cannot be reused.")
+          print("  If you lose the URL before saving it, generate a new token in")
+          print("  the SimpleFIN Bridge and run this workflow again.")
+          print("=" * 70)
+          PY
