@@ -10,16 +10,14 @@ on:
     - cron: '0 12 * * *'
   workflow_dispatch:
     inputs:
-      dry_run:
-        description: 'Print the text to the log instead of sending it'
-        type: boolean
-        required: false
-        default: true
-      force_send:
-        description: 'Ignore the send-hour check (use with dry_run off to send now)'
-        type: boolean
-        required: false
-        default: false
+      mode:
+        description: 'What to do'
+        type: choice
+        required: true
+        default: 'preview'
+        options:
+          - 'preview'
+          - 'send-now'
 
 permissions:
   contents: write
@@ -50,8 +48,11 @@ jobs:
       - name: Send the daily brief
         env:
           PYTHONPATH: src
-          DRY_RUN: ${{ inputs.dry_run }}
-          FORCE_SEND: ${{ inputs.force_send }}
+          # 'preview' prints the text and sends nothing. 'send-now' really
+          # sends, ignoring the send-hour check. On a scheduled run inputs.mode
+          # is empty, so both evaluate false and the normal 7am gate applies.
+          DRY_RUN: ${{ inputs.mode == 'preview' }}
+          FORCE_SEND: ${{ inputs.mode == 'send-now' }}
           SIMPLEFIN_ACCESS_URL: ${{ secrets.SIMPLEFIN_ACCESS_URL }}
           TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
           TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
