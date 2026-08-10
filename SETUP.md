@@ -25,10 +25,20 @@ You only need the secret set matching `sms_provider` in `config.json`; add the o
 1. Go to **https://beta-bridge.simplefin.org**, create an account, click **Connect an account**, and log in to your bank through their screen.
 2. Once it shows as connected: **My Account → Setup Token → Generate**. Copy the whole token.
 3. In this repo: **Actions → "Setup — claim SimpleFIN access URL" → Run workflow**. Paste the token, click the green **Run workflow**.
-4. Open the finished run and expand the step. It prints your Access URL. Save it as `SIMPLEFIN_ACCESS_URL`.
+4. Open the finished run and expand the step. It prints the URL, and also its three parts separately:
+
+   ```
+     username : abc123
+     password : xyz789
+     host     : beta-bridge.simplefin.org/simplefin
+
+     https://abc123:xyz789@beta-bridge.simplefin.org/simplefin
+   ```
+
+   Save that last line as `SIMPLEFIN_ACCESS_URL`. **If it shows `***` instead**, the secret already exists and GitHub is redacting it — assemble the URL yourself from the three parts above, which are printed for exactly that reason.
 5. **Delete the run** — `...` menu, top right → **Delete run**. The log holds a live credential until you do.
 
-A setup token works once. If you lose the URL before saving it, generate a new token and run the workflow again.
+**A setup token works exactly once.** Running the workflow a second time with the same token fails with 403. If you need to redo it, generate a fresh token in the SimpleFIN Bridge first.
 
 ## 3. Twilio
 
@@ -70,7 +80,14 @@ Go to **https://console.anthropic.com**, add a little credit under **Billing**, 
 
 ## 6. Run a dry run
 
-**Actions → "Daily cash brief" → Run workflow.** Leave **dry_run** ticked, click the green **Run workflow**. Open the run → the `brief` job → expand **Send the daily brief**. You will see the exact text:
+**Actions → "Daily cash brief" → Run workflow ▾.** A small panel drops down with a branch selector and a **What to do** dropdown:
+
+| Mode | What happens |
+|---|---|
+| `preview` (default) | Prints the text to the log. Sends nothing, saves nothing. |
+| `send-now` | Really sends, ignoring the "is it 7am?" check. |
+
+Leave it on `preview`, click the green **Run workflow**. Open the run → the `brief` job → expand **Send the daily brief**. You will see the exact text:
 
 ```
 DRY RUN — would send via twilio (166 chars):
@@ -86,7 +103,9 @@ Clear through 09/23
 ============================================================
 ```
 
-Nothing was sent and nothing was saved. To send it for real right now, run it again with **dry_run** unticked and **force_send** ticked.
+Nothing was sent and nothing was saved. To send it for real right now, run it again with the dropdown on **`send-now`**.
+
+If the log says `Local time is 20:31 EDT; send_hour_local is 07. Nothing to do.` you left it on `preview` — that message means the run stopped at the send-hour gate.
 
 If it says `CASH DATA STALE`, the bank feed failed. The reason is on the line below it in the message and in red in the log.
 

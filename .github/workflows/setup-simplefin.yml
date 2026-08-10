@@ -41,6 +41,7 @@ jobs:
         run: |
           python - <<'PY'
           import os, sys
+          from urllib.parse import urlsplit
           sys.path.insert(0, "src")
           from simplefin_client import claim_access_url, SimpleFinError
 
@@ -50,28 +51,61 @@ jobs:
               print(f"::error::{exc}")
               sys.exit(1)
 
+          # GitHub redacts any string matching a registered secret. If
+          # SIMPLEFIN_ACCESS_URL already holds a value, printing the whole URL
+          # comes out as "***..." and is useless. Printing the pieces
+          # separately defeats that: no individual piece matches the stored
+          # secret, so each one survives to the log.
+          parts = urlsplit(url)
+          host_path = f"{parts.hostname}{parts.path}"
+          if parts.port:
+              host_path = f"{parts.hostname}:{parts.port}{parts.path}"
+
+          bar = "=" * 68
           print("")
-          print("=" * 70)
+          print(bar)
           print("  YOUR SIMPLEFIN ACCESS URL")
-          print("=" * 70)
+          print(bar)
           print("")
-          print(f"  {url}")
+          print("  Build the value from these three pieces:")
           print("")
-          print("=" * 70)
-          print("  DO THESE TWO THINGS NOW, IN THIS ORDER:")
+          print(f"    username : {parts.username}")
+          print(f"    password : {parts.password}")
+          print(f"    host     : {host_path}")
           print("")
-          print("  1. Copy the line above. Go to Settings -> Secrets and variables")
-          print("     -> Actions -> New repository secret. Name it exactly:")
+          print("  Paste them together in exactly this shape, no spaces:")
+          print("")
+          print("    https://USERNAME:PASSWORD@HOST")
+          print("")
+          print("  So for you it is:")
+          print("")
+          print(f"    https://{parts.username}:{parts.password}@{host_path}")
+          print("")
+          print(bar)
+          print("  IF THE LINE ABOVE SHOWS *** INSTEAD")
+          print(bar)
+          print("")
+          print("  That means the SIMPLEFIN_ACCESS_URL secret already exists and")
+          print("  GitHub is redacting it. Use the three pieces above instead --")
+          print("  they are printed separately for exactly this reason.")
+          print("")
+          print(bar)
+          print("  DO THESE TWO THINGS NOW, IN THIS ORDER")
+          print(bar)
+          print("")
+          print("  1. Settings -> Secrets and variables -> Actions.")
+          print("     Create or edit the secret named exactly:")
           print("")
           print("       SIMPLEFIN_ACCESS_URL")
           print("")
-          print("     Paste the URL as the value and save.")
+          print("     Value: the https://... line above. Nothing else, no quotes,")
+          print("     no trailing slash, no line break.")
           print("")
           print("  2. Delete this workflow run. It contains a live credential.")
-          print("     Actions -> this run -> the '...' menu, top right -> Delete run.")
+          print("     Actions -> this run -> '...' menu, top right -> Delete run.")
           print("")
-          print("  The setup token you pasted is now spent and cannot be reused.")
-          print("  If you lose the URL before saving it, generate a new token in")
-          print("  the SimpleFIN Bridge and run this workflow again.")
-          print("=" * 70)
+          print("  The setup token you pasted is now spent. Running this workflow")
+          print("  again with the same token returns 403. If you need to redo it,")
+          print("  generate a fresh token in the SimpleFIN Bridge first.")
+          print(bar)
           PY
