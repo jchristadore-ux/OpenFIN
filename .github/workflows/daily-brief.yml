@@ -1,0 +1,79 @@
+name: Daily cash brief
+
+# Two cron entries, one hour apart, both in UTC. Exactly one of them lands on
+# the local hour set as `send_hour_local` in config.json — 11:00 UTC is 7am EDT
+# in summer, 12:00 UTC is 7am EST in winter. The script exits without sending
+# on the one that doesn't match, so the daylight saving switch needs no action.
+on:
+  schedule:
+    - cron: '0 11 * * *'
+    - cron: '0 12 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Print the text to the log instead of sending it'
+        type: boolean
+        required: false
+        default: true
+      force_send:
+        description: 'Ignore the send-hour check (use with dry_run off to send now)'
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cashflow-state
+  cancel-in-progress: false
+
+jobs:
+  brief:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install --quiet requests
+
+      - name: Run self-test
+        # Money maths is checked before any message can be sent.
+        run: python src/selftest.py
+        env:
+          PYTHONPATH: src
+
+      - name: Send the daily brief
+        env:
+          PYTHONPATH: src
+          DRY_RUN: ${{ inputs.dry_run }}
+          FORCE_SEND: ${{ inputs.force_send }}
+          SIMPLEFIN_ACCESS_URL: ${{ secrets.SIMPLEFIN_ACCESS_URL }}
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          TWILIO_FROM_NUMBER: ${{ secrets.TWILIO_FROM_NUMBER }}
+          ALERT_TO_NUMBERS: ${{ secrets.ALERT_TO_NUMBERS }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_APP_PASSWORD: ${{ secrets.SMTP_APP_PASSWORD }}
+          SMS_GATEWAY_ADDRESSES: ${{ secrets.SMS_GATEWAY_ADDRESSES }}
+        run: python src/daily_brief.py
+
+      - name: Commit state and log
+        # Runs even when the send step failed, so a stale-data run still
+        # records what it saw. Pushes made with GITHUB_TOKEN do not trigger
+        # workflows, so this cannot loop.
+        if: always()
+        run: |
+          git config user.name  "cashflow-bot"
+          git config user.email "cashflow-bot@users.noreply.github.com"
+          git add state.json logs/
+          if git diff --cached --quiet; then
+            echo "Nothing changed."
+            exit 0
+          fi
+          git commit -m "Daily brief $(date -u +%Y-%m-%d)"
+          git push

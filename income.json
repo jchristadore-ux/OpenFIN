@@ -1,0 +1,41 @@
+{
+  "_comments": [
+    "Expected recurring deposits. Same shape and same occurrence rules as bills.json —",
+    "see the comment block there for what each field means. The only differences:",
+    "",
+    "  amount .......... Dollars, positive. It is ADDED to the projection, not subtracted.",
+    "  match_keywords .. Used to recognise the deposit in the bank feed.",
+    "",
+    "Keys beginning with an underscore are ignored. The list lives under the \"income\" key;",
+    "a bare JSON array is also accepted."
+  ],
+
+  "income": [
+    {
+      "id": "boe-payroll",
+      "name": "Branchburg BOE payroll",
+      "amount": 2840.34,
+      "due_day": null,
+      "frequency": "biweekly",
+      "due_date": null,
+      "anchor_date": "2026-09-10",
+      "match_keywords": ["branchburg", "board of ed", "payroll"],
+      "active": true,
+      "last_updated": "2026-08-10T00:00:00-04:00",
+      "source": "manual"
+    },
+    {
+      "id": "primary-payroll",
+      "name": "Primary payroll",
+      "amount": 2853.17,
+      "due_day": null,
+      "frequency": "weekly",
+      "due_date": null,
+      "anchor_date": "2026-08-14",
+      "match_keywords": ["payroll", "direct dep", "dir dep"],
+      "active": true,
+      "last_updated": "2026-08-10T00:00:00-04:00",
+      "source": "manual"
+    }
+  ]
+}
