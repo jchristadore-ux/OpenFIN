@@ -35,8 +35,14 @@ A setup token works once. If you lose the URL before saving it, generate a new t
 1. Sign up at **https://www.twilio.com/try-twilio** and verify your own mobile number.
 2. On the console home page, copy **Account SID** and **Auth Token** into the secrets from step 1.
 3. **Phone Numbers → Buy a number.** Tick **SMS** under capabilities. Pick any US local number, around $1.15/month.
-4. Save it as `TWILIO_FROM_NUMBER` in E.164 form — `+1` then ten digits, no spaces or dashes.
-5. Save your phone numbers as `ALERT_TO_NUMBERS`, comma separated.
+4. Save it as `TWILIO_FROM_NUMBER` in E.164 form — `+1` then ten digits, no spaces or dashes: `+19085551234`.
+5. Save your phone numbers as `ALERT_TO_NUMBERS`, comma separated: `+19085551234,+19085555678`.
+
+> ⚠️ **Type these straight into the GitHub secret box. Do not paste them out of a spreadsheet.**
+> Excel reads `+19085551234,+19085555678` as one enormous number and reformats it to
+> `19,085,551,234,190,855,556,780`. The phone numbers are then unrecoverable — the commas
+> have eaten the boundary between them. The code rejects mangled numbers with a clear
+> message rather than sending them, but it cannot repair them.
 
 **About A2P 10DLC.** US carriers require every business-owned number sending to US phones to be registered. Twilio will prompt you; it is a form about who you are and what you send, then a wait. Trial messages to your own verified number work immediately.
 

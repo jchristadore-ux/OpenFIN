@@ -22,6 +22,7 @@ same send() call.
 from __future__ import annotations
 
 import os
+import re
 import smtplib
 from email.message import EmailMessage
 
@@ -54,6 +55,41 @@ def _recipients(name: str) -> list[str]:
     return out
 
 
+# E.164: a literal '+', a non-zero country code digit, then 7-14 more digits.
+E164 = re.compile(r"^\+[1-9]\d{7,14}$")
+
+
+def _check_e164(number: str, secret: str) -> str:
+    """Reject a phone number Twilio would reject, with a usable explanation.
+
+    This exists because a spreadsheet will happily turn
+        +19085551234,+19085555678
+    into
+        19,085,551,234,190,855,556,780
+    by reading it as one enormous number and adding thousands separators.
+    Split on commas, that yields eight meaningless fragments, and the only
+    symptom without this check is a wall of Twilio 21211 errors. Catching it
+    here names the offending value and says what it should look like.
+    """
+    number = number.strip()
+    if E164.match(number):
+        return number
+
+    if number.isdigit():
+        hint = f"missing the leading '+' — try '+{number}'"
+    elif " " in number or "-" in number or "(" in number:
+        stripped = "".join(c for c in number if c.isdigit())
+        hint = f"remove spaces, dashes and brackets — try '+{stripped}'"
+    else:
+        hint = (
+            "expected E.164: a '+' then digits only. If this looks like part of a "
+            "comma-grouped number, a spreadsheet reformatted it — retype the value "
+            "by hand instead of pasting from a cell"
+        )
+
+    raise MessagingError(f"{secret}: {number!r} is not a valid phone number — {hint}")
+
+
 # --------------------------------------------------------------------------
 # Twilio
 # --------------------------------------------------------------------------
@@ -83,8 +119,13 @@ def _twilio_error(resp: requests.Response) -> str:
 def send_twilio(body: str) -> list[str]:
     sid = _require("TWILIO_ACCOUNT_SID")
     token = _require("TWILIO_AUTH_TOKEN")
-    from_number = _require("TWILIO_FROM_NUMBER")
-    to_numbers = _recipients("ALERT_TO_NUMBERS")
+
+    # Validate before spending a request. Every number is checked, so one bad
+    # entry reports itself rather than surfacing as a Twilio error later.
+    from_number = _check_e164(_require("TWILIO_FROM_NUMBER"), "TWILIO_FROM_NUMBER")
+    to_numbers = [
+        _check_e164(n, "ALERT_TO_NUMBERS") for n in _recipients("ALERT_TO_NUMBERS")
+    ]
 
     url = f"{TWILIO_BASE}/{TWILIO_VERSION}/Accounts/{sid}/Messages.json"
     sent: list[str] = []
