@@ -22,6 +22,7 @@ same send() call.
 from __future__ import annotations
 
 import os
+import time
 import re
 import smtplib
 from email.message import EmailMessage
@@ -128,7 +129,7 @@ def send_twilio(body: str) -> list[str]:
     ]
 
     url = f"{TWILIO_BASE}/{TWILIO_VERSION}/Accounts/{sid}/Messages.json"
-    sent: list[str] = []
+    accepted: list[tuple[str, str]] = []      # (to, message_sid)
     failures: list[str] = []
 
     for to in to_numbers:
@@ -143,17 +144,127 @@ def send_twilio(body: str) -> list[str]:
             failures.append(f"{to}: {exc}")
             continue
 
-        if resp.ok:
-            sent.append(to)
-        else:
+        if not resp.ok:
             failures.append(f"{to}: {_twilio_error(resp)}")
+            continue
 
-    if failures and not sent:
+        try:
+            payload = resp.json()
+        except ValueError:
+            payload = {}
+        message_sid = payload.get("sid", "")
+        print(f"  accepted by Twilio: {to} sid={message_sid or '?'} "
+              f"status={payload.get('status', '?')}")
+        accepted.append((to, message_sid))
+
+    if failures and not accepted:
         raise MessagingError("Twilio rejected every recipient — " + "; ".join(failures))
     if failures:
-        # Partial delivery still counts as delivered, but say so loudly in the log.
         print(f"WARNING: Twilio failed for some recipients — {'; '.join(failures)}")
-    return sent
+
+    # Acceptance is not delivery. Twilio answers 201 the moment it queues a
+    # message; whether a carrier actually took it is decided seconds later and
+    # reported only on the message resource. Without this check an
+    # unregistered A2P number looks like a clean success in the log while no
+    # phone ever buzzes — which is exactly what happened.
+    delivered, undelivered = _confirm_delivery(sid, token, accepted)
+
+    if undelivered and not delivered:
+        raise MessagingError(
+            "Twilio accepted every message but the carrier delivered none — "
+            + "; ".join(undelivered)
+        )
+    if undelivered:
+        print(f"WARNING: not delivered to some recipients — {'; '.join(undelivered)}")
+
+    return [to for to, _ in accepted]
+
+
+# Terminal delivery states, and what they mean.
+_DELIVERED = {"delivered", "sent", "received"}
+_UNDELIVERED = {"undelivered", "failed"}
+
+# The Twilio error codes worth explaining rather than just quoting.
+_ERROR_HINTS = {
+    "30034": ("the sending number is not registered for A2P 10DLC. US carriers "
+              "drop unregistered traffic. Register the brand and campaign in "
+              "Twilio (Messaging -> Regulatory Compliance -> A2P 10DLC), or "
+              "switch sms_provider to email_gateway until it clears."),
+    "21608": ("trial account: the destination is not a Verified Caller ID. Add "
+              "it under Phone Numbers -> Verified Caller IDs, or upgrade the "
+              "account."),
+    "30007": ("the carrier filtered the message as spam. Usually A2P "
+              "registration, or wording that trips a filter."),
+    "30003": "the handset is unreachable — off, out of coverage, or blocked.",
+    "30005": "unknown destination — the number does not exist on that carrier.",
+    "30006": "landline or unreachable carrier.",
+    "21610": "that number replied STOP. It must reply START before it can be texted again.",
+}
+
+
+def _confirm_delivery(
+    account_sid: str,
+    token: str,
+    accepted: list[tuple[str, str]],
+    *,
+    attempts: int = 6,
+    interval: float = 3.0,
+) -> tuple[list[str], list[str]]:
+    """Poll each accepted message until its delivery state settles.
+
+    Returns (delivered, undelivered-with-reason). A message still queued when
+    the polling budget runs out is reported as pending rather than failed —
+    slow is not the same as broken, and this must not cry wolf.
+    """
+    pending = {sid_: to for to, sid_ in accepted if sid_}
+    delivered: list[str] = []
+    undelivered: list[str] = []
+
+    if not pending:
+        return delivered, undelivered
+
+    for attempt in range(attempts):
+        time.sleep(interval)
+        for message_sid in list(pending):
+            to = pending[message_sid]
+            url = (f"{TWILIO_BASE}/{TWILIO_VERSION}/Accounts/{account_sid}"
+                   f"/Messages/{message_sid}.json")
+            try:
+                resp = requests.get(url, auth=(account_sid, token), timeout=TIMEOUT)
+            except requests.RequestException:
+                continue
+            if not resp.ok:
+                continue
+
+            try:
+                data = resp.json()
+            except ValueError:
+                continue
+
+            status = str(data.get("status", "")).lower()
+            if status in _DELIVERED:
+                print(f"  delivered: {to} ({status})")
+                delivered.append(to)
+                del pending[message_sid]
+            elif status in _UNDELIVERED:
+                code = str(data.get("error_code") or "")
+                message = data.get("error_message") or "no reason given"
+                hint = _ERROR_HINTS.get(code)
+                detail = f"{to}: {status} [{code or 'no code'}] {message}"
+                if hint:
+                    detail += f" -- {hint}"
+                print(f"  NOT DELIVERED: {detail}")
+                undelivered.append(detail)
+                del pending[message_sid]
+
+        if not pending:
+            break
+
+    for message_sid, to in pending.items():
+        print(f"  still pending after {attempts * interval:.0f}s: {to} "
+              f"(sid={message_sid}). Check Twilio -> Monitor -> Logs -> Messaging.")
+
+    return delivered, undelivered
 
 
 # --------------------------------------------------------------------------
