@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10T11:28:58.007087-04:00",
+  "generated_at": "2026-08-10T14:34:07.133815-04:00",
   "today": "2026-08-10",
   "balance_now": "118.25",
   "balance_method": "available-balance",
@@ -415,9 +415,7 @@
     }
   ],
   "message": "CASH 08/10\nNow: $118.25 (incl pending)\nBills today: $0.00\nDisc spent: $0.00 of $100.00\nEnd of day: $18.25\n\nWATCH: 08/11 -$81.75\nNext 3 tight: 08/11 -82, 08/12 -182",
-  "alerts_sent": [
-    "2026-08-11"
-  ],
+  "alerts_sent": [],
   "critical_days_known": [
     "2026-08-11",
     "2026-08-12"
