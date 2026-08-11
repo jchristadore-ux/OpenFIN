@@ -1,108 +1,127 @@
-# TogetherLedger
+<h1>TogetherLedger</h1>
 
-Two things live here.
+**A household financial early-warning system.** It does not tell you what your
+budget was. It tells you what is about to happen to your money, when, how much,
+and what you could do about it.
 
-**Daily cash-flow SMS** — a text every morning at 7am Eastern saying what is in
-the account, what comes out today, and the next day the balance gets tight.
-Runs entirely on GitHub Actions. Setup is browser-only: **[SETUP.md](SETUP.md)**.
-
-**[The shared plan page](plan/)** — the encrypted August–September operating
-plan with a live payment tracker, at
-`https://jchristadore-ux.github.io/TogetherLedger/plan/`. See
-[plan/README.md](plan/README.md).
+**[Open the dashboard](https://jchristadore-ux.github.io/TogetherLedger/)**
 
 ---
 
-## What the daily text looks like
+## The daily loop
 
 ```
-CASH 08/09
-Now: $3,512.20 (incl pending)
-Bills today: $750.00
- - Hanover Auto $750.00 (PAID)
-Disc spent: $140.36 of $100.00
-End of day: $3,512.20
-
-WATCH: 08/16 -$1,337.62
-Next 3 tight: 08/16 -1338, 08/17 -1438, 08/18 -1538
+Enter today's balance  ->  forecast runs  ->  risk engine runs  ->  email sent
 ```
 
-`Clear through 09/23` replaces the last two lines when nothing in the window
-gets tight. If a day newly drops below zero — or an already-known bad day gets
-more than $25 worse — a second text follows:
+That is the household's only manual step. Everything else cascades from it.
 
-```
-ALERT: 08/16 projects to -$1,337.62
-Driver: Mortgage $1,801.62 on 08/16
-Balance today: $1,400.00
-```
+Entering a balance is done from a phone, with no server and no hosting cost:
+file the **Daily balance** issue from the GitHub mobile app, or run the
+**Daily balance** workflow from the Actions tab. The engine parses it, projects
+forward, emails the daily check, comments the result back, and closes the issue.
 
-One alert per run, naming the nearest new problem. Later negative days are
-consequences of that one; texting all of them would just mean a phone nobody
-reads.
+**No balance entered means no daily email.** A financial summary anchored to a
+stale balance reads as authoritative and is quietly wrong, which is worse than
+silence.
 
-## How it works
+## The half that does not wait for you
 
-| Piece | What it does |
+Risk alerts are independent of balance entry. `watch.yml` runs twice a day,
+projects from the last known position, and emails **only** when it finds
+something. A mortgage about to bounce next Tuesday is true whether or not
+anyone opened the app this morning.
+
+Alerts deduplicate. An unchanged risk is not re-sent; it goes out again only
+when it gets materially worse (>$100), moves by more than two days, resolves
+and returns, or hits the reminder threshold.
+
+## What it watches for
+
+| Risk | Meaning |
 |---|---|
-| `.github/workflows/daily-brief.yml` | 7am cron. Two UTC entries, one hour apart; the script ignores whichever isn't 7am locally, so daylight saving needs no action. |
-| `.github/workflows/ingest-bills.yml` | Fires when you drop a screenshot into `inbox/`. |
-| `.github/workflows/setup-simplefin.yml` | One-time token exchange, run from the Actions tab. |
-| `src/simplefin_client.py` | Reads the bank. Handles both v1 and v2 Account Set shapes. |
-| `src/bills.py` | Occurrence maths — when each bill falls, with month-end clamping. |
-| `src/projection.py` | The forward ledger, the double-count guard, tight-day detection. |
-| `src/messaging.py` | Twilio, or a carrier email-to-SMS gateway. |
-| `src/parse_upload.py` | Reads an uploaded screenshot or spreadsheet, diffs it, commits. |
-| `src/daily_brief.py` | The morning run. |
-| `src/selftest.py` | 45 checks on synthetic data. Runs before every send. |
+| Secured payment | A mortgage or car payment the balance cannot cover that day |
+| Negative balance | The projection crosses zero |
+| Large payment | A big obligation lands with too little behind it |
+| Insufficient cash | Stays positive but drops under the safe floor |
+| Income timing | The month works; the order does not |
+| Future crunch | Fine now, a combination bites later |
+| Discretionary | Nothing free to spend this week |
 
-State lives in JSON files committed to the repo: `config.json`, `bills.json`,
-`income.json`, `state.json`, and a daily snapshot in `logs/`. No database, no
-server, no local runtime.
+## Safe discretionary
 
-## The rules that matter
-
-**Never subtract a bill twice.** Before a bill due today is taken off the
-projection, today's posted *and* pending transactions are searched for a debit
-matching its keywords within 3% or $5. If one is found the bill is listed as
-`(PAID)` and not subtracted. Get this wrong and every day after it is off by
-that amount.
-
-**Pending money is spent money.** A pending debit has already reduced what is
-actually available. The bank's own `available-balance` is used when the
-institution provides one; otherwise the balance is taken and every pending
-transaction applied by hand, and the text says `[bal-pending]` so you know
-which method produced the number.
-
-**Never send a number it isn't sure about.** If the bank feed fails, the text
-says so, quotes the last known balance *with its timestamp*, and the Actions
-run goes red:
+Deliberately **not** `income - bills`. That answers "did we earn more than we
+owe", which is not the question anyone is actually asking.
 
 ```
-CASH DATA STALE — bank feed unavailable.
-Last known: $3,704.45 as of 2026-08-08 20:23
-Reason: SimpleFIN returned HTTP 503: upstream bank is down
-Figures above are NOT current. Check the bank directly.
+  balance now
++ income before end of week
+- bills before end of week
+- obligations in the 14 days after that
+- required cash buffer
+= safe to spend
 ```
 
-**Never delete a bill.** A bill missing from an uploaded screenshot is set to
-`"active": false` with a note. OCR misses a line far more often than a
-household actually cancels a mortgage.
+The lookahead is what makes it honest — spending everything not owed *this*
+week is exactly how a mortgage two days into next week goes unpaid. **The
+number can be negative, and it is shown negative.**
 
-**Money is never a float.** Every amount is a `Decimal` rounded half-up to the
-cent. A projection is a long chain of additions and `0.1 + 0.2` is not `0.3`.
+## Architecture
 
-## Changing things
+One authoritative engine. Business logic never lives in the dashboard.
 
-Edit `config.json` in the GitHub web editor — allowance, thresholds, how many
-days to project, which model reads screenshots, whether SMS goes via Twilio or
-the email gateway. Edit `bills.json` and `income.json` the same way; both files
-carry a comment block at the top explaining every field.
+| Module | Responsibility |
+|---|---|
+| `src/bills.py` | Occurrence maths — when each obligation falls |
+| `src/fincal.py` | The financial calendar: obligations become dated events |
+| `src/forecast.py` | Balance projection and safe discretionary |
+| `src/risk.py` | Risk detection and alert deduplication |
+| `src/recommend.py` | Deferral options — recommends, never acts |
+| `src/notify.py` | Email composition, daily and alert |
+| `src/messaging.py` | SMTP delivery |
+| `src/engine.py` | The orchestrator and the only entry point |
+| `src/parse_upload.py` | Reads a bill screenshot into `bills.json` |
+| `index.html` | Renders `snapshot.json`. Computes nothing. |
 
-To preview without sending: **Actions → Daily cash brief → Run workflow**, leave
-**dry_run** ticked. The exact message prints to the log.
+Data lives in JSON committed to the repo: `bills.json`, `income.json`,
+`config.json`, `state.json`, and the generated `snapshot.json`. No database, no
+server, no runtime.
 
-## Dependencies
+## Rules that matter
 
-Python 3.11, plus `requests` and `openpyxl`. Everything else is the standard
-library.
+**Money is never a float.** Every amount is a `Decimal` rounded half-up. A
+projection is a long chain of additions and `0.1 + 0.2` is not `0.3`.
+
+**Variable bills forecast at the top of their range.** Under-forecasting an
+outflow is what produces a surprise overdraft, so the engine uses the highest
+amount actually observed, not the average.
+
+**Never invent a number.** If the engine cannot compute something it says so
+and exits non-zero. It never presents a guess as a forecast.
+
+**Nothing is ever deferred automatically.** The recommendation engine proposes;
+the household decides. Secured obligations are never proposed.
+
+**Never delete a bill.** A bill missing from an upload is deactivated with a
+note. OCR misses a line far more often than a household cancels a mortgage.
+
+## Running it
+
+```bash
+python -m unittest discover -s tests -v      # 56 tests, no network
+python src/engine.py daily --balance 4382.17 --dry-run
+python src/engine.py watch --dry-run
+```
+
+## Configuration
+
+`config.json` — safe balance floor, risk thresholds, forecast horizon,
+discretionary allowance and lookahead, alert reminder cadence, balance
+staleness limit. Every threshold is configurable; none are hard-coded in the
+UI.
+
+## Secrets
+
+`SMTP_USER`, `SMTP_APP_PASSWORD`, `EMAIL_RECIPIENTS`, and optionally
+`EMAIL_FROM`. Email is the only channel the system needs. The legacy SMS path
+remains in `messaging.py` but nothing depends on it.

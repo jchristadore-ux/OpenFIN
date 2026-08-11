@@ -1,25 +1,207 @@
 {
   "_comments": [
-    "Machine-written. Do not edit by hand unless you are deliberately resetting something.",
+    "Machine-written. Do not edit by hand unless deliberately resetting something.",
     "",
-    "  last_run_iso ............. Timestamp of the last run that actually sent a brief.",
-    "                             Guards against a double send when both cron entries fire.",
-    "  last_known_balance ....... Most recent balance the bank API returned, in dollars.",
-    "  last_known_balance_iso ... When that balance was read. If the bank API is down, the",
-    "                             stale-data text quotes both of these so you know how old",
-    "                             the numbers are.",
-    "  alerted_days ............. ISO date -> the projected balance for that day at the time",
-    "                             it was last alerted about. Used to suppress repeat alerts",
-    "                             and to re-alert only when a day gets materially worse.",
-    "  last_message_hash ........ SHA-256 of the last daily brief body. Lets a rerun notice",
-    "                             it would send an identical message."
+    "  balance ............ The most recent balance ENTERED BY THE HOUSEHOLD, with the",
+    "                       timestamp. The daily email refuses to send unless this is",
+    "                       from today - see balance_max_age_hours in config.json.",
+    "  balance_history .... Append-only log of every entry. Last 400 kept.",
+    "  risks .............. Dedup state for the risk engine, keyed by risk id. Each entry",
+    "                       carries first_seen, last_seen, notified_at, severity, amount",
+    "                       and date, so an unchanged risk is not re-sent every run.",
+    "  last_daily_sent .... When the daily check last went out."
   ],
-  "last_run_iso": "2026-08-10T14:34:07.133815-04:00",
-  "last_known_balance": "118.25",
-  "last_known_balance_iso": "2026-08-10T14:34:07.133815-04:00",
-  "alerted_days": {
-    "2026-08-11": "-81.75",
-    "2026-08-12": "-181.75"
+  "balance": {
+    "amount": "118.25",
+    "entered_at": "2026-08-10T22:08:29.572016-04:00",
+    "date": "2026-08-10"
   },
-  "last_message_hash": "d1714f52991e323a5b7a14b4593742f965d3a25fc01c702368cb46b0832fb0ae"
+  "balance_history": [
+    {
+      "amount": "118.25",
+      "entered_at": "2026-08-10T14:34:07.133815-04:00",
+      "date": "2026-08-10"
+    },
+    {
+      "amount": "4382.17",
+      "entered_at": "2026-08-10T22:03:59.905290-04:00",
+      "date": "2026-08-10"
+    },
+    {
+      "amount": "4382.17",
+      "entered_at": "2026-08-10T22:04:30.740514-04:00",
+      "date": "2026-08-10"
+    },
+    {
+      "amount": "118.25",
+      "entered_at": "2026-08-10T22:08:29.572016-04:00",
+      "date": "2026-08-10"
+    }
+  ],
+  "risks": {
+    "secured_payment:mortgage:2026-08-10": {
+      "type": "secured_payment",
+      "severity": "critical",
+      "amount": "1683.37",
+      "when": "2026-08-10",
+      "first_seen": "2026-08-10T22:08:29.572016-04:00",
+      "notified_at": "2026-08-10T22:08:29.572016-04:00",
+      "last_seen": "2026-08-10T22:08:29.572016-04:00"
+    },
+    "negative_balance:2026-08-10": {
+      "type": "negative_balance",
+      "severity": "critical",
+      "amount": "6910.46",
+      "when": "2026-08-10",
+      "first_seen": "2026-08-10T22:08:29.572016-04:00",
+      "notified_at": "2026-08-10T22:08:29.572016-04:00",
+      "last_seen": "2026-08-10T22:08:29.572016-04:00"
+    },
+    "secured_payment:mortgage:2026-08-24": {
+      "type": "secured_payment",
+      "severity": "critical",
+      "amount": "1801.62",
+      "when": "2026-08-24",
+      "first_seen": "2026-08-10T22:08:29.572016-04:00",
+      "notified_at": "2026-08-10T22:08:29.572016-04:00",
+      "last_seen": "2026-08-10T22:08:29.572016-04:00"
+    },
+    "secured_payment:car-payment:2026-08-24": {
+      "type": "secured_payment",
+      "severity": "critical",
+      "amount": "742.65",
+      "when": "2026-08-24",
+      "first_seen": "2026-08-10T22:08:29.572016-04:00",
+      "notified_at": "2026-08-10T22:08:29.572016-04:00",
+      "last_seen": "2026-08-10T22:08:29.572016-04:00"
+    },
+    "secured_payment:mortgage:2026-09-07": {
+      "type": "secured_payment",
+      "severity": "critical",
+      "amount": "1801.62",
+      "when": "2026-09-07",
+      "first_seen": "2026-08-10T22:08:29.572016-04:00",
+      "notified_at": "2026-08-10T22:08:29.572016-04:00",
+      "last_seen": "2026-08-10T22:08:29.572016-04:00"
+    },
+    "secured_payment:mortgage:2026-09-21": {
+      "type": "secured_payment",
+      "severity": "critical",
+      "amount": "1801.62",
+      "when": "2026-09-21",
+      "first_seen": "2026-08-10T22:04:30.740514-04:00",
+      "notified_at": "2026-08-10T22:08:29.572016-04:00",
+      "last_seen": "2026-08-10T22:08:29.572016-04:00"
+    },
+    "secured_payment:car-payment:2026-09-24": {
+      "type": "secured_payment",
+      "severity": "critical",
+      "amount": "742.65",
+      "when": "2026-09-24",
+      "first_seen": "2026-08-10T22:04:30.740514-04:00",
+      "notified_at": "2026-08-10T22:08:29.572016-04:00",
+      "last_seen": "2026-08-10T22:08:29.572016-04:00"
+    },
+    "secured_payment:mortgage:2026-10-05": {
+      "type": "secured_payment",
+      "severity": "critical",
+      "amount": "1801.62",
+      "when": "2026-10-05",
+      "first_seen": "2026-08-10T22:04:30.740514-04:00",
+      "notified_at": "2026-08-10T22:08:29.572016-04:00",
+      "last_seen": "2026-08-10T22:08:29.572016-04:00"
+    },
+    "large_payment:mortgage:2026-08-10": {
+      "type": "large_payment",
+      "severity": "high",
+      "amount": "1683.37",
+      "when": "2026-08-10",
+      "first_seen": "2026-08-10T22:08:29.572016-04:00",
+      "notified_at": "2026-08-10T22:08:29.572016-04:00",
+      "last_seen": "2026-08-10T22:08:29.572016-04:00"
+    },
+    "income_timing:2026-08-10": {
+      "type": "income_timing",
+      "severity": "high",
+      "amount": "6910.46",
+      "when": "2026-08-10",
+      "first_seen": "2026-08-10T22:08:29.572016-04:00",
+      "notified_at": "2026-08-10T22:08:29.572016-04:00",
+      "last_seen": "2026-08-10T22:08:29.572016-04:00"
+    },
+    "large_payment:upstart-debt-consolidation:2026-08-15": {
+      "type": "large_payment",
+      "severity": "high",
+      "amount": "1244.29",
+      "when": "2026-08-15",
+      "first_seen": "2026-08-10T22:08:29.572016-04:00",
+      "notified_at": "2026-08-10T22:08:29.572016-04:00",
+      "last_seen": "2026-08-10T22:08:29.572016-04:00"
+    },
+    "large_payment:mortgage:2026-08-24": {
+      "type": "large_payment",
+      "severity": "high",
+      "amount": "1801.62",
+      "when": "2026-08-24",
+      "first_seen": "2026-08-10T22:08:29.572016-04:00",
+      "notified_at": "2026-08-10T22:08:29.572016-04:00",
+      "last_seen": "2026-08-10T22:08:29.572016-04:00"
+    },
+    "large_payment:mortgage:2026-09-07": {
+      "type": "large_payment",
+      "severity": "high",
+      "amount": "1801.62",
+      "when": "2026-09-07",
+      "first_seen": "2026-08-10T22:08:29.572016-04:00",
+      "notified_at": "2026-08-10T22:08:29.572016-04:00",
+      "last_seen": "2026-08-10T22:08:29.572016-04:00"
+    },
+    "large_payment:upstart-debt-consolidation:2026-09-15": {
+      "type": "large_payment",
+      "severity": "high",
+      "amount": "1244.29",
+      "when": "2026-09-15",
+      "first_seen": "2026-08-10T22:03:59.905290-04:00",
+      "notified_at": "2026-08-10T22:03:59.905290-04:00",
+      "last_seen": "2026-08-10T22:08:29.572016-04:00"
+    },
+    "large_payment:mortgage:2026-09-21": {
+      "type": "large_payment",
+      "severity": "high",
+      "amount": "1801.62",
+      "when": "2026-09-21",
+      "first_seen": "2026-08-10T22:03:59.905290-04:00",
+      "notified_at": "2026-08-10T22:08:29.572016-04:00",
+      "last_seen": "2026-08-10T22:08:29.572016-04:00"
+    },
+    "large_payment:mortgage:2026-10-05": {
+      "type": "large_payment",
+      "severity": "high",
+      "amount": "1801.62",
+      "when": "2026-10-05",
+      "first_seen": "2026-08-10T22:03:59.905290-04:00",
+      "notified_at": "2026-08-10T22:08:29.572016-04:00",
+      "last_seen": "2026-08-10T22:08:29.572016-04:00"
+    },
+    "discretionary:2026-08-16": {
+      "type": "discretionary",
+      "severity": "medium",
+      "amount": "2331.57",
+      "when": "2026-08-16",
+      "first_seen": "2026-08-10T22:08:29.572016-04:00",
+      "notified_at": "2026-08-10T22:08:29.572016-04:00",
+      "last_seen": "2026-08-10T22:08:29.572016-04:00"
+    }
+  },
+  "last_daily_sent": "2026-08-10T22:08:29.572016-04:00",
+  "_migrated_from": {
+    "last_run_iso": "2026-08-10T14:34:07.133815-04:00",
+    "last_known_balance": "118.25",
+    "last_known_balance_iso": "2026-08-10T14:34:07.133815-04:00",
+    "alerted_days": {
+      "2026-08-11": "-81.75",
+      "2026-08-12": "-181.75"
+    },
+    "last_message_hash": "d1714f52991e323a5b7a14b4593742f965d3a25fc01c702368cb46b0832fb0ae"
+  }
 }

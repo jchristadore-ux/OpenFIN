@@ -1,0 +1,52 @@
+name: Risk watch
+
+# The early-warning half of the system. Runs on a schedule, needs no balance
+# entry, and emails only when the forecast engine finds something worth saying.
+# Deduplication lives in state.json, so an unchanged risk stays quiet.
+
+on:
+  schedule:
+    - cron: '0 11 * * *'   # ~7am Eastern
+    - cron: '0 21 * * *'   # ~5pm Eastern
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Preview alerts without sending'
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: togetherledger-engine
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install --quiet requests openpyxl
+
+      - name: Scan for risk
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_APP_PASSWORD: ${{ secrets.SMTP_APP_PASSWORD }}
+          EMAIL_RECIPIENTS: ${{ secrets.EMAIL_RECIPIENTS }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+        run: |
+          python src/engine.py watch \
+            ${{ github.event.inputs.dry_run == 'true' && '--dry-run' || '' }}
+
+      - name: Commit alert state
+        if: github.event.inputs.dry_run != 'true'
+        run: |
+          git config user.name  "TogetherLedger"
+          git config user.email "noreply@github.com"
+          git add state.json snapshot.json || true
+          git diff --staged --quiet || git commit -m "Risk watch $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push

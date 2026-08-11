@@ -29,7 +29,16 @@
     "                    flagged in the confirmation text. Clear it by hand once checked.",
     "  note ............ Free text. Written automatically when a bill is deactivated.",
     "  last_updated .... ISO timestamp, written automatically.",
-    "  source .......... 'manual' or 'screenshot'."
+    "  source .......... 'manual' or 'screenshot'.",
+    "",
+    "Added in the forecasting-engine rebuild:",
+    "  priority_tier ... 1 critical/secured, 2 essential, 3 required debt,",
+    "                    4 important scheduled, 5 discretionary. Drives deferral advice.",
+    "  deferrable ...... true if missing it for a few weeks has no severe consequence.",
+    "  secured ......... true if the debt is secured against an asset (home, car).",
+    "  variable ........ true if the amount moves month to month.",
+    "  observed_min/max  Range actually seen in the bank statements.",
+    "  confidence ...... high | medium | low. Low confidence widens the risk buffer."
   ],
   "bills": [
     {
@@ -50,7 +59,12 @@
       "needs_review": true,
       "note": "CORRECTED from semimonthly to biweekly. 15 consecutive payments 12/15/2025-06/29/2026 are exactly 14 days apart. Semimonthly modelled 24/yr; biweekly is 26/yr, a $3,603.24/yr difference. Extra same-week entries in the statements are failed-payment retries, not additional payments.",
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 1,
+      "deferrable": false,
+      "secured": true,
+      "variable": false,
+      "confidence": "high"
     },
     {
       "id": "upstart-debt-consolidation",
@@ -68,7 +82,12 @@
       "active": true,
       "note": "ACH descriptor UPSTARTNETWORK UPSTARTFU 15434861.",
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 3,
+      "deferrable": false,
+      "secured": false,
+      "variable": false,
+      "confidence": "high"
     },
     {
       "id": "car-payment",
@@ -87,7 +106,12 @@
       "needs_review": true,
       "note": "Amount corrected from $578.64. Actually recurs every 28 days (05/04, 06/01, 06/29), not monthly, so it drifts earlier and yields 13 payments in some years. due_day 24 tracks the next two occurrences; revisit each quarter.",
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 1,
+      "deferrable": false,
+      "secured": true,
+      "variable": false,
+      "confidence": "high"
     },
     {
       "id": "auto-insurance",
@@ -104,7 +128,12 @@
       "active": true,
       "note": "Amount corrected from $750.00, due day from 9 to 12.",
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 2,
+      "deferrable": false,
+      "secured": false,
+      "variable": false,
+      "confidence": "high"
     },
     {
       "id": "onemain-loan",
@@ -121,7 +150,12 @@
       ],
       "active": true,
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 3,
+      "deferrable": false,
+      "secured": false,
+      "variable": false,
+      "confidence": "high"
     },
     {
       "id": "affirm-large",
@@ -139,7 +173,14 @@
       "needs_review": true,
       "note": "New stream starting 05/01/2026: 05/01, 06/12, 06/29. Cadence not yet established - three payments, irregular gaps. Verify before relying on the date.",
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 3,
+      "deferrable": true,
+      "secured": false,
+      "variable": true,
+      "observed_min": 373.13,
+      "observed_max": 373.13,
+      "confidence": "medium"
     },
     {
       "id": "upstart-past-bills",
@@ -157,7 +198,12 @@
       "active": true,
       "note": "ACH descriptor UPSTARTNETWORK LOAN_ASSET 14794931.",
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 3,
+      "deferrable": false,
+      "secured": false,
+      "variable": false,
+      "confidence": "high"
     },
     {
       "id": "upgrade-basement",
@@ -173,7 +219,12 @@
       ],
       "active": true,
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 3,
+      "deferrable": false,
+      "secured": false,
+      "variable": false,
+      "confidence": "high"
     },
     {
       "id": "electric",
@@ -194,7 +245,14 @@
       "needs_review": true,
       "note": "Amount corrected from $236.00, due day from 16 to 3. Varies seasonally $137.79-$305.12; $200.00 is a mid-range estimate.",
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 2,
+      "deferrable": false,
+      "secured": false,
+      "variable": true,
+      "observed_min": 137.79,
+      "observed_max": 305.12,
+      "confidence": "low"
     },
     {
       "id": "gas-utility",
@@ -213,7 +271,14 @@
       "needs_review": true,
       "note": "Varies seasonally $140.26-$220.95. Household sheet listed $370.38, which is well above anything observed.",
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 2,
+      "deferrable": false,
+      "secured": false,
+      "variable": true,
+      "observed_min": 140.26,
+      "observed_max": 220.95,
+      "confidence": "low"
     },
     {
       "id": "capital-one",
@@ -230,7 +295,14 @@
       ],
       "active": true,
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 3,
+      "deferrable": true,
+      "secured": false,
+      "variable": true,
+      "observed_min": 154.0,
+      "observed_max": 163.0,
+      "confidence": "medium"
     },
     {
       "id": "internet",
@@ -248,7 +320,12 @@
       "active": true,
       "note": "Amount corrected from $145.00, due day from 20 to 18.",
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 2,
+      "deferrable": true,
+      "secured": false,
+      "variable": false,
+      "confidence": "high"
     },
     {
       "id": "chase-amazon",
@@ -266,7 +343,14 @@
       "needs_review": true,
       "note": "Autopay, amount varies $124-$136.",
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 3,
+      "deferrable": true,
+      "secured": false,
+      "variable": true,
+      "observed_min": 124.0,
+      "observed_max": 136.0,
+      "confidence": "medium"
     },
     {
       "id": "lowes",
@@ -282,7 +366,14 @@
       ],
       "active": true,
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 5,
+      "deferrable": true,
+      "secured": false,
+      "variable": true,
+      "observed_min": 122.0,
+      "observed_max": 126.0,
+      "confidence": "medium"
     },
     {
       "id": "home-depot",
@@ -299,7 +390,14 @@
       ],
       "active": true,
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 5,
+      "deferrable": true,
+      "secured": false,
+      "variable": true,
+      "observed_min": 32.7,
+      "observed_max": 100.0,
+      "confidence": "low"
     },
     {
       "id": "trilogy-lacrosse",
@@ -317,7 +415,12 @@
       "needs_review": true,
       "note": "Recurring $100/month since 01/2026, still active at the last statement (05/04/2026). Was absent from both bills.json and the household bill sheet.",
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 4,
+      "deferrable": true,
+      "secured": false,
+      "variable": false,
+      "confidence": "high"
     },
     {
       "id": "xfinity-mobile",
@@ -333,7 +436,12 @@
       ],
       "active": true,
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 2,
+      "deferrable": true,
+      "secured": false,
+      "variable": false,
+      "confidence": "high"
     },
     {
       "id": "chase-united",
@@ -351,7 +459,14 @@
       "needs_review": true,
       "note": "Second Chase autopay, varies $76-$85. Shares match_keywords with chase-amazon - the double-count guard cannot tell them apart.",
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 3,
+      "deferrable": true,
+      "secured": false,
+      "variable": true,
+      "observed_min": 76.0,
+      "observed_max": 85.0,
+      "confidence": "medium"
     },
     {
       "id": "affirm",
@@ -368,7 +483,12 @@
       "active": true,
       "note": "Stable monthly stream since 01/30/2026. Household sheet had day 18; actual is 29-30.",
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 3,
+      "deferrable": true,
+      "secured": false,
+      "variable": false,
+      "confidence": "high"
     },
     {
       "id": "pnc",
@@ -386,7 +506,14 @@
       "needs_review": true,
       "note": "Varies $70.00-$150.00 and the date moves. $70.00 is the recent floor.",
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 3,
+      "deferrable": true,
+      "secured": false,
+      "variable": true,
+      "observed_min": 70.0,
+      "observed_max": 150.0,
+      "confidence": "low"
     },
     {
       "id": "barclay-oldnavy",
@@ -402,7 +529,14 @@
       ],
       "active": true,
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 3,
+      "deferrable": true,
+      "secured": false,
+      "variable": true,
+      "observed_min": 52.98,
+      "observed_max": 84.78,
+      "confidence": "low"
     },
     {
       "id": "comenity",
@@ -420,7 +554,14 @@
       "needs_review": true,
       "note": "Irregular: 12/16, 02/03, 03/13, 05/05, 06/12, amounts $40.00-$65.00. Not on the household sheet.",
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 3,
+      "deferrable": true,
+      "secured": false,
+      "variable": true,
+      "observed_min": 40.0,
+      "observed_max": 65.0,
+      "confidence": "low"
     },
     {
       "id": "culligan",
@@ -438,7 +579,14 @@
       "needs_review": true,
       "note": "Base $40.39, but 01/05 was $307.70 and 04/06 was $143.39 - likely periodic salt or service deliveries on top.",
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 5,
+      "deferrable": true,
+      "secured": false,
+      "variable": true,
+      "observed_min": 40.39,
+      "observed_max": 307.7,
+      "confidence": "low"
     },
     {
       "id": "tjmaxx",
@@ -454,7 +602,12 @@
       ],
       "active": true,
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 5,
+      "deferrable": true,
+      "secured": false,
+      "variable": false,
+      "confidence": "high"
     },
     {
       "id": "netflix",
@@ -470,7 +623,12 @@
       ],
       "active": true,
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 5,
+      "deferrable": true,
+      "secured": false,
+      "variable": false,
+      "confidence": "high"
     },
     {
       "id": "tmobile-lia",
@@ -487,7 +645,12 @@
       ],
       "active": true,
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 2,
+      "deferrable": true,
+      "secured": false,
+      "variable": false,
+      "confidence": "high"
     },
     {
       "id": "trash",
@@ -507,7 +670,14 @@
       "needs_review": true,
       "note": "CORRECTED from biweekly $92.00 to QUARTERLY $177.30. Observed 01/07 $168.12 and 04/07 $177.30, exactly 90 days apart. Modelled as dated one-offs because the schema has no quarterly frequency.",
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 4,
+      "deferrable": true,
+      "secured": false,
+      "variable": true,
+      "observed_min": 168.12,
+      "observed_max": 177.3,
+      "confidence": "medium"
     },
     {
       "id": "trash-2027-q1",
@@ -527,7 +697,14 @@
       "needs_review": true,
       "note": "See trash. Next quarterly instalment.",
       "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "source": "statement",
+      "priority_tier": 4,
+      "deferrable": true,
+      "secured": false,
+      "variable": true,
+      "observed_min": 168.12,
+      "observed_max": 177.3,
+      "confidence": "medium"
     },
     {
       "id": "sewer",
@@ -544,7 +721,12 @@
       ],
       "active": true,
       "last_updated": "2026-08-10T00:00:00-04:00",
-      "source": "manual"
+      "source": "manual",
+      "priority_tier": 2,
+      "deferrable": false,
+      "secured": false,
+      "variable": false,
+      "confidence": "high"
     },
     {
       "id": "lacrosse-2627-inst-1",
@@ -564,7 +746,12 @@
       "needs_review": true,
       "note": "ESTIMATED, not billed yet. Amount = $475.00 installment + $16.63 card convenience fee, the exact figure charged in both 2024-25 and 2025-26. Date mirrors the 2025-26 due date of 10/06. Replace with the real number once the club posts the 2026-27 schedule.",
       "last_updated": "2026-08-10T00:00:00-04:00",
-      "source": "manual"
+      "source": "manual",
+      "priority_tier": 4,
+      "deferrable": true,
+      "secured": false,
+      "variable": false,
+      "confidence": "high"
     },
     {
       "id": "lacrosse-2627-inst-2",
@@ -584,7 +771,12 @@
       "needs_review": true,
       "note": "ESTIMATED, not billed yet. See lacrosse-2627-inst-1. Date mirrors the 2025-26 due date of 01/12.",
       "last_updated": "2026-08-10T00:00:00-04:00",
-      "source": "manual"
+      "source": "manual",
+      "priority_tier": 4,
+      "deferrable": true,
+      "secured": false,
+      "variable": false,
+      "confidence": "high"
     },
     {
       "id": "lacrosse-2627-inst-3",
@@ -604,7 +796,12 @@
       "needs_review": true,
       "note": "ESTIMATED, not billed yet. See lacrosse-2627-inst-1. Date mirrors the 2025-26 due date of 03/09.",
       "last_updated": "2026-08-10T00:00:00-04:00",
-      "source": "manual"
+      "source": "manual",
+      "priority_tier": 4,
+      "deferrable": true,
+      "secured": false,
+      "variable": false,
+      "confidence": "high"
     }
   ]
 }

@@ -1,0 +1,41 @@
+name: Tests
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install --quiet requests openpyxl
+      - name: Financial engine tests
+        run: python -m unittest discover -s tests -v
+      - name: Data files must load and validate
+        run: |
+          python - <<'PY'
+          import sys; sys.path.insert(0,'src')
+          from pathlib import Path
+          from bills import load_items
+          b=load_items(Path('bills.json'),'bills')
+          i=load_items(Path('income.json'),'income')
+          print(f"{len(b)} bills, {len(i)} income sources validate")
+          PY
+      - name: No SimpleFIN or passphrase may return
+        # Matches real usage (imports, modules, crypto gates), not the prose in
+        # comments and docs that explains why they were removed.
+        run: |
+          fail=0
+          if grep -rInE "simplefin_client|import +simplefin|SIMPLEFIN_[A-Z_]+" \
+               --include='*.py' --include='*.html' . ; then
+            echo "::error::SimpleFIN usage reintroduced"; fail=1; fi
+          if grep -rInE "PWKEY|deriveBits|PBKDF2|prompt\(.*passphrase" \
+               --include='*.py' --include='*.mjs' --include='*.html' . ; then
+            echo "::error::passphrase gate reintroduced"; fail=1; fi
+          [ "$fail" = "0" ] && echo "clean" || exit 1
