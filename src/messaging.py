@@ -295,6 +295,58 @@ def send_email_gateway(body: str) -> list[str]:
 
 
 # --------------------------------------------------------------------------
+# real email — the primary channel
+# --------------------------------------------------------------------------
+
+def send_mail(
+    subject: str,
+    text_body: str,
+    html_body: str | None = None,
+    *,
+    dry_run: bool = False,
+) -> list[str]:
+    """Send a proper email with a subject line to EMAIL_RECIPIENTS.
+
+    This is the primary user-facing channel. `send_email_gateway` below is a
+    different thing that happens to share a transport: it pushes a body through
+    a carrier's email-to-SMS bridge and must keep its subject empty. Do not
+    merge the two.
+
+    A multipart/alternative message is built when `html_body` is supplied, so a
+    plain-text reader still gets a usable message.
+    """
+    if dry_run:
+        print("=" * 60)
+        print(f"DRY RUN — would email: {subject}")
+        print("-" * 60)
+        print(text_body)
+        print("=" * 60)
+        return []
+
+    user = _require("SMTP_USER")
+    password = _require("SMTP_APP_PASSWORD")
+    to_addresses = _recipients("EMAIL_RECIPIENTS")
+
+    msg = EmailMessage()
+    msg["From"] = os.environ.get("EMAIL_FROM", user)
+    msg["To"] = ", ".join(to_addresses)
+    msg["Subject"] = subject
+    msg.set_content(text_body)
+    if html_body:
+        msg.add_alternative(html_body, subtype="html")
+
+    try:
+        with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=TIMEOUT) as smtp:
+            smtp.starttls()
+            smtp.login(user, password)
+            smtp.send_message(msg)
+    except (smtplib.SMTPException, OSError) as exc:
+        raise MessagingError(f"SMTP delivery failed: {exc}") from exc
+
+    return to_addresses
+
+
+# --------------------------------------------------------------------------
 # dispatch
 # --------------------------------------------------------------------------
 

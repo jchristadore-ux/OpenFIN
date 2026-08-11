@@ -466,7 +466,6 @@ def pending_uploads() -> list[Path]:
 def main() -> int:
     dry_run = os.environ.get("DRY_RUN", "").strip().lower() in {"1", "true", "yes", "on"}
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
-    provider = config["sms_provider"]
     model = config["parser_model"]
 
     uploads = pending_uploads()
@@ -485,18 +484,20 @@ def main() -> int:
             rows = parse_rows(call_model(build_content(upload), model))
         except IngestError as exc:
             print(f"ERROR: {exc}", file=sys.stderr)
-            messaging.send(
+            messaging.send_mail(
+                "TogetherLedger: bill upload",
                 f"BILL UPLOAD FAILED: {upload.name}\n{exc}\nNothing was changed.",
-                provider, dry_run=dry_run,
+                dry_run=dry_run,
             )
             return 1
 
         print(f"Parsed {len(rows)} row(s).")
         if not rows:
-            messaging.send(
+            messaging.send_mail(
+                "TogetherLedger: bill upload",
                 f"BILL UPLOAD FAILED: no bills could be read from {upload.name}. "
                 f"Nothing was changed.",
-                provider, dry_run=dry_run,
+                dry_run=dry_run,
             )
             return 1
 
@@ -518,10 +519,11 @@ def main() -> int:
             validate(bill)
         except BillError as exc:
             print(f"ERROR: the merged bill list is invalid — {exc}", file=sys.stderr)
-            messaging.send(
+            messaging.send_mail(
+                "TogetherLedger: bill upload",
                 f"BILL UPLOAD REJECTED: merged list failed validation.\n{exc}\n"
                 f"bills.json was NOT changed.",
-                provider, dry_run=dry_run,
+                dry_run=dry_run,
             )
             return 1
 
@@ -530,11 +532,11 @@ def main() -> int:
 
     if dry_run:
         print("\nDry run: bills.json was not written and no file was moved.")
-        messaging.send(summary, provider, dry_run=True)
+        messaging.send_mail("TogetherLedger: bill upload", summary, dry_run=True)
         return 0
 
     save_items(BILLS, "bills", existing)
-    messaging.send(summary, provider, dry_run=False)
+    messaging.send_mail("TogetherLedger: bill upload", summary, dry_run=False)
     print("Wrote bills.json.")
     return 0
 
