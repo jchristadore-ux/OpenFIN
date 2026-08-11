@@ -1,155 +1,168 @@
 # Setup
 
-Everything here happens in a web browser. No terminal, no installs.
+Everything here happens in a web browser. No terminal, no installs, no code.
 
-## 1. Secrets to create
+There are four things to set up, in this order. Each one works on its own, so a
+half-finished setup is never a broken one:
 
-**Settings → Secrets and variables → Actions → New repository secret.** Names must match exactly.
+| # | Thing | Without it |
+|---|---|---|
+| 1 | Repository secrets | No email goes out |
+| 2 | GitHub Pages | No app to open |
+| 3 | The Worker | The app can show figures but not update them |
+| 4 | The Worker's address | Same — see [worker/README.md](worker/README.md) |
+
+---
+
+## 1. Repository secrets
+
+**Settings → Secrets and variables → Actions → New repository secret.** Names
+must match exactly.
 
 | Secret | Format | Where it comes from |
 |---|---|---|
-| `SIMPLEFIN_ACCESS_URL` | `https://user:pass@beta-bridge.simplefin.org/simplefin` | Step 2 below prints it |
-| `ANTHROPIC_API_KEY` | `sk-ant-api03-...` | Step 5 below |
-| `TWILIO_ACCOUNT_SID` | `AC` + 32 hex characters | Twilio console home |
-| `TWILIO_AUTH_TOKEN` | 32 hex characters | Twilio console home, behind **Show** |
-| `TWILIO_FROM_NUMBER` | `+15551234567` (E.164, leading `+`) | The Twilio number you buy |
-| `ALERT_TO_NUMBERS` | `+15551234567,+15559876543` (comma separated, no spaces) | Your phone, and your wife's |
 | `SMTP_USER` | `you@gmail.com` | Your Gmail address |
-| `SMTP_APP_PASSWORD` | 16 characters, e.g. `abcd efgh ijkl mnop` | Step 4 below |
-| `SMS_GATEWAY_ADDRESSES` | `5551234567@vtext.com,5559876543@tmomail.net` | Step 4 below |
+| `SMTP_APP_PASSWORD` | 16 characters, e.g. `abcd efgh ijkl mnop` | Below |
+| `EMAIL_RECIPIENTS` | `you@gmail.com,wife@gmail.com` | Comma separated, no spaces |
+| `EMAIL_FROM` | `you@gmail.com` | Usually the same as `SMTP_USER` |
+| `ANTHROPIC_API_KEY` | `sk-ant-api03-…` | Optional — only for bill screenshots |
 
-You only need the secret set matching `sms_provider` in `config.json`; add the other later if you switch.
+**The app password:** turn on 2-Step Verification at
+<https://myaccount.google.com/security>, then go to
+<https://myaccount.google.com/apppasswords>, type any name, click **Create**.
+Google shows the 16 characters once. Your normal Gmail password will not work
+here — Google rejects it for SMTP.
 
-## 2. SimpleFIN
+**The API key** is only used when you drop a bill screenshot into `inbox/`.
+Everything else runs without it. Get one at <https://console.anthropic.com>;
+a screenshot costs well under a cent.
 
-1. Go to **https://beta-bridge.simplefin.org**, create an account, click **Connect an account**, and log in to your bank through their screen.
-2. Once it shows as connected: **My Account → Setup Token → Generate**. Copy the whole token.
-3. In this repo: **Actions → "Setup — claim SimpleFIN access URL" → Run workflow**. Paste the token, click the green **Run workflow**.
-4. Open the finished run and expand the step. It prints the URL, and also its three parts separately:
+---
 
-   ```
-     username : abc123
-     password : xyz789
-     host     : beta-bridge.simplefin.org/simplefin
+## 2. GitHub Pages
 
-     https://abc123:xyz789@beta-bridge.simplefin.org/simplefin
-   ```
+This is what puts the app at a URL you can open on a phone.
 
-   Save that last line as `SIMPLEFIN_ACCESS_URL`. **If it shows `***` instead**, the secret already exists and GitHub is redacting it — assemble the URL yourself from the three parts above, which are printed for exactly that reason.
-5. **Delete the run** — `...` menu, top right → **Delete run**. The log holds a live credential until you do.
+**Settings → Pages.**
 
-**A setup token works exactly once.** Running the workflow a second time with the same token fails with 403. If you need to redo it, generate a fresh token in the SimpleFIN Bridge first.
-
-## 3. Twilio
-
-1. Sign up at **https://www.twilio.com/try-twilio** and verify your own mobile number.
-2. On the console home page, copy **Account SID** and **Auth Token** into the secrets from step 1.
-3. **Phone Numbers → Buy a number.** Tick **SMS** under capabilities. Pick any US local number, around $1.15/month.
-4. Save it as `TWILIO_FROM_NUMBER` in E.164 form — `+1` then ten digits, no spaces or dashes: `+19085551234`.
-5. Save your phone numbers as `ALERT_TO_NUMBERS`, comma separated: `+19085551234,+19085555678`.
-
-> ⚠️ **Type these straight into the GitHub secret box. Do not paste them out of a spreadsheet.**
-> Excel reads `+19085551234,+19085555678` as one enormous number and reformats it to
-> `19,085,551,234,190,855,556,780`. The phone numbers are then unrecoverable — the commas
-> have eaten the boundary between them. The code rejects mangled numbers with a clear
-> message rather than sending them, but it cannot repair them.
-
-**About A2P 10DLC.** US carriers require every business-owned number sending to US phones to be registered. Twilio will prompt you; it is a form about who you are and what you send, then a wait. Trial messages to your own verified number work immediately.
-
-**If registration stalls or gets rejected:** don't fight it. Open `config.json`, change `"sms_provider": "twilio"` to `"sms_provider": "email_gateway"`, commit, and do step 4. Everything else keeps working.
-
-## 4. Email gateway (the fallback)
-
-1. Turn on 2-Step Verification: **https://myaccount.google.com/security**.
-2. Go to **https://myaccount.google.com/apppasswords**, type any name, click **Create**. Save the 16-character password as `SMTP_APP_PASSWORD` and your Gmail address as `SMTP_USER`.
-3. Build `SMS_GATEWAY_ADDRESSES` from your 10-digit numbers and this table:
-
-| Carrier | Address form | Example |
-|---|---|---|
-| Verizon | `number@vtext.com` | `5551234567@vtext.com` |
-| AT&T | `number@txt.att.net` | `5551234567@txt.att.net` |
-| T-Mobile | `number@tmomail.net` | `5551234567@tmomail.net` |
-
-Comma separated, no spaces, digits only — no `+1`, no dashes.
-
-4. Set `"sms_provider": "email_gateway"` in `config.json`.
-
-## 5. Anthropic API key
-
-Go to **https://console.anthropic.com**, add a little credit under **Billing**, then **API Keys → Create Key**. Save it as `ANTHROPIC_API_KEY`. Used only when you upload a bill screenshot — under a cent a time.
-
-## 6. Run a dry run
-
-**Actions → "Daily cash brief" → Run workflow ▾.** A small panel drops down with a branch selector and a **What to do** dropdown:
-
-| Mode | What happens |
+| Field | Value |
 |---|---|
-| `preview` (default) | Prints the text to the log. Sends nothing, saves nothing. |
-| `send-now` | Really sends, ignoring the "is it 7am?" check. |
+| Source | **Deploy from a branch** |
+| Branch | **`main`** |
+| Folder | **`/ (root)`** — *not* `/docs`, *not* `/plan` |
 
-Leave it on `preview`, click the green **Run workflow**. Open the run → the `brief` job → expand **Send the daily brief**. You will see the exact text:
-
-```
-DRY RUN — would send via twilio (166 chars):
-------------------------------------------------------------
-CASH 08/09
-Now: $3,512.20 (incl pending)
-Bills today: $750.00
- - Hanover Auto $750.00 (PAID)
-Disc spent: $140.36 of $100.00
-End of day: $3,512.20
-
-Clear through 09/23
-============================================================
-```
-
-Nothing was sent and nothing was saved. To send it for real right now, run it again with the dropdown on **`send-now`**.
-
-If the log says `Local time is 20:31 EDT; send_hour_local is 07. Nothing to do.` you left it on `preview` — that message means the run stopped at the send-hour gate.
-
-If it says `CASH DATA STALE`, the bank feed failed. The reason is on the line below it in the message and in red in the log.
-
-**If the log says the message was sent but no text arrives**, look for the delivery lines:
+Click **Save**. Give it a minute or two, then reload the Settings → Pages page:
+it shows a green tick and the address, which will be
 
 ```
-  accepted by Twilio: +19085551234 sid=SM… status=queued
-  NOT DELIVERED: +19085551234: undelivered [30034] … -- the sending number is
-  not registered for A2P 10DLC. US carriers drop unregistered traffic.
+https://<your-username>.github.io/OpenFIN/
 ```
 
-Twilio answers `201 Created` the moment it queues a message; whether a carrier
-took it is decided seconds later. The run polls for that outcome and fails red
-if nothing was delivered. The common codes:
+Open that on your phone and add it to the home screen (Safari: **Share → Add to
+Home Screen**). It then opens full-screen like an app.
 
-| Code | Meaning | Fix |
+### If the page is blank, 404s, or shows a README
+
+| What you see | Cause | Fix |
 |---|---|---|
-| `30034` | Number not registered for A2P 10DLC | Register in Twilio, or switch to `email_gateway` meanwhile |
-| `21608` | Trial account, destination unverified | Add it under **Phone Numbers → Verified Caller IDs** |
-| `30007` | Carrier filtered it as spam | Usually A2P registration |
-| `21610` | That number replied STOP | It must reply START |
+| **404** | Pages is off, or pointed at a branch with no `index.html` | Set branch `main`, folder `/ (root)` as above |
+| A page of **plain text starting "# OpenFIN"** | Folder is set to `/plan`, which holds only a README | Change the folder to `/ (root)` |
+| **"No forecast available"** | Pages is fine; `snapshot.json` has not been built | Enter a balance, or **Actions → Daily balance → Run workflow** |
+| Old figures that will not change | Browser cache | Pull down to refresh; the app already cache-busts, so this is rare |
+| Nothing at all after a commit | Pages is still building | **Actions** tab → wait for the `pages build and deployment` run |
 
-## 7. Upload a bill screenshot
+The repository must stay **public** for Pages to serve it on a free account.
+Nothing sensitive lives here: the bills and balances are in the repository, but
+no credential is — the tokens are all in Actions secrets and in Cloudflare,
+neither of which is readable from the repository.
 
-Click **inbox** → **Add file → Upload files**. Drag in a PNG, JPG, `.xlsx`, or `.csv`, scroll down, **Commit changes**. "Ingest uploaded bills" starts on its own and takes about a minute. You get a text like:
+### Why `/plan` breaks it
+
+`plan/` held the original design notes and is the folder Pages defaults to if
+it was ever selected. It contains a README and no `index.html`, so Pages
+renders the README as the whole site. The app is `index.html` at the root, so
+the root folder is the correct setting.
+
+---
+
+## 3. The Worker
+
+Separate walkthrough, because it is the longest: **[worker/README.md](worker/README.md)**.
+
+Short version: it is a small Cloudflare Worker that holds a GitHub token so
+your phone does not have to. The app posts to it, it starts the workflow. Free,
+and about fifteen minutes of clicking. Cloudflare Access sits in front of it and
+signs you in by emailed code, so there is nothing to type on a phone and nothing
+stored on it.
+
+Until it exists, the app still shows every figure — it just cannot update them.
+
+---
+
+## 4. Day to day
+
+### Update the balance
+
+Open the app, type today's actual bank balance, tap **Update**. That is the only
+input the household is responsible for, and it is what runs everything:
 
 ```
-BILLS UPDATED: 2 changed, 1 added, 3 deactivated.
-Mortgage 1801->1865. JCP&L 236->251. Orthodontist $189.00.
-Deactivated: Kia, Sewer, Trash pickup.
+balance entered → engine runs → snapshot rebuilt → daily summary emailed
 ```
 
-If an amount moved more than 40%, or reads above $10,000, the change is applied and the text adds:
+There is no separate "balance received" email and nothing to reply to.
 
-```
-NEEDS REVIEW: Small $100.00->$180.00 (>40%)
-```
+### Mark a bill as deferred
 
-A bill missing from the upload is **never deleted** — it is switched off with a note, so an OCR miss can't wipe your mortgage. Turn it back on by editing `bills.json` and setting `"active": true`.
+Tick its box in the app. **Safe to spend** updates as you tick, before you save
+anything, so you can try combinations and see the effect. **Save** commits it.
 
-If nothing could be read you get `BILL UPLOAD FAILED` and nothing changes; the file stays in `inbox/` so you can try a clearer photo.
+A deferred bill is marked, never deleted — the money is still owed and the app
+keeps showing it under what is deferred.
 
-## 8. Check the schedule
+### Change a bill's amount or date
 
-The brief runs at **7:00am Eastern**, year round. Two cron entries fire (11:00 and 12:00 UTC) and the script ignores the one that isn't 7am locally, so the daylight saving switch needs nothing from you.
+Either tell Claude in a chat, or edit it in the app and save. Both end up in
+`bills.json` after the same server-side validation: a change of more than 40%,
+or an amount above $10,000, is applied but flagged for review, and nothing is
+ever deleted by an edit.
 
-To change the hour, edit `send_hour_local` in `config.json` and adjust both cron lines in `.github/workflows/daily-brief.yml`.
+### Upload a bill screenshot
+
+Click **inbox** → **Add file → Upload files** → drag in a PNG, JPG, `.xlsx` or
+`.csv` → **Commit changes**. The ingest workflow starts on its own and emails
+you what changed. A bill missing from the upload is switched off with a note,
+never deleted, so a bad photo cannot wipe your mortgage.
+
+### Risk alerts
+
+These run twice a day on their own (about 7am and 5pm Eastern) and **do not
+need a balance entry** — that is the point of them. They email only when
+something has actually changed; an unchanged risk stays quiet.
+
+---
+
+## 5. Checking it works
+
+**Actions → Daily balance → Run workflow ▾**, enter a balance, run it. Open the
+finished run and expand the steps: you will see the engine's figures and whether
+the email sent.
+
+| Symptom | Meaning |
+|---|---|
+| `EMAIL_RECIPIENTS is not set` | Step 1 is incomplete |
+| `SMTP authentication failed` | The app password is wrong, or a normal Gmail password was used |
+| Run is green, no email | Check spam, then that `EMAIL_RECIPIENTS` has no spaces |
+| Workflow never starts when you tap Update in the app | The Worker — see its README's symptom table |
+
+---
+
+## 6. Changing the schedule
+
+Risk alerts fire from `.github/workflows/watch.yml`. Two cron lines are set
+(11:00 and 21:00 UTC) so the times hold across daylight saving. Editing them on
+github.com is enough; nothing else needs to change.
+
+The daily summary has no schedule by design. It sends when you enter a balance,
+because a summary anchored to yesterday's balance reads as authoritative and is
+quietly wrong.

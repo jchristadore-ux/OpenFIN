@@ -109,17 +109,27 @@ Open the Worker URL in a browser.
 
 ## 6. Tell the app where the Worker is
 
-Send the URL and it gets set for you, or edit it yourself on github.com:
+Open the app. Because the address is not yet set, a **One-time setup** box is
+sitting at the top. Paste the Worker URL into it and tap **Save**. That is the
+whole step — no file to edit, nothing to commit.
 
-`index.html` → pencil icon → find `const WORKER = '';` near the top of the
-`<script>` block → put the URL between the quotes → **Commit changes**.
+The address is stored on that device, so do the same on the second phone. It is
+not a secret; it is only where to send the request, and the Worker still refuses
+anyone Access has not signed in.
 
-```js
-const WORKER = 'https://openfin.your-subdomain.workers.dev';
+To set it once for every device instead, edit **`app.json`** on github.com
+(pencil icon) and put the URL in `worker_url`:
+
+```json
+"worker_url": "https://openfin.your-subdomain.workers.dev"
 ```
 
-Wait a minute for Pages to rebuild, then open the app and update your balance.
-The first time on each phone asks for an email code.
+Commit, wait a minute for Pages to rebuild, and any phone that has not had the
+address pasted in picks it up. A device that *has* had it pasted in keeps its
+own value.
+
+Either way, then update your balance. The first write on each phone asks for an
+email code.
 
 ---
 
