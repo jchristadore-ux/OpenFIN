@@ -118,6 +118,22 @@ class TestCalendar(unittest.TestCase):
                  variable=True, hi=447.12)
         self.assertEqual(fincal.expected_amount(b, date(2026, 8, 16)), D("90.77"))
 
+    def test_semimonthly_variable_uses_the_mean(self):
+        # Raised in review on PR #30: semimonthly fires 24 times a year, the
+        # same class as biweekly, so it must not forecast at the maximum.
+        b = bill("s", "Semi", 100, freq="semimonthly", day=1,
+                 variable=True, hi=900)
+        self.assertEqual(fincal.expected_amount(b, date(2026, 8, 1)), D("100"))
+
+    def test_frequency_cutoff_is_by_occurrence_count(self):
+        # The rule is a count, not a list of labels, so a new frequency cannot
+        # silently land on the wrong side of it.
+        for freq, expect_mean in [("weekly", True), ("biweekly", True),
+                                  ("semimonthly", True), ("monthly", False),
+                                  ("quarterly", False)]:
+            per_year = fincal.OCCURRENCES_PER_YEAR[freq]
+            self.assertEqual(per_year >= fincal.FREQUENT_DRAW, expect_mean, freq)
+
     def test_monthly_variable_still_uses_the_max(self):
         # The forecast-high rule still earns its keep where a bill lands once.
         b = bill("e", "Electric", 137.79, day=20, variable=True, hi=305.12)

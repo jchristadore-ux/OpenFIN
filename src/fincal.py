@@ -27,6 +27,20 @@ IN = "in"
 
 ROOT = Path(__file__).resolve().parent.parent
 
+# Roughly how often each frequency fires in a year. Used to decide whether a
+# variable bill is a "frequent draw" whose variation averages out, or a rare one
+# that has to be covered at its worst.
+OCCURRENCES_PER_YEAR = {
+    "weekly": 52,
+    "biweekly": 26,
+    "semimonthly": 24,
+    "monthly": 12,
+    "quarterly": 4,
+    "annual": 1,
+    "once": 1,
+}
+FREQUENT_DRAW = 24          # semimonthly and above average out
+
 
 @dataclass(frozen=True)
 class Event:
@@ -120,12 +134,17 @@ def expected_amount(item: dict, on: date | None = None) -> Decimal:
        be covered at its worst, so the top of the range is the safe figure.
     3. The stated amount, which for a variable bill is its historical mean.
 
-    Weekly and biweekly items deliberately do NOT use the maximum. Applying a
-    worst-week figure to every week of the year compounds into nonsense:
-    groceries peaked at $791.32 in one week, and forecasting that 52 times over
-    is $41,148/year against an actual $16,593. Frequent draws average out, so
-    the mean is both the honest and the accurate estimate; the "forecast high"
-    rule earns its keep on infrequent bills, not on the weekly shop.
+    Frequent items deliberately do NOT use the maximum. Applying a worst-case
+    figure to every occurrence compounds into nonsense: groceries peaked at
+    $791.32 in one week, and forecasting that 52 times over is $41,148/year
+    against an actual $16,593. Frequent draws average out, so the mean is both
+    the honest and the accurate estimate; the "forecast high" rule earns its
+    keep on infrequent bills, not on the weekly shop.
+
+    "Frequent" is decided by how many times a year the frequency actually
+    fires, not by which labels happen to be listed. Semimonthly lands 24 times
+    a year — the same class as biweekly's 26 — so labelling it infrequent would
+    have reintroduced exactly this bug for anyone who used it.
     """
     amt = money(item.get("amount", 0))
 
@@ -137,7 +156,7 @@ def expected_amount(item: dict, on: date | None = None) -> Decimal:
 
     if not item.get("variable"):
         return amt
-    if item.get("frequency") in {"weekly", "biweekly"}:
+    if OCCURRENCES_PER_YEAR.get(item.get("frequency"), 0) >= FREQUENT_DRAW:
         return amt
     hi = item.get("observed_max")
     return max(amt, money(hi)) if hi is not None else amt
