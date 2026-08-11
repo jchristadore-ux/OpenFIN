@@ -40,6 +40,26 @@ Setup is in **[worker/README.md](worker/README.md)** — one token, one deploy,
 one Access policy. The **Daily balance** workflow in the Actions tab remains a
 manual fallback.
 
+### Deferring, to stay afloat
+
+**Defer to stay afloat** lists every bill due this week and in the lookahead
+window with a tick box. Ticking recalculates *safe to spend* **instantly in the
+browser** — the arithmetic is a transcription of `forecast.safe_discretionary`
+and is pinned by parity tests, so what you see while experimenting is what the
+engine will produce when you save. Save hands it to the engine, which rebuilds
+the forecast and re-runs the risk sweep.
+
+A deferred occurrence is **marked, never deleted**. It stays on the calendar,
+the running total of what has been pushed is shown next to the figure, and the
+wording says plainly that deferring moves money rather than removing it. Bills
+that are secured or not normally deferrable are shaded and labelled, but not
+blocked — the engine refuses to *recommend* deferring a mortgage; it does not
+refuse to *model* it, because that is the household's call to make.
+
+Deferrals expire on their own. Each one applies to a single occurrence, and any
+dated before today is dropped on read, so a deferral never silently suppresses
+next month's bill.
+
 ### Editing bills
 
 Routine changes — an amount, the day it lands — are edited in the app under
@@ -111,7 +131,7 @@ One authoritative engine. Business logic never lives in the dashboard.
 | `src/engine.py` | The orchestrator and the only entry point |
 | `src/parse_upload.py` | Reads a bill screenshot into `bills.json` |
 | `src/apply_edits.py` | Validates and applies bill edits made in the app |
-| `worker/` | Cloudflare Worker write-proxy; holds the token off-device |
+| `worker/index.js` | `/balance`, `/bills`, `/defer` — validates, then dispatches |
 | `index.html` | Renders `snapshot.json`. Computes nothing. |
 
 Data lives in JSON committed to the repo: `bills.json`, `income.json`,
@@ -141,9 +161,10 @@ note. OCR misses a line far more often than a household cancels a mortgage.
 ## Running it
 
 ```bash
-python -m unittest discover -s tests -v      # 71 tests, no network
+python -m unittest discover -s tests -v      # 87 tests, no network
 python src/engine.py daily --balance 4382.17 --dry-run
 python src/engine.py watch --dry-run
+python src/engine.py defer --items '[{"bill_id":"netflix","date":"2026-08-23"}]'
 ```
 
 ## Configuration

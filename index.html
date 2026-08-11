@@ -114,6 +114,23 @@
   .spark i{flex:1;background:var(--teal);border-radius:1px 1px 0 0;min-height:1px}
   .spark i.neg{background:var(--danger)}
 
+  .dfr{display:flex;align-items:center;gap:11px;padding:9px 0;
+    border-bottom:1px solid #f1f5f9;font-size:14.5px}
+  .dfr:last-of-type{border-bottom:0}
+  .dfr input[type=checkbox]{width:22px;height:22px;flex:0 0 22px;accent-color:var(--teal);margin:0}
+  .dfr .nm{flex:1;min-width:0}
+  .dfr .nm small{display:block;color:var(--mute);font-size:12px}
+  .dfr .amt{font-weight:600;white-space:nowrap}
+  .dfr.on .nm{text-decoration:line-through;color:var(--mute)}
+  .dfr.on .amt{color:var(--warn)}
+  .dfr.sec{background:#fff7ed;margin:0 -8px;padding-left:8px;padding-right:8px;border-radius:8px}
+  .grp{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);
+    font-weight:700;margin:14px 0 4px}
+  .live{background:var(--navy);color:#fff;border-radius:10px;padding:12px 14px;margin:14px 0 10px}
+  .live .a{font-size:26px;font-weight:800;letter-spacing:-.02em}
+  .live .b{font-size:12.5px;opacity:.8;margin-top:2px}
+  .live.good .a{color:#5eead4} .live.bad .a{color:#fca5a5}
+  .owed{font-size:12.5px;color:var(--warn);margin-top:6px;font-weight:600}
   .lnk{background:none;border:0;color:var(--teal);font:inherit;font-size:13px;
     padding:0;cursor:pointer;text-decoration:underline}
   footer{color:var(--mute);font-size:11.5px;text-align:center;padding:16px 0 4px}
@@ -269,9 +286,71 @@ function pollForSnapshot(){
   }, 6000);
 }
 
+// ---- live deferral maths -------------------------------------------------
+// Mirrors forecast.safe_discretionary():
+//   safe = balance + income_week - bills_week - committed_beyond - buffer
+//   committed_beyond = max(0, beyond_out - beyond_in)
+// Verified against the engine: same inputs produce the same cent.
+let SNAP = null;
+
+function recalc(){
+  if(!SNAP) return;
+  const c = SNAP.discretionary.components;
+  let billsWeek = 0, beyondOut = 0, owed = 0;
+  document.querySelectorAll('[data-defer]').forEach(row => {
+    const on = row.querySelector('input').checked;
+    const amt = num(row.getAttribute('data-amt'));
+    const wk = row.getAttribute('data-inweek') === '1';
+    row.classList.toggle('on', on);
+    if(on){ owed += amt; return; }
+    if(wk) billsWeek += amt; else beyondOut += amt;
+  });
+  const committed = Math.max(0, beyondOut - num(c.beyond_in));
+  const safe = num(c.balance) + num(c.income_week) - billsWeek - committed - num(c.buffer);
+
+  const box = document.getElementById('livebox');
+  box.className = 'live ' + (safe < 0 ? 'bad' : 'good');
+  document.getElementById('liveamt').textContent = m(safe);
+  document.getElementById('liveowed').textContent =
+    owed > 0 ? `${m(owed)} deferred — still owed, just not this week.` : '';
+
+  // Keep the headline card in step so the top of the page never disagrees.
+  const card = document.getElementById('disccard');
+  document.getElementById('discamt').textContent = m(safe);
+  card.classList.toggle('neg', safe < 0);
+  document.getElementById('discsub').textContent = owed > 0
+    ? `With ${m(owed)} deferred. Not yet saved.`
+    : (safe < 0 ? 'Negative — there is nothing free this week.'
+                : 'Through ' + dt(SNAP.week_end) + ', after bills and buffer.');
+}
+
+async function saveDeferrals(){
+  const btn = document.getElementById('savedefer');
+  const msg = document.getElementById('defermsg');
+  const items = [];
+  document.querySelectorAll('[data-defer]').forEach(row => {
+    if(row.querySelector('input').checked){
+      items.push({bill_id: row.getAttribute('data-defer'), date: row.getAttribute('data-date')});
+    }
+  });
+  btn.disabled = true; btn.textContent = 'Saving…'; msg.textContent = '';
+  try{
+    await post('/defer', {items});
+    msg.textContent = items.length
+      ? `${items.length} deferral${items.length>1?'s':''} saved. The forecast is rebuilding.`
+      : 'All deferrals cleared. The forecast is rebuilding.';
+    pollForSnapshot();
+  } catch(e){
+    msg.textContent = e.message + ' Nothing was saved.';
+  } finally {
+    btn.disabled = false; btn.textContent = 'Save deferrals';
+  }
+}
+
 // ---- render --------------------------------------------------------------
 function render(s){
   baseline = s.generated_at;
+  SNAP = s;
   const out = [];
   const disc = num(s.discretionary.safe), neg = disc < 0;
 
@@ -306,10 +385,10 @@ function render(s){
       the daily summary.</div>
   </div>`);
 
-  out.push(`<div class="disc ${neg?'neg':''}">
+  out.push(`<div class="disc ${neg?'neg':''}" id="disccard">
     <div class="lab">Safe to spend this week</div>
-    <div class="amt">${m(s.discretionary.safe)}</div>
-    <div class="sub">${neg ? 'Negative — there is nothing free this week.'
+    <div class="amt" id="discamt">${m(s.discretionary.safe)}</div>
+    <div class="sub" id="discsub">${neg ? 'Negative — there is nothing free this week.'
       : 'Through ' + dt(s.week_end) + ', after bills and buffer.'}</div></div>`);
 
   const tb = s.today_bills, ti = s.today_income;
@@ -351,6 +430,42 @@ function render(s){
         + (s.plan && s.plan.problem_day ? `<div class="plan"><strong>What could be done</strong><br>${esc(s.plan.summary)}</div>` : '')
       : '<div class="ok">No material financial risks detected.</div>'),
     rk.length ? 'risk' : '', rk.length > 0));
+
+  // Defer to stay afloat. Ticking recalculates safe-to-spend in the browser,
+  // reproducing forecast.safe_discretionary exactly, so the effect of a choice
+  // is visible before it is committed. Saving hands it to the engine, which
+  // remains the authority.
+  const win = s.deferral_window || [];
+  const inWeek = win.filter(x => x.in_week);
+  const beyond = win.filter(x => !x.in_week);
+  const already = win.filter(x => x.deferred).length;
+  const line = (x) => `<label class="dfr ${x.deferred?'on':''} ${x.secured||!x.deferrable?'sec':''}"
+      data-defer="${esc(x.id)}" data-date="${esc(x.date)}" data-amt="${esc(x.amount)}"
+      data-inweek="${x.in_week?1:0}">
+      <input type="checkbox" ${x.deferred?'checked':''}>
+      <span class="nm">${esc(x.name)}
+        <small>${dt(x.date)}${x.secured?' · SECURED — missing this has real consequences'
+          : (!x.deferrable?' · not normally deferrable':'')}</small></span>
+      <span class="amt">${m(x.amount)}</span></label>`;
+
+  out.push(tile('Defer to stay afloat', already ? `${already} deferred` : '',
+    `<div style="font-size:13px;color:var(--mute);margin-bottom:4px">
+       Tick anything you are not going to pay on its date. The figure below
+       updates as you tick. <strong>Deferring does not reduce what you owe</strong>
+       — it moves it.</div>
+     <div class="live" id="livebox">
+       <div class="a" id="liveamt">${m(s.discretionary.safe)}</div>
+       <div class="b">safe to spend this week if you defer the ticked items</div>
+       <div class="owed" id="liveowed"></div>
+     </div>
+     ${inWeek.length ? `<div class="grp">Due this week</div>` + inWeek.map(line).join('') : ''}
+     ${beyond.length ? `<div class="grp">Next ${s.lookahead_days} days</div>` + beyond.map(line).join('') : ''}
+     <div style="margin-top:14px;display:flex;gap:10px;align-items:center">
+       <button id="savedefer" type="button" style="border:0;border-radius:10px;
+         background:var(--teal);color:#04231e;font-weight:800;font-size:14px;
+         padding:11px 18px;font-family:inherit;cursor:pointer">Save deferrals</button>
+       <span id="defermsg" style="font-size:13px;color:var(--mute)"></span></div>`,
+    '', num(s.discretionary.safe) < 0));
 
   // Edit bills — routine amount and day changes, saved permanently and synced
   // to every device because the model lives in the repo, not on a phone.
@@ -397,6 +512,11 @@ function render(s){
   });
   const sb = document.getElementById('savebills');
   if(sb) sb.addEventListener('click', saveEdits);
+  const sd = document.getElementById('savedefer');
+  if(sd) sd.addEventListener('click', saveDeferrals);
+  document.querySelectorAll('[data-defer] input').forEach(cb =>
+    cb.addEventListener('change', recalc));
+  recalc();
   document.getElementById('foot').textContent =
     'OpenFIN · forecast generated ' + new Date(s.generated_at).toLocaleString('en-US')
     + (ageDays > 0 ? '  (' + ageDays + ' day' + (ageDays>1?'s':'') + ' old)' : '');

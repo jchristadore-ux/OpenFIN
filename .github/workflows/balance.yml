@@ -13,7 +13,7 @@ name: Daily balance
 
 on:
   repository_dispatch:
-    types: [balance, bills]
+    types: [balance, bills, defer]
   workflow_dispatch:
     inputs:
       balance:
@@ -64,8 +64,18 @@ jobs:
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
         run: python src/engine.py watch
 
+      - name: Record deferrals
+        if: github.event.action == 'defer'
+        env:
+          ITEMS: ${{ github.event.client_payload.items }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_APP_PASSWORD: ${{ secrets.SMTP_APP_PASSWORD }}
+          EMAIL_RECIPIENTS: ${{ secrets.EMAIL_RECIPIENTS }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+        run: python src/engine.py defer --items "$ITEMS"
+
       - name: Read the balance
-        if: github.event.action != 'bills'
+        if: github.event.action != 'bills' && github.event.action != 'defer'
         id: read
         env:
           FROM_APP: ${{ github.event.client_payload.balance }}
@@ -101,5 +111,5 @@ jobs:
           git config user.email "noreply@github.com"
           git add state.json snapshot.json logs/ || true
           git diff --staged --quiet || \
-            git commit -m "Balance ${{ steps.read.outputs.balance }}"
+            git commit -m "${{ github.event.action == 'defer' && 'Deferrals updated' || format('Balance {0}', steps.read.outputs.balance) }}"
           git push

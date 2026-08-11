@@ -114,6 +114,45 @@ def record_balance(state: dict, amount: Decimal, when: datetime) -> dict:
     return state
 
 
+def load_deferrals(state: dict, today: date) -> set[tuple[str, date]]:
+    """Deferrals the household has marked, as (bill_id, date).
+
+    Anything dated before today is dropped on read rather than pruned on write.
+    A deferral is a decision about one occurrence; once that date has passed the
+    decision is spent, and carrying it forward would silently suppress the next
+    occurrence of the same bill.
+    """
+    out: set[tuple[str, date]] = set()
+    for d in state.get("deferrals", []):
+        try:
+            when = date.fromisoformat(d["date"])
+        except (KeyError, TypeError, ValueError):
+            continue
+        if when >= today and d.get("bill_id"):
+            out.add((d["bill_id"], when))
+    return out
+
+
+def record_deferrals(state: dict, items: list[dict], when: datetime) -> dict:
+    """Replace the deferral set with what the app just sent.
+
+    A full replace, not a merge: the app sends the complete set of ticked boxes,
+    so unticking one has to be able to remove it.
+    """
+    clean = []
+    for it in items:
+        try:
+            d = date.fromisoformat(str(it["date"]))
+        except (KeyError, TypeError, ValueError):
+            continue
+        bid = str(it.get("bill_id", ""))
+        if bid and d >= when.date():
+            clean.append({"bill_id": bid, "date": d.isoformat(),
+                          "marked_at": when.isoformat()})
+    state["deferrals"] = clean
+    return state
+
+
 def balance_is_fresh(state: dict, now: datetime, max_age_hours: int) -> bool:
     b = state.get("balance")
     if not b:
@@ -159,7 +198,8 @@ def analyse(settings: Settings, state: dict, now: datetime) -> Result:
         raise EngineError(f"financial data will not load: {exc}") from exc
 
     horizon = today + timedelta(days=settings.forecast_days + 30)
-    calendar = fincal.build(bills, income, today, horizon)
+    deferrals = load_deferrals(state, today)
+    calendar = fincal.build(bills, income, today, horizon, deferrals)
 
     b = state.get("balance") or {}
     try:
@@ -256,6 +296,21 @@ def write_snapshot(r: Result, settings: Settings, now: datetime) -> dict:
         "discretionary": {
             "safe": str(r.discretionary.safe),
             "explain": [[lbl, str(val)] for lbl, val in r.discretionary.explain()],
+            # Raw inputs, so the app can recompute "safe to spend" as boxes are
+            # ticked without a round trip. It reproduces exactly the arithmetic
+            # in forecast.safe_discretionary; the engine stays the authority.
+            "components": {
+                "balance": str(r.balance),
+                "income_week": str(r.discretionary.income_this_week),
+                "beyond_in": str(
+                    r.calendar.total_in(
+                        r.discretionary.week_end + timedelta(days=1),
+                        r.discretionary.week_end + timedelta(
+                            days=1 + settings.discretionary_lookahead_days),
+                    )
+                ),
+                "buffer": str(settings.minimum_safe_balance),
+            },
         },
         "today_bills": [
             {"name": e.name, "amount": str(e.amount), "tier": e.priority_tier,
@@ -297,6 +352,31 @@ def write_snapshot(r: Result, settings: Settings, now: datetime) -> dict:
             ],
             "covered": r.plan.covered,
         },
+        # Everything inside the discretionary horizon, so the app can recompute
+        # "safe to spend" instantly as boxes are ticked instead of waiting on a
+        # round trip. The browser reproduces the same arithmetic; the engine
+        # remains the authority once the choice is saved.
+        "deferral_window": [
+            {"id": e.item_id, "name": e.name, "date": e.day.isoformat(),
+             "amount": str(e.amount), "tier": e.priority_tier,
+             "deferrable": e.deferrable, "secured": e.secured,
+             "deferred": e.deferred,
+             "in_week": e.day <= r.discretionary.week_end}
+            for e in r.calendar.bills_between(
+                r.today,
+                r.discretionary.week_end + timedelta(
+                    days=settings.discretionary_lookahead_days),
+                include_deferred=True,
+            )
+        ],
+        "deferred_total": str(
+            r.calendar.deferred_total(
+                r.today,
+                r.discretionary.week_end + timedelta(
+                    days=settings.discretionary_lookahead_days),
+            )
+        ),
+        "lookahead_days": settings.discretionary_lookahead_days,
         # The full editable model, so the app's Edit screen renders from the
         # same snapshot as everything else rather than fetching bills.json and
         # re-implementing what counts as active.
@@ -373,6 +453,39 @@ def run_daily(balance: Decimal | None, *, dry_run: bool) -> int:
     return 0
 
 
+def run_defer(items_json: str, *, dry_run: bool) -> int:
+    """Record the deferral set the app sent, then rebuild and re-alert.
+
+    No balance is required: deferring is a decision about what leaves the
+    account, not a new reading of it.
+    """
+    settings = load_settings()
+    tz = ZoneInfo(settings.timezone)
+    now = datetime.now(tz)
+    state = load_state()
+
+    try:
+        items = json.loads(items_json)
+    except json.JSONDecodeError as exc:
+        raise EngineError(f"deferrals are not valid JSON: {exc}") from exc
+    if not isinstance(items, list) or len(items) > 200:
+        raise EngineError("deferrals must be a list of at most 200 items")
+
+    state = record_deferrals(state, items, now)
+    r = analyse(settings, state, now)
+    write_snapshot(r, settings, now)
+
+    if not dry_run:
+        save_state(state)
+    n = len(state.get("deferrals", []))
+    print(
+        f"{n} deferral(s) recorded. Safe to spend is now "
+        f"{notify.m(r.discretionary.safe)}; "
+        f"lowest projected {notify.m(r.forecast.minimum_balance)}."
+    )
+    return 0
+
+
 def run_watch(*, dry_run: bool) -> int:
     """Scheduled risk sweep. Never needs a balance entered today."""
     settings = load_settings()
@@ -419,8 +532,9 @@ def _log(snapshot: dict, day: date) -> None:
 
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(description="OpenFIN financial engine")
-    p.add_argument("mode", choices=["daily", "watch"])
+    p.add_argument("mode", choices=["daily", "watch", "defer"])
     p.add_argument("--balance", help="today's actual bank balance")
+    p.add_argument("--items", help="JSON list of {bill_id, date} deferrals")
     p.add_argument("--dry-run", action="store_true")
     args = p.parse_args(argv)
 
@@ -436,6 +550,8 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.mode == "daily":
             return run_daily(bal, dry_run=args.dry_run)
+        if args.mode == "defer":
+            return run_defer(args.items or "[]", dry_run=args.dry_run)
         return run_watch(dry_run=args.dry_run)
     except EngineError as exc:
         # Financial software does not fail silently and does not invent numbers.

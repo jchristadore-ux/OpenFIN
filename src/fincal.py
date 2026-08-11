@@ -15,7 +15,7 @@ Money is Decimal throughout, as everywhere else in this project.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from datetime import date, timedelta
 from decimal import Decimal
 from pathlib import Path
@@ -43,6 +43,7 @@ class Event:
     variable: bool = False
     confidence: str = "high"  # high | medium | low
     autopay: bool = False
+    deferred: bool = False    # decided against paying this occurrence
 
     @property
     def signed(self) -> Decimal:
@@ -68,17 +69,29 @@ class Calendar:
     def between(self, a: date, b: date) -> list[Event]:
         return [e for e in self.events if a <= e.day <= b]
 
-    def bills_between(self, a: date, b: date) -> list[Event]:
-        return [e for e in self.between(a, b) if e.direction == OUT]
+    def bills_between(self, a: date, b: date, *, include_deferred: bool = False):
+        return [
+            e for e in self.between(a, b)
+            if e.direction == OUT and (include_deferred or not e.deferred)
+        ]
 
     def income_between(self, a: date, b: date) -> list[Event]:
         return [e for e in self.between(a, b) if e.direction == IN]
 
     def total_out(self, a: date, b: date) -> Decimal:
+        """Money actually leaving. Deferred occurrences are excluded — that is
+        the whole point of marking one — but the debt has not gone anywhere, so
+        `deferred_total` reports it separately and the UI must show both."""
         return money(sum((e.amount for e in self.bills_between(a, b)), money(0)))
 
     def total_in(self, a: date, b: date) -> Decimal:
         return money(sum((e.amount for e in self.income_between(a, b)), money(0)))
+
+    def deferred_events(self, a: date, b: date) -> list[Event]:
+        return [e for e in self.between(a, b) if e.direction == OUT and e.deferred]
+
+    def deferred_total(self, a: date, b: date) -> Decimal:
+        return money(sum((e.amount for e in self.deferred_events(a, b)), money(0)))
 
     def next_income_after(self, day: date) -> Event | None:
         later = sorted(
@@ -146,12 +159,23 @@ def build(
     income: list[dict],
     start: date,
     end: date,
+    deferrals: set[tuple[str, date]] | None = None,
 ) -> Calendar:
-    """Expand every active obligation into dated events across the window."""
+    """Expand every active obligation into dated events across the window.
+
+    `deferrals` is a set of (bill_id, date) the household has decided not to pay
+    on that date. Those events are still built and still listed — they are
+    marked, not deleted, because a deferred bill is money still owed and hiding
+    it would be the one thing this tool must never do.
+    """
+    deferrals = deferrals or set()
     events: list[Event] = []
     for item in bills:
         for day in occurrences(item, start, end):
-            events.append(_event_from(item, day, OUT))
+            ev = _event_from(item, day, OUT)
+            if (item["id"], day) in deferrals:
+                ev = replace(ev, deferred=True)
+            events.append(ev)
     for item in income:
         for day in occurrences(item, start, end):
             events.append(_event_from(item, day, IN))
@@ -164,12 +188,17 @@ def build(
     return Calendar(start=start, end=end, events=events)
 
 
-def load_and_build(start: date, end: date, root: Path | None = None) -> Calendar:
+def load_and_build(
+    start: date,
+    end: date,
+    root: Path | None = None,
+    deferrals: set[tuple[str, date]] | None = None,
+) -> Calendar:
     """Read bills.json and income.json, then build the calendar."""
     root = root or ROOT
     bills = load_items(root / "bills.json", "bills")
     income = load_items(root / "income.json", "income")
-    return build(bills, income, start, end)
+    return build(bills, income, start, end, deferrals)
 
 
 # --------------------------------------------------------------------------
