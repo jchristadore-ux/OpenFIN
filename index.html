@@ -3,17 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#1e3a5f">
+<meta name="theme-color" content="#0A2540">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>TogetherLedger</title>
+<meta name="apple-mobile-web-app-title" content="OpenFIN">
+<link rel="icon" href="assets/mark.svg">
+<link rel="apple-touch-icon" href="assets/mark.svg">
+<title>OpenFIN</title>
 <style>
-  /* Mobile first and mobile only, really. This is opened one-handed on a phone
-     while standing in a kitchen. Everything that matters is above the fold and
-     nothing needs a second tap to answer "can we spend money this week". */
+  /* Mobile first and mobile only, really. Opened one-handed on a phone while
+     standing in a kitchen. Everything that matters is above the fold, and the
+     one thing the household has to DO is the first thing they can reach. */
   :root{
-    --navy:#1e3a5f; --navy-d:#14273f; --teal:#0f9b8e; --teal-d:#0f766e;
-    --ink:#0f172a; --mute:#64748b; --line:#e2e8f0; --bg:#f1f5f9; --card:#fff;
-    --danger:#b91c1c; --warn:#b45309; --ok:#15803d;
+    --navy:#0A2540; --navy-d:#06182a; --teal:#00C2A8; --teal-d:#009c87;
+    --ink:#0A2540; --mute:#4A5568; --line:#e2e8f0; --bg:#f4f7f9; --card:#fff;
+    --danger:#b91c1c; --warn:#b45309; --ok:#0f766e;
     --r:14px;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -23,26 +26,38 @@
   .wrap{max-width:560px;margin:0 auto;padding:0 14px}
 
   header{padding:18px 0 12px;display:flex;align-items:center;gap:11px}
-  .mark{width:38px;height:38px;flex:0 0 38px}
-  .brand{font-size:21px;font-weight:800;letter-spacing:-.02em;line-height:1}
+  header img{width:42px;height:42px;flex:0 0 42px}
+  .brand{font-size:24px;font-weight:800;letter-spacing:-.02em;line-height:1}
   .brand .a{color:var(--navy)} .brand .b{color:var(--teal)}
-  .tag{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);
-    font-weight:600;margin-top:3px}
+  .tag{font-size:9.5px;letter-spacing:.19em;text-transform:uppercase;color:var(--mute);
+    font-weight:600;margin-top:4px}
 
   .stale{background:#fef3c7;border:1px solid #fcd34d;color:#78350f;border-radius:10px;
     padding:11px 13px;font-size:13.5px;margin-bottom:12px}
 
-  /* balance — the one input the household is responsible for */
+  /* the one input the household is responsible for */
   .bal{background:linear-gradient(135deg,var(--navy),var(--navy-d));color:#fff;
     border-radius:var(--r);padding:18px;margin-bottom:12px}
   .bal .lab{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
     opacity:.72;font-weight:700}
   .bal .amt{font-size:40px;font-weight:800;letter-spacing:-.02em;margin:5px 0 3px}
-  .bal .when{font-size:12.5px;opacity:.7}
-  .bal a{display:block;margin-top:13px;background:var(--teal);color:#fff;
-    text-align:center;text-decoration:none;font-weight:700;font-size:15px;
-    padding:13px;border-radius:10px}
-  .bal a:active{background:var(--teal-d)}
+  .bal .when{font-size:12.5px;opacity:.72}
+  .entry{display:flex;gap:8px;margin-top:14px}
+  .entry .fld{flex:1;position:relative}
+  .entry .fld span{position:absolute;left:13px;top:50%;transform:translateY(-50%);
+    color:var(--mute);font-weight:700;font-size:18px;pointer-events:none}
+  .entry input{width:100%;padding:14px 12px 14px 28px;border:0;border-radius:10px;
+    font-size:18px;font-weight:700;color:var(--ink);background:#fff;
+    font-family:inherit;-moz-appearance:textfield}
+  .entry input::-webkit-outer-spin-button,.entry input::-webkit-inner-spin-button{
+    -webkit-appearance:none;margin:0}
+  .entry button{border:0;border-radius:10px;background:var(--teal);color:#04231e;
+    font-weight:800;font-size:15px;padding:0 20px;font-family:inherit;cursor:pointer}
+  .entry button:active{background:var(--teal-d)}
+  .entry button:disabled{opacity:.55;cursor:default}
+  .msg{margin-top:10px;font-size:13px;line-height:1.45;opacity:.95}
+  .msg a{color:var(--teal)}
+  .msg.bad{color:#fecaca}
 
   /* the headline answer */
   .disc{background:var(--card);border-radius:var(--r);padding:18px;margin-bottom:12px;
@@ -51,7 +66,7 @@
   .disc .lab{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
     color:var(--mute);font-weight:700}
   .disc .amt{font-size:42px;font-weight:800;letter-spacing:-.02em;
-    color:var(--teal-d);margin:4px 0}
+    color:var(--ok);margin:4px 0}
   .disc.neg .amt{color:var(--danger)}
   .disc .sub{font-size:13.5px;color:var(--mute)}
   .disc.neg .sub{color:var(--danger);font-weight:600}
@@ -75,7 +90,7 @@
   .row .l{color:#334155;min-width:0}
   .row .l small{display:block;color:var(--mute);font-size:12px}
   .row .v{font-weight:600;white-space:nowrap}
-  .in .v{color:var(--teal-d)}
+  .in .v{color:var(--ok)}
   .tot{border-top:2px solid var(--line);margin-top:6px;padding-top:10px;font-weight:700}
   .empty{color:var(--mute);font-size:14px;padding:6px 0}
 
@@ -83,22 +98,24 @@
     text-transform:uppercase;padding:2px 7px;border-radius:999px;margin-left:6px;
     vertical-align:1px}
   .t1{background:#fee2e2;color:#991b1b} .t2{background:#ffedd5;color:#9a3412}
-  .t3{background:#e0e7ff;color:#3730a3} .t4{background:#ccfbf1;color:#115e59}
-  .t5{background:#f1f5f9;color:#475569}
+  .t3{background:#e0e7ff;color:#3730a3} .t4{background:#ccfbf1;color:#0f766e}
+  .t5{background:#eef2f6;color:#4A5568}
 
   .risk{border-left:5px solid var(--danger)}
   .risk .sev{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
     font-weight:800;color:var(--danger)}
   .risk h4{margin:3px 0 4px;font-size:15px}
-  .risk p{margin:0 0 12px;font-size:13.5px;color:#475569;line-height:1.5}
+  .risk p{margin:0 0 12px;font-size:13.5px;color:var(--mute);line-height:1.5}
   .ok{color:var(--ok);font-weight:600;font-size:14.5px}
-  .plan{background:#f8fafc;border-radius:10px;padding:12px;font-size:13.5px;
+  .plan{background:#f4f7f9;border-radius:10px;padding:12px;font-size:13.5px;
     line-height:1.5;margin-top:4px}
 
   .spark{display:flex;align-items:flex-end;gap:1px;height:52px;margin:10px 0 4px}
   .spark i{flex:1;background:var(--teal);border-radius:1px 1px 0 0;min-height:1px}
   .spark i.neg{background:var(--danger)}
 
+  .lnk{background:none;border:0;color:var(--teal);font:inherit;font-size:13px;
+    padding:0;cursor:pointer;text-decoration:underline}
   footer{color:var(--mute);font-size:11.5px;text-align:center;padding:16px 0 4px}
   .err{background:#fee2e2;border:1px solid #fca5a5;color:#7f1d1d;padding:14px;
     border-radius:var(--r);font-size:14px}
@@ -108,22 +125,9 @@
 <div class="wrap">
 
   <header>
-    <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
-      <!-- open door with a rising bar chart passing through it -->
-      <path d="M8 10 L30 4 L30 60 L8 54 Z" fill="#1e3a5f"/>
-      <path d="M30 4 L30 60 L34 58 L34 8 Z" fill="#16305a"/>
-      <circle cx="24" cy="32" r="2.4" fill="#fff"/>
-      <path d="M38 12 L58 6 L58 58 L38 58 Z" fill="none" stroke="#0f9b8e" stroke-width="3"
-            stroke-linejoin="round"/>
-      <rect x="40" y="42" width="5" height="14" fill="#0f9b8e"/>
-      <rect x="47" y="34" width="5" height="22" fill="#12b3a3"/>
-      <rect x="54" y="26" width="5" height="30" fill="#2ec9b8"/>
-      <path d="M39 40 L47 31 L54 24 L59 18" fill="none" stroke="#0f9b8e" stroke-width="3"
-            stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M52 16 L60 15 L59 23 Z" fill="#0f9b8e"/>
-    </svg>
+    <img src="assets/mark.svg" alt="">
     <div>
-      <div class="brand"><span class="a">Together</span><span class="b">Ledger</span></div>
+      <div class="brand"><span class="a">Open</span><span class="b">FIN</span></div>
       <div class="tag">Family Financial Operating System</div>
     </div>
   </header>
@@ -134,12 +138,13 @@
 </div>
 
 <script>
-// The dashboard renders snapshot.json and computes nothing. Every number here
-// was produced by src/engine.py. If a figure looks wrong, it is wrong in the
-// engine, and there is exactly one place to fix it.
-const ISSUE_URL = 'https://github.com/jchristadore-ux/TogetherLedger/issues/new?template=balance.yml';
+// The dashboard renders snapshot.json and computes nothing. Every figure was
+// produced by src/engine.py. If a number looks wrong it is wrong in the engine,
+// and there is exactly one place to fix it.
+const OWNER = 'jchristadore-ux', REPO = 'TogetherLedger';
+const DISPATCH = `https://api.github.com/repos/${OWNER}/${REPO}/dispatches`;
+const TOKKEY = 'openfin_token';
 
-const $ = (h) => { const t = document.createElement('template'); t.innerHTML = h.trim(); return t.content.firstChild; };
 const esc = (s) => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const num = (s) => Number(String(s).replace(/[$,]/g, ''));
 const m = (v) => { const n = num(v); const a = Math.abs(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); return (n<0?'-$':'$') + a; };
@@ -158,21 +163,111 @@ function rows(list, dir){
       <div class="v">${dir==='in'?'+':''}${m(x.amount)}</div></div>`).join('');
 }
 
+// ---- balance entry -------------------------------------------------------
+// GitHub Pages is static, so writing a balance needs a credential. A
+// fine-grained token scoped to this one repo is stored in this device's
+// localStorage and used to fire a repository_dispatch. That dispatch is what
+// runs the engine and sends the daily summary — there is no separate
+// "balance received" email, and nothing is emailed to submit a balance.
+function token(){ return localStorage.getItem(TOKKEY) || ''; }
+
+function setMsg(html, bad){
+  const el = document.getElementById('msg');
+  if(el){ el.className = 'msg' + (bad ? ' bad' : ''); el.innerHTML = html; }
+}
+
+async function submitBalance(){
+  const input = document.getElementById('balin');
+  const btn = document.getElementById('balbtn');
+  const raw = (input.value || '').replace(/[$,\s]/g, '');
+  if(raw === '' || isNaN(Number(raw))){ setMsg('Enter a number.', true); input.focus(); return; }
+
+  let tok = token();
+  if(!tok){
+    tok = (prompt(
+      'One-time setup.\n\n' +
+      'Paste a GitHub fine-grained token with Contents: Read and write on this ' +
+      'repository. It is stored only on this device and is never sent anywhere ' +
+      'except github.com.'
+    ) || '').trim();
+    if(!tok){ setMsg('Cancelled.', true); return; }
+    localStorage.setItem(TOKKEY, tok);
+  }
+
+  btn.disabled = true; btn.textContent = '…';
+  setMsg('Sending…');
+  try{
+    const res = await fetch(DISPATCH, {
+      method:'POST',
+      headers:{'Accept':'application/vnd.github+json','Authorization':'Bearer '+tok,
+               'X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'},
+      body: JSON.stringify({event_type:'balance', client_payload:{balance: raw}})
+    });
+    if(res.status === 204){
+      setMsg('Balance sent. The engine is running — your daily summary email is on its way. '
+           + 'This page refreshes when the new forecast lands.');
+      input.value = '';
+      pollForSnapshot();
+    } else if(res.status === 401 || res.status === 403){
+      localStorage.removeItem(TOKKEY);
+      setMsg('That token was rejected. Tap Update again to re-enter one.', true);
+    } else {
+      setMsg('GitHub returned ' + res.status + '. Nothing was recorded.', true);
+    }
+  } catch(e){
+    setMsg('Could not reach GitHub: ' + esc(e.message) + '. Nothing was recorded.', true);
+  } finally {
+    btn.disabled = false; btn.textContent = 'Update';
+  }
+}
+
+// The workflow commits a new snapshot.json. Watch for generated_at to change,
+// then re-render. Gives up quietly rather than spinning forever.
+let baseline = null;
+function pollForSnapshot(){
+  let tries = 0;
+  const tick = setInterval(async () => {
+    tries++;
+    if(tries > 40){ clearInterval(tick); return; }
+    try{
+      const r = await fetch('snapshot.json?t=' + Date.now());
+      if(!r.ok) return;
+      const s = await r.json();
+      if(s.generated_at !== baseline){ clearInterval(tick); render(s); }
+    }catch(e){ /* transient; keep waiting */ }
+  }, 6000);
+}
+
+function forgetToken(){
+  localStorage.removeItem(TOKKEY);
+  setMsg('Token removed from this device.');
+}
+
+// ---- render --------------------------------------------------------------
 function render(s){
+  baseline = s.generated_at;
   const out = [];
   const disc = num(s.discretionary.safe), neg = disc < 0;
 
   if(!s.balance_is_fresh){
     out.push(`<div class="stale"><strong>Balance is not from today.</strong>
-      Figures below project from the last entered balance. The daily email will
-      not send until today's balance is entered.</div>`);
+      Figures below project from the last entered balance. Enter today's balance
+      to refresh them and send the daily summary.</div>`);
   }
 
   out.push(`<div class="bal">
     <div class="lab">Today's balance</div>
     <div class="amt">${m(s.balance)}</div>
-    <div class="when">${s.balance_is_fresh ? 'Entered today' : 'Last entered balance'} · ${dt(s.today)}</div>
-    <a href="${ISSUE_URL}">Update balance</a></div>`);
+    <div class="when">${s.balance_is_fresh ? 'Entered today' : 'Last entered'} · ${dt(s.today)}</div>
+    <div class="entry">
+      <div class="fld"><span>$</span>
+        <input id="balin" type="number" inputmode="decimal" step="0.01"
+               placeholder="0.00" enterkeyhint="send" autocomplete="off"></div>
+      <button id="balbtn" type="button">Update</button>
+    </div>
+    <div class="msg" id="msg">Updating the balance runs the forecast and emails
+      the daily summary.</div>
+  </div>`);
 
   out.push(`<div class="disc ${neg?'neg':''}">
     <div class="lab">Safe to spend this week</div>
@@ -180,14 +275,12 @@ function render(s){
     <div class="sub">${neg ? 'Negative — there is nothing free this week.'
       : 'Through ' + dt(s.week_end) + ', after bills and buffer.'}</div></div>`);
 
-  // TODAY
   const tb = s.today_bills, ti = s.today_income;
   out.push(tile('Today', tb.length ? m(tb.reduce((a,b)=>a+num(b.amount),0)) : 'Clear',
     (ti.length ? rows(ti,'in') : '') + rows(tb) +
     `<div class="row tot"><div class="l">End of day</div><div class="v">${m(s.end_of_day)}</div></div>`,
     '', true));
 
-  // THIS WEEK
   const wb = s.this_week.filter(x=>x.direction==='out'), wi = s.this_week.filter(x=>x.direction==='in');
   out.push(tile('This week', m(s.end_of_week),
     `<div class="row"><div class="l">Bills to ${dt(s.week_end)}</div><div class="v">${m(wb.reduce((a,b)=>a+num(b.amount),0))}</div></div>
@@ -195,17 +288,14 @@ function render(s){
      <div class="row tot"><div class="l">End of week</div><div class="v">${m(s.end_of_week)}</div></div>
      <div style="margin-top:12px">${rows(s.this_week.map(x=>({...x,tier:x.direction==='in'?0:x.tier})))}</div>`));
 
-  // DISCRETIONARY working
   out.push(tile('How that is worked out', '',
     s.discretionary.explain.map(([l,v],i,a) =>
       `<div class="row ${i===a.length-1?'tot':''}"><div class="l">${esc(l)}</div>
        <div class="v">${m(v)}</div></div>`).join('')));
 
-  // UPCOMING
   out.push(tile('Upcoming', s.upcoming.length ? m(s.upcoming.reduce((a,b)=>a+num(b.amount),0)) : '—',
     rows(s.upcoming)));
 
-  // FORECAST
   const curve = s.curve || [];
   const vals = curve.map(c=>num(c.closing));
   const lo = Math.min(0,...vals), hi = Math.max(0,...vals), span = (hi-lo)||1;
@@ -216,7 +306,6 @@ function render(s){
      <div class="row"><div class="l">End of month</div><div class="v">${m(s.end_of_month)}</div></div>
      ${num(s.shortfall)>0?`<div class="row"><div class="l">Shortfall to cover</div><div class="v" style="color:var(--danger)">${m(s.shortfall)}</div></div>`:''}`));
 
-  // RISK
   const rk = s.risks || [];
   out.push(tile('Risk', rk.length ? `${rk.length}` : 'Clear',
     (rk.length
@@ -229,11 +318,18 @@ function render(s){
   out.push(tile('Settings', '',
     `<div class="row"><div class="l">Minimum safe balance</div><div class="v">${m(s.settings.minimum_safe_balance)}</div></div>
      <div class="row"><div class="l">Daily discretionary allowance</div><div class="v">${m(s.settings.daily_discretionary_allowance)}</div></div>
-     <div class="row"><div class="l">Forecast horizon</div><div class="v">${s.settings.forecast_days} days</div></div>`));
+     <div class="row"><div class="l">Forecast horizon</div><div class="v">${s.settings.forecast_days} days</div></div>
+     <div class="row"><div class="l">Device access token</div>
+       <div class="v"><button class="lnk" id="forget">Remove from this device</button></div></div>`));
 
   document.getElementById('app').innerHTML = out.join('');
+  document.getElementById('balbtn').addEventListener('click', submitBalance);
+  document.getElementById('balin').addEventListener('keydown', e => {
+    if(e.key === 'Enter') submitBalance();
+  });
+  document.getElementById('forget').addEventListener('click', forgetToken);
   document.getElementById('foot').textContent =
-    'Generated ' + new Date(s.generated_at).toLocaleString('en-US') + ' · engine v2';
+    'OpenFIN · generated ' + new Date(s.generated_at).toLocaleString('en-US');
 }
 
 fetch('snapshot.json?t=' + Date.now())
@@ -241,10 +337,8 @@ fetch('snapshot.json?t=' + Date.now())
   .then(render)
   .catch(e => {
     document.getElementById('app').innerHTML =
-      `<div class="err"><strong>No forecast available.</strong><br>
-       ${esc(e.message)}<br><br>
-       The engine has not produced a snapshot yet. Enter a balance to generate one.
-       <br><br><a href="${ISSUE_URL}">Enter balance</a></div>`;
+      `<div class="err"><strong>No forecast available.</strong><br>${esc(e.message)}<br><br>
+       The engine has not produced a snapshot yet.</div>`;
   });
 </script>
 </body>

@@ -1,40 +1,52 @@
-<h1>TogetherLedger</h1>
+<p align="center">
+  <img src="assets/openfin.svg" alt="OpenFIN — Family Financial Operating System" width="440">
+</p>
 
 **A household financial early-warning system.** It does not tell you what your
 budget was. It tells you what is about to happen to your money, when, how much,
 and what you could do about it.
 
-**[Open the dashboard](https://jchristadore-ux.github.io/TogetherLedger/)**
+**[Open the app](https://jchristadore-ux.github.io/TogetherLedger/)**
 
 ---
 
 ## The daily loop
 
 ```
-Enter today's balance  ->  forecast runs  ->  risk engine runs  ->  email sent
+Update the balance in the app  ->  forecast runs  ->  risk engine runs  ->  daily summary email
 ```
 
-That is the household's only manual step. Everything else cascades from it.
+That is the household's only manual step, and it happens **in the app** — type
+today's balance, tap Update. There is no separate "balance received" email and
+nothing is emailed to submit a balance. Updating the balance *is* what sends the
+daily summary and outlook.
 
-Entering a balance is done from a phone, with no server and no hosting cost:
-file the **Daily balance** issue from the GitHub mobile app, or run the
-**Daily balance** workflow from the Actions tab. The engine parses it, projects
-forward, emails the daily check, comments the result back, and closes the issue.
-
-**No balance entered means no daily email.** A financial summary anchored to a
+**No balance update means no daily summary.** A financial email anchored to a
 stale balance reads as authoritative and is quietly wrong, which is worse than
 silence.
 
+### How the app writes without a server
+
+GitHub Pages is static, so recording a balance needs a credential. On first use
+the app asks once for a **fine-grained GitHub token** with *Contents: Read and
+write* on this repository. It is kept in that device's `localStorage`, sent only
+to `github.com`, and can be removed from **Settings → Device access token**. The
+app fires a `repository_dispatch`, the workflow runs the engine, emails the
+summary, and commits the new forecast; the page refreshes itself when it lands.
+
+The **Daily balance** workflow in the Actions tab does the same thing manually
+if a device has no token.
+
 ## The half that does not wait for you
 
-Risk alerts are independent of balance entry. `watch.yml` runs twice a day,
+Risk alerts are independent of the balance. `watch.yml` runs twice a day,
 projects from the last known position, and emails **only** when it finds
 something. A mortgage about to bounce next Tuesday is true whether or not
 anyone opened the app this morning.
 
 Alerts deduplicate. An unchanged risk is not re-sent; it goes out again only
-when it gets materially worse (>$100), moves by more than two days, resolves
-and returns, or hits the reminder threshold.
+when it worsens by more than $100, moves by more than two days, resolves and
+returns, or hits the reminder threshold.
 
 ## What it watches for
 
@@ -125,3 +137,9 @@ UI.
 `SMTP_USER`, `SMTP_APP_PASSWORD`, `EMAIL_RECIPIENTS`, and optionally
 `EMAIL_FROM`. Email is the only channel the system needs. The legacy SMS path
 remains in `messaging.py` but nothing depends on it.
+
+---
+
+<sub>The product is **OpenFIN**. The GitHub repository is still named
+`TogetherLedger` — renaming it is a repository setting, and every link above
+follows automatically once it changes.</sub>

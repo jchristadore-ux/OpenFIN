@@ -485,7 +485,7 @@ def main() -> int:
         except IngestError as exc:
             print(f"ERROR: {exc}", file=sys.stderr)
             messaging.send_mail(
-                "TogetherLedger: bill upload",
+                "OpenFIN: bill upload",
                 f"BILL UPLOAD FAILED: {upload.name}\n{exc}\nNothing was changed.",
                 dry_run=dry_run,
             )
@@ -494,7 +494,7 @@ def main() -> int:
         print(f"Parsed {len(rows)} row(s).")
         if not rows:
             messaging.send_mail(
-                "TogetherLedger: bill upload",
+                "OpenFIN: bill upload",
                 f"BILL UPLOAD FAILED: no bills could be read from {upload.name}. "
                 f"Nothing was changed.",
                 dry_run=dry_run,
@@ -520,7 +520,7 @@ def main() -> int:
         except BillError as exc:
             print(f"ERROR: the merged bill list is invalid — {exc}", file=sys.stderr)
             messaging.send_mail(
-                "TogetherLedger: bill upload",
+                "OpenFIN: bill upload",
                 f"BILL UPLOAD REJECTED: merged list failed validation.\n{exc}\n"
                 f"bills.json was NOT changed.",
                 dry_run=dry_run,
@@ -532,11 +532,11 @@ def main() -> int:
 
     if dry_run:
         print("\nDry run: bills.json was not written and no file was moved.")
-        messaging.send_mail("TogetherLedger: bill upload", summary, dry_run=True)
+        messaging.send_mail("OpenFIN: bill upload", summary, dry_run=True)
         return 0
 
     save_items(BILLS, "bills", existing)
-    messaging.send_mail("TogetherLedger: bill upload", summary, dry_run=False)
+    messaging.send_mail("OpenFIN: bill upload", summary, dry_run=False)
     print("Wrote bills.json.")
     return 0
 
