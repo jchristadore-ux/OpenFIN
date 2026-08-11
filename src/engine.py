@@ -297,6 +297,22 @@ def write_snapshot(r: Result, settings: Settings, now: datetime) -> dict:
             ],
             "covered": r.plan.covered,
         },
+        # The full editable model, so the app's Edit screen renders from the
+        # same snapshot as everything else rather than fetching bills.json and
+        # re-implementing what counts as active.
+        "bills": [
+            {"id": b["id"], "name": b["name"], "amount": str(money(b["amount"])),
+             "due_day": b.get("due_day"), "frequency": b["frequency"],
+             "tier": b.get("priority_tier", 5), "active": bool(b.get("active", True)),
+             "variable": bool(b.get("variable", False)),
+             "needs_review": bool(b.get("needs_review", False)),
+             "note": (b.get("note") or "")[:300]}
+            for b in sorted(
+                load_items(ROOT / "bills.json", "bills"),
+                key=lambda x: (not x.get("active", True), x.get("priority_tier", 5),
+                               -float(x.get("amount") or 0)),
+            )
+        ],
         "settings": {
             "minimum_safe_balance": str(settings.minimum_safe_balance),
             "daily_discretionary_allowance": str(settings.daily_discretionary_allowance),

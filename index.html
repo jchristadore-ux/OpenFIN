@@ -141,9 +141,30 @@
 // The dashboard renders snapshot.json and computes nothing. Every figure was
 // produced by src/engine.py. If a number looks wrong it is wrong in the engine,
 // and there is exactly one place to fix it.
-const OWNER = 'jchristadore-ux', REPO = 'TogetherLedger';
-const DISPATCH = `https://api.github.com/repos/${OWNER}/${REPO}/dispatches`;
-const TOKKEY = 'openfin_token';
+// Set this to the deployed Worker URL (see worker/README.md). The Worker holds
+// the GitHub token server-side and sits behind Cloudflare Access, so no
+// credential is ever entered or stored on a phone.
+const WORKER = '';   // e.g. 'https://openfin.example.workers.dev'
+
+async function post(path, payload){
+  if(!WORKER){
+    throw new Error('The Worker URL is not set yet. Deploy worker/ and set '
+      + 'WORKER at the top of index.html.');
+  }
+  const res = await fetch(WORKER + path, {
+    method:'POST', credentials:'include',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(payload)
+  });
+  let data = {};
+  try { data = await res.json(); } catch(e){ /* non-JSON error page */ }
+  if(res.status === 202) return data;
+  if(res.status === 401 || res.status === 403){
+    throw new Error('Sign-in needed. Open the Worker URL once in this browser '
+      + 'to get the email code, then try again.');
+  }
+  throw new Error(data.error || ('Request failed: ' + res.status));
+}
 
 const esc = (s) => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const num = (s) => Number(String(s).replace(/[$,]/g, ''));
@@ -164,13 +185,10 @@ function rows(list, dir){
 }
 
 // ---- balance entry -------------------------------------------------------
-// GitHub Pages is static, so writing a balance needs a credential. A
-// fine-grained token scoped to this one repo is stored in this device's
-// localStorage and used to fire a repository_dispatch. That dispatch is what
-// runs the engine and sends the daily summary — there is no separate
-// "balance received" email, and nothing is emailed to submit a balance.
-function token(){ return localStorage.getItem(TOKKEY) || ''; }
-
+// Writing goes through the Worker, which holds the GitHub token server-side
+// behind Cloudflare Access. Nothing is stored on the device. Updating the
+// balance is what runs the engine and sends the daily summary — there is no
+// separate "balance received" email, and nothing is emailed to submit one.
 function setMsg(html, bad){
   const el = document.getElementById('msg');
   if(el){ el.className = 'msg' + (bad ? ' bad' : ''); el.innerHTML = html; }
@@ -182,42 +200,55 @@ async function submitBalance(){
   const raw = (input.value || '').replace(/[$,\s]/g, '');
   if(raw === '' || isNaN(Number(raw))){ setMsg('Enter a number.', true); input.focus(); return; }
 
-  let tok = token();
-  if(!tok){
-    tok = (prompt(
-      'One-time setup.\n\n' +
-      'Paste a GitHub fine-grained token with Contents: Read and write on this ' +
-      'repository. It is stored only on this device and is never sent anywhere ' +
-      'except github.com.'
-    ) || '').trim();
-    if(!tok){ setMsg('Cancelled.', true); return; }
-    localStorage.setItem(TOKKEY, tok);
-  }
-
   btn.disabled = true; btn.textContent = '…';
   setMsg('Sending…');
   try{
-    const res = await fetch(DISPATCH, {
-      method:'POST',
-      headers:{'Accept':'application/vnd.github+json','Authorization':'Bearer '+tok,
-               'X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'},
-      body: JSON.stringify({event_type:'balance', client_payload:{balance: raw}})
-    });
-    if(res.status === 204){
-      setMsg('Balance sent. The engine is running — your daily summary email is on its way. '
-           + 'This page refreshes when the new forecast lands.');
-      input.value = '';
-      pollForSnapshot();
-    } else if(res.status === 401 || res.status === 403){
-      localStorage.removeItem(TOKKEY);
-      setMsg('That token was rejected. Tap Update again to re-enter one.', true);
-    } else {
-      setMsg('GitHub returned ' + res.status + '. Nothing was recorded.', true);
-    }
+    await post('/balance', {balance: raw});
+    setMsg('Balance sent. The engine is running — your daily summary email is on its way. '
+         + 'This page refreshes when the new forecast lands.');
+    input.value = '';
+    pollForSnapshot();
   } catch(e){
-    setMsg('Could not reach GitHub: ' + esc(e.message) + '. Nothing was recorded.', true);
+    setMsg(esc(e.message) + ' Nothing was recorded.', true);
   } finally {
     btn.disabled = false; btn.textContent = 'Update';
+  }
+}
+
+// ---- bill editing --------------------------------------------------------
+// Routine amount and date changes. Structural changes (new bills, payoffs,
+// frequency changes) still go through review, because those need checking
+// against the statements before they enter the forecast.
+function collectEdits(){
+  const edits = [];
+  document.querySelectorAll('[data-bill]').forEach(row => {
+    const id = row.getAttribute('data-bill');
+    const amt = row.querySelector('.e-amt');
+    const day = row.querySelector('.e-day');
+    const out = {id};
+    if(amt && amt.value !== '' && amt.value !== amt.defaultValue) out.amount = amt.value;
+    if(day && day.value !== '' && day.value !== day.defaultValue) out.due_day = Number(day.value);
+    if(Object.keys(out).length > 1) edits.push(out);
+  });
+  return edits;
+}
+
+async function saveEdits(){
+  const btn = document.getElementById('savebills');
+  const msg = document.getElementById('editmsg');
+  const edits = collectEdits();
+  if(edits.length === 0){ msg.textContent = 'Nothing changed.'; return; }
+  btn.disabled = true; btn.textContent = 'Saving…';
+  msg.textContent = '';
+  try{
+    const r = await post('/bills', {edits});
+    msg.textContent = `Saved ${r.count} change${r.count>1?'s':''}. The forecast is `
+      + 'rebuilding and will refresh here.';
+    pollForSnapshot();
+  } catch(e){
+    msg.textContent = e.message + ' Nothing was saved.';
+  } finally {
+    btn.disabled = false; btn.textContent = 'Save changes';
   }
 }
 
@@ -236,11 +267,6 @@ function pollForSnapshot(){
       if(s.generated_at !== baseline){ clearInterval(tick); render(s); }
     }catch(e){ /* transient; keep waiting */ }
   }, 6000);
-}
-
-function forgetToken(){
-  localStorage.removeItem(TOKKEY);
-  setMsg('Token removed from this device.');
 }
 
 // ---- render --------------------------------------------------------------
@@ -326,19 +352,51 @@ function render(s){
       : '<div class="ok">No material financial risks detected.</div>'),
     rk.length ? 'risk' : '', rk.length > 0));
 
+  // Edit bills — routine amount and day changes, saved permanently and synced
+  // to every device because the model lives in the repo, not on a phone.
+  const editable = (s.bills || []).filter(b => b.active);
+  out.push(tile('Edit bills', `${editable.length}`,
+    `<div style="font-size:13px;color:var(--mute);margin-bottom:10px">
+       Change an amount or the day it lands. Saved for both phones. Leave a box
+       untouched to keep it as it is.</div>`
+    + editable.map(b => `<div class="row" data-bill="${esc(b.id)}">
+        <div class="l">${esc(b.name)}<span class="pill t${b.tier}">T${b.tier}</span>
+          <small>${esc(b.frequency)}${b.variable?' · varies':''}${b.needs_review?' · needs review':''}</small></div>
+        <div class="v" style="display:flex;gap:6px;align-items:center">
+          <input class="e-amt" type="number" inputmode="decimal" step="0.01"
+                 value="${esc(b.amount)}" style="width:92px;padding:7px 8px;border:1px solid var(--line);
+                 border-radius:8px;font:inherit;font-size:14px;text-align:right">
+          <input class="e-day" type="number" inputmode="numeric" min="1" max="31"
+                 value="${b.due_day ?? ''}" placeholder="–"
+                 title="Day of month${b.due_day===null?' (not used for this frequency)':''}"
+                 ${b.due_day===null?'disabled':''}
+                 style="width:52px;padding:7px 8px;border:1px solid var(--line);
+                 border-radius:8px;font:inherit;font-size:14px;text-align:center">
+        </div></div>`).join('')
+    + `<div style="margin-top:14px;display:flex;gap:10px;align-items:center">
+         <button id="savebills" type="button" style="border:0;border-radius:10px;
+           background:var(--teal);color:#04231e;font-weight:800;font-size:14px;
+           padding:11px 18px;font-family:inherit;cursor:pointer">Save changes</button>
+         <span id="editmsg" style="font-size:13px;color:var(--mute)"></span></div>`
+    + ((s.bills || []).some(b => !b.active)
+        ? `<div style="margin-top:14px;font-size:12.5px;color:var(--mute)">
+             Inactive, kept for history: ${(s.bills||[]).filter(b=>!b.active)
+               .map(b=>esc(b.name)).join(', ')}</div>` : '')));
+
   out.push(tile('Settings', '',
     `<div class="row"><div class="l">Minimum safe balance</div><div class="v">${m(s.settings.minimum_safe_balance)}</div></div>
      <div class="row"><div class="l">Daily discretionary allowance</div><div class="v">${m(s.settings.daily_discretionary_allowance)}</div></div>
      <div class="row"><div class="l">Forecast horizon</div><div class="v">${s.settings.forecast_days} days</div></div>
-     <div class="row"><div class="l">Device access token</div>
-       <div class="v"><button class="lnk" id="forget">Remove from this device</button></div></div>`));
+     <div class="row"><div class="l">Sign-in</div>
+       <div class="v">Cloudflare Access</div></div>`));
 
   document.getElementById('app').innerHTML = out.join('');
   document.getElementById('balbtn').addEventListener('click', submitBalance);
   document.getElementById('balin').addEventListener('keydown', e => {
     if(e.key === 'Enter') submitBalance();
   });
-  document.getElementById('forget').addEventListener('click', forgetToken);
+  const sb = document.getElementById('savebills');
+  if(sb) sb.addEventListener('click', saveEdits);
   document.getElementById('foot').textContent =
     'OpenFIN · forecast generated ' + new Date(s.generated_at).toLocaleString('en-US')
     + (ageDays > 0 ? '  (' + ageDays + ' day' + (ageDays>1?'s':'') + ' old)' : '');

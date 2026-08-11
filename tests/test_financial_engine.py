@@ -10,6 +10,7 @@ monthly debt) because that shape is what the engine has to get right.
 
 from __future__ import annotations
 
+import json
 import sys
 import unittest
 from datetime import date, datetime, timedelta
@@ -496,6 +497,87 @@ class TestHouseholdScenarios(unittest.TestCase):
         _, _, d, _ = household("1500")
         lines = d.explain()
         self.assertEqual(sum(v for _, v in lines[:-1]), lines[-1][1])
+
+
+# --------------------------------------------------------------------------
+# bill edits from the app
+# --------------------------------------------------------------------------
+
+class TestApplyEdits(unittest.TestCase):
+    def setUp(self):
+        import json, tempfile
+        import apply_edits
+        self.mod = apply_edits
+        self.tmp = Path(tempfile.mkdtemp()) / "bills.json"
+        payload = {"bills": [
+            bill("netflix", "Netflix", 21.31, day=23, tier=5),
+            bill("mortgage", "Mortgage", 1801.62, freq="biweekly",
+                 anchor="2026-06-29", tier=1, deferrable=False, secured=True),
+        ]}
+        self.tmp.write_text(json.dumps(payload), encoding="utf-8")
+
+    def _bills(self):
+        # save_items writes a bare array when the file carries no "_" keys, and
+        # a wrapped object when it does. Both are valid per the data model, so
+        # read it back through the loader rather than assuming a shape.
+        from bills import load_items
+        return {b["id"]: b for b in load_items(self.tmp, "bills")}
+
+    def test_amount_and_day_apply(self):
+        out = self.mod.apply([{"id": "netflix", "amount": "24.99", "due_day": 25}], self.tmp)
+        self.assertEqual(len(out), 1)
+        n = self._bills()["netflix"]
+        self.assertEqual(money(n["amount"]), D("24.99"))
+        self.assertEqual(n["due_day"], 25)
+
+    def test_unknown_id_is_rejected(self):
+        with self.assertRaises(self.mod.EditError):
+            self.mod.apply([{"id": "nope", "amount": "5"}], self.tmp)
+
+    def test_absurd_amount_is_rejected(self):
+        with self.assertRaises(self.mod.EditError):
+            self.mod.apply([{"id": "netflix", "amount": "999999"}], self.tmp)
+
+    def test_bad_due_day_is_rejected(self):
+        with self.assertRaises(self.mod.EditError):
+            self.mod.apply([{"id": "netflix", "due_day": 44}], self.tmp)
+
+    def test_negative_amount_is_rejected(self):
+        with self.assertRaises(self.mod.EditError):
+            self.mod.apply([{"id": "netflix", "amount": "-5"}], self.tmp)
+
+    def test_large_change_applies_but_flags(self):
+        self.mod.apply([{"id": "netflix", "amount": "100.00"}], self.tmp)
+        self.assertTrue(self._bills()["netflix"]["needs_review"])
+
+    def test_small_change_does_not_flag(self):
+        self.mod.apply([{"id": "netflix", "amount": "22.00"}], self.tmp)
+        self.assertFalse(self._bills()["netflix"].get("needs_review", False))
+
+    def test_deactivate_keeps_the_entry(self):
+        self.mod.apply([{"id": "netflix", "active": False}], self.tmp)
+        self.assertIn("netflix", self._bills())
+        self.assertFalse(self._bills()["netflix"]["active"])
+
+    def test_all_or_nothing(self):
+        before = self._bills()["netflix"]["amount"]
+        with self.assertRaises(self.mod.EditError):
+            self.mod.apply(
+                [{"id": "netflix", "amount": "25.00"}, {"id": "nope", "amount": "1"}],
+                self.tmp,
+            )
+        self.assertEqual(self._bills()["netflix"]["amount"], before)
+
+    def test_no_op_edit_changes_nothing(self):
+        self.assertEqual(self.mod.apply([{"id": "netflix", "amount": "21.31"}], self.tmp), [])
+
+    def test_previous_note_is_preserved(self):
+        self.mod.apply([{"id": "netflix", "amount": "23.00"}], self.tmp)
+        self.assertIn("Previous note", self._bills()["netflix"]["note"])
+
+    def test_too_many_edits_refused(self):
+        with self.assertRaises(self.mod.EditError):
+            self.mod.parse_edits(json.dumps([{"id": "netflix"}] * 61))
 
 
 if __name__ == "__main__":
