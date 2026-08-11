@@ -24,6 +24,7 @@ VALID_FREQUENCIES = {
     "weekly",
     "biweekly",
     "semimonthly",
+    "quarterly",
     "annual",
     "once",
 }
@@ -127,10 +128,20 @@ def validate(item: dict) -> None:
             raise BillError(f"{name}: {freq} needs an anchor_date")
         parse_date(item["anchor_date"], f"{name}.anchor_date")
 
-    if freq in {"once", "annual"}:
+    if freq in {"once", "annual", "quarterly"}:
         if not item.get("due_date"):
             raise BillError(f"{name}: {freq} needs a due_date")
         parse_date(item["due_date"], f"{name}.due_date")
+
+    # A bill whose amount changed on a known date is modelled as two entries
+    # with adjoining windows, rather than one entry that is wrong on one side
+    # of the change.
+    for key in ("starts_on", "ends_on"):
+        if item.get(key):
+            parse_date(item[key], f"{name}.{key}")
+    if item.get("starts_on") and item.get("ends_on"):
+        if parse_date(item["starts_on"]) > parse_date(item["ends_on"]):
+            raise BillError(f"{name}: starts_on is after ends_on")
 
 
 def parse_date(value: str, label: str = "date") -> date:
@@ -209,6 +220,18 @@ def occurrences(item: dict, start: date, end: date) -> list[date]:
             hits.append(cursor)
             cursor += timedelta(days=step)
 
+    elif freq == "quarterly":
+        # Every three months from the stated first occurrence. Utility and
+        # municipal bills are commonly quarterly, and modelling one as monthly
+        # over-forecasts by three times.
+        due = parse_date(item["due_date"])
+        y, m = due.year, due.month
+        while date(y, m, 1) <= end:
+            hits.append(clamp_day(y, m, due.day))
+            m += 3
+            if m > 12:
+                y, m = y + 1, m - 12
+
     elif freq == "annual":
         due = parse_date(item["due_date"])
         for year in range(start.year, end.year + 1):
@@ -220,7 +243,14 @@ def occurrences(item: dict, start: date, end: date) -> list[date]:
     else:                                                       # pragma: no cover
         raise BillError(f"unhandled frequency {freq!r}")
 
-    return sorted({d for d in hits if start <= d <= end})
+    lo = parse_date(item["starts_on"]) if item.get("starts_on") else None
+    hi = parse_date(item["ends_on"]) if item.get("ends_on") else None
+    return sorted({
+        d for d in hits
+        if start <= d <= end
+        and (lo is None or d >= lo)
+        and (hi is None or d <= hi)
+    })
 
 
 def next_due(item: dict, on_or_after: date, horizon_days: int = 400) -> date | None:
