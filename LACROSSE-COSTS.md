@@ -1,19 +1,23 @@
 # Youth sports — what it actually costs
 
 Rebuilt from the club payment portal's historical payments for Lia, covering
-May 2023 through July 2026, and cross-checked against twelve contiguous TD
-Bank statements covering 12 Dec 2024 – 11 Dec 2025. Every figure below is a
+May 2023 through July 2026, and cross-checked against seventeen contiguous TD
+Bank statements covering 12 Dec 2024 – 11 May 2026. Every figure below is a
 real posted payment except the three clearly marked estimates for the rest of
 the 2026-27 season.
 
 **The lacrosse club portal says about $2,490 a year, or $207 a month.** That
-number has barely moved in three seasons.
+number has barely moved in three seasons, and for the club's own charges the
+portal is accurate to the penny.
 
-**The bank says otherwise.** Actual lacrosse spending over the twelve months
-was **$3,523.28** — the portal understates it by **$1,034.45**. And lacrosse
-is under two thirds of the total: all youth sports together ran **$464.02 per
-month, an annualised $5,568.24**. See [the full picture](#the-full-picture)
-below.
+**It is also the wrong number to budget from.** The portal only knows about NJ
+Total Select. Real lacrosse spending across the seventeen months was
+**$5,574.28** — $1,403.19 of it to other lacrosse organisations the portal
+never sees, including a **$100/month Trilogy Lacrosse charge that is still
+running and is not in `bills.json`**.
+
+**All youth sports together run $447.51 per month.** Budget **$450/month**,
+not $207. See [the full picture](#the-full-picture) below.
 
 ## Three complete seasons
 
@@ -134,35 +138,48 @@ paying for a camp separately.
 
 # The full picture
 
-Everything above comes from the club portal. This section comes from the bank
-statements, which see things the portal does not.
+Everything above comes from the club portal. This section comes from seventeen
+contiguous TD statements, **12 Dec 2024 – 11 May 2026**, which see things the
+portal does not.
 
-## The portal is not a complete record
+## The portal is accurate — and badly incomplete
 
-The bank shows **$754.63 paid toward lacrosse that the portal never lists**:
+For the club's own charges the portal reconciles to the penny. Every 2025-26
+season payment appears in the bank exactly as listed:
 
-| Posted | Payee | Amount | In portal? |
-|---|---|---:|---|
-| 01/03/2025 | NJ Total Lacrosse | $232.88 | **No** |
-| 01/15/2025 | Team travel — Crab Cake tourn. | $80.00 | **No** |
-| 02/03/2025 | US Lacrosse membership | $35.00 | **No** |
-| 02/10/2025 | US Lacrosse membership | $60.00 | **No** |
-| 02/19/2025 | US Lacrosse membership | $60.00 | **No** |
-| 03/12/2025 | US Lacrosse membership | $35.00 | **No** |
-| 04/08/2025 | Roxbury Lacrosse (SportsEngine) | $26.75 | **No** |
-| 12/10/2025 | Trilogy Lacrosse — sports fee | $225.00 | **No** |
+| Bank posted | Amount | Portal row |
+|---|---:|---|
+| 07/02/2025 | $181.13 | Tryout + K-9 clinic, 7/1 |
+| 09/15/2025 | $621.00 | PARTIAL, 9/11 |
+| 10/16/2025 | $491.63 | PARTIAL, 10/15 |
+| Jan–Feb 2026 | $186.30 | 6 winter clinics × $31.05 |
+| 02/02/2026 | $491.63 | PARTIAL, 1/30 |
+| 05/04/2026 | $491.63 | PARTIAL, 4/30 |
+| **Total** | **$2,463.32** | **matches the season exactly** |
 
-The $232.88 is almost certainly a $225.00 program plus the 3.5% card fee —
-the same price point as the Girls Academy Classes.
+The problem is not accuracy. It is scope. **The portal only knows about NJ
+Total Select.** Across the window, $4,171.09 went to the club — and another
+**$1,403.19 went to lacrosse organisations the portal never sees**:
 
-Against $2,488.83/yr from the portal, the bank recorded **$3,523.28**. Some of
-that is timing — statement months are not season months — but $754.63 of it
-has no portal row at any date. **Treat the season figure as a floor.**
+| Payee | Total | Note |
+|---|---:|---|
+| Trilogy Lacrosse | $725.00 | **$100/month, still running** |
+| US Lacrosse | $345.00 | memberships; $155.00 renewal Feb 2026 |
+| Universal Lacrosse | $125.25 | likely gear |
+| Q4 Lacrosse | $101.19 | Mar 2026 |
+| Team travel — Crab Cake | $80.00 | Jan 2025 |
+| Roxbury Lacrosse | $26.75 | Apr 2025 |
+
+Plus one $232.88 charge from the club itself on 01/03/2025 with no portal row
+at all — almost certainly a $225.00 program plus the 3.5% card fee.
+
+**True lacrosse cost is $5,574.28 over seventeen months**, against the
+$2,488.83/yr the portal implies.
 
 ## Youth sports by month
 
-Posted dates, 12 Dec 2024 – 11 Dec 2025. December 2024 and December 2025 are
-partial months; every month between them is complete.
+Posted dates. December 2024 and May 2026 are partial months; everything
+between is complete.
 
 | Month | High Bridge | Field hockey | Lacrosse | Other athletics | Total |
 |---|---:|---:|---:|---:|---:|
@@ -178,71 +195,91 @@ partial months; every month between them is complete.
 | 2025-09 | $125.00 | — | $621.00 | $45.00 | $791.00 |
 | 2025-10 | $145.00 | — | $491.63 | — | $636.63 |
 | 2025-11 | — | — | — | — | **$0.00** |
-| 2025-12 \* | — | — | $225.00 | — | $225.00 |
-| **Total** | **$365.00** | **$171.94** | **$3,523.28** | **$1,448.00** | **$5,508.22** |
+| 2025-12 | — | — | $225.00 | — | $225.00 |
+| 2026-01 | — | — | $193.15 | — | $193.15 |
+| 2026-02 | — | — | $839.78 | $101.94 | $941.72 |
+| 2026-03 | — | — | $326.44 | $45.00 | $371.44 |
+| 2026-04 | $104.57 | $120.00 | $100.00 | — | $324.57 |
+| 2026-05 \* | — | — | $591.63 | — | $591.63 |
+| **Total** | **$469.57** | **$291.94** | **$5,574.28** | **$1,594.94** | **$7,930.73** |
 
 \* partial month
 
-Across the eleven complete months (Jan–Nov 2025): **$5,104.22, or $464.02 per
-month — an annualised $5,568.24.**
+Across the sixteen complete months (Jan 2025 – Apr 2026): **$7,160.10, or
+$447.51 per month — an annualised $5,370.08.**
 
-November 2025 is a genuine zero — not missing data. It is the only clear month
-in the entire year.
+The two years agree: calendar 2025 came to $5,329.22, and Jan–Apr 2026 is
+running at $457.72/month. **Budget $450/month for youth sports**, against the
+$207 the lacrosse portal alone suggests.
 
-## Who the money actually went to
+November 2025 is a genuine zero — the only clear month in seventeen.
 
-**High Bridge — $365.00.** There is no payee named "High Bridge Recreation".
-The money went to two separate organisations:
+## Who the money went to
 
-- High Bridge Youth Soccer, $95.00 on 05/05/2025, via PayPal
-- High Bridge Youth Basketball (`hbyb.org`), $125.00 on 09/22/2025 and
-  $145.00 on 10/02/2025
+**High Bridge — $469.57.** There is no payee named "High Bridge Recreation".
+Two separate organisations, and they do not overlap:
 
-Basketball did **not** carry on billing past 02 October — nothing in the
-Oct/Nov/Dec statements. Two payments was the whole cost.
+- High Bridge Youth **Soccer** — $95.00 (05/05/2025) and $104.57
+  (04/17/2026). Annual, each spring.
+- High Bridge Youth **Basketball** (`hbyb.org`) — $125.00 (09/22/2025) and
+  $145.00 (10/02/2025). Two payments, one season, nothing since.
 
-**Field hockey — $171.94.** North Hunterdon Lions Field Hockey, $120.00 on
-06/04/2025, plus two USA Field Hockey memberships at $25.97 (08/04, 08/27).
-One season, one registration, no instalments.
+**Field hockey — $291.94.** North Hunterdon Lions, $120.00 on 06/04/2025 and
+again on 04/20/2026 — the same fee, one payment a year, no instalments. Plus
+two USA Field Hockey memberships at $25.97 (Aug 2025).
 
-**Other athletics — $1,448.00.** Dominated by **Parisi Speed School at
-$179.00/month**, charged seven times from 12/19/2024 to 06/20/2025 for
-**$1,253.00**, then stopped. Nothing after June. Also Gymnastics Unlimited
-($20.00 + $160.00, less a $30.00 refund) and Girl Scouts ($45.00).
+**Other athletics — $1,594.94.** Was dominated by **Parisi Speed School at
+$179.00/month**, seven charges from 12/19/2024 to 06/20/2025 totalling
+$1,253.00. **It stopped in June 2025 and has not restarted** — nothing in the
+eleven months since. Also Gymnastics Unlimited ($150.00 net), Girl Scouts
+($45.00 twice) and a $101.94 Harlem Wizards ticket, which is a fundraiser
+rather than a program fee.
 
-Parisi alone was running at **86% of the lacrosse club's monthly cost** while
-it was active, and it appears nowhere in any club portal.
+## The one that should be in the ledger
 
-## What the statements cannot tell you
+**Trilogy Lacrosse bills $100 every month and is not in `bills.json`.**
 
-Bank statements never print a payee for these, so nothing below can be ruled
-in or out:
+| Posted | Amount |
+|---|---:|
+| 12/10/2025 | $225.00 |
+| 01/05/2026 | $100.00 |
+| 02/03/2026 | $100.00 |
+| 03/27/2026 | $100.00 |
+| 04/03/2026 | $100.00 |
+| 05/04/2026 | $100.00 |
 
-- **Paper checks** — 10 totalling **$757.77**, including two at $120.00
-  (02/20, 03/07) and two at $160.00 (06/26, 08/05).
-- **Venmo** — 40 outgoing payments totalling **$2,131.00**. The recipient is
-  replaced by a token.
-- **Zelle to individuals** — if a club treasurer collects by Zelle, it is
-  indistinguishable from any other personal transfer.
+Around the 3rd–5th, with March apparently paid late on the 27th. Still active
+at the last statement. Not added to `bills.json` yet — the record stops at
+11 May 2026 and this file should not assert a live recurring debit it cannot
+see. Confirm it is still running and it belongs in the projection.
 
-That is **$2,888.77 of unattributable outbound payments** in the same twelve
-months. If any of it was youth sports, the totals above are low by that much.
-The two matched pairs of checks are the most suggestive: identical amounts,
-weeks apart, is what a registration instalment looks like.
+## What the statements cannot show
+
+Bank statements never print a payee for these:
+
+- **Paper checks** — 10 totalling **$757.77**, all in 2025; none since
+  December. Two at $120.00 (02/20, 03/07) and two at $160.00 (06/26, 08/05).
+- **Venmo** — 50 outgoing payments totalling **$2,329.38**.
+- **Zelle to individuals** — indistinguishable from any personal transfer.
+
+That is **$3,087.15 of unattributable outbound payments**. If any was youth
+sports, the totals above are low by that much. The matched pairs of checks are
+the most suggestive: identical amounts, weeks apart, is what a registration
+instalment looks like.
 
 **One unclassified item:** $32.00 to Rutgers Athletics parking on 12/01/2025.
-Left out of the totals — it reads as attending an event rather than a program
-fee, but it could be tournament parking.
+Left out — it reads as attending an event, but it could be tournament parking.
 
 ## Coverage
 
-Twelve statements, contiguous, no gaps: **12 Dec 2024 – 11 Dec 2025.** Every
-figure in this section is complete for that window.
+Seventeen statements, contiguous, no gaps: **12 Dec 2024 – 11 May 2026.**
+Nothing after 11 May 2026 has been checked, so the 2026-27 tryout ($51.75,
+5/28) and deposit ($672.75, 7/18) are not yet confirmed against the bank.
 
 ---
 
 *Club figures transcribed from the portal's historical payments on 10 August
-2026; bank figures parsed from twelve TD statements the same day. Every
-per-season and per-month total reconciles to its source exactly. Deliberately
-excluded: account and card numbers, transfer counterparties, and all
-non-sports spending.*
+2026; bank figures parsed from seventeen TD statements. Every per-season and
+per-month total reconciles to its source exactly. Deliberately excluded:
+account and card numbers, transfer counterparties, and all non-sports
+spending.*
