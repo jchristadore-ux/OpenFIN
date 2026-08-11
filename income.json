@@ -9,33 +9,46 @@
     "Keys beginning with an underscore are ignored. The list lives under the \"income\" key;",
     "a bare JSON array is also accepted."
   ],
-
   "income": [
     {
       "id": "boe-payroll",
       "name": "Branchburg BOE payroll",
-      "amount": 2840.34,
+      "amount": 2829.31,
       "due_day": null,
       "frequency": "biweekly",
       "due_date": null,
-      "anchor_date": "2026-09-10",
-      "match_keywords": ["branchburg", "board of ed", "payroll"],
+      "anchor_date": "2026-06-10",
+      "match_keywords": [
+        "branchburg",
+        "board of ed",
+        "payroll"
+      ],
       "active": true,
-      "last_updated": "2026-08-10T00:00:00-04:00",
-      "source": "manual"
+      "needs_review": true,
+      "note": "Amount corrected from $2,840.34. Observed $2,829.31 on 04/13, 04/28, 05/13, 05/27 and 06/10/2026, exactly 14-15 days apart. A $2,837.55 credit on 06/16 breaks the pattern and may be a summer-schedule payment - verify before the school year starts.",
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
     },
     {
       "id": "primary-payroll",
-      "name": "Primary payroll",
-      "amount": 2853.17,
+      "name": "Insight Global payroll",
+      "amount": 2016.06,
       "due_day": null,
       "frequency": "weekly",
       "due_date": null,
-      "anchor_date": "2026-08-14",
-      "match_keywords": ["payroll", "direct dep", "dir dep"],
+      "anchor_date": "2026-07-08",
+      "match_keywords": [
+        "insightglobal",
+        "insight global",
+        "payroll",
+        "direct dep",
+        "dir dep"
+      ],
       "active": true,
-      "last_updated": "2026-08-10T00:00:00-04:00",
-      "source": "manual"
+      "needs_review": true,
+      "note": "CORRECTED. Was $2,853.17/week; the actual employer is Insight Global and the modal weekly deposit is $2,016.06. That is $837.11/week overstated, roughly $3,627/month of income the projection was counting and never receiving. Deposits range $1,648.05-$2,981.68, so this stays flagged.",
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
     }
   ]
 }
