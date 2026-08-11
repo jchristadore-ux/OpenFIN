@@ -962,9 +962,8 @@
       "variable": true,
       "confidence": "low",
       "observed_min": 15.0,
-      "observed_max": 1000.0,
       "needs_review": true,
-      "note": "SCHEDULE UNKNOWN - flagged, not guessed. The statements show $1,000.00 on 06/10/2026, then $129.47 and $15.00, plus $129.47 on 04/29 and smaller amounts through the spring. No pattern is derivable. The household sheet says $400.00 'TBD'. Held at $400.00 monthly as a placeholder so it is not forgotten; the figure is a guess and the low confidence says so."
+      "note": "SCHEDULE UNKNOWN - flagged, not guessed. The statements show $1,000.00 on 06/10/2026, $129.47 on 04/29 and 06/24, and smaller amounts through the spring. No pattern is derivable. Held at the household's $400.00/month placeholder. observed_max is deliberately NOT set: with it, the engine forecast the one-off $1,000.00 every month, stacking a worst-case rule on top of a figure that was already a guess. Replace the whole entry once Loew & Patel confirm the remaining schedule."
     },
     {
       "id": "lacrosse-2627-inst-1",

@@ -1,9 +1,11 @@
+# OPTIONAL. Only needed if deploying with the wrangler CLI. The dashboard
+# route needs none of this - index.js carries the same values as defaults.
 name = "openfin"
 main = "index.js"
 compatibility_date = "2026-01-01"
 
 [vars]
-REPO = "jchristadore-ux/TogetherLedger"
+REPO = "jchristadore-ux/OpenFIN"
 # Set this to your GitHub Pages origin once confirmed. "*" is only for testing.
 ALLOWED_ORIGIN = "https://jchristadore-ux.github.io"
 # Refuse any request that has not come through Cloudflare Access.

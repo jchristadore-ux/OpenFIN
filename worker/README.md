@@ -1,58 +1,139 @@
-# OpenFIN write-proxy
+# Deploying the OpenFIN Worker — no terminal, no code
 
-Holds the GitHub token so no phone has to. The app POSTs here, this fires the
-engine. **No token is ever entered on a device.**
+This holds the GitHub token so no phone has to. The app POSTs here, this runs
+the engine. **All of it is done by clicking in a browser.**
 
-Free tier throughout — Workers gives 100,000 requests/day and Cloudflare Access
-is free for up to 50 users. A household uses a handful of requests a day.
+Free throughout: Workers gives 100,000 requests/day and Cloudflare Access is
+free for up to 50 users. A household uses a handful a day.
 
-## Setup, once
+Roughly 15 minutes. Do the steps in order — step 4 depends on step 3.
 
-**1. Create the GitHub token.**
-GitHub → Settings → Developer settings → Personal access tokens → Fine-grained.
-Repository access: only `jchristadore-ux/TogetherLedger`. Permissions:
-**Contents: Read and write**. Copy the token.
+---
 
-**2. Deploy the Worker.**
+## 1. Make the GitHub token
 
-```bash
-cd worker
-npx wrangler login
-npx wrangler secret put GITHUB_TOKEN     # paste the token
-npx wrangler deploy
+github.com → your avatar → **Settings** → scroll to **Developer settings** →
+**Personal access tokens** → **Fine-grained tokens** → **Generate new token**.
+
+| Field | Value |
+|---|---|
+| Token name | `OpenFIN Worker` |
+| Expiration | 1 year (put a reminder in your calendar) |
+| Repository access | **Only select repositories** → `OpenFIN` |
+| Permissions → Repository → **Contents** | **Read and write** |
+
+Generate, then **copy it now** — GitHub shows it once.
+
+> Contents: Read and write is the whole permission set. It cannot touch your
+> other repositories, and it cannot change repository settings.
+
+---
+
+## 2. Create the Worker
+
+dash.cloudflare.com → sign up or log in → **Workers & Pages** → **Create** →
+**Create Worker**.
+
+- Name it `openfin`
+- **Deploy** (it deploys a placeholder — that's expected)
+- **Edit code**
+
+Delete everything in the editor. Open **`worker/index.js`** in this repository,
+click **Copy raw file**, paste it in, and click **Deploy**.
+
+Copy the URL shown at the top — something like
+`https://openfin.<your-subdomain>.workers.dev`. You need it twice more.
+
+> `index.js` carries the repository name and allowed origin as defaults in the
+> code, so there are no variables to configure. Only the secret below.
+
+---
+
+## 3. Add the token as a secret
+
+Still in the Worker → **Settings** → **Variables and Secrets** → **Add**.
+
+| Field | Value |
+|---|---|
+| Type | **Secret** — not Text |
+| Name | `GITHUB_TOKEN` |
+| Value | the token from step 1 |
+
+**Deploy** again so the secret takes effect.
+
+> Type **Secret** matters. A Text variable is readable afterwards in the
+> dashboard; a Secret is write-only.
+
+---
+
+## 4. Put Cloudflare Access in front of it
+
+This is what replaces the token on your phone. **Without this the Worker
+refuses every request**, by design — see the note at the bottom.
+
+Cloudflare dashboard → **Zero Trust** (left sidebar) → if it asks you to choose
+a plan, pick **Free** → **Access** → **Applications** → **Add an application**
+→ **Self-hosted**.
+
+| Field | Value |
+|---|---|
+| Application name | `OpenFIN` |
+| Session duration | 24 hours |
+| Public hostname | the Worker hostname, e.g. `openfin.<sub>.workers.dev` |
+
+Next → add a policy:
+
+| Field | Value |
+|---|---|
+| Policy name | `Household` |
+| Action | **Allow** |
+| Include | selector **Emails** → your address, and your wife's |
+
+Next → under login methods make sure **One-time PIN** is enabled → **Add
+application**.
+
+---
+
+## 5. Check it worked
+
+Open the Worker URL in a browser.
+
+| What you see | Meaning |
+|---|---|
+| Email code prompt, then `{"error":"POST only"}` | ✅ **Correct.** Access is in front and the Worker is alive. |
+| `{"error":"POST only"}` with no email prompt | Access is not in front — redo step 4. |
+| `{"error":"Cloudflare Access is not in front…"}` | Same; the Worker is refusing to accept unauthenticated writes. |
+| `{"error":"GITHUB_TOKEN is not set…"}` | Step 3 was missed, or Deploy was not clicked after adding it. |
+
+---
+
+## 6. Tell the app where the Worker is
+
+Send the URL and it gets set for you, or edit it yourself on github.com:
+
+`index.html` → pencil icon → find `const WORKER = '';` near the top of the
+`<script>` block → put the URL between the quotes → **Commit changes**.
+
+```js
+const WORKER = 'https://openfin.your-subdomain.workers.dev';
 ```
 
-Wrangler prints a URL like `https://openfin.<your-subdomain>.workers.dev`.
+Wait a minute for Pages to rebuild, then open the app and update your balance.
+The first time on each phone asks for an email code.
 
-**3. Put Cloudflare Access in front of it.**
-Cloudflare dashboard → Zero Trust → Access → Applications → Add an application
-→ Self-hosted. Point it at the Worker's hostname. Add a policy:
+---
 
-* Action: **Allow**
-* Include → **Emails** → your address and your wife's
+## Why it refuses when Access is missing
 
-Choose **One-time PIN** as the login method. Each phone signs in once by email
-code; the session lasts as long as you set it (24 hours is sensible).
+The Worker checks for the header Cloudflare Access adds, and returns 401 if it
+is absent. If Access were ever removed or misconfigured, the alternative would
+be an open endpoint that lets anyone who finds the URL write to your finances.
+Failing closed is the safer wrong answer.
 
-**4. Tell the app where the Worker is.**
-Edit `WORKER` at the top of the script in `index.html` to the Worker URL, then
-commit. Until that is set, the app says so instead of failing silently.
+To test locally without Access, add a Text variable `REQUIRE_ACCESS` = `false`,
+and delete it afterwards.
 
-## What it accepts
+## Rotating the token
 
-```
-POST /balance   {"balance": "4382.17"}
-POST /bills     {"edits": [{"id": "netflix", "amount": "21.31", "due_day": 23}]}
-```
-
-Everything is validated before it reaches GitHub: amounts must be plain money,
-`due_day` must be 1–31, bill ids must match a safe slug pattern, and no more
-than 60 edits arrive at once.
-
-## Why the Access check is in the code too
-
-The Worker refuses any request without a `Cf-Access-Jwt-Assertion` header.
-Access normally adds it. If the Worker is ever deployed or reconfigured without
-Access in front, requests fail closed rather than becoming an open write
-endpoint for anyone who finds the URL. Set `REQUIRE_ACCESS = "false"` in
-`wrangler.toml` only to test locally, and put it back.
+Generate a new one in step 1, then repeat step 3 with the new value and Deploy.
+Nothing else changes.

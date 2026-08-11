@@ -115,10 +115,17 @@ def expected_amount(item: dict, on: date | None = None) -> Decimal:
        $54.03 in August and $550.83 in March; electric inverts, $130.28 in
        November against $448.77 in August. Forecasting either at one figure is
        wrong eleven months of the year, and wrong in whichever direction hurts.
-    2. `observed_max` — the top of the observed range, for variable bills with
-       no seasonal shape. The top rather than the average, because
-       under-forecasting an outflow is what produces a surprise overdraft.
-    3. The stated amount.
+    2. `observed_max` — the top of the observed range, but ONLY for bills that
+       land monthly or less often. A single monthly bill arrives once and has to
+       be covered at its worst, so the top of the range is the safe figure.
+    3. The stated amount, which for a variable bill is its historical mean.
+
+    Weekly and biweekly items deliberately do NOT use the maximum. Applying a
+    worst-week figure to every week of the year compounds into nonsense:
+    groceries peaked at $791.32 in one week, and forecasting that 52 times over
+    is $41,148/year against an actual $16,593. Frequent draws average out, so
+    the mean is both the honest and the accurate estimate; the "forecast high"
+    rule earns its keep on infrequent bills, not on the weekly shop.
     """
     amt = money(item.get("amount", 0))
 
@@ -129,6 +136,8 @@ def expected_amount(item: dict, on: date | None = None) -> Decimal:
             return money(value)
 
     if not item.get("variable"):
+        return amt
+    if item.get("frequency") in {"weekly", "biweekly"}:
         return amt
     hi = item.get("observed_max")
     return max(amt, money(hi)) if hi is not None else amt
