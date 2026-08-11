@@ -31,102 +31,517 @@
     "  last_updated .... ISO timestamp, written automatically.",
     "  source .......... 'manual' or 'screenshot'."
   ],
-
   "bills": [
     {
       "id": "mortgage",
       "name": "Mortgage",
       "amount": 1801.62,
-      "due_day": 1,
-      "frequency": "semimonthly",
+      "due_day": null,
+      "frequency": "biweekly",
       "due_date": null,
-      "anchor_date": null,
+      "anchor_date": "2026-06-29",
       "autopay": false,
-      "match_keywords": ["crosscountry", "mortgage", "loan svc"],
+      "match_keywords": [
+        "crosscountry",
+        "mortgage",
+        "loan svc"
+      ],
       "active": true,
-      "last_updated": "2026-08-10T00:00:00-04:00",
-      "source": "manual"
+      "needs_review": true,
+      "note": "CORRECTED from semimonthly to biweekly. 15 consecutive payments 12/15/2025-06/29/2026 are exactly 14 days apart. Semimonthly modelled 24/yr; biweekly is 26/yr, a $3,603.24/yr difference. Extra same-week entries in the statements are failed-payment retries, not additional payments.",
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
     },
     {
-      "id": "auto-insurance",
-      "name": "Hanover Auto",
-      "amount": 750.00,
-      "due_day": 9,
+      "id": "upstart-debt-consolidation",
+      "name": "Upstart debt consol",
+      "amount": 1244.29,
+      "due_day": 15,
       "frequency": "monthly",
       "due_date": null,
       "anchor_date": null,
-      "autopay": false,
-      "match_keywords": ["hanover"],
+      "autopay": true,
+      "match_keywords": [
+        "upstartfu",
+        "upstart"
+      ],
       "active": true,
-      "last_updated": "2026-08-10T00:00:00-04:00",
-      "source": "manual"
+      "note": "ACH descriptor UPSTARTNETWORK UPSTARTFU 15434861.",
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
     },
     {
       "id": "car-payment",
       "name": "Kia",
-      "amount": 578.64,
+      "amount": 742.65,
       "due_day": 24,
       "frequency": "monthly",
       "due_date": null,
       "anchor_date": null,
       "autopay": true,
-      "match_keywords": ["kia", "kmf"],
+      "match_keywords": [
+        "kmf",
+        "kia"
+      ],
       "active": true,
-      "last_updated": "2026-08-10T00:00:00-04:00",
-      "source": "manual"
+      "needs_review": true,
+      "note": "Amount corrected from $578.64. Actually recurs every 28 days (05/04, 06/01, 06/29), not monthly, so it drifts earlier and yields 13 payments in some years. due_day 24 tracks the next two occurrences; revisit each quarter.",
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
     },
     {
-      "id": "electric",
-      "name": "JCP&L",
-      "amount": 236.00,
-      "due_day": 16,
+      "id": "auto-insurance",
+      "name": "Hanover Auto",
+      "amount": 513.27,
+      "due_day": 12,
       "frequency": "monthly",
       "due_date": null,
       "anchor_date": null,
       "autopay": false,
-      "match_keywords": ["jcp", "jersey central", "first energy"],
+      "match_keywords": [
+        "hanover"
+      ],
       "active": true,
-      "last_updated": "2026-08-10T00:00:00-04:00",
-      "source": "manual"
+      "note": "Amount corrected from $750.00, due day from 9 to 12.",
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
     },
     {
-      "id": "internet",
-      "name": "Comcast",
-      "amount": 145.00,
-      "due_day": 20,
+      "id": "onemain-loan",
+      "name": "One Main loan",
+      "amount": 388.24,
+      "due_day": 6,
       "frequency": "monthly",
       "due_date": null,
       "anchor_date": null,
       "autopay": true,
-      "match_keywords": ["comcast", "xfinity"],
+      "match_keywords": [
+        "onemain",
+        "omfpmt"
+      ],
       "active": true,
-      "last_updated": "2026-08-10T00:00:00-04:00",
-      "source": "manual"
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
+    },
+    {
+      "id": "affirm-large",
+      "name": "Affirm large",
+      "amount": 373.13,
+      "due_day": 29,
+      "frequency": "monthly",
+      "due_date": null,
+      "anchor_date": null,
+      "autopay": true,
+      "match_keywords": [
+        "affirm"
+      ],
+      "active": true,
+      "needs_review": true,
+      "note": "New stream starting 05/01/2026: 05/01, 06/12, 06/29. Cadence not yet established - three payments, irregular gaps. Verify before relying on the date.",
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
+    },
+    {
+      "id": "upstart-past-bills",
+      "name": "Upstart past bills",
+      "amount": 345.82,
+      "due_day": 24,
+      "frequency": "monthly",
+      "due_date": null,
+      "anchor_date": null,
+      "autopay": true,
+      "match_keywords": [
+        "loan_asset",
+        "upstart"
+      ],
+      "active": true,
+      "note": "ACH descriptor UPSTARTNETWORK LOAN_ASSET 14794931.",
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
+    },
+    {
+      "id": "upgrade-basement",
+      "name": "Upgrade basement",
+      "amount": 287.85,
+      "due_day": 18,
+      "frequency": "monthly",
+      "due_date": null,
+      "anchor_date": null,
+      "autopay": true,
+      "match_keywords": [
+        "upgrade"
+      ],
+      "active": true,
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
+    },
+    {
+      "id": "electric",
+      "name": "JCP&L / FirstEnergy",
+      "amount": 200.0,
+      "due_day": 3,
+      "frequency": "monthly",
+      "due_date": null,
+      "anchor_date": null,
+      "autopay": false,
+      "match_keywords": [
+        "jcp",
+        "jersey central",
+        "first energy",
+        "firstenergy"
+      ],
+      "active": true,
+      "needs_review": true,
+      "note": "Amount corrected from $236.00, due day from 16 to 3. Varies seasonally $137.79-$305.12; $200.00 is a mid-range estimate.",
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
+    },
+    {
+      "id": "gas-utility",
+      "name": "Elizabethtown Gas",
+      "amount": 180.61,
+      "due_day": 11,
+      "frequency": "monthly",
+      "due_date": null,
+      "anchor_date": null,
+      "autopay": false,
+      "match_keywords": [
+        "elizabethtown",
+        "b2p*elizab"
+      ],
+      "active": true,
+      "needs_review": true,
+      "note": "Varies seasonally $140.26-$220.95. Household sheet listed $370.38, which is well above anything observed.",
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
+    },
+    {
+      "id": "capital-one",
+      "name": "Capital One CC",
+      "amount": 154.0,
+      "due_day": 17,
+      "frequency": "monthly",
+      "due_date": null,
+      "anchor_date": null,
+      "autopay": true,
+      "match_keywords": [
+        "capitalone",
+        "capital one"
+      ],
+      "active": true,
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
+    },
+    {
+      "id": "internet",
+      "name": "Comcast",
+      "amount": 138.93,
+      "due_day": 18,
+      "frequency": "monthly",
+      "due_date": null,
+      "anchor_date": null,
+      "autopay": true,
+      "match_keywords": [
+        "comcast",
+        "xfinity cable"
+      ],
+      "active": true,
+      "note": "Amount corrected from $145.00, due day from 20 to 18.",
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
+    },
+    {
+      "id": "chase-amazon",
+      "name": "Chase CC Amazon",
+      "amount": 136.0,
+      "due_day": 17,
+      "frequency": "monthly",
+      "due_date": null,
+      "anchor_date": null,
+      "autopay": true,
+      "match_keywords": [
+        "chasecreditcrd"
+      ],
+      "active": true,
+      "needs_review": true,
+      "note": "Autopay, amount varies $124-$136.",
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
+    },
+    {
+      "id": "lowes",
+      "name": "Lowes",
+      "amount": 122.0,
+      "due_day": 18,
+      "frequency": "monthly",
+      "due_date": null,
+      "anchor_date": null,
+      "autopay": true,
+      "match_keywords": [
+        "lowes"
+      ],
+      "active": true,
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
+    },
+    {
+      "id": "home-depot",
+      "name": "Home Depot",
+      "amount": 100.0,
+      "due_day": 14,
+      "frequency": "monthly",
+      "due_date": null,
+      "anchor_date": null,
+      "autopay": true,
+      "match_keywords": [
+        "homedepot",
+        "home depot"
+      ],
+      "active": true,
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
+    },
+    {
+      "id": "trilogy-lacrosse",
+      "name": "Trilogy Lacrosse",
+      "amount": 100.0,
+      "due_day": 4,
+      "frequency": "monthly",
+      "due_date": null,
+      "anchor_date": null,
+      "autopay": false,
+      "match_keywords": [
+        "trilogy"
+      ],
+      "active": true,
+      "needs_review": true,
+      "note": "Recurring $100/month since 01/2026, still active at the last statement (05/04/2026). Was absent from both bills.json and the household bill sheet.",
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
+    },
+    {
+      "id": "xfinity-mobile",
+      "name": "Xfinity Mobile",
+      "amount": 88.82,
+      "due_day": 29,
+      "frequency": "monthly",
+      "due_date": null,
+      "anchor_date": null,
+      "autopay": true,
+      "match_keywords": [
+        "xfinitymobile"
+      ],
+      "active": true,
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
+    },
+    {
+      "id": "chase-united",
+      "name": "Chase CC United",
+      "amount": 80.0,
+      "due_day": 22,
+      "frequency": "monthly",
+      "due_date": null,
+      "anchor_date": null,
+      "autopay": true,
+      "match_keywords": [
+        "chasecreditcrd"
+      ],
+      "active": true,
+      "needs_review": true,
+      "note": "Second Chase autopay, varies $76-$85. Shares match_keywords with chase-amazon - the double-count guard cannot tell them apart.",
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
+    },
+    {
+      "id": "affirm",
+      "name": "Affirm",
+      "amount": 73.07,
+      "due_day": 29,
+      "frequency": "monthly",
+      "due_date": null,
+      "anchor_date": null,
+      "autopay": true,
+      "match_keywords": [
+        "affirm"
+      ],
+      "active": true,
+      "note": "Stable monthly stream since 01/30/2026. Household sheet had day 18; actual is 29-30.",
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
+    },
+    {
+      "id": "pnc",
+      "name": "PNC",
+      "amount": 70.0,
+      "due_day": 8,
+      "frequency": "monthly",
+      "due_date": null,
+      "anchor_date": null,
+      "autopay": false,
+      "match_keywords": [
+        "pnc lending"
+      ],
+      "active": true,
+      "needs_review": true,
+      "note": "Varies $70.00-$150.00 and the date moves. $70.00 is the recent floor.",
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
+    },
+    {
+      "id": "barclay-oldnavy",
+      "name": "Barclay Old Navy",
+      "amount": 60.74,
+      "due_day": 27,
+      "frequency": "monthly",
+      "due_date": null,
+      "anchor_date": null,
+      "autopay": true,
+      "match_keywords": [
+        "barclay"
+      ],
+      "active": true,
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
+    },
+    {
+      "id": "comenity",
+      "name": "Comenity",
+      "amount": 50.0,
+      "due_day": 12,
+      "frequency": "monthly",
+      "due_date": null,
+      "anchor_date": null,
+      "autopay": false,
+      "match_keywords": [
+        "comenity"
+      ],
+      "active": true,
+      "needs_review": true,
+      "note": "Irregular: 12/16, 02/03, 03/13, 05/05, 06/12, amounts $40.00-$65.00. Not on the household sheet.",
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
+    },
+    {
+      "id": "culligan",
+      "name": "Culligan",
+      "amount": 40.39,
+      "due_day": 4,
+      "frequency": "monthly",
+      "due_date": null,
+      "anchor_date": null,
+      "autopay": false,
+      "match_keywords": [
+        "culligan"
+      ],
+      "active": true,
+      "needs_review": true,
+      "note": "Base $40.39, but 01/05 was $307.70 and 04/06 was $143.39 - likely periodic salt or service deliveries on top.",
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
+    },
+    {
+      "id": "tjmaxx",
+      "name": "TJX Rewards",
+      "amount": 36.0,
+      "due_day": 4,
+      "frequency": "monthly",
+      "due_date": null,
+      "anchor_date": null,
+      "autopay": true,
+      "match_keywords": [
+        "tjx"
+      ],
+      "active": true,
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
+    },
+    {
+      "id": "netflix",
+      "name": "Netflix",
+      "amount": 21.31,
+      "due_day": 23,
+      "frequency": "monthly",
+      "due_date": null,
+      "anchor_date": null,
+      "autopay": true,
+      "match_keywords": [
+        "netflix"
+      ],
+      "active": true,
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
+    },
+    {
+      "id": "tmobile-lia",
+      "name": "T-Mobile Lia",
+      "amount": 20.75,
+      "due_day": 11,
+      "frequency": "monthly",
+      "due_date": null,
+      "anchor_date": null,
+      "autopay": true,
+      "match_keywords": [
+        "tmobile",
+        "t-mobile"
+      ],
+      "active": true,
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
+    },
+    {
+      "id": "trash",
+      "name": "Republic trash Q4",
+      "amount": 177.3,
+      "due_day": null,
+      "frequency": "once",
+      "due_date": "2026-10-07",
+      "anchor_date": null,
+      "autopay": false,
+      "match_keywords": [
+        "republic",
+        "waste",
+        "disposal"
+      ],
+      "active": true,
+      "needs_review": true,
+      "note": "CORRECTED from biweekly $92.00 to QUARTERLY $177.30. Observed 01/07 $168.12 and 04/07 $177.30, exactly 90 days apart. Modelled as dated one-offs because the schema has no quarterly frequency.",
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
+    },
+    {
+      "id": "trash-2027-q1",
+      "name": "Republic trash Q1",
+      "amount": 177.3,
+      "due_day": null,
+      "frequency": "once",
+      "due_date": "2027-01-07",
+      "anchor_date": null,
+      "autopay": false,
+      "match_keywords": [
+        "republic",
+        "waste",
+        "disposal"
+      ],
+      "active": true,
+      "needs_review": true,
+      "note": "See trash. Next quarterly instalment.",
+      "last_updated": "2026-08-11T00:00:00-04:00",
+      "source": "statement"
     },
     {
       "id": "sewer",
       "name": "Sewer",
-      "amount": 304.50,
+      "amount": 304.5,
       "due_day": 1,
       "frequency": "annual",
       "due_date": "2026-09-01",
       "anchor_date": null,
       "autopay": false,
-      "match_keywords": ["sewer", "utility auth"],
-      "active": true,
-      "last_updated": "2026-08-10T00:00:00-04:00",
-      "source": "manual"
-    },
-    {
-      "id": "trash",
-      "name": "Trash pickup",
-      "amount": 92.00,
-      "due_day": 5,
-      "frequency": "biweekly",
-      "due_date": null,
-      "anchor_date": "2026-08-05",
-      "autopay": false,
-      "match_keywords": ["waste", "disposal"],
+      "match_keywords": [
+        "sewer",
+        "utility auth"
+      ],
       "active": true,
       "last_updated": "2026-08-10T00:00:00-04:00",
       "source": "manual"
@@ -140,7 +555,11 @@
       "due_date": "2026-10-06",
       "anchor_date": null,
       "autopay": false,
-      "match_keywords": ["total select", "nj total", "lacrosse"],
+      "match_keywords": [
+        "total select",
+        "nj total",
+        "lacrosse"
+      ],
       "active": true,
       "needs_review": true,
       "note": "ESTIMATED, not billed yet. Amount = $475.00 installment + $16.63 card convenience fee, the exact figure charged in both 2024-25 and 2025-26. Date mirrors the 2025-26 due date of 10/06. Replace with the real number once the club posts the 2026-27 schedule.",
@@ -156,7 +575,11 @@
       "due_date": "2027-01-12",
       "anchor_date": null,
       "autopay": false,
-      "match_keywords": ["total select", "nj total", "lacrosse"],
+      "match_keywords": [
+        "total select",
+        "nj total",
+        "lacrosse"
+      ],
       "active": true,
       "needs_review": true,
       "note": "ESTIMATED, not billed yet. See lacrosse-2627-inst-1. Date mirrors the 2025-26 due date of 01/12.",
@@ -172,7 +595,11 @@
       "due_date": "2027-03-09",
       "anchor_date": null,
       "autopay": false,
-      "match_keywords": ["total select", "nj total", "lacrosse"],
+      "match_keywords": [
+        "total select",
+        "nj total",
+        "lacrosse"
+      ],
       "active": true,
       "needs_review": true,
       "note": "ESTIMATED, not billed yet. See lacrosse-2627-inst-1. Date mirrors the 2025-26 due date of 03/09.",
