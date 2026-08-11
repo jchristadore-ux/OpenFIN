@@ -580,5 +580,138 @@ class TestApplyEdits(unittest.TestCase):
             self.mod.parse_edits(json.dumps([{"id": "netflix"}] * 61))
 
 
+# --------------------------------------------------------------------------
+# deferrals
+# --------------------------------------------------------------------------
+
+class TestDeferrals(unittest.TestCase):
+    def _setup(self, deferrals=None):
+        bills = [
+            bill("big", "Big loan", 1000, freq="once", due="2026-08-14", tier=3),
+            bill("small", "Small", 100, freq="once", due="2026-08-13", tier=5),
+            bill("later", "Later", 500, freq="once", due="2026-08-20", tier=3),
+        ]
+        c = fincal.build(bills, [], TODAY, TODAY + timedelta(days=60), deferrals)
+        f = fc.run(c, D("2000"), TODAY, 60, D("0"))
+        d = fc.safe_discretionary(c, D("2000"), TODAY, D("0"))
+        return c, f, d
+
+    def test_deferred_bill_does_not_move_the_curve(self):
+        _, f0, _ = self._setup()
+        _, f1, _ = self._setup({("big", date(2026, 8, 14))})
+        self.assertEqual(f1.end_of_week - f0.end_of_week, D("1000"))
+
+    def test_deferred_bill_raises_safe_to_spend(self):
+        _, _, d0 = self._setup()
+        _, _, d1 = self._setup({("big", date(2026, 8, 14))})
+        self.assertEqual(d1.safe - d0.safe, D("1000"))
+
+    def test_deferring_beyond_the_week_also_counts(self):
+        _, _, d0 = self._setup()
+        _, _, d1 = self._setup({("later", date(2026, 8, 20))})
+        self.assertEqual(d1.safe - d0.safe, D("500"))
+
+    def test_deferred_event_is_marked_not_deleted(self):
+        c, _, _ = self._setup({("big", date(2026, 8, 14))})
+        allb = c.bills_between(TODAY, TODAY + timedelta(days=30), include_deferred=True)
+        self.assertIn("Big loan", [e.name for e in allb])
+        self.assertTrue([e for e in allb if e.item_id == "big"][0].deferred)
+
+    def test_deferred_total_reports_what_is_still_owed(self):
+        c, _, _ = self._setup({("big", date(2026, 8, 14)), ("small", date(2026, 8, 13))})
+        self.assertEqual(c.deferred_total(TODAY, TODAY + timedelta(days=30)), D("1100"))
+
+    def test_default_lists_exclude_deferred(self):
+        c, _, _ = self._setup({("big", date(2026, 8, 14))})
+        names = [e.name for e in c.bills_between(TODAY, TODAY + timedelta(days=30))]
+        self.assertNotIn("Big loan", names)
+
+    def test_a_deferral_for_another_date_does_not_match(self):
+        _, _, d0 = self._setup()
+        _, _, d1 = self._setup({("big", date(2026, 9, 14))})
+        self.assertEqual(d0.safe, d1.safe)
+
+
+class TestDeferralState(unittest.TestCase):
+    def setUp(self):
+        import engine
+        self.engine = engine
+
+    def test_past_deferrals_are_dropped_on_read(self):
+        state = {"deferrals": [
+            {"bill_id": "a", "date": "2026-08-01"},
+            {"bill_id": "b", "date": "2026-08-20"},
+        ]}
+        got = self.engine.load_deferrals(state, TODAY)
+        self.assertEqual(got, {("b", date(2026, 8, 20))})
+
+    def test_malformed_entries_are_ignored_not_fatal(self):
+        state = {"deferrals": [{"bill_id": "a"}, {"date": "nope"}, {}]}
+        self.assertEqual(self.engine.load_deferrals(state, TODAY), set())
+
+    def test_recording_replaces_rather_than_merges(self):
+        now = datetime(2026, 8, 11, 9, 0)
+        st = {"deferrals": [{"bill_id": "old", "date": "2026-08-20"}]}
+        self.engine.record_deferrals(st, [{"bill_id": "new", "date": "2026-08-21"}], now)
+        self.assertEqual([d["bill_id"] for d in st["deferrals"]], ["new"])
+
+    def test_empty_list_clears_every_deferral(self):
+        now = datetime(2026, 8, 11, 9, 0)
+        st = {"deferrals": [{"bill_id": "old", "date": "2026-08-20"}]}
+        self.engine.record_deferrals(st, [], now)
+        self.assertEqual(st["deferrals"], [])
+
+    def test_backdated_deferrals_are_refused(self):
+        now = datetime(2026, 8, 11, 9, 0)
+        st = {}
+        self.engine.record_deferrals(st, [{"bill_id": "a", "date": "2026-08-01"}], now)
+        self.assertEqual(st["deferrals"], [])
+
+
+class TestClientFormulaParity(unittest.TestCase):
+    """The dashboard recomputes safe-to-spend locally so ticking a box is
+    instant. That arithmetic is duplicated in JavaScript, so it is pinned here:
+    if the engine's definition changes, this fails and the app must follow."""
+
+    def _parity(self, deferrals):
+        bills = [
+            bill("a", "A", 300, freq="once", due="2026-08-13", tier=3),
+            bill("b", "B", 900, freq="once", due="2026-08-19", tier=3),
+        ]
+        incomes = [income("p", "Pay", 700, freq="once", due="2026-08-14"),
+                   income("q", "Pay2", 400, freq="once", due="2026-08-21")]
+        c = fincal.build(bills, incomes, TODAY, TODAY + timedelta(days=60), deferrals)
+        buffer, balance = D("500"), D("1200")
+        d = fc.safe_discretionary(c, balance, TODAY, buffer, 14)
+
+        # The JavaScript, transcribed.
+        we = fincal.week_end(TODAY)
+        window = c.bills_between(TODAY, we + timedelta(days=14), include_deferred=True)
+        beyond_in = c.total_in(we + timedelta(days=1), we + timedelta(days=15))
+        bills_week = sum((e.amount for e in window
+                          if e.day <= we and not e.deferred), D("0"))
+        beyond_out = sum((e.amount for e in window
+                          if e.day > we and not e.deferred), D("0"))
+        committed = max(D("0"), beyond_out - beyond_in)
+        client = balance + d.income_this_week - bills_week - committed - buffer
+        return d.safe, money(client)
+
+    def test_parity_with_nothing_deferred(self):
+        a, b = self._parity(set())
+        self.assertEqual(a, b)
+
+    def test_parity_with_an_in_week_deferral(self):
+        a, b = self._parity({("a", date(2026, 8, 13))})
+        self.assertEqual(a, b)
+
+    def test_parity_with_a_beyond_week_deferral(self):
+        a, b = self._parity({("b", date(2026, 8, 19))})
+        self.assertEqual(a, b)
+
+    def test_parity_with_everything_deferred(self):
+        a, b = self._parity({("a", date(2026, 8, 13)), ("b", date(2026, 8, 19))})
+        self.assertEqual(a, b)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

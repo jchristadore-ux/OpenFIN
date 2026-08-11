@@ -121,7 +121,9 @@ def run(
     for offset in range(days):
         d = start + timedelta(days=offset)
         income = [e for e in calendar.on(d) if e.direction == IN]
-        bills = [e for e in calendar.on(d) if e.direction == OUT]
+        # Deferred occurrences do not leave the account, so they do not move the
+        # curve. They are still on the calendar and still owed.
+        bills = [e for e in calendar.on(d) if e.direction == OUT and not e.deferred]
         opening = balance
         balance = money(
             balance

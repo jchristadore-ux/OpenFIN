@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-11T07:21:46.147511-04:00",
+  "generated_at": "2026-08-11T13:55:48.197850-04:00",
   "today": "2026-08-11",
   "balance": "118.25",
   "balance_is_fresh": false,
@@ -39,7 +39,13 @@
         "Safe to spend",
         "-363.03"
       ]
-    ]
+    ],
+    "components": {
+      "balance": "118.25",
+      "income_week": "2016.06",
+      "beyond_in": "6861.43",
+      "buffer": "500.00"
+    }
   },
   "today_bills": [
     {
@@ -490,6 +496,219 @@
     ],
     "covered": false
   },
+  "deferral_window": [
+    {
+      "id": "gas-utility",
+      "name": "Elizabethtown Gas",
+      "date": "2026-08-11",
+      "amount": "54.03",
+      "tier": 2,
+      "deferrable": false,
+      "secured": false,
+      "deferred": false,
+      "in_week": true
+    },
+    {
+      "id": "tmobile-lia",
+      "name": "T-Mobile Lia",
+      "date": "2026-08-11",
+      "amount": "20.75",
+      "tier": 2,
+      "deferrable": true,
+      "secured": false,
+      "deferred": false,
+      "in_week": true
+    },
+    {
+      "id": "auto-insurance",
+      "name": "Hanover Auto",
+      "date": "2026-08-12",
+      "amount": "513.27",
+      "tier": 2,
+      "deferrable": false,
+      "secured": false,
+      "deferred": false,
+      "in_week": true
+    },
+    {
+      "id": "comenity",
+      "name": "Comenity",
+      "date": "2026-08-12",
+      "amount": "65.00",
+      "tier": 3,
+      "deferrable": true,
+      "secured": false,
+      "deferred": false,
+      "in_week": true
+    },
+    {
+      "id": "home-depot",
+      "name": "Home Depot",
+      "date": "2026-08-14",
+      "amount": "100.00",
+      "tier": 5,
+      "deferrable": true,
+      "secured": false,
+      "deferred": false,
+      "in_week": true
+    },
+    {
+      "id": "upstart-debt-consolidation",
+      "name": "Upstart debt consol",
+      "date": "2026-08-15",
+      "amount": "1244.29",
+      "tier": 3,
+      "deferrable": false,
+      "secured": false,
+      "deferred": false,
+      "in_week": true
+    },
+    {
+      "id": "capital-one",
+      "name": "Capital One CC",
+      "date": "2026-08-17",
+      "amount": "163.00",
+      "tier": 3,
+      "deferrable": true,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "chase-amazon",
+      "name": "Chase CC Amazon",
+      "date": "2026-08-17",
+      "amount": "136.00",
+      "tier": 3,
+      "deferrable": true,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "upgrade-basement",
+      "name": "Upgrade basement",
+      "date": "2026-08-18",
+      "amount": "287.85",
+      "tier": 3,
+      "deferrable": false,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "internet",
+      "name": "Comcast",
+      "date": "2026-08-18",
+      "amount": "138.93",
+      "tier": 2,
+      "deferrable": true,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "lowes",
+      "name": "Lowes",
+      "date": "2026-08-18",
+      "amount": "126.00",
+      "tier": 5,
+      "deferrable": true,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "chase-united",
+      "name": "Chase CC United",
+      "date": "2026-08-22",
+      "amount": "88.00",
+      "tier": 3,
+      "deferrable": true,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "netflix",
+      "name": "Netflix",
+      "date": "2026-08-23",
+      "amount": "21.31",
+      "tier": 5,
+      "deferrable": true,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "mortgage",
+      "name": "Mortgage",
+      "date": "2026-08-24",
+      "amount": "1801.62",
+      "tier": 1,
+      "deferrable": false,
+      "secured": true,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "car-payment",
+      "name": "Kia",
+      "date": "2026-08-24",
+      "amount": "742.65",
+      "tier": 1,
+      "deferrable": false,
+      "secured": true,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "upstart-past-bills",
+      "name": "Upstart past bills",
+      "date": "2026-08-24",
+      "amount": "345.82",
+      "tier": 3,
+      "deferrable": false,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "barclay-oldnavy",
+      "name": "Barclay Old Navy",
+      "date": "2026-08-27",
+      "amount": "84.78",
+      "tier": 3,
+      "deferrable": true,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "xfinity-mobile",
+      "name": "Xfinity Mobile",
+      "date": "2026-08-29",
+      "amount": "88.82",
+      "tier": 2,
+      "deferrable": true,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "affirm",
+      "name": "Affirm",
+      "date": "2026-08-29",
+      "amount": "73.07",
+      "tier": 3,
+      "deferrable": true,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    }
+  ],
+  "deferred_total": "0.00",
+  "lookahead_days": 14,
   "bills": [
     {
       "id": "mortgage",

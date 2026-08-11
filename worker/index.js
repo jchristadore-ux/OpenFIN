@@ -16,6 +16,7 @@
  * Routes:
  *   POST /balance  {"balance": "4382.17"}
  *   POST /bills    {"edits": [{"id": "netflix", "amount": "21.31", "due_day": 23}]}
+ *   POST /defer    {"items": [{"bill_id": "netflix", "date": "2026-08-23"}]}
  *
  * Secrets (wrangler secret put):
  *   GITHUB_TOKEN   fine-grained PAT, Contents: Read and write on the repo
@@ -27,6 +28,7 @@
 
 const MONEY = /^-?\d+(\.\d{1,2})?$/;
 const ID = /^[a-z0-9][a-z0-9-]{0,48}$/;
+const DATE = /^\d{4}-\d{2}-\d{2}$/;
 
 function cors(env, extra = {}) {
   return {
@@ -145,6 +147,30 @@ export default {
       if (clean.length === 0) return json(env, 400, { error: "no changes supplied" });
 
       const res = await dispatch(env, "bills", { edits: JSON.stringify(clean) });
+      if (res.status !== 204) {
+        return json(env, 502, { error: `GitHub returned ${res.status}` });
+      }
+      return json(env, 202, { ok: true, count: clean.length });
+    }
+
+    // ---- deferrals -------------------------------------------------------
+    if (url.pathname === "/defer") {
+      const items = Array.isArray(body.items) ? body.items : null;
+      if (!items || items.length > 200) {
+        return json(env, 400, { error: "items must be a list of at most 200" });
+      }
+      const clean = [];
+      for (const it of items) {
+        if (!ID.test(String(it.bill_id ?? ""))) {
+          return json(env, 400, { error: `bad bill id: ${it.bill_id}` });
+        }
+        if (!DATE.test(String(it.date ?? ""))) {
+          return json(env, 400, { error: `bad date: ${it.date}` });
+        }
+        clean.push({ bill_id: it.bill_id, date: it.date });
+      }
+      // An empty list is legitimate: it means every box was unticked.
+      const res = await dispatch(env, "defer", { items: JSON.stringify(clean) });
       if (res.status !== 204) {
         return json(env, 502, { error: `GitHub returned ${res.status}` });
       }
