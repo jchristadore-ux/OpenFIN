@@ -1,0 +1,13 @@
+name = "openfin"
+main = "index.js"
+compatibility_date = "2026-01-01"
+
+[vars]
+REPO = "jchristadore-ux/TogetherLedger"
+# Set this to your GitHub Pages origin once confirmed. "*" is only for testing.
+ALLOWED_ORIGIN = "https://jchristadore-ux.github.io"
+# Refuse any request that has not come through Cloudflare Access.
+REQUIRE_ACCESS = "true"
+
+# GITHUB_TOKEN is a secret, never a var:
+#   npx wrangler secret put GITHUB_TOKEN

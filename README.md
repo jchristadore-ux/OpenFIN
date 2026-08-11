@@ -25,17 +25,34 @@ daily summary and outlook.
 stale balance reads as authoritative and is quietly wrong, which is worse than
 silence.
 
-### How the app writes without a server
+### How the app writes without a server, and without a token
 
-GitHub Pages is static, so recording a balance needs a credential. On first use
-the app asks once for a **fine-grained GitHub token** with *Contents: Read and
-write* on this repository. It is kept in that device's `localStorage`, sent only
-to `github.com`, and can be removed from **Settings → Device access token**. The
-app fires a `repository_dispatch`, the workflow runs the engine, emails the
-summary, and commits the new forecast; the page refreshes itself when it lands.
+GitHub Pages is static, so recording a balance needs a credential — but it does
+not need to be on your phone. A small **Cloudflare Worker** (`worker/`) holds
+the GitHub token as a server-side secret and is the only thing that ever sees
+it. The app POSTs to the Worker, the Worker fires the engine.
 
-The **Daily balance** workflow in the Actions tab does the same thing manually
-if a device has no token.
+Access is **Cloudflare Access** with email one-time-PIN, free for up to 50
+users. Each phone signs in once by email code. Nothing is stored on the device,
+and both phones see the same model because it lives in the repo.
+
+Setup is in **[worker/README.md](worker/README.md)** — one token, one deploy,
+one Access policy. The **Daily balance** workflow in the Actions tab remains a
+manual fallback.
+
+### Editing bills
+
+Routine changes — an amount, the day it lands — are edited in the app under
+**Edit bills** and saved permanently for both phones. Every edit is re-validated
+server-side by `src/apply_edits.py`: unknown ids, negative or implausible
+amounts and out-of-range days are refused, a change beyond 40% is applied but
+flagged for review, and edits are all-or-nothing so a rejected one never leaves
+a half-written file. Nothing is ever deleted; deactivating keeps the entry and
+its history.
+
+Structural changes — a new bill, a payoff, a changed frequency — are worth
+checking against the statements first, because the statements are the source of
+truth for what actually happens and when.
 
 ## The half that does not wait for you
 
@@ -93,6 +110,8 @@ One authoritative engine. Business logic never lives in the dashboard.
 | `src/messaging.py` | SMTP delivery |
 | `src/engine.py` | The orchestrator and the only entry point |
 | `src/parse_upload.py` | Reads a bill screenshot into `bills.json` |
+| `src/apply_edits.py` | Validates and applies bill edits made in the app |
+| `worker/` | Cloudflare Worker write-proxy; holds the token off-device |
 | `index.html` | Renders `snapshot.json`. Computes nothing. |
 
 Data lives in JSON committed to the repo: `bills.json`, `income.json`,
@@ -104,9 +123,11 @@ server, no runtime.
 **Money is never a float.** Every amount is a `Decimal` rounded half-up. A
 projection is a long chain of additions and `0.1 + 0.2` is not `0.3`.
 
-**Variable bills forecast at the top of their range.** Under-forecasting an
-outflow is what produces a surprise overdraft, so the engine uses the highest
-amount actually observed, not the average.
+**Variable bills forecast at the top of their range**, and seasonal ones carry
+a month-of-year profile. Under-forecasting an outflow is what produces a
+surprise overdraft. Gas runs $54 in August and $551 in March; electric inverts,
+peaking at $449 in August. A single figure for either is wrong eleven months a
+year, in whichever direction happens to hurt.
 
 **Never invent a number.** If the engine cannot compute something it says so
 and exits non-zero. It never presents a guess as a forecast.
@@ -120,7 +141,7 @@ note. OCR misses a line far more often than a household cancels a mortgage.
 ## Running it
 
 ```bash
-python -m unittest discover -s tests -v      # 56 tests, no network
+python -m unittest discover -s tests -v      # 71 tests, no network
 python src/engine.py daily --balance 4382.17 --dry-run
 python src/engine.py watch --dry-run
 ```

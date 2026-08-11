@@ -13,7 +13,7 @@ name: Daily balance
 
 on:
   repository_dispatch:
-    types: [balance]
+    types: [balance, bills]
   workflow_dispatch:
     inputs:
       balance:
@@ -42,7 +42,30 @@ jobs:
           python-version: '3.11'
       - run: pip install --quiet requests openpyxl
 
+      - name: Apply bill edits, if this run carries any
+        if: github.event.action == 'bills'
+        env:
+          EDITS: ${{ github.event.client_payload.edits }}
+        run: |
+          python src/apply_edits.py "$EDITS"
+          git config user.name  "OpenFIN"
+          git config user.email "noreply@github.com"
+          git add bills.json
+          git diff --staged --quiet || git commit -m "Bill edits from the app"
+
+      - name: Rebuild the forecast after an edit
+        # An edit changes the model, so the forecast is rebuilt and the summary
+        # re-sent using the balance already on file. No balance is required.
+        if: github.event.action == 'bills'
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_APP_PASSWORD: ${{ secrets.SMTP_APP_PASSWORD }}
+          EMAIL_RECIPIENTS: ${{ secrets.EMAIL_RECIPIENTS }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+        run: python src/engine.py watch
+
       - name: Read the balance
+        if: github.event.action != 'bills'
         id: read
         env:
           FROM_APP: ${{ github.event.client_payload.balance }}
@@ -60,6 +83,7 @@ jobs:
           echo "Balance read: $CLEAN"
 
       - name: Run the engine and send the daily summary
+        if: github.event.action != 'bills'
         env:
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_APP_PASSWORD: ${{ secrets.SMTP_APP_PASSWORD }}
