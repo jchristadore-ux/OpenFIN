@@ -92,15 +92,29 @@ class Calendar:
 # variable-amount handling
 # --------------------------------------------------------------------------
 
-def expected_amount(item: dict) -> Decimal:
-    """What to forecast for this item.
+def expected_amount(item: dict, on: date | None = None) -> Decimal:
+    """What to forecast for this item on a given date.
 
-    A variable bill is forecast at the TOP of its observed range, not the middle.
-    Forecasting the average would make the projection right on paper and wrong in
-    the direction that costs money: under-forecasting an outflow is what produces
-    a surprise overdraft. The stated amount is used when no range is recorded.
+    Three tiers, most specific first:
+
+    1. `monthly_expected` — a month-of-year profile taken from the statements.
+       Utilities are seasonal and a single number cannot represent them. Gas ran
+       $54.03 in August and $550.83 in March; electric inverts, $130.28 in
+       November against $448.77 in August. Forecasting either at one figure is
+       wrong eleven months of the year, and wrong in whichever direction hurts.
+    2. `observed_max` — the top of the observed range, for variable bills with
+       no seasonal shape. The top rather than the average, because
+       under-forecasting an outflow is what produces a surprise overdraft.
+    3. The stated amount.
     """
     amt = money(item.get("amount", 0))
+
+    profile = item.get("monthly_expected")
+    if profile and on is not None:
+        value = profile.get(str(on.month)) or profile.get(on.month)
+        if value is not None:
+            return money(value)
+
     if not item.get("variable"):
         return amt
     hi = item.get("observed_max")
@@ -117,7 +131,7 @@ def _event_from(item: dict, day: date, direction: str) -> Event:
         direction=direction,
         item_id=item["id"],
         name=item["name"],
-        amount=expected_amount(item) if direction == OUT else money(item["amount"]),
+        amount=expected_amount(item, day) if direction == OUT else money(item["amount"]),
         priority_tier=int(item.get("priority_tier", 5)) if direction == OUT else 0,
         deferrable=bool(item.get("deferrable", False)),
         secured=bool(item.get("secured", False)),

@@ -105,6 +105,27 @@ class TestCalendar(unittest.TestCase):
         c = cal([bill("e", "Electric", 137.79, day=20, variable=True, hi=305.12)], [])
         self.assertEqual(c.events[0].amount, D("305.12"))
 
+    def test_seasonal_profile_beats_observed_max(self):
+        b = bill("g", "Gas", 54.03, day=11, variable=True, hi=550.83)
+        b["monthly_expected"] = {"3": "550.83", "8": "54.03"}
+        aug = fincal.expected_amount(b, date(2026, 8, 11))
+        mar = fincal.expected_amount(b, date(2026, 3, 11))
+        self.assertEqual(aug, D("54.03"))
+        self.assertEqual(mar, D("550.83"))
+
+    def test_seasonal_profile_falls_back_when_month_absent(self):
+        b = bill("g", "Gas", 100, day=11, variable=True, hi=550.83)
+        b["monthly_expected"] = {"3": "550.83"}
+        self.assertEqual(fincal.expected_amount(b, date(2026, 8, 11)), D("550.83"))
+
+    def test_calendar_applies_the_profile_per_occurrence(self):
+        b = bill("e", "Electric", 130, day=3, variable=True, hi=448.77)
+        b["monthly_expected"] = {"8": "448.77", "11": "130.28"}
+        c = cal([b], [], days=120, start=date(2026, 8, 1))
+        by = {e.day.month: e.amount for e in c.events}
+        self.assertEqual(by[8], D("448.77"))
+        self.assertEqual(by[11], D("130.28"))
+
     def test_week_end_is_the_coming_sunday(self):
         self.assertEqual(fincal.week_end(date(2026, 8, 11)), date(2026, 8, 16))
         self.assertEqual(fincal.week_end(date(2026, 8, 16)), date(2026, 8, 16))

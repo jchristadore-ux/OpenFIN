@@ -249,7 +249,17 @@ function render(s){
   const out = [];
   const disc = num(s.discretionary.safe), neg = disc < 0;
 
-  if(!s.balance_is_fresh){
+  // The snapshot only changes when the engine runs. If it is from an earlier
+  // day, every figure below is anchored to that day - including bills that have
+  // since cleared. Say so in the user's terms rather than showing a stale date
+  // as though it were today.
+  const todayISO = new Date().toLocaleDateString('en-CA');
+  const ageDays = Math.round((new Date(todayISO) - new Date(s.today)) / 86400000);
+  if(ageDays > 0){
+    out.push(`<div class="stale"><strong>This forecast is ${ageDays} day${ageDays>1?'s':''} old.</strong>
+      It was built for ${esc(dt(s.today))} and still counts bills dated then, even
+      ones that have since cleared. Update the balance to rebuild it for today.</div>`);
+  } else if(!s.balance_is_fresh){
     out.push(`<div class="stale"><strong>Balance is not from today.</strong>
       Figures below project from the last entered balance. Enter today's balance
       to refresh them and send the daily summary.</div>`);
@@ -258,7 +268,8 @@ function render(s){
   out.push(`<div class="bal">
     <div class="lab">Today's balance</div>
     <div class="amt">${m(s.balance)}</div>
-    <div class="when">${s.balance_is_fresh ? 'Entered today' : 'Last entered'} · ${dt(s.today)}</div>
+    <div class="when">${new Date().toLocaleDateString('en-US',{weekday:'short',day:'numeric',month:'short'})}${
+      ageDays > 0 ? ' · forecast built ' + dt(s.today) : (s.balance_is_fresh ? ' · entered today' : ' · balance not yet entered today')}</div>
     <div class="entry">
       <div class="fld"><span>$</span>
         <input id="balin" type="number" inputmode="decimal" step="0.01"
@@ -329,7 +340,8 @@ function render(s){
   });
   document.getElementById('forget').addEventListener('click', forgetToken);
   document.getElementById('foot').textContent =
-    'OpenFIN · generated ' + new Date(s.generated_at).toLocaleString('en-US');
+    'OpenFIN · forecast generated ' + new Date(s.generated_at).toLocaleString('en-US')
+    + (ageDays > 0 ? '  (' + ageDays + ' day' + (ageDays>1?'s':'') + ' old)' : '');
 }
 
 fetch('snapshot.json?t=' + Date.now())
