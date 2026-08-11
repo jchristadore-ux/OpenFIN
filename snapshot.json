@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-08-11T13:55:48.197850-04:00",
+  "generated_at": "2026-08-11T16:05:40.501228-04:00",
   "today": "2026-08-11",
   "balance": "118.25",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "-173.51",
-  "end_of_week": "-1164.91",
-  "end_of_month": "-1656.03",
+  "end_of_day": "-67.09",
+  "end_of_week": "-1681.54",
+  "end_of_month": "-3116.29",
   "week_end": "2026-08-16",
-  "minimum_balance": "-3885.49",
+  "minimum_balance": "-7879.61",
   "minimum_date": "2026-10-06",
-  "shortfall": "3885.49",
-  "allowance": "216.98",
+  "shortfall": "7879.61",
+  "allowance": "110.56",
   "discretionary": {
-    "safe": "-363.03",
+    "safe": "-1518.18",
     "explain": [
       [
         "Balance now",
@@ -25,7 +25,7 @@
       ],
       [
         "Bills before end of week",
-        "-1997.34"
+        "-3152.49"
       ],
       [
         "Committed in the 14 days after that",
@@ -37,7 +37,7 @@
       ],
       [
         "Safe to spend",
-        "-363.03"
+        "-1518.18"
       ]
     ],
     "components": {
@@ -107,10 +107,31 @@
     },
     {
       "date": "2026-08-15",
+      "name": "Loew & Patel braces",
+      "amount": "1000.00",
+      "direction": "out",
+      "tier": 4
+    },
+    {
+      "date": "2026-08-15",
       "name": "Upstart debt consol",
-      "amount": "1244.29",
+      "amount": "161.00",
       "direction": "out",
       "tier": 3
+    },
+    {
+      "date": "2026-08-16",
+      "name": "Groceries",
+      "amount": "791.32",
+      "direction": "out",
+      "tier": 2
+    },
+    {
+      "date": "2026-08-16",
+      "name": "Fuel",
+      "amount": "447.12",
+      "direction": "out",
+      "tier": 2
     }
   ],
   "upcoming": [
@@ -128,14 +149,38 @@
     },
     {
       "date": "2026-08-18",
-      "name": "Upgrade basement",
-      "amount": "287.85",
-      "tier": 3
+      "name": "CCU car loan",
+      "amount": "306.90",
+      "tier": 1
     },
     {
       "date": "2026-08-18",
       "name": "Comcast",
       "amount": "138.93",
+      "tier": 2
+    },
+    {
+      "date": "2026-08-19",
+      "name": "IRS state",
+      "amount": "114.00",
+      "tier": 2
+    },
+    {
+      "date": "2026-08-19",
+      "name": "IRS federal",
+      "amount": "103.00",
+      "tier": 2
+    },
+    {
+      "date": "2026-08-23",
+      "name": "Groceries",
+      "amount": "791.32",
+      "tier": 2
+    },
+    {
+      "date": "2026-08-23",
+      "name": "Fuel",
+      "amount": "447.12",
       "tier": 2
     },
     {
@@ -149,272 +194,248 @@
       "name": "Kia",
       "amount": "742.65",
       "tier": 1
-    },
-    {
-      "date": "2026-08-24",
-      "name": "Upstart past bills",
-      "amount": "345.82",
-      "tier": 3
-    },
-    {
-      "date": "2026-09-01",
-      "name": "Sewer",
-      "amount": "304.50",
-      "tier": 2
-    },
-    {
-      "date": "2026-09-03",
-      "name": "JCP&L / FirstEnergy",
-      "amount": "404.25",
-      "tier": 2
-    },
-    {
-      "date": "2026-09-04",
-      "name": "Trilogy Lacrosse",
-      "amount": "100.00",
-      "tier": 4
     }
   ],
   "curve": [
     {
       "date": "2026-08-11",
-      "closing": "-173.51"
+      "closing": "-67.09"
     },
     {
       "date": "2026-08-12",
-      "closing": "1047.30"
+      "closing": "1260.14"
     },
     {
       "date": "2026-08-13",
-      "closing": "830.32"
+      "closing": "1149.58"
     },
     {
       "date": "2026-08-14",
-      "closing": "513.34"
+      "closing": "939.02"
     },
     {
       "date": "2026-08-15",
-      "closing": "-947.93"
+      "closing": "-332.54"
     },
     {
       "date": "2026-08-16",
-      "closing": "-1164.91"
+      "closing": "-1681.54"
     },
     {
       "date": "2026-08-17",
-      "closing": "-1680.89"
+      "closing": "-2091.10"
     },
     {
       "date": "2026-08-18",
-      "closing": "-2450.65"
+      "closing": "-2859.85"
     },
     {
       "date": "2026-08-19",
-      "closing": "2177.74"
+      "closing": "1657.96"
     },
     {
       "date": "2026-08-20",
-      "closing": "1960.76"
+      "closing": "1547.40"
     },
     {
       "date": "2026-08-21",
-      "closing": "1743.78"
+      "closing": "1436.84"
     },
     {
       "date": "2026-08-22",
-      "closing": "1438.80"
+      "closing": "1238.28"
     },
     {
       "date": "2026-08-23",
-      "closing": "1200.51"
+      "closing": "-132.03"
     },
     {
       "date": "2026-08-24",
-      "closing": "-1906.56"
+      "closing": "-2873.32"
     },
     {
       "date": "2026-08-25",
-      "closing": "-2123.54"
+      "closing": "-2983.88"
     },
     {
       "date": "2026-08-26",
-      "closing": "-324.46"
+      "closing": "-1078.38"
     },
     {
       "date": "2026-08-27",
-      "closing": "-626.22"
+      "closing": "-1273.72"
     },
     {
       "date": "2026-08-28",
-      "closing": "-843.20"
+      "closing": "-1384.28"
     },
     {
       "date": "2026-08-29",
-      "closing": "-1222.07"
+      "closing": "-1656.73"
     },
     {
       "date": "2026-08-30",
-      "closing": "-1439.05"
+      "closing": "-3005.73"
     },
     {
       "date": "2026-08-31",
-      "closing": "-1656.03"
+      "closing": "-3116.29"
     },
     {
       "date": "2026-09-01",
-      "closing": "-2177.51"
+      "closing": "-3531.35"
     },
     {
       "date": "2026-09-02",
-      "closing": "2450.88"
+      "closing": "1203.46"
     },
     {
       "date": "2026-09-03",
-      "closing": "1829.65"
+      "closing": "688.65"
     },
     {
       "date": "2026-09-04",
-      "closing": "1168.97"
+      "closing": "234.39"
     },
     {
       "date": "2026-09-05",
-      "closing": "951.99"
+      "closing": "123.83"
     },
     {
       "date": "2026-09-06",
-      "closing": "346.77"
+      "closing": "-1613.41"
     },
     {
       "date": "2026-09-07",
-      "closing": "-1671.83"
+      "closing": "-3525.59"
     },
     {
       "date": "2026-09-08",
-      "closing": "-2038.81"
+      "closing": "-3786.15"
     },
     {
       "date": "2026-09-09",
-      "closing": "-239.73"
+      "closing": "-1880.65"
     },
     {
       "date": "2026-09-10",
-      "closing": "-456.71"
+      "closing": "-1991.21"
     },
     {
       "date": "2026-09-11",
-      "closing": "-754.45"
+      "closing": "-2182.53"
     },
     {
       "date": "2026-09-12",
-      "closing": "-1549.70"
+      "closing": "-2871.36"
     },
     {
       "date": "2026-09-13",
-      "closing": "-1766.68"
+      "closing": "-4220.36"
     },
     {
       "date": "2026-09-14",
-      "closing": "-2083.66"
+      "closing": "-4430.92"
     },
     {
       "date": "2026-09-15",
-      "closing": "-3544.93"
+      "closing": "-5702.48"
     },
     {
       "date": "2026-09-16",
-      "closing": "1083.46"
+      "closing": "-967.67"
     },
     {
       "date": "2026-09-17",
-      "closing": "567.48"
+      "closing": "-1377.23"
     },
     {
       "date": "2026-09-18",
-      "closing": "-202.28"
+      "closing": "-2145.98"
     },
     {
       "date": "2026-09-19",
-      "closing": "-419.26"
+      "closing": "-2589.54"
     },
     {
       "date": "2026-09-20",
-      "closing": "-636.24"
+      "closing": "-3938.54"
     },
     {
       "date": "2026-09-21",
-      "closing": "-2654.84"
+      "closing": "-5850.72"
     },
     {
       "date": "2026-09-22",
-      "closing": "-2959.82"
+      "closing": "-6049.28"
     },
     {
       "date": "2026-09-23",
-      "closing": "-1182.05"
+      "closing": "-4165.09"
     },
     {
       "date": "2026-09-24",
-      "closing": "-2487.50"
+      "closing": "-5355.91"
     },
     {
       "date": "2026-09-25",
-      "closing": "-2704.48"
+      "closing": "-5466.47"
     },
     {
       "date": "2026-09-26",
-      "closing": "-2921.46"
+      "closing": "-5577.03"
     },
     {
       "date": "2026-09-27",
-      "closing": "-3223.22"
+      "closing": "-7010.81"
     },
     {
       "date": "2026-09-28",
-      "closing": "-3440.20"
+      "closing": "-7121.37"
     },
     {
       "date": "2026-09-29",
-      "closing": "-3819.07"
+      "closing": "-7393.82"
     },
     {
       "date": "2026-09-30",
-      "closing": "809.32"
+      "closing": "-2659.01"
     },
     {
       "date": "2026-10-01",
-      "closing": "592.34"
+      "closing": "-2769.57"
     },
     {
       "date": "2026-10-02",
-      "closing": "375.36"
+      "closing": "-2880.13"
     },
     {
       "date": "2026-10-03",
-      "closing": "-109.36"
+      "closing": "-3258.43"
     },
     {
       "date": "2026-10-04",
-      "closing": "-770.04"
+      "closing": "-4951.13"
     },
     {
       "date": "2026-10-05",
-      "closing": "-2788.64"
+      "closing": "-6863.31"
     },
     {
       "date": "2026-10-06",
-      "closing": "-3885.49"
+      "closing": "-7879.61"
     },
     {
       "date": "2026-10-07",
-      "closing": "-2263.71"
+      "closing": "-6151.41"
     },
     {
       "date": "2026-10-08",
-      "closing": "-2630.69"
+      "closing": "-6411.97"
     },
     {
       "date": "2026-10-09",
-      "closing": "-2847.67"
+      "closing": "-6522.53"
     }
   ],
   "risks": [
@@ -423,68 +444,77 @@
       "type": "negative_balance",
       "severity": "critical",
       "title": "Balance goes negative Tue 11 Aug",
-      "detail": "Projected -$173.51 on Tue 11 Aug. Lowest point is -$3,885.49 on Tue 6 Oct.",
-      "amount": "3885.49",
+      "detail": "Projected -$67.09 on Tue 11 Aug. Lowest point is -$7,879.61 on Tue 6 Oct.",
+      "amount": "7879.61",
       "when": "2026-08-11"
+    },
+    {
+      "id": "secured_payment:ccu-car-loan:2026-08-18",
+      "type": "secured_payment",
+      "severity": "critical",
+      "title": "CCU car loan may not clear",
+      "detail": "CCU car loan of $306.90 is due Tue 18 Aug with only -$2,091.10 available that day.",
+      "amount": "306.90",
+      "when": "2026-08-18"
     },
     {
       "id": "secured_payment:mortgage:2026-08-24",
       "type": "secured_payment",
       "severity": "critical",
       "title": "Mortgage may not clear",
-      "detail": "Mortgage of $1,801.62 is due Mon 24 Aug with only $1,200.51 available that day.",
-      "amount": "601.11",
+      "detail": "Mortgage of $1,801.62 is due Mon 24 Aug with only -$132.03 available that day.",
+      "amount": "1801.62",
       "when": "2026-08-24"
     },
     {
-      "id": "secured_payment:car-payment:2026-09-24",
+      "id": "secured_payment:car-payment:2026-08-24",
       "type": "secured_payment",
       "severity": "critical",
       "title": "Kia may not clear",
-      "detail": "Kia of $742.65 is due Thu 24 Sep with only -$1,182.05 available that day.",
+      "detail": "Kia of $742.65 is due Mon 24 Aug with only -$132.03 available that day.",
       "amount": "742.65",
-      "when": "2026-09-24"
+      "when": "2026-08-24"
     },
     {
-      "id": "income_timing:2026-08-11",
-      "type": "income_timing",
-      "severity": "high",
-      "title": "Timing problem, not a shortfall",
-      "detail": "Income of $29,461.78 covers $19,408.90 of bills across the window, but the balance still dips to -$3,885.49 on Tue 6 Oct because money goes out before it comes in. Next income is Insight Global payroll $2,016.06 on Wed 12 Aug.",
-      "amount": "3885.49",
-      "when": "2026-08-11"
-    },
-    {
-      "id": "large_payment:upstart-debt-consolidation:2026-08-15",
+      "id": "large_payment:loew-patel-braces:2026-08-15",
       "type": "large_payment",
       "severity": "high",
-      "title": "Upstart debt consol $1,244.29 may be short",
-      "detail": "Upstart debt consol of $1,244.29 is due Sat 15 Aug against a projected opening balance of $513.34.",
-      "amount": "730.95",
+      "title": "Loew & Patel braces $1,000.00 may be short",
+      "detail": "Loew & Patel braces of $1,000.00 is due Sat 15 Aug against a projected opening balance of $939.02.",
+      "amount": "60.98",
       "when": "2026-08-15"
+    },
+    {
+      "id": "large_payment:groceries:2026-08-16",
+      "type": "large_payment",
+      "severity": "high",
+      "title": "Groceries $791.32 may be short",
+      "detail": "Groceries of $791.32 is due Sun 16 Aug against a projected opening balance of -$332.54.",
+      "amount": "791.32",
+      "when": "2026-08-16"
     },
     {
       "id": "large_payment:mortgage:2026-08-24",
       "type": "large_payment",
       "severity": "high",
       "title": "Mortgage $1,801.62 may be short",
-      "detail": "Mortgage of $1,801.62 is due Mon 24 Aug against a projected opening balance of $1,200.51.",
-      "amount": "601.11",
+      "detail": "Mortgage of $1,801.62 is due Mon 24 Aug against a projected opening balance of -$132.03.",
+      "amount": "1801.62",
       "when": "2026-08-24"
     },
     {
       "id": "discretionary:2026-08-16",
       "type": "discretionary",
       "severity": "medium",
-      "title": "Discretionary is -$363.03",
-      "detail": "After bills through Sun 16 Aug and $0.00 committed just beyond it, there is -$363.03 free to spend this week.",
-      "amount": "363.03",
+      "title": "Discretionary is -$1,518.18",
+      "detail": "After bills through Sun 16 Aug and $0.00 committed just beyond it, there is -$1,518.18 free to spend this week.",
+      "amount": "1518.18",
       "when": "2026-08-16"
     }
   ],
   "plan": {
-    "summary": "Deferring T-Mobile Lia $20.75 frees $20.75, which is short of the $3,885.49 needed by 11 Aug.",
-    "shortfall": "3885.49",
+    "summary": "Deferring T-Mobile Lia $20.75 frees $20.75, which is short of the $7,879.61 needed by 11 Aug.",
+    "shortfall": "7879.61",
     "problem_day": "2026-08-11",
     "candidates": [
       {
@@ -553,11 +583,44 @@
       "in_week": true
     },
     {
+      "id": "loew-patel-braces",
+      "name": "Loew & Patel braces",
+      "date": "2026-08-15",
+      "amount": "1000.00",
+      "tier": 4,
+      "deferrable": true,
+      "secured": false,
+      "deferred": false,
+      "in_week": true
+    },
+    {
       "id": "upstart-debt-consolidation",
       "name": "Upstart debt consol",
       "date": "2026-08-15",
-      "amount": "1244.29",
+      "amount": "161.00",
       "tier": 3,
+      "deferrable": false,
+      "secured": false,
+      "deferred": false,
+      "in_week": true
+    },
+    {
+      "id": "groceries",
+      "name": "Groceries",
+      "date": "2026-08-16",
+      "amount": "791.32",
+      "tier": 2,
+      "deferrable": false,
+      "secured": false,
+      "deferred": false,
+      "in_week": true
+    },
+    {
+      "id": "fuel",
+      "name": "Fuel",
+      "date": "2026-08-16",
+      "amount": "447.12",
+      "tier": 2,
       "deferrable": false,
       "secured": false,
       "deferred": false,
@@ -586,13 +649,13 @@
       "in_week": false
     },
     {
-      "id": "upgrade-basement",
-      "name": "Upgrade basement",
+      "id": "ccu-car-loan",
+      "name": "CCU car loan",
       "date": "2026-08-18",
-      "amount": "287.85",
-      "tier": 3,
+      "amount": "306.90",
+      "tier": 1,
       "deferrable": false,
-      "secured": false,
+      "secured": true,
       "deferred": false,
       "in_week": false
     },
@@ -619,12 +682,67 @@
       "in_week": false
     },
     {
+      "id": "upgrade-basement",
+      "name": "Upgrade basement",
+      "date": "2026-08-18",
+      "amount": "86.36",
+      "tier": 3,
+      "deferrable": false,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "irs-state",
+      "name": "IRS state",
+      "date": "2026-08-19",
+      "amount": "114.00",
+      "tier": 2,
+      "deferrable": false,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "irs-federal",
+      "name": "IRS federal",
+      "date": "2026-08-19",
+      "amount": "103.00",
+      "tier": 2,
+      "deferrable": false,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
       "id": "chase-united",
       "name": "Chase CC United",
       "date": "2026-08-22",
       "amount": "88.00",
       "tier": 3,
       "deferrable": true,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "groceries",
+      "name": "Groceries",
+      "date": "2026-08-23",
+      "amount": "791.32",
+      "tier": 2,
+      "deferrable": false,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "fuel",
+      "name": "Fuel",
+      "date": "2026-08-23",
+      "amount": "447.12",
+      "tier": 2,
+      "deferrable": false,
       "secured": false,
       "deferred": false,
       "in_week": false
@@ -666,7 +784,7 @@
       "id": "upstart-past-bills",
       "name": "Upstart past bills",
       "date": "2026-08-24",
-      "amount": "345.82",
+      "amount": "86.46",
       "tier": 3,
       "deferrable": false,
       "secured": false,
@@ -705,6 +823,28 @@
       "secured": false,
       "deferred": false,
       "in_week": false
+    },
+    {
+      "id": "groceries",
+      "name": "Groceries",
+      "date": "2026-08-30",
+      "amount": "791.32",
+      "tier": 2,
+      "deferrable": false,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "fuel",
+      "name": "Fuel",
+      "date": "2026-08-30",
+      "amount": "447.12",
+      "tier": 2,
+      "deferrable": false,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
     }
   ],
   "deferred_total": "0.00",
@@ -735,6 +875,18 @@
       "note": "Amount corrected from $578.64. Actually recurs every 28 days (05/04, 06/01, 06/29), not monthly, so it drifts earlier and yields 13 payments in some years. due_day 24 tracks the next two occurrences; revisit each quarter."
     },
     {
+      "id": "ccu-car-loan",
+      "name": "CCU car loan",
+      "amount": "306.90",
+      "due_day": 18,
+      "frequency": "monthly",
+      "tier": 1,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "note": "FOUND in the statements under 'CONSUMERSCREDITCK-WTH', which is why the earlier search for 'CCU' missed it. $306.90 on 01/20, 02/18, 03/18, 04/20, 05/18 and 06/18/2026. Secured against the car, so never proposed for deferral."
+    },
+    {
       "id": "auto-insurance",
       "name": "Hanover Auto",
       "amount": "513.27",
@@ -759,6 +911,18 @@
       "note": "Seasonal profile from 19 statements, month-of-year maximum. Peaks in summer at $448.77 (August) against $130.28 in November. The previous flat $200.00 UNDER-forecast August by $248.77, the direction that causes overdrafts."
     },
     {
+      "id": "groceries",
+      "name": "Groceries",
+      "amount": "319.09",
+      "due_day": null,
+      "frequency": "weekly",
+      "tier": 2,
+      "active": true,
+      "variable": true,
+      "needs_review": false,
+      "note": "ACTUAL, not budget. Mean of 81 full weeks in the statements is $319.09/wk (median $302.15, range $12.78-$791.32). The household sheet said $282.35, under by $36.74/wk. The mean is used rather than the median because under-forecasting an outflow is the direction that causes overdrafts."
+    },
+    {
       "id": "sewer",
       "name": "Sewer",
       "amount": "304.50",
@@ -768,7 +932,7 @@
       "active": true,
       "variable": false,
       "needs_review": true,
-      "note": "No payment matching 'sewer' or 'utility auth' appears in any of the 19 statements from Dec 2024 to Jul 2026, including the September window when an annual bill would fall. Either it is paid from another account or it no longer exists. Left active pending confirmation."
+      "note": "POSSIBLY ANNUAL, UNCONFIRMED - the household does not yet know. No matching payment appears in 19 months of statements, including the September window. Left active at $304.50 on 1 Sep so it is budgeted for rather than forgotten."
     },
     {
       "id": "internet",
@@ -781,6 +945,54 @@
       "variable": false,
       "needs_review": false,
       "note": "Amount corrected from $145.00, due day from 20 to 18."
+    },
+    {
+      "id": "clinton-water",
+      "name": "Town of Clinton water",
+      "amount": "116.00",
+      "due_day": null,
+      "frequency": "quarterly",
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "note": "New, from the household's recent negotiation. QUARTERLY at $116.00, so $464.00/yr and $38.67/month equivalent - the household bill sheet listed it monthly, which would have over-forecast it threefold. First due date is an ESTIMATE (19 Sep 2026); no payment appears in 19 months of statements, so conf"
+    },
+    {
+      "id": "irs-state",
+      "name": "IRS state",
+      "amount": "114.00",
+      "due_day": 19,
+      "frequency": "monthly",
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "note": "New, $114.00/month, per the household. Due day assumed the same as the federal instalment; confirm. Not yet visible in any statement."
+    },
+    {
+      "id": "irs-federal",
+      "name": "IRS federal",
+      "amount": "103.00",
+      "due_day": 19,
+      "frequency": "monthly",
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "note": "New instalment plan, $103.00/month, per the household. Not yet visible in any statement. Non-deferrable: missing an IRS instalment can void the agreement."
+    },
+    {
+      "id": "fuel",
+      "name": "Fuel",
+      "amount": "90.77",
+      "due_day": null,
+      "frequency": "weekly",
+      "tier": 2,
+      "active": true,
+      "variable": true,
+      "needs_review": false,
+      "note": "ACTUAL, not budget. Mean of 69 full weeks is $90.77/wk (median $65.53). The household sheet said $95.48 - close, and slightly high."
     },
     {
       "id": "xfinity-mobile",
@@ -819,18 +1031,6 @@
       "note": ""
     },
     {
-      "id": "upstart-debt-consolidation",
-      "name": "Upstart debt consol",
-      "amount": "1244.29",
-      "due_day": 15,
-      "frequency": "monthly",
-      "tier": 3,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "note": "ACH descriptor UPSTARTNETWORK UPSTARTFU 15434861."
-    },
-    {
       "id": "onemain-loan",
       "name": "One Main loan",
       "amount": "388.24",
@@ -843,64 +1043,76 @@
       "note": ""
     },
     {
-      "id": "upstart-past-bills",
-      "name": "Upstart past bills",
-      "amount": "345.82",
+      "id": "upstart-past-bills-step2",
+      "name": "Upstart past bills (from Sep)",
+      "amount": "337.61",
       "due_day": 24,
       "frequency": "monthly",
       "tier": 3,
       "active": true,
       "variable": false,
       "needs_review": true,
-      "note": "ACH descriptor UPSTARTNETWORK LOAN_ASSET 14794931. WAS $345.82 monthly for 12 consecutive months, then 06/24/2026 posted $86.46. That is either the final instalment or a renegotiation. Left at $345.82 because over-forecasting an outflow is the safe direction - confirm and correct."
+      "note": "Steps up from $86.46 on 24 Sep 2026 per the household. The household said the reduced rate ran 'two months'; if that means it ends after 24 Aug rather than 24 Sep, this start date is a month late and the forecast is optimistic by $251.15 for September. Confirm."
+    },
+    {
+      "id": "upstart-debt-consolidation",
+      "name": "Upstart debt consol",
+      "amount": "161.00",
+      "due_day": 15,
+      "frequency": "monthly",
+      "tier": 3,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "note": "Renegotiated to $161.00 (household, 11 Aug 2026). Was $1,244.29 for 12 months - a $1,083.29/month reduction, the single largest change in this ledger."
+    },
+    {
+      "id": "capital-one",
+      "name": "Capital One CC",
+      "amount": "105.00",
+      "due_day": 17,
+      "frequency": "monthly",
+      "tier": 3,
+      "active": true,
+      "variable": true,
+      "needs_review": false,
+      "note": "Renegotiated to $105.00 (household, 11 Aug 2026). Was $154.00."
+    },
+    {
+      "id": "upstart-past-bills",
+      "name": "Upstart past bills",
+      "amount": "86.46",
+      "due_day": 24,
+      "frequency": "monthly",
+      "tier": 3,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "note": "Renegotiated. $86.46 temporarily (bank shows exactly $86.46 on 06/24/2026), stepping up to $337.61 from 24 Sep 2026 - see upstart-past-bills-step2. Modelled as two entries with adjoining windows so neither period is wrong."
     },
     {
       "id": "upgrade-basement",
       "name": "Upgrade basement",
-      "amount": "287.85",
+      "amount": "86.36",
       "due_day": 18,
       "frequency": "monthly",
       "tier": 3,
       "active": true,
       "variable": false,
       "needs_review": false,
-      "note": ""
-    },
-    {
-      "id": "capital-one",
-      "name": "Capital One CC",
-      "amount": "154.00",
-      "due_day": 17,
-      "frequency": "monthly",
-      "tier": 3,
-      "active": true,
-      "variable": true,
-      "needs_review": false,
-      "note": ""
+      "note": "Renegotiated to $86.36 (household, 11 Aug 2026). Was $287.85."
     },
     {
       "id": "chase-amazon",
       "name": "Chase CC Amazon",
-      "amount": "136.00",
+      "amount": "80.00",
       "due_day": 17,
       "frequency": "monthly",
       "tier": 3,
       "active": true,
       "variable": true,
       "needs_review": false,
-      "note": "Autopay on the 16th-18th. Twelve months observed $124.00-$136.00, trending up; latest $136.00. Shares a bank descriptor with chase-united, so the double-count guard cannot tell them apart - they are separated here by date and amount band."
-    },
-    {
-      "id": "chase-united",
-      "name": "Chase CC United",
-      "amount": "80.00",
-      "due_day": 22,
-      "frequency": "monthly",
-      "tier": 3,
-      "active": true,
-      "variable": true,
-      "needs_review": false,
-      "note": "Autopay on the 21st-23rd. Observed $76.00-$88.00; latest $80.00. See chase-amazon."
+      "note": "Renegotiated to $80.00 (household, 11 Aug 2026). Card ending 8026. Autopay 16th-18th."
     },
     {
       "id": "affirm",
@@ -951,40 +1163,76 @@
       "note": "Irregular: 12/16, 02/03, 03/13, 05/05, 06/12, amounts $40.00-$65.00. Not on the household sheet."
     },
     {
+      "id": "chase-united",
+      "name": "Chase CC United",
+      "amount": "46.00",
+      "due_day": 22,
+      "frequency": "monthly",
+      "tier": 3,
+      "active": true,
+      "variable": true,
+      "needs_review": false,
+      "note": "Renegotiated to $46.00 (household, 11 Aug 2026). Card ending 6319. Autopay 21st-23rd."
+    },
+    {
       "id": "lacrosse-2627-inst-1",
-      "name": "NJ Total Select 1of3",
-      "amount": "491.63",
+      "name": "NJ Total Select 1of4",
+      "amount": "517.50",
       "due_day": null,
       "frequency": "once",
       "tier": 4,
       "active": true,
       "variable": false,
-      "needs_review": true,
-      "note": "ESTIMATED, not billed yet. Amount = $475.00 installment + $16.63 card convenience fee, the exact figure charged in both 2024-25 and 2025-26. Date mirrors the 2025-26 due date of 10/06. Replace with the real number once the club posts the 2026-27 schedule."
+      "needs_review": false,
+      "note": "ACTUAL from the club portal (household, 11 Aug 2026): $500.00 due 2026-10-06. Modelled at $517.50 because every card payment in 19 months of statements carried the club's 3.5% convenience fee ($475.00 became $491.63). Paying by Venmo or check costs $500.00 - the one Venmo payment on 11/01/2024 was c"
     },
     {
       "id": "lacrosse-2627-inst-2",
-      "name": "NJ Total Select 2of3",
-      "amount": "491.63",
+      "name": "NJ Total Select 2of4",
+      "amount": "517.50",
       "due_day": null,
       "frequency": "once",
       "tier": 4,
       "active": true,
       "variable": false,
-      "needs_review": true,
-      "note": "ESTIMATED, not billed yet. See lacrosse-2627-inst-1. Date mirrors the 2025-26 due date of 01/12."
+      "needs_review": false,
+      "note": "ACTUAL from the club portal (household, 11 Aug 2026): $500.00 due 2027-01-12. Modelled at $517.50 because every card payment in 19 months of statements carried the club's 3.5% convenience fee ($475.00 became $491.63). Paying by Venmo or check costs $500.00 - the one Venmo payment on 11/01/2024 was c"
     },
     {
       "id": "lacrosse-2627-inst-3",
-      "name": "NJ Total Select 3of3",
-      "amount": "491.63",
+      "name": "NJ Total Select 3of4",
+      "amount": "517.50",
       "due_day": null,
       "frequency": "once",
       "tier": 4,
       "active": true,
       "variable": false,
+      "needs_review": false,
+      "note": "ACTUAL from the club portal (household, 11 Aug 2026): $500.00 due 2027-03-09. Modelled at $517.50 because every card payment in 19 months of statements carried the club's 3.5% convenience fee ($475.00 became $491.63). Paying by Venmo or check costs $500.00 - the one Venmo payment on 11/01/2024 was c"
+    },
+    {
+      "id": "lacrosse-2627-inst-4",
+      "name": "NJ Total Select 4of4",
+      "amount": "517.50",
+      "due_day": null,
+      "frequency": "once",
+      "tier": 4,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "note": "ACTUAL from the club portal (household, 11 Aug 2026): $500.00 due 2027-05-18. Modelled at $517.50 because every card payment in 19 months of statements carried the club's 3.5% convenience fee ($475.00 became $491.63). Paying by Venmo or check costs $500.00 - the one Venmo payment on 11/01/2024 was c"
+    },
+    {
+      "id": "loew-patel-braces",
+      "name": "Loew & Patel braces",
+      "amount": "400.00",
+      "due_day": 15,
+      "frequency": "monthly",
+      "tier": 4,
+      "active": true,
+      "variable": true,
       "needs_review": true,
-      "note": "ESTIMATED, not billed yet. See lacrosse-2627-inst-1. Date mirrors the 2025-26 due date of 03/09."
+      "note": "SCHEDULE UNKNOWN - flagged, not guessed. The statements show $1,000.00 on 06/10/2026, then $129.47 and $15.00, plus $129.47 on 04/29 and smaller amounts through the spring. No pattern is derivable. The household sheet says $400.00 'TBD'. Held at $400.00 monthly as a placeholder so it is not forgotte"
     },
     {
       "id": "trash",
@@ -1011,30 +1259,6 @@
       "note": "See trash. Next quarterly instalment."
     },
     {
-      "id": "trilogy-lacrosse",
-      "name": "Trilogy Lacrosse",
-      "amount": "100.00",
-      "due_day": 4,
-      "frequency": "monthly",
-      "tier": 4,
-      "active": true,
-      "variable": false,
-      "needs_review": true,
-      "note": "Recurring $100/month since 01/2026, still active at the last statement (05/04/2026). Was absent from both bills.json and the household bill sheet."
-    },
-    {
-      "id": "lowes",
-      "name": "Lowes",
-      "amount": "122.00",
-      "due_day": 18,
-      "frequency": "monthly",
-      "tier": 5,
-      "active": true,
-      "variable": true,
-      "needs_review": false,
-      "note": ""
-    },
-    {
       "id": "home-depot",
       "name": "Home Depot",
       "amount": "100.00",
@@ -1045,6 +1269,18 @@
       "variable": true,
       "needs_review": false,
       "note": ""
+    },
+    {
+      "id": "lowes",
+      "name": "Lowes",
+      "amount": "69.00",
+      "due_day": 18,
+      "frequency": "monthly",
+      "tier": 5,
+      "active": true,
+      "variable": true,
+      "needs_review": false,
+      "note": "Renegotiated to $69.00 (household, 11 Aug 2026). Was $122.00."
     },
     {
       "id": "culligan",
@@ -1093,11 +1329,23 @@
       "variable": true,
       "needs_review": false,
       "note": "PAID OFF - confirmed by the household 11 Aug 2026. Ran 05/01, 06/12 and 06/29/2026 at $373.13. Deactivated, not deleted. The separate $73.07 monthly Affirm (id 'affirm') is unaffected and still active."
+    },
+    {
+      "id": "trilogy-lacrosse",
+      "name": "Trilogy Lacrosse",
+      "amount": "100.00",
+      "due_day": 4,
+      "frequency": "monthly",
+      "tier": 4,
+      "active": false,
+      "variable": false,
+      "needs_review": false,
+      "note": "ENDED - confirmed by the household 11 Aug 2026. Ran $100/month Jan-May 2026, plus $225.00 on 12/10/2025. Deactivated, not deleted."
     }
   ],
   "settings": {
     "minimum_safe_balance": "500.00",
-    "daily_discretionary_allowance": "216.98",
+    "daily_discretionary_allowance": "110.56",
     "forecast_days": 60
   }
 }
