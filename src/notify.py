@@ -21,7 +21,7 @@ from forecast import Discretionary, Forecast
 from recommend import Plan
 from risk import Risk
 
-BRAND = "TogetherLedger"
+BRAND = "OpenFIN"
 
 
 def m(v: Decimal) -> str:
@@ -131,7 +131,8 @@ def daily_html(
     day0 = forecast.days[0] if forecast.days else None
     low = forecast.minimum_day
     neg = disc.safe < 0
-    accent = "#0f766e"
+    accent = "#00A98F"   # OpenFIN teal, darkened for text contrast
+    navy = "#0A2540"
     danger = "#b91c1c"
 
     def row(label: str, value: str, bold: bool = False, color: str = "#0f172a") -> str:
@@ -243,7 +244,7 @@ def daily_html(
     return (
         '<div style="font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,'
         'Arial,sans-serif;background:#f1f5f9;padding:18px;max-width:520px;margin:0 auto">'
-        f'<div style="font-size:22px;font-weight:800;color:#1e3a5f;margin-bottom:2px">'
+        f'<div style="font-size:22px;font-weight:800;color:{navy};margin-bottom:2px">'
         f"{BRAND}</div>"
         f'<div style="font-size:13px;color:#64748b;margin-bottom:4px">Daily financial check — {d(today)}</div>'
         f'<div style="font-size:15px;color:#0f172a;margin-bottom:16px">'
@@ -295,7 +296,7 @@ def alert_html(risk: Risk, plan: Plan | None, balance_known: bool) -> str:
     body = (
         f'<div style="font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,'
         f'Arial,sans-serif;background:#f1f5f9;padding:18px;max-width:520px;margin:0 auto">'
-        f'<div style="font-size:22px;font-weight:800;color:#1e3a5f">{BRAND}</div>'
+        f'<div style="font-size:22px;font-weight:800;color:#0A2540">{BRAND}</div>'
         f'<div style="background:#fff;border:1px solid #e2e8f0;border-left:4px solid {danger};'
         f'border-radius:10px;padding:16px;margin-top:12px">'
         f'<div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;'

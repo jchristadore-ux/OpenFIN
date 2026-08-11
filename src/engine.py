@@ -402,7 +402,7 @@ def _log(snapshot: dict, day: date) -> None:
 
 
 def main(argv: list[str] | None = None) -> int:
-    p = argparse.ArgumentParser(description="TogetherLedger financial engine")
+    p = argparse.ArgumentParser(description="OpenFIN financial engine")
     p.add_argument("mode", choices=["daily", "watch"])
     p.add_argument("--balance", help="today's actual bank balance")
     p.add_argument("--dry-run", action="store_true")

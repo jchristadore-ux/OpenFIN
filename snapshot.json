@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-10T22:10:34.312737-04:00",
+  "generated_at": "2026-08-10T22:22:27.182438-04:00",
   "today": "2026-08-10",
   "balance": "118.25",
-  "balance_is_fresh": false,
-  "balance_entered_at": null,
+  "balance_is_fresh": true,
+  "balance_entered_at": "2026-08-10T22:22:27.182438-04:00",
   "end_of_day": "-1900.35",
   "end_of_week": "-3350.43",
   "end_of_month": "-4211.68",
