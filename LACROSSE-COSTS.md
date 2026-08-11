@@ -1,11 +1,18 @@
-# NJ Total Select lacrosse — what it actually costs
+# Youth sports — what it actually costs
 
 Rebuilt from the club payment portal's historical payments for Lia, covering
-May 2023 through July 2026. Every figure below is a real posted payment except
+May 2023 through July 2026, and cross-checked against TD Bank statements for
+12 Dec 2024 – 11 Oct 2025. Every figure below is a real posted payment except
 the three clearly marked estimates for the rest of the 2026-27 season.
 
-**The short answer: about $2,490 a year, or $207 a month.** That number has
+**The lacrosse club is about $2,490 a year, or $207 a month.** That number has
 barely moved in three seasons.
+
+**But lacrosse is roughly half of it.** The bank statements show youth sports
+running at **$496.40/month** all in — see [the full picture](#the-full-picture)
+below. Two things drove the gap: the club portal is not a complete record of
+what was paid to the club, and several large recurring costs never appear in
+the portal at all.
 
 ## Three complete seasons
 
@@ -124,6 +131,96 @@ paying for a camp separately.
 
 ---
 
-*Figures transcribed from the club portal's historical payments on
-10 August 2026. Every per-season and per-month total reconciles to the
-payment list exactly.*
+# The full picture
+
+Everything above comes from the club portal. This section comes from the bank
+statements, which see things the portal does not.
+
+## The portal is not a complete record
+
+The bank shows **$529.63 paid toward lacrosse that the portal never lists**:
+
+| Posted | Payee | Amount | In portal? |
+|---|---|---:|---|
+| 01/03/2025 | NJ Total Lacrosse | $232.88 | **No** |
+| 01/15/2025 | Team travel — Crab Cake tourn. | $80.00 | **No** |
+| 02/03/2025 | US Lacrosse membership | $35.00 | **No** |
+| 02/10/2025 | US Lacrosse membership | $60.00 | **No** |
+| 02/19/2025 | US Lacrosse membership | $60.00 | **No** |
+| 03/12/2025 | US Lacrosse membership | $35.00 | **No** |
+| 04/08/2025 | Roxbury Lacrosse (SportsEngine) | $26.75 | **No** |
+
+The $232.88 is almost certainly a $225.00 program plus the 3.5% card fee —
+the same price point as the Girls Academy Classes. **Treat the $2,488.83/yr
+season figure as a floor, not a total.**
+
+## Youth sports by month
+
+Posted dates, 12 Dec 2024 – 11 Oct 2025. December 2024 and October 2025 are
+partial months.
+
+| Month | High Bridge | Field hockey | Lacrosse | Other athletics | Total |
+|---|---:|---:|---:|---:|---:|
+| 2024-12 | — | — | — | $179.00 | $179.00 |
+| 2025-01 | — | — | $312.88 | $179.00 | $491.88 |
+| 2025-02 | — | — | $646.63 | $199.00 | $845.63 |
+| 2025-03 | — | — | $35.00 | $179.00 | $214.00 |
+| 2025-04 | — | — | $518.38 | $179.00 | $697.38 |
+| 2025-05 | $95.00 | — | $491.63 | $179.00 | $765.63 |
+| 2025-06 | — | $120.00 | — | $339.00 | $459.00 |
+| 2025-07 | — | — | $181.13 | −$30.00 | $151.13 |
+| 2025-08 | — | $51.94 | — | — | $51.94 |
+| 2025-09 | $125.00 | — | $621.00 | $45.00 | $791.00 |
+| 2025-10 | $145.00 | — | — | — | $145.00 |
+| **Total** | **$365.00** | **$171.94** | **$2,806.65** | **$1,448.00** | **$4,791.59** |
+
+Across the nine complete months (Jan–Sep 2025): **$4,467.59, or $496.40 per
+month — an annualised $5,956.79.**
+
+## Who the money actually went to
+
+**High Bridge — $365.00.** There is no payee named "High Bridge Recreation".
+The money went to two separate organisations:
+
+- High Bridge Youth Soccer, $95.00 on 05/05/2025, via PayPal
+- High Bridge Youth Basketball (`hbyb.org`), $125.00 on 09/22/2025 and
+  $145.00 on 10/02/2025
+
+**Field hockey — $171.94.** North Hunterdon Lions Field Hockey, $120.00 on
+06/04/2025, plus two USA Field Hockey memberships at $25.97 (08/04, 08/27).
+
+**Other athletics — $1,448.00.** Dominated by **Parisi Speed School at
+$179.00/month**, charged seven times from 12/19/2024 to 06/20/2025 for
+**$1,253.00**, then stopped. Nothing after June. Also Gymnastics Unlimited
+($20.00 + $160.00, less a $30.00 refund) and Girl Scouts ($45.00).
+
+Parisi alone was running at **86% of the lacrosse club's monthly cost** while
+it was active, and it appears nowhere in any club portal.
+
+## What the statements cannot tell you
+
+Bank statements never print a payee for these, so nothing below can be ruled
+in or out:
+
+- **Paper checks** — ten in the window, including two at $120.00 (02/20,
+  03/07) and two at $160.00 (06/26, 08/05).
+- **Venmo** — 33 outgoing payments. The recipient is replaced by a token.
+- **Zelle to individuals** — if a club treasurer collects by Zelle, it is
+  indistinguishable from any other personal transfer.
+
+If any youth-sports money moved by check or Venmo, it is not in the totals
+above and the real figure is higher.
+
+## Coverage
+
+Ten statements, contiguous, 12 Dec 2024 – 11 Oct 2025. **Missing: 12 Oct –
+11 Dec 2025.** Basketball was mid-season and billing monthly when the record
+ends, so the High Bridge total is the one most likely to grow.
+
+---
+
+*Club figures transcribed from the portal's historical payments on 10 August
+2026; bank figures parsed from TD statements the same day. Every per-season
+and per-month total reconciles to its source exactly. Deliberately excluded:
+account and card numbers, transfer counterparties, and all non-sports
+spending.*
