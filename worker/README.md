@@ -32,16 +32,43 @@ Generate, then **copy it now** — GitHub shows it once.
 ## 2. Create the Worker
 
 dash.cloudflare.com → sign up or log in → **Workers & Pages** → **Create** →
-**Create Worker**.
+**Create Worker**. Name it `openfin`.
 
-- Name it `openfin`
-- **Deploy** (it deploys a placeholder — that's expected)
-- **Edit code**
+Cloudflare offers two ways to get the code in. **Either works** — pick one.
 
-Delete everything in the editor. Open **`worker/index.js`** in this repository,
-click **Copy raw file**, paste it in, and click **Deploy**.
+### 2a. Connect this repository (recommended)
 
-Copy the URL shown at the top — something like
+Cloudflare builds and deploys straight from GitHub, so future changes to the
+Worker deploy themselves and you never open Cloudflare again.
+
+Connect to `jchristadore-ux/OpenFIN`, then set:
+
+| Setting | Value |
+|---|---|
+| Deploy command | `npx wrangler deploy` |
+| Build command | *(none)* |
+| **Root directory** | **`worker`** |
+| Branch | `main` |
+
+**Root directory `worker` is the one people get wrong.** `wrangler.toml` lives
+in `worker/`, not at the top of the repository. Left at `/`, the build fails
+with a missing-config error that does not mention the root directory at all.
+
+Optionally set **Build watch paths** to `worker/*`. The engine commits to
+`main` every time you enter a balance, and without this every one of those
+triggers a rebuild of a Worker whose code did not change.
+
+### 2b. Paste it in by hand
+
+**Deploy** the placeholder Worker, then **Edit code**. Delete everything in the
+editor. Open **`worker/index.js`** in this repository, click **Copy raw file**,
+paste it in, **Deploy**.
+
+Simpler to start, but every future change means pasting again.
+
+---
+
+Either way, copy the URL from the **Overview** tab — something like
 `https://openfin.<your-subdomain>.workers.dev`. You need it twice more.
 
 > `index.js` carries the repository name and allowed origin as defaults in the
@@ -51,7 +78,8 @@ Copy the URL shown at the top — something like
 
 ## 3. Add the token as a secret
 
-Still in the Worker → **Settings** → **Variables and Secrets** → **Add**.
+**In Cloudflare, not GitHub.** Still in the Worker → **Settings** →
+**Variables and Secrets** → **Add**.
 
 | Field | Value |
 |---|---|
@@ -61,8 +89,18 @@ Still in the Worker → **Settings** → **Variables and Secrets** → **Add**.
 
 **Deploy** again so the secret takes effect.
 
+> **If GitHub says "secret names must not start with GITHUB_", you are in the
+> wrong dashboard.** GitHub reserves that prefix for its own Actions secrets and
+> refuses to create one. Cloudflare has no such rule. The token belongs on
+> Cloudflare because that is the entire point of the Worker — GitHub is the
+> thing being called, so it does not need a copy of the key used to call it.
+
 > Type **Secret** matters. A Text variable is readable afterwards in the
 > dashboard; a Secret is write-only.
+
+> Nothing goes in **Settings → Secrets and variables → Actions** on GitHub for
+> the Worker. That page is for the engine's email credentials, listed in
+> [../SETUP.md](../SETUP.md).
 
 ---
 
@@ -104,6 +142,20 @@ Open the Worker URL in a browser.
 | `{"error":"POST only"}` with no email prompt | Access is not in front — redo step 4. |
 | `{"error":"Cloudflare Access is not in front…"}` | Same; the Worker is refusing to accept unauthenticated writes. |
 | `{"error":"GITHUB_TOKEN is not set…"}` | Step 3 was missed, or Deploy was not clicked after adding it. |
+
+### If the build itself failed (route 2a only)
+
+Deployments tab → the red build → read the last line of the log.
+
+| Log says | Fix |
+|---|---|
+| `build token … has been deleted or rolled` | Settings → Build → **Build token** → create a new one → **Retry build** |
+| Missing config, or `wrangler.toml not found` | Settings → Build → **Root directory** → `worker` |
+| `workerd/jsg` or a syntax error | The paste was truncated. Use **Copy raw file**, not a selection from the rendered page. |
+
+The build token and the root directory are separate faults that look like one.
+A rolled token stops the build before it ever reads the root directory, so
+fixing only the token gets you a second red build with a different message.
 
 ---
 
