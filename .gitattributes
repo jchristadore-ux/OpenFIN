@@ -1,0 +1,6 @@
+# Engine output, not source. Marking these generated collapses them in pull
+# request diffs, so a review shows the code that changed rather than a few
+# hundred lines of recomputed figures.
+snapshot.json linguist-generated=true
+state.json    linguist-generated=true
+logs/**       linguist-generated=true

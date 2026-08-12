@@ -18,13 +18,31 @@
  *   POST /bills    {"edits": [{"id": "netflix", "amount": "21.31", "due_day": 23}]}
  *   POST /defer    {"items": [{"bill_id": "netflix", "date": "2026-08-23"}]}
  *
- * Secrets (wrangler secret put):
- *   GITHUB_TOKEN   fine-grained PAT, Contents: Read and write on the repo
- * Vars (wrangler.toml):
- *   REPO           "owner/name"
- *   ALLOWED_ORIGIN the Pages origin allowed to call this
- *   REQUIRE_ACCESS  "true" to refuse requests without an Access JWT
+ * DEPLOYING WITHOUT A TERMINAL
+ * Cloudflare's dashboard has a code editor, so this whole file can be pasted in
+ * and deployed by clicking. See worker/README.md. The three settings below are
+ * defaults in code precisely so that the only thing that has to be added by
+ * hand is the one secret:
+ *
+ *   GITHUB_TOKEN   fine-grained PAT, Contents: Read and write on the repo.
+ *                  Add it in the dashboard under Settings -> Variables and
+ *                  Secrets -> Add -> type Secret. Never a plaintext variable.
+ *
+ * Each default can still be overridden by a dashboard variable of the same
+ * name, which is what an env value is checked for first below.
  */
+
+const DEFAULTS = {
+  REPO: "jchristadore-ux/OpenFIN",
+  ALLOWED_ORIGIN: "https://jchristadore-ux.github.io",
+  REQUIRE_ACCESS: "true",
+};
+
+/** Dashboard variable if present, otherwise the default above. */
+function cfg(env, key) {
+  const v = env[key];
+  return v === undefined || v === null || v === "" ? DEFAULTS[key] : v;
+}
 
 const MONEY = /^-?\d+(\.\d{1,2})?$/;
 const ID = /^[a-z0-9][a-z0-9-]{0,48}$/;
@@ -32,7 +50,7 @@ const DATE = /^\d{4}-\d{2}-\d{2}$/;
 
 function cors(env, extra = {}) {
   return {
-    "Access-Control-Allow-Origin": env.ALLOWED_ORIGIN || "*",
+    "Access-Control-Allow-Origin": cfg(env, "ALLOWED_ORIGIN"),
     "Access-Control-Allow-Methods": "POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
     "Access-Control-Max-Age": "86400",
@@ -54,7 +72,7 @@ function cleanMoney(raw) {
 }
 
 async function dispatch(env, event_type, client_payload) {
-  const res = await fetch(`https://api.github.com/repos/${env.REPO}/dispatches`, {
+  const res = await fetch(`https://api.github.com/repos/${cfg(env, "REPO")}/dispatches`, {
     method: "POST",
     headers: {
       Accept: "application/vnd.github+json",
@@ -79,7 +97,7 @@ export default {
 
     // Defence in depth: refuse if Access is not in front of us.
     if (
-      String(env.REQUIRE_ACCESS ?? "true") === "true" &&
+      String(cfg(env, "REQUIRE_ACCESS")) === "true" &&
       !request.headers.get("Cf-Access-Jwt-Assertion")
     ) {
       return json(env, 401, {
@@ -89,8 +107,12 @@ export default {
       });
     }
 
-    if (!env.GITHUB_TOKEN || !env.REPO) {
-      return json(env, 500, { error: "Worker is missing GITHUB_TOKEN or REPO" });
+    if (!env.GITHUB_TOKEN) {
+      return json(env, 500, {
+        error:
+          "GITHUB_TOKEN is not set. Add it in the Cloudflare dashboard under " +
+          "Settings -> Variables and Secrets, as a Secret.",
+      });
     }
 
     const url = new URL(request.url);

@@ -106,6 +106,39 @@ class TestCalendar(unittest.TestCase):
         c = cal([bill("e", "Electric", 137.79, day=20, variable=True, hi=305.12)], [])
         self.assertEqual(c.events[0].amount, D("305.12"))
 
+    def test_weekly_variable_uses_the_mean_not_the_max(self):
+        # Regression: groceries were forecast at their worst-ever week, every
+        # week - $791.32 x 52 = $41,148 against an actual $16,593.
+        b = bill("g", "Groceries", 319.09, freq="weekly", anchor="2026-08-16",
+                 variable=True, hi=791.32)
+        self.assertEqual(fincal.expected_amount(b, date(2026, 8, 16)), D("319.09"))
+
+    def test_biweekly_variable_also_uses_the_mean(self):
+        b = bill("f", "Fuel", 90.77, freq="biweekly", anchor="2026-08-16",
+                 variable=True, hi=447.12)
+        self.assertEqual(fincal.expected_amount(b, date(2026, 8, 16)), D("90.77"))
+
+    def test_semimonthly_variable_uses_the_mean(self):
+        # Raised in review on PR #30: semimonthly fires 24 times a year, the
+        # same class as biweekly, so it must not forecast at the maximum.
+        b = bill("s", "Semi", 100, freq="semimonthly", day=1,
+                 variable=True, hi=900)
+        self.assertEqual(fincal.expected_amount(b, date(2026, 8, 1)), D("100"))
+
+    def test_frequency_cutoff_is_by_occurrence_count(self):
+        # The rule is a count, not a list of labels, so a new frequency cannot
+        # silently land on the wrong side of it.
+        for freq, expect_mean in [("weekly", True), ("biweekly", True),
+                                  ("semimonthly", True), ("monthly", False),
+                                  ("quarterly", False)]:
+            per_year = fincal.OCCURRENCES_PER_YEAR[freq]
+            self.assertEqual(per_year >= fincal.FREQUENT_DRAW, expect_mean, freq)
+
+    def test_monthly_variable_still_uses_the_max(self):
+        # The forecast-high rule still earns its keep where a bill lands once.
+        b = bill("e", "Electric", 137.79, day=20, variable=True, hi=305.12)
+        self.assertEqual(fincal.expected_amount(b, date(2026, 8, 20)), D("305.12"))
+
     def test_seasonal_profile_beats_observed_max(self):
         b = bill("g", "Gas", 54.03, day=11, variable=True, hi=550.83)
         b["monthly_expected"] = {"3": "550.83", "8": "54.03"}

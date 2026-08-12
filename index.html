@@ -35,6 +35,18 @@
   .stale{background:#fef3c7;border:1px solid #fcd34d;color:#78350f;border-radius:10px;
     padding:11px 13px;font-size:13.5px;margin-bottom:12px}
 
+  /* one-time setup: where the Worker lives. Shown only until it is known. */
+  .setup{background:#fff;border:1px solid var(--line);border-left:4px solid var(--teal);
+    border-radius:10px;padding:14px;margin-bottom:12px;font-size:13.5px;line-height:1.5}
+  .setup h3{margin:0 0 6px;font-size:15px}
+  .setup .rowin{display:flex;gap:8px;margin-top:10px}
+  .setup input{flex:1;min-width:0;padding:12px;border:1px solid var(--line);
+    border-radius:10px;font-size:16px;font-family:inherit}
+  .setup button{border:0;border-radius:10px;background:var(--teal);color:#04231e;
+    font-weight:700;font-size:15px;padding:12px 16px;cursor:pointer}
+  .setup .note{margin-top:8px;opacity:.7;font-size:12.5px}
+  .setup .bad{color:#b91c1c;font-weight:600}
+
   /* the one input the household is responsible for */
   .bal{background:linear-gradient(135deg,var(--navy),var(--navy-d));color:#fff;
     border-radius:var(--r);padding:18px;margin-bottom:12px}
@@ -158,15 +170,60 @@
 // The dashboard renders snapshot.json and computes nothing. Every figure was
 // produced by src/engine.py. If a number looks wrong it is wrong in the engine,
 // and there is exactly one place to fix it.
-// Set this to the deployed Worker URL (see worker/README.md). The Worker holds
-// the GitHub token server-side and sits behind Cloudflare Access, so no
-// credential is ever entered or stored on a phone.
-const WORKER = '';   // e.g. 'https://openfin.example.workers.dev'
+// Where the Worker lives. The Worker holds the GitHub token server-side and
+// sits behind Cloudflare Access, so no credential is ever entered or stored on
+// a phone — only this address, which is not a secret.
+//
+// Two sources, device first:
+//   1. localStorage, set by pasting the URL into the setup box in the app.
+//      Takes effect immediately and needs no commit, but is per-device.
+//   2. app.json in this repository, which every device picks up. Editable on
+//      github.com with no terminal.
+// The device value wins so a phone can be pointed at a new Worker without
+// waiting on a commit; "Forget" clears it and falls back to app.json.
+const WORKER_KEY = 'openfin.worker';
+let WORKER = '';
+
+function workerFromDevice(){
+  try { return localStorage.getItem(WORKER_KEY) || ''; } catch(e){ return ''; }
+}
+function saveWorkerOnDevice(url){
+  try { localStorage.setItem(WORKER_KEY, url); } catch(e){ /* private mode */ }
+}
+function forgetWorkerOnDevice(){
+  try { localStorage.removeItem(WORKER_KEY); } catch(e){ /* private mode */ }
+}
+
+/** Accept what someone actually pastes; reject what cannot work. */
+function cleanWorkerUrl(raw){
+  let s = String(raw || '').trim().replace(/\/+$/, '');
+  if(!s) return null;
+  if(!/^https?:\/\//i.test(s)) s = 'https://' + s;
+  let u;
+  try { u = new URL(s); } catch(e){ return null; }
+  // http:// would send the request in the clear and Access would not be in
+  // front of it. Refuse rather than half-work.
+  if(u.protocol !== 'https:') return null;
+  if(!u.hostname.includes('.')) return null;
+  return u.origin + u.pathname.replace(/\/+$/, '');
+}
+
+async function loadWorkerUrl(){
+  const device = workerFromDevice();
+  if(device){ WORKER = device; return; }
+  try{
+    const r = await fetch('app.json?t=' + Date.now());
+    if(r.ok){
+      const cfg = await r.json();
+      WORKER = cleanWorkerUrl(cfg.worker_url) || '';
+    }
+  }catch(e){ /* app.json missing or unparseable; the setup box handles it */ }
+}
 
 async function post(path, payload){
   if(!WORKER){
-    throw new Error('The Worker URL is not set yet. Deploy worker/ and set '
-      + 'WORKER at the top of index.html.');
+    throw new Error('The Worker address is not set yet. Use the setup box '
+      + 'above to paste it in.');
   }
   const res = await fetch(WORKER + path, {
     method:'POST', credentials:'include',
@@ -199,6 +256,24 @@ function rows(list, dir){
       <div class="l">${esc(x.name)}${x.tier?`<span class="pill t${x.tier}">T${x.tier}</span>`:''}
         ${x.date?`<small>${dt(x.date)}</small>`:''}</div>
       <div class="v">${dir==='in'?'+':''}${m(x.amount)}</div></div>`).join('');
+}
+
+// ---- one-time setup ------------------------------------------------------
+function saveWorkerUrl(){
+  const input = document.getElementById('wkin');
+  const note = document.getElementById('wknote');
+  const url = cleanWorkerUrl(input.value);
+  if(!url){
+    note.className = 'note bad';
+    note.textContent = 'That is not a usable https address. It should look like '
+      + 'https://openfin.yourname.workers.dev';
+    input.focus();
+    return;
+  }
+  saveWorkerOnDevice(url);
+  WORKER = url;
+  const box = document.getElementById('setup');
+  if(box) box.remove();
 }
 
 // ---- balance entry -------------------------------------------------------
@@ -370,6 +445,25 @@ function render(s){
       to refresh them and send the daily summary.</div>`);
   }
 
+  // Until the Worker address is known nothing can be written, so say exactly
+  // that and take the address here rather than failing later on a button press.
+  if(!WORKER){
+    out.push(`<div class="setup" id="setup">
+      <h3>One-time setup</h3>
+      Updating the balance, saving bill changes and marking deferrals all go
+      through the OpenFIN Worker. Paste its address once and this box goes away.
+      It is not a secret — it is just where to send the request.
+      <div class="rowin">
+        <input id="wkin" type="url" inputmode="url" autocomplete="off"
+               autocapitalize="off" spellcheck="false"
+               placeholder="https://openfin.yourname.workers.dev">
+        <button id="wkbtn" type="button">Save</button>
+      </div>
+      <div class="note" id="wknote">Stored on this device. Reading the forecast
+        works without it; only writing needs it.</div>
+    </div>`);
+  }
+
   out.push(`<div class="bal">
     <div class="lab">Today's balance</div>
     <div class="amt">${m(s.balance)}</div>
@@ -506,6 +600,13 @@ function render(s){
        <div class="v">Cloudflare Access</div></div>`));
 
   document.getElementById('app').innerHTML = out.join('');
+  const wk = document.getElementById('wkbtn');
+  if(wk) wk.addEventListener('click', saveWorkerUrl);
+  const wki = document.getElementById('wkin');
+  if(wki) wki.addEventListener('keydown', e => {
+    if(e.key === 'Enter'){ e.preventDefault(); saveWorkerUrl(); }
+  });
+
   document.getElementById('balbtn').addEventListener('click', submitBalance);
   document.getElementById('balin').addEventListener('keydown', e => {
     if(e.key === 'Enter') submitBalance();
@@ -522,7 +623,11 @@ function render(s){
     + (ageDays > 0 ? '  (' + ageDays + ' day' + (ageDays>1?'s':'') + ' old)' : '');
 }
 
-fetch('snapshot.json?t=' + Date.now())
+// Resolve the Worker address first, so the first render already knows whether
+// to show the setup box. A missing app.json is not fatal — loadWorkerUrl()
+// swallows it and the setup box covers the gap.
+loadWorkerUrl()
+  .then(() => fetch('snapshot.json?t=' + Date.now()))
   .then(r => { if(!r.ok) throw new Error('snapshot.json ' + r.status); return r.json(); })
   .then(render)
   .catch(e => {

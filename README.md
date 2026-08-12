@@ -6,7 +6,7 @@
 budget was. It tells you what is about to happen to your money, when, how much,
 and what you could do about it.
 
-**[Open the app](https://jchristadore-ux.github.io/TogetherLedger/)**
+**[Open the app](https://jchristadore-ux.github.io/OpenFIN/)**
 
 ---
 
@@ -182,6 +182,5 @@ remains in `messaging.py` but nothing depends on it.
 
 ---
 
-<sub>The product is **OpenFIN**. The GitHub repository is still named
-`TogetherLedger` — renaming it is a repository setting, and every link above
-follows automatically once it changes.</sub>
+<sub>Repository renamed to **OpenFIN** on 11 Aug 2026. GitHub redirects the old
+`TogetherLedger` URLs, so old links keep working.</sub>

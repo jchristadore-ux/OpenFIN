@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-08-11T17:34:59.818590-04:00",
+  "generated_at": "2026-08-11T18:58:43.231662-04:00",
   "today": "2026-08-11",
   "balance": "21.61",
   "balance_is_fresh": true,
-  "balance_entered_at": "2026-08-11T17:34:59.818590-04:00",
+  "balance_entered_at": "2026-08-11T18:58:43.231662-04:00",
   "end_of_day": "-163.73",
-  "end_of_week": "-1778.18",
-  "end_of_month": "-3212.93",
+  "end_of_week": "-349.60",
+  "end_of_month": "-127.19",
   "week_end": "2026-08-16",
-  "minimum_balance": "-7976.25",
-  "minimum_date": "2026-10-06",
-  "shortfall": "7976.25",
+  "minimum_balance": "-1527.91",
+  "minimum_date": "2026-08-18",
+  "shortfall": "1527.91",
   "allowance": "110.56",
   "discretionary": {
-    "safe": "-1614.82",
+    "safe": "-186.24",
     "explain": [
       [
         "Balance now",
@@ -25,7 +25,7 @@
       ],
       [
         "Bills before end of week",
-        "-3152.49"
+        "-1723.91"
       ],
       [
         "Committed in the 14 days after that",
@@ -37,7 +37,7 @@
       ],
       [
         "Safe to spend",
-        "-1614.82"
+        "-186.24"
       ]
     ],
     "components": {
@@ -108,7 +108,7 @@
     {
       "date": "2026-08-15",
       "name": "Loew & Patel braces",
-      "amount": "1000.00",
+      "amount": "400.00",
       "direction": "out",
       "tier": 4
     },
@@ -122,14 +122,14 @@
     {
       "date": "2026-08-16",
       "name": "Groceries",
-      "amount": "791.32",
+      "amount": "319.09",
       "direction": "out",
       "tier": 2
     },
     {
       "date": "2026-08-16",
       "name": "Fuel",
-      "amount": "447.12",
+      "amount": "90.77",
       "direction": "out",
       "tier": 2
     }
@@ -174,13 +174,7 @@
     {
       "date": "2026-08-23",
       "name": "Groceries",
-      "amount": "791.32",
-      "tier": 2
-    },
-    {
-      "date": "2026-08-23",
-      "name": "Fuel",
-      "amount": "447.12",
+      "amount": "319.09",
       "tier": 2
     },
     {
@@ -194,6 +188,12 @@
       "name": "Kia",
       "amount": "742.65",
       "tier": 1
+    },
+    {
+      "date": "2026-08-30",
+      "name": "Groceries",
+      "amount": "319.09",
+      "tier": 2
     }
   ],
   "curve": [
@@ -215,227 +215,227 @@
     },
     {
       "date": "2026-08-15",
-      "closing": "-429.18"
+      "closing": "170.82"
     },
     {
       "date": "2026-08-16",
-      "closing": "-1778.18"
+      "closing": "-349.60"
     },
     {
       "date": "2026-08-17",
-      "closing": "-2187.74"
+      "closing": "-759.16"
     },
     {
       "date": "2026-08-18",
-      "closing": "-2956.49"
+      "closing": "-1527.91"
     },
     {
       "date": "2026-08-19",
-      "closing": "1561.32"
+      "closing": "2989.90"
     },
     {
       "date": "2026-08-20",
-      "closing": "1450.76"
+      "closing": "2879.34"
     },
     {
       "date": "2026-08-21",
-      "closing": "1340.20"
+      "closing": "2768.78"
     },
     {
       "date": "2026-08-22",
-      "closing": "1141.64"
+      "closing": "2570.22"
     },
     {
       "date": "2026-08-23",
-      "closing": "-228.67"
+      "closing": "2028.49"
     },
     {
       "date": "2026-08-24",
-      "closing": "-2969.96"
+      "closing": "-712.80"
     },
     {
       "date": "2026-08-25",
-      "closing": "-3080.52"
+      "closing": "-823.36"
     },
     {
       "date": "2026-08-26",
-      "closing": "-1175.02"
+      "closing": "1082.14"
     },
     {
       "date": "2026-08-27",
-      "closing": "-1370.36"
+      "closing": "886.80"
     },
     {
       "date": "2026-08-28",
-      "closing": "-1480.92"
+      "closing": "776.24"
     },
     {
       "date": "2026-08-29",
-      "closing": "-1753.37"
+      "closing": "503.79"
     },
     {
       "date": "2026-08-30",
-      "closing": "-3102.37"
+      "closing": "-16.63"
     },
     {
       "date": "2026-08-31",
-      "closing": "-3212.93"
+      "closing": "-127.19"
     },
     {
       "date": "2026-09-01",
-      "closing": "-3627.99"
+      "closing": "-542.25"
     },
     {
       "date": "2026-09-02",
-      "closing": "1106.82"
+      "closing": "4192.56"
     },
     {
       "date": "2026-09-03",
-      "closing": "592.01"
+      "closing": "3677.75"
     },
     {
       "date": "2026-09-04",
-      "closing": "137.75"
+      "closing": "3223.49"
     },
     {
       "date": "2026-09-05",
-      "closing": "27.19"
+      "closing": "3112.93"
     },
     {
       "date": "2026-09-06",
-      "closing": "-1710.05"
+      "closing": "2204.27"
     },
     {
       "date": "2026-09-07",
-      "closing": "-3622.23"
+      "closing": "292.09"
     },
     {
       "date": "2026-09-08",
-      "closing": "-3882.79"
+      "closing": "31.53"
     },
     {
       "date": "2026-09-09",
-      "closing": "-1977.29"
+      "closing": "1937.03"
     },
     {
       "date": "2026-09-10",
-      "closing": "-2087.85"
+      "closing": "1826.47"
     },
     {
       "date": "2026-09-11",
-      "closing": "-2279.17"
+      "closing": "1635.15"
     },
     {
       "date": "2026-09-12",
-      "closing": "-2968.00"
+      "closing": "946.32"
     },
     {
       "date": "2026-09-13",
-      "closing": "-4317.00"
+      "closing": "425.90"
     },
     {
       "date": "2026-09-14",
-      "closing": "-4527.56"
+      "closing": "215.34"
     },
     {
       "date": "2026-09-15",
-      "closing": "-5799.12"
+      "closing": "-456.22"
     },
     {
       "date": "2026-09-16",
-      "closing": "-1064.31"
+      "closing": "4278.59"
     },
     {
       "date": "2026-09-17",
-      "closing": "-1473.87"
+      "closing": "3869.03"
     },
     {
       "date": "2026-09-18",
-      "closing": "-2242.62"
+      "closing": "3100.28"
     },
     {
       "date": "2026-09-19",
-      "closing": "-2686.18"
+      "closing": "2656.72"
     },
     {
       "date": "2026-09-20",
-      "closing": "-4035.18"
+      "closing": "2136.30"
     },
     {
       "date": "2026-09-21",
-      "closing": "-5947.36"
+      "closing": "224.12"
     },
     {
       "date": "2026-09-22",
-      "closing": "-6145.92"
+      "closing": "25.56"
     },
     {
       "date": "2026-09-23",
-      "closing": "-4261.73"
+      "closing": "1909.75"
     },
     {
       "date": "2026-09-24",
-      "closing": "-5452.55"
+      "closing": "718.93"
     },
     {
       "date": "2026-09-25",
-      "closing": "-5563.11"
+      "closing": "608.37"
     },
     {
       "date": "2026-09-26",
-      "closing": "-5673.67"
+      "closing": "497.81"
     },
     {
       "date": "2026-09-27",
-      "closing": "-7107.45"
+      "closing": "-107.39"
     },
     {
       "date": "2026-09-28",
-      "closing": "-7218.01"
+      "closing": "-217.95"
     },
     {
       "date": "2026-09-29",
-      "closing": "-7490.46"
+      "closing": "-490.40"
     },
     {
       "date": "2026-09-30",
-      "closing": "-2755.65"
+      "closing": "4244.41"
     },
     {
       "date": "2026-10-01",
-      "closing": "-2866.21"
+      "closing": "4133.85"
     },
     {
       "date": "2026-10-02",
-      "closing": "-2976.77"
+      "closing": "4023.29"
     },
     {
       "date": "2026-10-03",
-      "closing": "-3355.07"
+      "closing": "3644.99"
     },
     {
       "date": "2026-10-04",
-      "closing": "-5047.77"
+      "closing": "2780.87"
     },
     {
       "date": "2026-10-05",
-      "closing": "-6959.95"
+      "closing": "868.69"
     },
     {
       "date": "2026-10-06",
-      "closing": "-7976.25"
+      "closing": "-147.61"
     },
     {
       "date": "2026-10-07",
-      "closing": "-6248.05"
+      "closing": "1580.59"
     },
     {
       "date": "2026-10-08",
-      "closing": "-6508.61"
+      "closing": "1320.03"
     },
     {
       "date": "2026-10-09",
-      "closing": "-6619.17"
+      "closing": "1209.47"
     }
   ],
   "risks": [
@@ -444,8 +444,8 @@
       "type": "negative_balance",
       "severity": "critical",
       "title": "Balance goes negative Tue 11 Aug",
-      "detail": "Projected -$163.73 on Tue 11 Aug. Lowest point is -$7,976.25 on Tue 6 Oct.",
-      "amount": "7976.25",
+      "detail": "Projected -$163.73 on Tue 11 Aug. Lowest point is -$1,527.91 on Tue 18 Aug.",
+      "amount": "1527.91",
       "when": "2026-08-11"
     },
     {
@@ -453,68 +453,32 @@
       "type": "secured_payment",
       "severity": "critical",
       "title": "CCU car loan may not clear",
-      "detail": "CCU car loan of $306.90 is due Tue 18 Aug with only -$2,187.74 available that day.",
+      "detail": "CCU car loan of $306.90 is due Tue 18 Aug with only -$759.16 available that day.",
       "amount": "306.90",
       "when": "2026-08-18"
     },
     {
-      "id": "secured_payment:mortgage:2026-08-24",
-      "type": "secured_payment",
-      "severity": "critical",
-      "title": "Mortgage may not clear",
-      "detail": "Mortgage of $1,801.62 is due Mon 24 Aug with only -$228.67 available that day.",
-      "amount": "1801.62",
-      "when": "2026-08-24"
-    },
-    {
-      "id": "secured_payment:car-payment:2026-08-24",
-      "type": "secured_payment",
-      "severity": "critical",
-      "title": "Kia may not clear",
-      "detail": "Kia of $742.65 is due Mon 24 Aug with only -$228.67 available that day.",
-      "amount": "742.65",
-      "when": "2026-08-24"
-    },
-    {
-      "id": "large_payment:loew-patel-braces:2026-08-15",
-      "type": "large_payment",
+      "id": "income_timing:2026-08-11",
+      "type": "income_timing",
       "severity": "high",
-      "title": "Loew & Patel braces $1,000.00 may be short",
-      "detail": "Loew & Patel braces of $1,000.00 is due Sat 15 Aug against a projected opening balance of $842.38.",
-      "amount": "157.62",
-      "when": "2026-08-15"
-    },
-    {
-      "id": "large_payment:groceries:2026-08-16",
-      "type": "large_payment",
-      "severity": "high",
-      "title": "Groceries $791.32 may be short",
-      "detail": "Groceries of $791.32 is due Sun 16 Aug against a projected opening balance of -$429.18.",
-      "amount": "791.32",
-      "when": "2026-08-16"
-    },
-    {
-      "id": "large_payment:mortgage:2026-08-24",
-      "type": "large_payment",
-      "severity": "high",
-      "title": "Mortgage $1,801.62 may be short",
-      "detail": "Mortgage of $1,801.62 is due Mon 24 Aug against a projected opening balance of -$228.67.",
-      "amount": "1801.62",
-      "when": "2026-08-24"
+      "title": "Timing problem, not a shortfall",
+      "detail": "Income of $29,461.78 covers $21,640.32 of bills across the window, but the balance still dips to -$1,527.91 on Tue 18 Aug because money goes out before it comes in. Next income is Insight Global payroll $2,016.06 on Wed 12 Aug.",
+      "amount": "1527.91",
+      "when": "2026-08-11"
     },
     {
       "id": "discretionary:2026-08-16",
       "type": "discretionary",
       "severity": "medium",
-      "title": "Discretionary is -$1,614.82",
-      "detail": "After bills through Sun 16 Aug and $0.00 committed just beyond it, there is -$1,614.82 free to spend this week.",
-      "amount": "1614.82",
+      "title": "Discretionary is -$186.24",
+      "detail": "After bills through Sun 16 Aug and $0.00 committed just beyond it, there is -$186.24 free to spend this week.",
+      "amount": "186.24",
       "when": "2026-08-16"
     }
   ],
   "plan": {
-    "summary": "Deferring T-Mobile Lia $20.75 frees $20.75, which is short of the $7,976.25 needed by 11 Aug.",
-    "shortfall": "7976.25",
+    "summary": "Deferring T-Mobile Lia $20.75 frees $20.75, which is short of the $1,527.91 needed by 11 Aug.",
+    "shortfall": "1527.91",
     "problem_day": "2026-08-11",
     "candidates": [
       {
@@ -586,7 +550,7 @@
       "id": "loew-patel-braces",
       "name": "Loew & Patel braces",
       "date": "2026-08-15",
-      "amount": "1000.00",
+      "amount": "400.00",
       "tier": 4,
       "deferrable": true,
       "secured": false,
@@ -608,7 +572,7 @@
       "id": "groceries",
       "name": "Groceries",
       "date": "2026-08-16",
-      "amount": "791.32",
+      "amount": "319.09",
       "tier": 2,
       "deferrable": false,
       "secured": false,
@@ -619,7 +583,7 @@
       "id": "fuel",
       "name": "Fuel",
       "date": "2026-08-16",
-      "amount": "447.12",
+      "amount": "90.77",
       "tier": 2,
       "deferrable": false,
       "secured": false,
@@ -729,7 +693,7 @@
       "id": "groceries",
       "name": "Groceries",
       "date": "2026-08-23",
-      "amount": "791.32",
+      "amount": "319.09",
       "tier": 2,
       "deferrable": false,
       "secured": false,
@@ -740,7 +704,7 @@
       "id": "fuel",
       "name": "Fuel",
       "date": "2026-08-23",
-      "amount": "447.12",
+      "amount": "90.77",
       "tier": 2,
       "deferrable": false,
       "secured": false,
@@ -828,7 +792,7 @@
       "id": "groceries",
       "name": "Groceries",
       "date": "2026-08-30",
-      "amount": "791.32",
+      "amount": "319.09",
       "tier": 2,
       "deferrable": false,
       "secured": false,
@@ -839,7 +803,7 @@
       "id": "fuel",
       "name": "Fuel",
       "date": "2026-08-30",
-      "amount": "447.12",
+      "amount": "90.77",
       "tier": 2,
       "deferrable": false,
       "secured": false,
@@ -1232,7 +1196,7 @@
       "active": true,
       "variable": true,
       "needs_review": true,
-      "note": "SCHEDULE UNKNOWN - flagged, not guessed. The statements show $1,000.00 on 06/10/2026, then $129.47 and $15.00, plus $129.47 on 04/29 and smaller amounts through the spring. No pattern is derivable. The household sheet says $400.00 'TBD'. Held at $400.00 monthly as a placeholder so it is not forgotte"
+      "note": "SCHEDULE UNKNOWN - flagged, not guessed. The statements show $1,000.00 on 06/10/2026, $129.47 on 04/29 and 06/24, and smaller amounts through the spring. No pattern is derivable. Held at the household's $400.00/month placeholder. observed_max is deliberately NOT set: with it, the engine forecast the"
     },
     {
       "id": "trash",
