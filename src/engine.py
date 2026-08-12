@@ -247,10 +247,17 @@ def analyse(settings: Settings, state: dict, now: datetime) -> Result:
     # "Upcoming" is deliberately the non-weekly stuff: one-off and annual
     # obligations far enough out that they are easy to forget and big enough to
     # hurt. Weekly noise belongs in THIS WEEK, not here.
+    #
+    # Deferred occurrences are included and marked, not filtered out. Deferring
+    # moves an obligation, it does not settle it, and a list of what is coming
+    # that quietly omits the bill you postponed is exactly the kind of flattering
+    # half-truth this project refuses to produce.
     week = fincal.week_end(today)
     upcoming = [
         e
-        for e in calendar.bills_between(week + timedelta(days=1), horizon)
+        for e in calendar.bills_between(
+            week + timedelta(days=1), horizon, include_deferred=True
+        )
         if e.priority_tier <= 4 and e.amount >= money(100)
     ][:10]
 
@@ -312,10 +319,17 @@ def write_snapshot(r: Result, settings: Settings, now: datetime) -> dict:
                 "buffer": str(settings.minimum_safe_balance),
             },
         },
+        # Deferred occurrences carry a flag everywhere they appear rather than
+        # being dropped. The forecast excludes them because they do not leave the
+        # account; the lists still show them because the money is still owed. The
+        # dashboard reads the flag to strike them through and to keep them out of
+        # its totals, so what is listed and what is projected agree.
         "today_bills": [
             {"name": e.name, "amount": str(e.amount), "tier": e.priority_tier,
-             "autopay": e.autopay}
-            for e in (f.days[0].bills if f.days else [])
+             "autopay": e.autopay, "deferred": e.deferred}
+            for e in r.calendar.bills_between(
+                r.today, r.today, include_deferred=True
+            )
         ],
         "today_income": [
             {"name": e.name, "amount": str(e.amount)}
@@ -323,12 +337,13 @@ def write_snapshot(r: Result, settings: Settings, now: datetime) -> dict:
         ],
         "this_week": [
             {"date": e.day.isoformat(), "name": e.name, "amount": str(e.amount),
-             "direction": e.direction, "tier": e.priority_tier}
+             "direction": e.direction, "tier": e.priority_tier,
+             "deferred": e.deferred}
             for e in r.calendar.between(r.today, r.discretionary.week_end)
         ],
         "upcoming": [
             {"date": e.day.isoformat(), "name": e.name, "amount": str(e.amount),
-             "tier": e.priority_tier}
+             "tier": e.priority_tier, "deferred": e.deferred}
             for e in r.upcoming
         ],
         "curve": [

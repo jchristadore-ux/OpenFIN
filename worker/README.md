@@ -1,7 +1,12 @@
 # Deploying the OpenFIN Worker — no terminal, no code
 
-This holds the GitHub token so no phone has to. The app POSTs here, this runs
-the engine. **All of it is done by clicking in a browser.**
+This holds the GitHub token so no phone has to, **and it serves the app**. The
+app POSTs here, this runs the engine. **All of it is done by clicking in a
+browser.**
+
+> **Open OpenFIN at the Worker address, not the github.io one.** The Worker
+> serves the same dashboard, and only that copy can save anything. See
+> [Why the app is served from here](#why-the-app-is-served-from-here).
 
 Free throughout: Workers gives 100,000 requests/day and Cloudflare Access is
 free for up to 50 users. A household uses a handful a day.
@@ -150,10 +155,11 @@ Open the Worker URL in a browser.
 
 | What you see | Meaning |
 |---|---|
-| Email code prompt, then `{"error":"POST only"}` | ✅ **Correct.** Access is in front and the Worker is alive. |
-| `{"error":"POST only"}` with no email prompt | Access is not in front — redo step 4. |
-| `{"error":"Cloudflare Access is not in front…"}` | Same; the Worker is refusing to accept unauthenticated writes. |
+| Email code prompt, then the OpenFIN dashboard | ✅ **Correct.** Access is in front, the Worker is alive, and this is the address to use. |
+| The dashboard with no email prompt | Access is not in front — redo step 4. The forecast is public as it stands. |
+| `{"error":"Cloudflare Access is not in front…"}` | Same; the Worker is refusing to serve or accept anything. |
 | `{"error":"GITHUB_TOKEN is not set…"}` | Step 3 was missed, or Deploy was not clicked after adding it. |
+| `could not read index.html … GitHub returned 404` | The token expired or lost access to the repository. Redo step 1 and step 3. |
 
 ### If the build itself failed (route 2a only)
 
@@ -171,29 +177,49 @@ fixing only the token gets you a second red build with a different message.
 
 ---
 
-## 6. Tell the app where the Worker is
+## 6. Use the app at the Worker address
 
-Open the app. Because the address is not yet set, a **One-time setup** box is
-sitting at the top. Paste the Worker URL into it and tap **Save**. That is the
-whole step — no file to edit, nothing to commit.
+Open `https://openfin.<your-subdomain>.workers.dev` on each phone, enter the
+email code, and **add that to the home screen**. That is the app. Balance
+updates, bill edits and deferrals all save from there.
 
-The address is stored on that device, so do the same on the second phone. It is
-not a secret; it is only where to send the request, and the Worker still refuses
-anyone Access has not signed in.
+The github.io address still shows the forecast and is fine for a quick look,
+but it cannot save. It says so at the top of the page and links here.
 
-To set it once for every device instead, edit **`app.json`** on github.com
-(pencil icon) and put the URL in `worker_url`:
+`app.json` still carries the Worker URL, so the github.io copy knows where to
+send people. Edit it on github.com (pencil icon) if the address ever changes:
 
 ```json
 "worker_url": "https://openfin.your-subdomain.workers.dev"
 ```
 
-Commit, wait a minute for Pages to rebuild, and any phone that has not had the
-address pasted in picks it up. A device that *has* had it pasted in keeps its
-own value.
+Then update your balance. The first visit on each phone asks for an email code;
+after that the sign-in lasts as long as the session duration set in step 4.
 
-Either way, then update your balance. The first write on each phone asks for an
-email code.
+---
+
+## Why the app is served from here
+
+The Worker used to only accept writes, with the dashboard loaded from GitHub
+Pages. Every save failed with **"Failed to fetch. Nothing was saved."** Two
+separate browser rules made it impossible, and neither is fixable from the page:
+
+1. **The preflight never got through.** A cross-site POST sending JSON is
+   preceded by an `OPTIONS` request, and preflights never carry cookies — that
+   is fixed in the browser, not configurable. Access saw an unauthenticated
+   request and answered with a login redirect. A preflight may not follow a
+   redirect, so the real request was never sent.
+2. **The sign-in cookie was never attached.** Access sets its cookie on the
+   `workers.dev` host. To a page served from `github.io` that is a third-party
+   cookie, and Safari — the browser on both phones — blocks those outright.
+
+So the Worker serves the dashboard itself. Signing in is then an ordinary visit,
+Access sets a first-party cookie, and every save is same-origin: no preflight,
+no third-party cookie, nothing left for a browser to block.
+
+It serves an allowlist — `index.html`, `snapshot.json`, `app.json` and the logo
+— rather than proxying any path, because the token here can read the whole
+repository.
 
 ---
 

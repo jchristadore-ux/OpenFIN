@@ -17,6 +17,11 @@ jobs:
       - run: pip install --quiet requests openpyxl
       - name: Financial engine tests
         run: python -m unittest discover -s tests -v
+
+      - name: Worker routing, CORS and failure messages
+        # The Worker is deployed by pasting it into a dashboard, so there is no
+        # build step to catch anything. This is the only gate it gets.
+        run: node worker/index.test.mjs
       - name: Data files must load and validate
         run: |
           python - <<'PY'

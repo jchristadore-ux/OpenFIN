@@ -16,13 +16,13 @@ There is no server and no database. GitHub Actions is the entire runtime, and
 JSON files committed to this repository are the entire state.
 
 ```
-phone (GitHub Pages)  ->  Cloudflare Worker  ->  repository_dispatch
-                                                        |
-                                                 GitHub Actions
-                                                        |
-                                    engine.py -> snapshot.json + email
-                                                        |
-                                          committed back -> Pages serves it
+phone (the Worker serves the app)  ->  same-origin POST  ->  repository_dispatch
+                                                                    |
+                                                             GitHub Actions
+                                                                    |
+                                        engine.py -> snapshot.json + email
+                                                                    |
+                                    committed back -> the Worker serves it again
 ```
 
 **Entering the balance is the trigger for everything.** There is no scheduled
@@ -31,22 +31,39 @@ authoritative and is quietly wrong. Risk alerts are the exception — they run o
 a schedule twice a day and never depend on a balance being entered, because the
 whole point of an early warning is that it arrives when nobody is looking.
 
-### The Worker exists to keep tokens off phones
+### The Worker exists to keep tokens off phones, and to be the app's origin
 
 GitHub Pages is static, so the app cannot write. Rather than put a GitHub token
 on each phone, a Cloudflare Worker holds one as a server-side secret and is the
 only thing that ever sees it. Cloudflare Access sits in front with email
 one-time-PIN, so there is nothing to type on a phone and nothing stored on it.
 
-The Worker **fails closed**: absent the `Cf-Access-Jwt-Assertion` header it
-returns 401 rather than accepting an unauthenticated write. If Access is ever
-removed or misconfigured, the alternative would be an open endpoint that lets
-anyone who finds the URL write to the household's finances.
+**The Worker also serves the dashboard, and that is not cosmetic.** With the app
+loaded from Pages, every write failed as "Failed to fetch. Nothing was saved."
+Two browser rules made the cross-site write impossible, neither of them
+configurable:
 
-- Live at `https://openfin.christadore.workers.dev`
+- a cross-site POST carrying JSON is preflighted; preflights never carry
+  cookies, so Access answered the `OPTIONS` with a login redirect, and a
+  preflight may not follow one. The real request was never sent.
+- the Access cookie belongs to the `workers.dev` host, which makes it
+  third-party to a page on `github.io`. Safari — the browser on both phones —
+  blocks those outright.
+
+Served from the Worker, sign-in is a normal top-level visit, the cookie is
+first-party, and writes are same-origin: no preflight, no third-party cookie.
+Pages stays as a read-only copy and says so at the top of the page.
+
+The Worker **fails closed**: absent the `Cf-Access-Jwt-Assertion` header it
+returns 401 rather than serving the forecast or accepting a write. If Access is
+ever removed or misconfigured, the alternative would be an open endpoint that
+lets anyone who finds the URL read and write the household's finances.
+
+- Live at `https://openfin.christadore.workers.dev` — **this is the app**
 - Deployed from this repo via Cloudflare Workers Builds, **root directory
   `worker`** (not `/` — `wrangler.toml` lives in `worker/`)
-- Routes: `POST /balance`, `POST /bills`, `POST /defer`
+- Routes: `GET /` and an allowlist of `snapshot.json`, `app.json`,
+  `assets/mark.svg`; `POST /balance`, `POST /bills`, `POST /defer`
 - Only secret: `GITHUB_TOKEN`, set **in Cloudflare, not GitHub** (GitHub reserves
   the `GITHUB_` prefix and refuses to create one)
 
@@ -83,7 +100,12 @@ anyone who finds the URL write to the household's finances.
   hiding it is the one thing this tool must never do.
 - **Never invent a number.** On failure the engine says so rather than
   substituting a plausible figure.
-- 92 tests, all passing. `python -m unittest discover -s tests`
+- **A deferred bill is listed everywhere it was listed before, struck through,
+  and left out of the totals beside it.** Both halves matter: the forecast
+  excludes it because it is not leaving the account, the lists keep it because
+  it is still owed. `snapshot.json` carries a `deferred` flag on every row of
+  `today_bills`, `this_week` and `upcoming` so both can be true at once.
+- 100 tests, all passing. `python -m unittest discover -s tests`
 
 ---
 
@@ -99,7 +121,32 @@ inputs must produce the same cent on both sides.
 
 ---
 
-## 4. Two bugs worth remembering
+## 4. Bugs worth remembering
+
+**Nothing could be saved at all: "Failed to fetch."** The app was on GitHub
+Pages and posted cross-site to the Access-protected Worker. Preflights carry no
+cookies, so Access redirected the `OPTIONS` and the browser gave up; and the
+Access cookie was third-party to `github.io`, which Safari blocks. Fixed by
+serving the app from the Worker so writes are same-origin. Three smaller faults
+were in the same path and would each have broken it on their own: the Worker
+never sent `Access-Control-Allow-Credentials`, which alone voids any
+`credentials: 'include'` response; the app labelled its body `application/json`,
+which is what forced the preflight; and a failed dispatch reported only "GitHub
+returned 404", which is what an expired token looks like and sent nobody
+anywhere useful.
+
+**A saved deferral disappeared from the lists.** `upcoming` and the "This week"
+total were built from calendar helpers that exclude deferred occurrences by
+default, so postponing a bill removed it from view while the money was still
+owed — the one thing this tool must never do. The engine was right; the snapshot
+was hiding it. Now every list row carries a `deferred` flag, the app strikes
+those through, and the totals beside them count only what is actually leaving.
+
+**Saving a deferral re-sent the daily summary.** The workflow's "send the daily
+summary" step excluded `bills` dispatches but not `defer` ones, so recording a
+deferral ran `engine.py daily` a second time against whatever balance was on
+file. Deferring is a decision about what leaves the account, not a reading of
+it.
 
 **Variable bills forecast at their worst-ever occurrence.** `observed_max`
 exists so a bill arriving once a month is covered at its worst. Applied to a
@@ -199,10 +246,13 @@ massaged into agreement.
 
 ## 7. Operational state
 
-**Working:** Pages, email (SMTP secrets set and confirmed sending), the Worker,
-Cloudflare Access, the app wired to the Worker via `app.json`, 92 tests green.
+**Working:** Pages (read-only), email (SMTP secrets set and confirmed sending),
+the Worker, Cloudflare Access, 100 tests green.
 
 **Outstanding for the owner:**
+- **Open `https://openfin.christadore.workers.dev` and use OpenFIN from there.**
+  That address now serves the app; the github.io one cannot save and says so.
+  Replace the home-screen icon on both phones.
 - Enter a balance — confirms the chain end to end and applies the latest
   bills.json corrections
 - Add **One-time PIN** as a login method (Zero Trust → Settings →
