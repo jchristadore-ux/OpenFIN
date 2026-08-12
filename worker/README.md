@@ -78,7 +78,8 @@ Either way, copy the URL from the **Overview** tab — something like
 
 ## 3. Add the token as a secret
 
-Still in the Worker → **Settings** → **Variables and Secrets** → **Add**.
+**In Cloudflare, not GitHub.** Still in the Worker → **Settings** →
+**Variables and Secrets** → **Add**.
 
 | Field | Value |
 |---|---|
@@ -88,8 +89,18 @@ Still in the Worker → **Settings** → **Variables and Secrets** → **Add**.
 
 **Deploy** again so the secret takes effect.
 
+> **If GitHub says "secret names must not start with GITHUB_", you are in the
+> wrong dashboard.** GitHub reserves that prefix for its own Actions secrets and
+> refuses to create one. Cloudflare has no such rule. The token belongs on
+> Cloudflare because that is the entire point of the Worker — GitHub is the
+> thing being called, so it does not need a copy of the key used to call it.
+
 > Type **Secret** matters. A Text variable is readable afterwards in the
 > dashboard; a Secret is write-only.
+
+> Nothing goes in **Settings → Secrets and variables → Actions** on GitHub for
+> the Worker. That page is for the engine's email credentials, listed in
+> [../SETUP.md](../SETUP.md).
 
 ---
 
