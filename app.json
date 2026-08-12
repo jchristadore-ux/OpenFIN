@@ -1,5 +1,5 @@
 {
   "_": "Settings the dashboard reads in the browser. Safe to edit on github.com.",
   "_worker_url": "Deployed Cloudflare Worker URL from worker/README.md, e.g. https://openfin.yoursubdomain.workers.dev. Leave empty and the app shows a setup box instead, which stores it on that device only.",
-  "worker_url": ""
+  "worker_url": "https://openfin.christadore.workers.dev"
 }
