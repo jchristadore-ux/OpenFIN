@@ -49,9 +49,22 @@ jobs:
         run: python src/parse_upload.py
 
       - name: Verify the merged bill list still loads
-        env:
-          PYTHONPATH: src
-        run: python src/selftest.py
+        # This called src/selftest.py, which was deleted in the rebuild — it
+        # tested the SimpleFIN and projection modules that went with it, and CI
+        # now refuses to let either return. So every upload since has failed
+        # here, after writing bills.json and before the commit step could run.
+        # The check the step was named for is the one below: whatever the parser
+        # merged in has to survive a real load, or the next engine run dies on
+        # data nobody looked at.
+        run: |
+          python - <<'PY'
+          import sys; sys.path.insert(0, 'src')
+          from pathlib import Path
+          from bills import load_items
+          b = load_items(Path('bills.json'), 'bills')
+          i = load_items(Path('income.json'), 'income')
+          print(f"{len(b)} bills, {len(i)} income sources validate")
+          PY
 
       - name: Commit the updated bill list
         if: always()
