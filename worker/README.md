@@ -110,14 +110,26 @@ This is what replaces the token on your phone. **Without this the Worker
 refuses every request**, by design — see the note at the bottom.
 
 Cloudflare dashboard → **Zero Trust** (left sidebar) → if it asks you to choose
-a plan, pick **Free** → **Access** → **Applications** → **Add an application**
-→ **Self-hosted**.
+a plan, pick **Free** → **Access** → **Applications** → **Add an application**.
+
+On the "Select an application type" screen, stay on the **Self-hosted and
+private** tab, then pick the **Workers** sub-tab from the row that reads
+*Private destinations · Workers · Public DNS · Service auth*.
+
+> **Not "Public DNS"**, which is often selected by default. That route asks for
+> a domain you own and have on Cloudflare. A `workers.dev` address is not one —
+> Cloudflare owns that domain — so the form cannot be completed. The **Workers**
+> sub-tab exists for exactly this case, as the screen's own description says:
+> destinations may be "Cloudflare Workers serverless applications".
+
+**Continue with Self-hosted and private** → choose **`openfin`** as the
+destination.
 
 | Field | Value |
 |---|---|
 | Application name | `OpenFIN` |
 | Session duration | 24 hours |
-| Public hostname | the Worker hostname, e.g. `openfin.<sub>.workers.dev` |
+| Destination | the `openfin` Worker |
 
 Next → add a policy:
 
