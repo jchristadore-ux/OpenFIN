@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-08-13T07:45:58.520936-04:00",
+  "generated_at": "2026-08-13T07:46:57.612206-04:00",
   "today": "2026-08-13",
   "balance": "2612.92",
   "balance_is_fresh": true,
-  "balance_entered_at": "2026-08-13T07:45:58.520936-04:00",
+  "balance_entered_at": "2026-08-13T07:46:57.612206-04:00",
   "end_of_day": "2502.36",
-  "end_of_week": "1099.82",
-  "end_of_month": "1322.23",
+  "end_of_week": "1499.82",
+  "end_of_month": "1722.23",
   "week_end": "2026-08-16",
-  "minimum_balance": "-78.49",
+  "minimum_balance": "321.51",
   "minimum_date": "2026-08-18",
-  "shortfall": "78.49",
+  "shortfall": "0.00",
   "allowance": "110.56",
   "discretionary": {
-    "safe": "1042.06",
+    "safe": "1442.06",
     "explain": [
       [
         "Balance now",
@@ -25,7 +25,7 @@
       ],
       [
         "Bills before end of week",
-        "-1070.86"
+        "-670.86"
       ],
       [
         "Committed in the 14 days after that",
@@ -37,7 +37,7 @@
       ],
       [
         "Safe to spend",
-        "1042.06"
+        "1442.06"
       ]
     ],
     "components": {
@@ -64,7 +64,7 @@
       "amount": "400.00",
       "direction": "out",
       "tier": 4,
-      "deferred": false
+      "deferred": true
     },
     {
       "date": "2026-08-15",
@@ -174,269 +174,262 @@
     },
     {
       "date": "2026-08-15",
-      "closing": "1620.24"
+      "closing": "2020.24"
     },
     {
       "date": "2026-08-16",
-      "closing": "1099.82"
+      "closing": "1499.82"
     },
     {
       "date": "2026-08-17",
-      "closing": "690.26"
+      "closing": "1090.26"
     },
     {
       "date": "2026-08-18",
-      "closing": "-78.49"
+      "closing": "321.51"
     },
     {
       "date": "2026-08-19",
-      "closing": "4439.32"
+      "closing": "4839.32"
     },
     {
       "date": "2026-08-20",
-      "closing": "4328.76"
+      "closing": "4728.76"
     },
     {
       "date": "2026-08-21",
-      "closing": "4218.20"
+      "closing": "4618.20"
     },
     {
       "date": "2026-08-22",
-      "closing": "4019.64"
+      "closing": "4419.64"
     },
     {
       "date": "2026-08-23",
-      "closing": "3477.91"
+      "closing": "3877.91"
     },
     {
       "date": "2026-08-24",
-      "closing": "736.62"
+      "closing": "1136.62"
     },
     {
       "date": "2026-08-25",
-      "closing": "626.06"
+      "closing": "1026.06"
     },
     {
       "date": "2026-08-26",
-      "closing": "2531.56"
+      "closing": "2931.56"
     },
     {
       "date": "2026-08-27",
-      "closing": "2336.22"
+      "closing": "2736.22"
     },
     {
       "date": "2026-08-28",
-      "closing": "2225.66"
+      "closing": "2625.66"
     },
     {
       "date": "2026-08-29",
-      "closing": "1953.21"
+      "closing": "2353.21"
     },
     {
       "date": "2026-08-30",
-      "closing": "1432.79"
+      "closing": "1832.79"
     },
     {
       "date": "2026-08-31",
-      "closing": "1322.23"
+      "closing": "1722.23"
     },
     {
       "date": "2026-09-01",
-      "closing": "907.17"
+      "closing": "1307.17"
     },
     {
       "date": "2026-09-02",
-      "closing": "5641.98"
+      "closing": "6041.98"
     },
     {
       "date": "2026-09-03",
-      "closing": "5157.20"
+      "closing": "5557.20"
     },
     {
       "date": "2026-09-04",
-      "closing": "4702.94"
+      "closing": "5102.94"
     },
     {
       "date": "2026-09-05",
-      "closing": "4592.38"
+      "closing": "4992.38"
     },
     {
       "date": "2026-09-06",
-      "closing": "3683.72"
+      "closing": "4083.72"
     },
     {
       "date": "2026-09-07",
-      "closing": "1771.54"
+      "closing": "2171.54"
     },
     {
       "date": "2026-09-08",
-      "closing": "1510.98"
+      "closing": "1910.98"
     },
     {
       "date": "2026-09-09",
-      "closing": "3416.48"
+      "closing": "3816.48"
     },
     {
       "date": "2026-09-10",
-      "closing": "3305.92"
+      "closing": "3705.92"
     },
     {
       "date": "2026-09-11",
-      "closing": "3114.60"
+      "closing": "3514.60"
     },
     {
       "date": "2026-09-12",
-      "closing": "2425.77"
+      "closing": "2825.77"
     },
     {
       "date": "2026-09-13",
-      "closing": "1905.35"
+      "closing": "2305.35"
     },
     {
       "date": "2026-09-14",
-      "closing": "1694.79"
+      "closing": "2094.79"
     },
     {
       "date": "2026-09-15",
-      "closing": "1023.23"
+      "closing": "1423.23"
     },
     {
       "date": "2026-09-16",
-      "closing": "5758.04"
+      "closing": "6158.04"
     },
     {
       "date": "2026-09-17",
-      "closing": "5348.48"
+      "closing": "5748.48"
     },
     {
       "date": "2026-09-18",
-      "closing": "4579.73"
+      "closing": "4979.73"
     },
     {
       "date": "2026-09-19",
-      "closing": "3378.64"
+      "closing": "3778.64"
     },
     {
       "date": "2026-09-20",
-      "closing": "2858.22"
+      "closing": "3258.22"
     },
     {
       "date": "2026-09-21",
-      "closing": "946.04"
+      "closing": "1346.04"
     },
     {
       "date": "2026-09-22",
-      "closing": "747.48"
+      "closing": "1147.48"
     },
     {
       "date": "2026-09-23",
-      "closing": "2631.67"
+      "closing": "3031.67"
     },
     {
       "date": "2026-09-24",
-      "closing": "1440.85"
+      "closing": "1840.85"
     },
     {
       "date": "2026-09-25",
-      "closing": "1330.29"
+      "closing": "1730.29"
     },
     {
       "date": "2026-09-26",
-      "closing": "1219.73"
+      "closing": "1619.73"
     },
     {
       "date": "2026-09-27",
-      "closing": "614.53"
+      "closing": "1014.53"
     },
     {
       "date": "2026-09-28",
-      "closing": "503.97"
+      "closing": "903.97"
     },
     {
       "date": "2026-09-29",
-      "closing": "231.52"
+      "closing": "631.52"
     },
     {
       "date": "2026-09-30",
-      "closing": "4966.33"
+      "closing": "5366.33"
     },
     {
       "date": "2026-10-01",
-      "closing": "4855.77"
+      "closing": "5255.77"
     },
     {
       "date": "2026-10-02",
-      "closing": "4745.21"
+      "closing": "5145.21"
     },
     {
       "date": "2026-10-03",
-      "closing": "4338.82"
+      "closing": "4738.82"
     },
     {
       "date": "2026-10-04",
-      "closing": "3474.70"
+      "closing": "3874.70"
     },
     {
       "date": "2026-10-05",
-      "closing": "1562.52"
+      "closing": "1962.52"
     },
     {
       "date": "2026-10-06",
-      "closing": "546.22"
+      "closing": "946.22"
     },
     {
       "date": "2026-10-07",
-      "closing": "2274.42"
+      "closing": "2674.42"
     },
     {
       "date": "2026-10-08",
-      "closing": "2013.86"
+      "closing": "2413.86"
     },
     {
       "date": "2026-10-09",
-      "closing": "1903.30"
+      "closing": "2303.30"
     },
     {
       "date": "2026-10-10",
-      "closing": "1792.74"
+      "closing": "2192.74"
     },
     {
       "date": "2026-10-11",
-      "closing": "1182.41"
+      "closing": "1582.41"
     }
   ],
   "risks": [
     {
-      "id": "negative_balance:2026-08-18",
-      "type": "negative_balance",
-      "severity": "critical",
-      "title": "Balance goes negative Tue 18 Aug",
-      "detail": "Projected -$78.49 on Tue 18 Aug. Lowest point is -$78.49 on Tue 18 Aug.",
-      "amount": "78.49",
+      "id": "insufficient_cash:2026-08-18",
+      "type": "insufficient_cash",
+      "severity": "medium",
+      "title": "Cash dips below $500.00",
+      "detail": "Projected $321.51 on Tue 18 Aug, under the $500.00 safe floor. Stays positive.",
+      "amount": "178.49",
       "when": "2026-08-18"
     },
     {
-      "id": "income_timing:2026-08-18",
-      "type": "income_timing",
-      "severity": "high",
-      "title": "Timing problem, not a shortfall",
-      "detail": "Income of $27,445.72 covers $22,242.63 of bills across the window, but the balance still dips to -$78.49 on Tue 18 Aug because money goes out before it comes in. Next income is Branchburg BOE payroll $2,829.31 on Wed 19 Aug.",
-      "amount": "78.49",
+      "id": "future_crunch:2026-08-18",
+      "type": "future_crunch",
+      "severity": "medium",
+      "title": "Future crunch on Tue 18 Aug",
+      "detail": "This week ends at $1,499.82, which is fine, but the balance falls to $321.51 by Tue 18 Aug.",
+      "amount": "178.49",
       "when": "2026-08-18"
     }
   ],
   "plan": {
-    "summary": "Deferring Lowes $126.00 before 18 Aug frees $126.00 and covers the $78.49 shortfall.",
-    "shortfall": "78.49",
-    "problem_day": "2026-08-18",
-    "candidates": [
-      {
-        "name": "Lowes",
-        "amount": "126.00",
-        "date": "2026-08-18",
-        "tier": 5
-      }
-    ],
+    "summary": "No shortfall to solve.",
+    "shortfall": "0.00",
+    "problem_day": null,
+    "candidates": [],
     "covered": true
   },
   "deferral_window": [
@@ -459,7 +452,7 @@
       "tier": 4,
       "deferrable": true,
       "secured": false,
-      "deferred": false,
+      "deferred": true,
       "in_week": true
     },
     {
@@ -716,7 +709,7 @@
       "in_week": false
     }
   ],
-  "deferred_total": "0.00",
+  "deferred_total": "400.00",
   "lookahead_days": 14,
   "bills": [
     {

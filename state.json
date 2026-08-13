@@ -49,23 +49,23 @@
     }
   ],
   "risks": {
-    "negative_balance:2026-08-18": {
-      "type": "negative_balance",
-      "severity": "critical",
-      "amount": "78.49",
+    "insufficient_cash:2026-08-18": {
+      "type": "insufficient_cash",
+      "severity": "medium",
+      "amount": "178.49",
       "when": "2026-08-18",
-      "first_seen": "2026-08-13T07:45:58.520936-04:00",
-      "notified_at": "2026-08-13T07:45:58.520936-04:00",
-      "last_seen": "2026-08-13T07:45:58.520936-04:00"
+      "first_seen": "2026-08-13T07:46:57.612206-04:00",
+      "notified_at": "2026-08-13T07:46:57.612206-04:00",
+      "last_seen": "2026-08-13T07:46:57.612206-04:00"
     },
-    "income_timing:2026-08-18": {
-      "type": "income_timing",
-      "severity": "high",
-      "amount": "78.49",
+    "future_crunch:2026-08-18": {
+      "type": "future_crunch",
+      "severity": "medium",
+      "amount": "178.49",
       "when": "2026-08-18",
-      "first_seen": "2026-08-13T07:45:58.520936-04:00",
-      "notified_at": "2026-08-13T07:45:58.520936-04:00",
-      "last_seen": "2026-08-13T07:45:58.520936-04:00"
+      "first_seen": "2026-08-13T07:46:57.612206-04:00",
+      "notified_at": "2026-08-13T07:46:57.612206-04:00",
+      "last_seen": "2026-08-13T07:46:57.612206-04:00"
     }
   },
   "last_daily_sent": "2026-08-13T07:45:58.520936-04:00",
@@ -78,5 +78,12 @@
       "2026-08-12": "-181.75"
     },
     "last_message_hash": "d1714f52991e323a5b7a14b4593742f965d3a25fc01c702368cb46b0832fb0ae"
-  }
+  },
+  "deferrals": [
+    {
+      "bill_id": "loew-patel-braces",
+      "date": "2026-08-15",
+      "marked_at": "2026-08-13T07:46:57.612206-04:00"
+    }
+  ]
 }
