@@ -227,7 +227,12 @@ def detect(
             )
 
     # -- 6. fine now, a crunch later ----------------------------------------
-    if low_day and not first_negative:
+    # Only meaningful with a floor set. This warns about a day that is still
+    # positive but under the safety line, and with the line at 0 there is no
+    # such day — anything below it is an overdraft, which is risk 1's job and
+    # excluded here by `not first_negative` anyway. Guarded explicitly so that
+    # is a decision rather than an accident of the arithmetic.
+    if low_day and not first_negative and minimum_safe_balance > 0:
         week = week_end(today)
         eow = forecast.closing_on(week)
         if eow is not None and eow > minimum_safe_balance and low_day.day > week:

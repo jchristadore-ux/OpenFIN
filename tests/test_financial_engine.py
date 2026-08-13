@@ -1102,6 +1102,52 @@ class TestEditableBillList(unittest.TestCase):
         self.assertIn("deactivated", kept["note"])
 
 
+class TestAlertsFireOnlyOnARealOverdraft(unittest.TestCase):
+    """With the floor at 0 — how this household is configured — a warning means
+    the account actually goes below zero, not that it passed a line someone
+    picked."""
+
+    def _detect(self, bills, incomes, balance, floor="0"):
+        c, f = project(bills, incomes, balance)
+        d = fc.available(c, D(balance), TODAY, f)
+        return riskmod.detect(f, c, d, minimum_safe_balance=D(floor),
+                              large_payment_threshold=D("750"), today=TODAY)
+
+    THIN = [bill("b", "B", 800, freq="once", due="2026-08-20", tier=3)]
+
+    def test_a_thin_but_positive_balance_raises_nothing(self):
+        # $200 left, which the old $500 floor called a risk twice over.
+        self.assertEqual(self._detect(self.THIN, [], "1000"), [])
+
+    def test_the_same_case_still_warns_when_a_floor_is_set(self):
+        types = [r.type for r in self._detect(self.THIN, [], "1000", floor="500")]
+        self.assertIn(riskmod.INSUFFICIENT_CASH, types)
+
+    def test_going_below_zero_still_raises(self):
+        types = [r.type for r in self._detect(
+            [bill("b", "B", 1800, freq="once", due="2026-08-20", tier=3)], [], "1000")]
+        self.assertIn(riskmod.NEGATIVE_BALANCE, types)
+
+    def test_no_future_crunch_without_a_floor_to_cross(self):
+        """It warns about a positive day under the line. With no line, the only
+        thing left below is an overdraft, which risk 1 already reports."""
+        rs = self._detect([bill("b", "B", 900, freq="once", due="2026-09-01")],
+                          [], "1000")
+        self.assertNotIn(riskmod.FUTURE_CRUNCH, [r.type for r in rs])
+
+    def test_a_secured_payment_that_cannot_clear_still_raises(self):
+        types = [r.type for r in self._detect(
+            [bill("m", "Mortgage", 1800, freq="once", due="2026-08-20",
+                  tier=1, deferrable=False, secured=True)], [], "100")]
+        self.assertIn(riskmod.SECURED_PAYMENT, types)
+
+    def test_the_shipped_config_has_no_floor_and_no_allowance(self):
+        import engine
+        s = engine.load_settings()
+        self.assertEqual(s.minimum_safe_balance, D("0"))
+        self.assertEqual(s.daily_discretionary_allowance, D("0"))
+
+
 class TestClientFormulaParity(unittest.TestCase):
     """The dashboard recomputes both figures locally so ticking a box is
     instant. That arithmetic is duplicated in JavaScript, so it is pinned here:
