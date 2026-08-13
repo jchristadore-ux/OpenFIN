@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-08-13T07:46:57.612206-04:00",
+  "generated_at": "2026-08-13T09:53:37.688298-04:00",
   "today": "2026-08-13",
   "balance": "2612.92",
   "balance_is_fresh": true,
-  "balance_entered_at": "2026-08-13T07:46:57.612206-04:00",
-  "end_of_day": "2502.36",
-  "end_of_week": "1499.82",
-  "end_of_month": "1722.23",
+  "balance_entered_at": "2026-08-13T09:53:37.688298-04:00",
+  "end_of_day": "3012.36",
+  "end_of_week": "2009.82",
+  "end_of_month": "2232.23",
   "week_end": "2026-08-16",
-  "minimum_balance": "321.51",
+  "minimum_balance": "831.51",
   "minimum_date": "2026-08-18",
   "shortfall": "0.00",
   "allowance": "110.56",
   "discretionary": {
-    "safe": "1442.06",
+    "safe": "331.51",
     "explain": [
       [
         "Balance now",
@@ -21,7 +21,7 @@
       ],
       [
         "Income before end of week",
-        "0.00"
+        "510.00"
       ],
       [
         "Bills before end of week",
@@ -36,20 +36,49 @@
         "-500.00"
       ],
       [
+        "Free on this week alone",
+        "1952.06"
+      ],
+      [
+        "Lowest projected balance, 18 Aug",
+        "831.51"
+      ],
+      [
+        "Buffer to hold at that point",
+        "-500.00"
+      ],
+      [
         "Safe to spend",
-        "1442.06"
+        "331.51"
       ]
     ],
+    "limited_by_low_point": true,
+    "projected_low": "831.51",
+    "projected_low_day": "2026-08-18",
     "components": {
       "balance": "2612.92",
-      "income_week": "0.00",
+      "income_week": "510.00",
       "beyond_in": "6861.43",
-      "buffer": "500.00"
+      "buffer": "500.00",
+      "horizon_end": "2026-08-30"
     }
   },
   "today_bills": [],
-  "today_income": [],
+  "today_income": [
+    {
+      "name": "Charlie and Clark",
+      "amount": "510.00"
+    }
+  ],
   "this_week": [
+    {
+      "date": "2026-08-13",
+      "name": "Charlie and Clark",
+      "amount": "510.00",
+      "direction": "in",
+      "tier": 0,
+      "deferred": false
+    },
     {
       "date": "2026-08-14",
       "name": "Home Depot",
@@ -166,265 +195,246 @@
   "curve": [
     {
       "date": "2026-08-13",
-      "closing": "2502.36"
+      "closing": "3012.36"
     },
     {
       "date": "2026-08-14",
-      "closing": "2291.80"
+      "closing": "2801.80"
     },
     {
       "date": "2026-08-15",
-      "closing": "2020.24"
+      "closing": "2530.24"
     },
     {
       "date": "2026-08-16",
-      "closing": "1499.82"
+      "closing": "2009.82"
     },
     {
       "date": "2026-08-17",
-      "closing": "1090.26"
+      "closing": "1600.26"
     },
     {
       "date": "2026-08-18",
-      "closing": "321.51"
+      "closing": "831.51"
     },
     {
       "date": "2026-08-19",
-      "closing": "4839.32"
+      "closing": "5349.32"
     },
     {
       "date": "2026-08-20",
-      "closing": "4728.76"
+      "closing": "5238.76"
     },
     {
       "date": "2026-08-21",
-      "closing": "4618.20"
+      "closing": "5128.20"
     },
     {
       "date": "2026-08-22",
-      "closing": "4419.64"
+      "closing": "4929.64"
     },
     {
       "date": "2026-08-23",
-      "closing": "3877.91"
+      "closing": "4387.91"
     },
     {
       "date": "2026-08-24",
-      "closing": "1136.62"
+      "closing": "1646.62"
     },
     {
       "date": "2026-08-25",
-      "closing": "1026.06"
+      "closing": "1536.06"
     },
     {
       "date": "2026-08-26",
-      "closing": "2931.56"
+      "closing": "3441.56"
     },
     {
       "date": "2026-08-27",
-      "closing": "2736.22"
+      "closing": "3246.22"
     },
     {
       "date": "2026-08-28",
-      "closing": "2625.66"
+      "closing": "3135.66"
     },
     {
       "date": "2026-08-29",
-      "closing": "2353.21"
+      "closing": "2863.21"
     },
     {
       "date": "2026-08-30",
-      "closing": "1832.79"
+      "closing": "2342.79"
     },
     {
       "date": "2026-08-31",
-      "closing": "1722.23"
+      "closing": "2232.23"
     },
     {
       "date": "2026-09-01",
-      "closing": "1307.17"
+      "closing": "1817.17"
     },
     {
       "date": "2026-09-02",
-      "closing": "6041.98"
+      "closing": "6551.98"
     },
     {
       "date": "2026-09-03",
-      "closing": "5557.20"
+      "closing": "6067.20"
     },
     {
       "date": "2026-09-04",
-      "closing": "5102.94"
+      "closing": "5612.94"
     },
     {
       "date": "2026-09-05",
-      "closing": "4992.38"
+      "closing": "5502.38"
     },
     {
       "date": "2026-09-06",
-      "closing": "4083.72"
+      "closing": "4593.72"
     },
     {
       "date": "2026-09-07",
-      "closing": "2171.54"
+      "closing": "2681.54"
     },
     {
       "date": "2026-09-08",
-      "closing": "1910.98"
+      "closing": "2420.98"
     },
     {
       "date": "2026-09-09",
-      "closing": "3816.48"
+      "closing": "4326.48"
     },
     {
       "date": "2026-09-10",
-      "closing": "3705.92"
+      "closing": "4215.92"
     },
     {
       "date": "2026-09-11",
-      "closing": "3514.60"
+      "closing": "4024.60"
     },
     {
       "date": "2026-09-12",
-      "closing": "2825.77"
+      "closing": "3335.77"
     },
     {
       "date": "2026-09-13",
-      "closing": "2305.35"
+      "closing": "2815.35"
     },
     {
       "date": "2026-09-14",
-      "closing": "2094.79"
+      "closing": "2604.79"
     },
     {
       "date": "2026-09-15",
-      "closing": "1423.23"
+      "closing": "1933.23"
     },
     {
       "date": "2026-09-16",
-      "closing": "6158.04"
+      "closing": "6668.04"
     },
     {
       "date": "2026-09-17",
-      "closing": "5748.48"
+      "closing": "6258.48"
     },
     {
       "date": "2026-09-18",
-      "closing": "4979.73"
+      "closing": "5489.73"
     },
     {
       "date": "2026-09-19",
-      "closing": "3778.64"
+      "closing": "4288.64"
     },
     {
       "date": "2026-09-20",
-      "closing": "3258.22"
+      "closing": "3768.22"
     },
     {
       "date": "2026-09-21",
-      "closing": "1346.04"
+      "closing": "1856.04"
     },
     {
       "date": "2026-09-22",
-      "closing": "1147.48"
+      "closing": "1657.48"
     },
     {
       "date": "2026-09-23",
-      "closing": "3031.67"
+      "closing": "3541.67"
     },
     {
       "date": "2026-09-24",
-      "closing": "1840.85"
+      "closing": "2350.85"
     },
     {
       "date": "2026-09-25",
-      "closing": "1730.29"
+      "closing": "2240.29"
     },
     {
       "date": "2026-09-26",
-      "closing": "1619.73"
+      "closing": "2129.73"
     },
     {
       "date": "2026-09-27",
-      "closing": "1014.53"
+      "closing": "1524.53"
     },
     {
       "date": "2026-09-28",
-      "closing": "903.97"
+      "closing": "1413.97"
     },
     {
       "date": "2026-09-29",
-      "closing": "631.52"
+      "closing": "1141.52"
     },
     {
       "date": "2026-09-30",
-      "closing": "5366.33"
+      "closing": "5876.33"
     },
     {
       "date": "2026-10-01",
-      "closing": "5255.77"
+      "closing": "5765.77"
     },
     {
       "date": "2026-10-02",
-      "closing": "5145.21"
+      "closing": "5655.21"
     },
     {
       "date": "2026-10-03",
-      "closing": "4738.82"
+      "closing": "5248.82"
     },
     {
       "date": "2026-10-04",
-      "closing": "3874.70"
+      "closing": "4384.70"
     },
     {
       "date": "2026-10-05",
-      "closing": "1962.52"
+      "closing": "2472.52"
     },
     {
       "date": "2026-10-06",
-      "closing": "946.22"
+      "closing": "1456.22"
     },
     {
       "date": "2026-10-07",
-      "closing": "2674.42"
+      "closing": "3184.42"
     },
     {
       "date": "2026-10-08",
-      "closing": "2413.86"
+      "closing": "2923.86"
     },
     {
       "date": "2026-10-09",
-      "closing": "2303.30"
+      "closing": "2813.30"
     },
     {
       "date": "2026-10-10",
-      "closing": "2192.74"
+      "closing": "2702.74"
     },
     {
       "date": "2026-10-11",
-      "closing": "1582.41"
+      "closing": "2092.41"
     }
   ],
-  "risks": [
-    {
-      "id": "insufficient_cash:2026-08-18",
-      "type": "insufficient_cash",
-      "severity": "medium",
-      "title": "Cash dips below $500.00",
-      "detail": "Projected $321.51 on Tue 18 Aug, under the $500.00 safe floor. Stays positive.",
-      "amount": "178.49",
-      "when": "2026-08-18"
-    },
-    {
-      "id": "future_crunch:2026-08-18",
-      "type": "future_crunch",
-      "severity": "medium",
-      "title": "Future crunch on Tue 18 Aug",
-      "detail": "This week ends at $1,499.82, which is fine, but the balance falls to $321.51 by Tue 18 Aug.",
-      "amount": "178.49",
-      "when": "2026-08-18"
-    }
-  ],
+  "risks": [],
   "plan": {
     "summary": "No shortfall to solve.",
     "shortfall": "0.00",
@@ -713,376 +723,18 @@
   "lookahead_days": 14,
   "bills": [
     {
-      "id": "mortgage",
-      "name": "Mortgage",
-      "amount": "1801.62",
-      "due_day": null,
-      "frequency": "biweekly",
-      "tier": 1,
-      "active": true,
-      "variable": false,
-      "needs_review": true,
-      "note": "CORRECTED from semimonthly to biweekly. 15 consecutive payments 12/15/2025-06/29/2026 are exactly 14 days apart. Semimonthly modelled 24/yr; biweekly is 26/yr, a $3,603.24/yr difference. Extra same-week entries in the statements are failed-payment retries, not additional payments."
-    },
-    {
-      "id": "car-payment",
-      "name": "Kia",
-      "amount": "742.65",
-      "due_day": 24,
+      "id": "home-depot",
+      "name": "Home Depot",
+      "amount": "100.00",
+      "due_day": 14,
       "frequency": "monthly",
-      "tier": 1,
-      "active": true,
-      "variable": false,
-      "needs_review": true,
-      "note": "Amount corrected from $578.64. Actually recurs every 28 days (05/04, 06/01, 06/29), not monthly, so it drifts earlier and yields 13 payments in some years. due_day 24 tracks the next two occurrences; revisit each quarter."
-    },
-    {
-      "id": "ccu-car-loan",
-      "name": "CCU car loan",
-      "amount": "306.90",
-      "due_day": 18,
-      "frequency": "monthly",
-      "tier": 1,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "note": "FOUND in the statements under 'CONSUMERSCREDITCK-WTH', which is why the earlier search for 'CCU' missed it. $306.90 on 01/20, 02/18, 03/18, 04/20, 05/18 and 06/18/2026. Secured against the car, so never proposed for deferral."
-    },
-    {
-      "id": "auto-insurance",
-      "name": "Hanover Auto",
-      "amount": "513.27",
-      "due_day": 12,
-      "frequency": "monthly",
-      "tier": 2,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "note": "Amount corrected from $750.00, due day from 9 to 12."
-    },
-    {
-      "id": "electric",
-      "name": "JCP&L / FirstEnergy",
-      "amount": "418.98",
-      "due_day": 3,
-      "frequency": "monthly",
-      "tier": 2,
+      "next_date": "2026-08-14",
+      "tier": 5,
       "active": true,
       "variable": true,
       "needs_review": false,
-      "note": "Month-of-year profile blended from 34 JCP&L payments across Dec 2021-Dec 2024 and the 2025-26 statements. Electric is the one utility paid reliably every month, so a month-of-year mean is meaningful for it."
-    },
-    {
-      "id": "groceries",
-      "name": "Groceries",
-      "amount": "319.09",
-      "due_day": null,
-      "frequency": "weekly",
-      "tier": 2,
-      "active": true,
-      "variable": true,
-      "needs_review": false,
-      "note": "ACTUAL, not budget. Mean of 81 full weeks in the statements is $319.09/wk (median $302.15, range $12.78-$791.32). The household sheet said $282.35, under by $36.74/wk. The mean is used rather than the median because under-forecasting an outflow is the direction that causes overdrafts."
-    },
-    {
-      "id": "sewer",
-      "name": "Sewer",
-      "amount": "304.50",
-      "due_day": 1,
-      "frequency": "annual",
-      "tier": 2,
-      "active": true,
-      "variable": false,
-      "needs_review": true,
-      "note": "POSSIBLY ANNUAL, UNCONFIRMED - the household does not yet know. No matching payment appears in 19 months of statements, including the September window. Left active at $304.50 on 1 Sep so it is budgeted for rather than forgotten."
-    },
-    {
-      "id": "clinton-water",
-      "name": "Town of Clinton water",
-      "amount": "294.03",
-      "due_day": null,
-      "frequency": "quarterly",
-      "tier": 2,
-      "active": true,
-      "variable": true,
-      "needs_review": true,
-      "note": "Actual annual spend: 2022 $1,088.42, 2023 $1,121.76, 2024 $1,318.11 (mean $1,176.10). Billed irregularly - between two and five payments a year, not on a fixed date - so this is the annual mean spread over four quarters rather than a real due date."
-    },
-    {
-      "id": "internet",
-      "name": "Comcast",
-      "amount": "138.93",
-      "due_day": 18,
-      "frequency": "monthly",
-      "tier": 2,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "note": "Amount corrected from $145.00, due day from 20 to 18."
-    },
-    {
-      "id": "irs-state",
-      "name": "IRS state",
-      "amount": "114.00",
-      "due_day": 19,
-      "frequency": "monthly",
-      "tier": 2,
-      "active": true,
-      "variable": false,
-      "needs_review": true,
-      "note": "New, $114.00/month, per the household. Due day assumed the same as the federal instalment; confirm. Not yet visible in any statement."
-    },
-    {
-      "id": "irs-federal",
-      "name": "IRS federal",
-      "amount": "103.00",
-      "due_day": 19,
-      "frequency": "monthly",
-      "tier": 2,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "note": "New instalment plan, $103.00/month, per the household. Not yet visible in any statement. Non-deferrable: missing an IRS instalment can void the agreement."
-    },
-    {
-      "id": "fuel",
-      "name": "Fuel",
-      "amount": "90.77",
-      "due_day": null,
-      "frequency": "weekly",
-      "tier": 2,
-      "active": true,
-      "variable": true,
-      "needs_review": false,
-      "note": "ACTUAL, not budget. Mean of 69 full weeks is $90.77/wk (median $65.53). The household sheet said $95.48 - close, and slightly high."
-    },
-    {
-      "id": "xfinity-mobile",
-      "name": "Xfinity Mobile",
-      "amount": "88.82",
-      "due_day": 29,
-      "frequency": "monthly",
-      "tier": 2,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
+      "source": "statement",
       "note": ""
-    },
-    {
-      "id": "gas-utility",
-      "name": "Elizabethtown Gas",
-      "amount": "54.03",
-      "due_day": 11,
-      "frequency": "monthly",
-      "tier": 2,
-      "active": true,
-      "variable": true,
-      "needs_review": false,
-      "note": "Seasonal profile from 19 statements, month-of-year maximum. Ranges $54.03 in August to $550.83 in March - a single figure was wrong eleven months a year. A flat $180.61 over-forecast summer by roughly $125/month."
-    },
-    {
-      "id": "tmobile-lia",
-      "name": "T-Mobile Lia",
-      "amount": "20.75",
-      "due_day": 11,
-      "frequency": "monthly",
-      "tier": 2,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "note": ""
-    },
-    {
-      "id": "onemain-loan",
-      "name": "One Main loan",
-      "amount": "388.24",
-      "due_day": 6,
-      "frequency": "monthly",
-      "tier": 3,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "note": ""
-    },
-    {
-      "id": "upstart-past-bills-step2",
-      "name": "Upstart past bills (from Sep)",
-      "amount": "337.61",
-      "due_day": 24,
-      "frequency": "monthly",
-      "tier": 3,
-      "active": true,
-      "variable": false,
-      "needs_review": true,
-      "note": "Steps up from $86.46 on 24 Sep 2026 per the household. The household said the reduced rate ran 'two months'; if that means it ends after 24 Aug rather than 24 Sep, this start date is a month late and the forecast is optimistic by $251.15 for September. Confirm."
-    },
-    {
-      "id": "upstart-debt-consolidation",
-      "name": "Upstart debt consol",
-      "amount": "161.00",
-      "due_day": 15,
-      "frequency": "monthly",
-      "tier": 3,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "note": "Renegotiated to $161.00 (household, 11 Aug 2026). Was $1,244.29 for 12 months - a $1,083.29/month reduction, the single largest change in this ledger."
-    },
-    {
-      "id": "capital-one",
-      "name": "Capital One CC",
-      "amount": "105.00",
-      "due_day": 17,
-      "frequency": "monthly",
-      "tier": 3,
-      "active": true,
-      "variable": true,
-      "needs_review": false,
-      "note": "Renegotiated to $105.00 (household, 11 Aug 2026). Was $154.00."
-    },
-    {
-      "id": "upstart-past-bills",
-      "name": "Upstart past bills",
-      "amount": "86.46",
-      "due_day": 24,
-      "frequency": "monthly",
-      "tier": 3,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "note": "Renegotiated. $86.46 temporarily (bank shows exactly $86.46 on 06/24/2026), stepping up to $337.61 from 24 Sep 2026 - see upstart-past-bills-step2. Modelled as two entries with adjoining windows so neither period is wrong."
-    },
-    {
-      "id": "upgrade-basement",
-      "name": "Upgrade basement",
-      "amount": "86.36",
-      "due_day": 18,
-      "frequency": "monthly",
-      "tier": 3,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "note": "Renegotiated to $86.36 (household, 11 Aug 2026). Was $287.85."
-    },
-    {
-      "id": "chase-amazon",
-      "name": "Chase CC Amazon",
-      "amount": "80.00",
-      "due_day": 17,
-      "frequency": "monthly",
-      "tier": 3,
-      "active": true,
-      "variable": true,
-      "needs_review": false,
-      "note": "Renegotiated to $80.00 (household, 11 Aug 2026). Card ending 8026. Autopay 16th-18th."
-    },
-    {
-      "id": "affirm",
-      "name": "Affirm",
-      "amount": "73.07",
-      "due_day": 29,
-      "frequency": "monthly",
-      "tier": 3,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "note": "Stable monthly stream since 01/30/2026. Household sheet had day 18; actual is 29-30."
-    },
-    {
-      "id": "pnc",
-      "name": "PNC",
-      "amount": "70.00",
-      "due_day": 8,
-      "frequency": "monthly",
-      "tier": 3,
-      "active": true,
-      "variable": true,
-      "needs_review": true,
-      "note": "Varies $70.00-$150.00 and the date moves. $70.00 is the recent floor."
-    },
-    {
-      "id": "barclay-oldnavy",
-      "name": "Barclay Old Navy",
-      "amount": "60.74",
-      "due_day": 27,
-      "frequency": "monthly",
-      "tier": 3,
-      "active": true,
-      "variable": true,
-      "needs_review": false,
-      "note": ""
-    },
-    {
-      "id": "comenity",
-      "name": "Comenity",
-      "amount": "50.00",
-      "due_day": 12,
-      "frequency": "monthly",
-      "tier": 3,
-      "active": true,
-      "variable": true,
-      "needs_review": true,
-      "note": "Irregular: 12/16, 02/03, 03/13, 05/05, 06/12, amounts $40.00-$65.00. Not on the household sheet."
-    },
-    {
-      "id": "chase-united",
-      "name": "Chase CC United",
-      "amount": "46.00",
-      "due_day": 22,
-      "frequency": "monthly",
-      "tier": 3,
-      "active": true,
-      "variable": true,
-      "needs_review": false,
-      "note": "Renegotiated to $46.00 (household, 11 Aug 2026). Card ending 6319. Autopay 21st-23rd."
-    },
-    {
-      "id": "lacrosse-2627-inst-1",
-      "name": "NJ Total Select 1of4",
-      "amount": "517.50",
-      "due_day": null,
-      "frequency": "once",
-      "tier": 4,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "note": "ACTUAL from the club portal (household, 11 Aug 2026): $500.00 due 2026-10-06. Modelled at $517.50 because every card payment in 19 months of statements carried the club's 3.5% convenience fee ($475.00 became $491.63). Paying by Venmo or check costs $500.00 - the one Venmo payment on 11/01/2024 was c"
-    },
-    {
-      "id": "lacrosse-2627-inst-2",
-      "name": "NJ Total Select 2of4",
-      "amount": "517.50",
-      "due_day": null,
-      "frequency": "once",
-      "tier": 4,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "note": "ACTUAL from the club portal (household, 11 Aug 2026): $500.00 due 2027-01-12. Modelled at $517.50 because every card payment in 19 months of statements carried the club's 3.5% convenience fee ($475.00 became $491.63). Paying by Venmo or check costs $500.00 - the one Venmo payment on 11/01/2024 was c"
-    },
-    {
-      "id": "lacrosse-2627-inst-3",
-      "name": "NJ Total Select 3of4",
-      "amount": "517.50",
-      "due_day": null,
-      "frequency": "once",
-      "tier": 4,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "note": "ACTUAL from the club portal (household, 11 Aug 2026): $500.00 due 2027-03-09. Modelled at $517.50 because every card payment in 19 months of statements carried the club's 3.5% convenience fee ($475.00 became $491.63). Paying by Venmo or check costs $500.00 - the one Venmo payment on 11/01/2024 was c"
-    },
-    {
-      "id": "lacrosse-2627-inst-4",
-      "name": "NJ Total Select 4of4",
-      "amount": "517.50",
-      "due_day": null,
-      "frequency": "once",
-      "tier": 4,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "note": "ACTUAL from the club portal (household, 11 Aug 2026): $500.00 due 2027-05-18. Modelled at $517.50 because every card payment in 19 months of statements carried the club's 3.5% convenience fee ($475.00 became $491.63). Paying by Venmo or check costs $500.00 - the one Venmo payment on 11/01/2024 was c"
     },
     {
       "id": "loew-patel-braces",
@@ -1090,47 +742,111 @@
       "amount": "400.00",
       "due_day": 15,
       "frequency": "monthly",
+      "next_date": "2026-08-15",
       "tier": 4,
       "active": true,
       "variable": true,
       "needs_review": true,
+      "source": "household",
       "note": "SCHEDULE UNKNOWN - flagged, not guessed. The statements show $1,000.00 on 06/10/2026, $129.47 on 04/29 and 06/24, and smaller amounts through the spring. No pattern is derivable. Held at the household's $400.00/month placeholder. observed_max is deliberately NOT set: with it, the engine forecast the"
     },
     {
-      "id": "trash",
-      "name": "Republic trash Q4",
-      "amount": "177.30",
-      "due_day": null,
-      "frequency": "once",
-      "tier": 4,
-      "active": true,
-      "variable": true,
-      "needs_review": true,
-      "note": "CORRECTED from biweekly $92.00 to QUARTERLY $177.30. Observed 01/07 $168.12 and 04/07 $177.30, exactly 90 days apart. Modelled as dated one-offs because the schema has no quarterly frequency."
-    },
-    {
-      "id": "trash-2027-q1",
-      "name": "Republic trash Q1",
-      "amount": "177.30",
-      "due_day": null,
-      "frequency": "once",
-      "tier": 4,
-      "active": true,
-      "variable": true,
-      "needs_review": true,
-      "note": "See trash. Next quarterly instalment."
-    },
-    {
-      "id": "home-depot",
-      "name": "Home Depot",
-      "amount": "100.00",
-      "due_day": 14,
+      "id": "upstart-debt-consolidation",
+      "name": "Upstart debt consol",
+      "amount": "161.00",
+      "due_day": 15,
       "frequency": "monthly",
-      "tier": 5,
+      "next_date": "2026-08-15",
+      "tier": 3,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "household",
+      "note": "Renegotiated to $161.00 (household, 11 Aug 2026). Was $1,244.29 for 12 months - a $1,083.29/month reduction, the single largest change in this ledger."
+    },
+    {
+      "id": "fuel",
+      "name": "Fuel",
+      "amount": "90.77",
+      "due_day": null,
+      "frequency": "weekly",
+      "next_date": "2026-08-16",
+      "tier": 2,
       "active": true,
       "variable": true,
       "needs_review": false,
-      "note": ""
+      "source": "household",
+      "note": "ACTUAL, not budget. Mean of 69 full weeks is $90.77/wk (median $65.53). The household sheet said $95.48 - close, and slightly high."
+    },
+    {
+      "id": "groceries",
+      "name": "Groceries",
+      "amount": "319.09",
+      "due_day": null,
+      "frequency": "weekly",
+      "next_date": "2026-08-16",
+      "tier": 2,
+      "active": true,
+      "variable": true,
+      "needs_review": false,
+      "source": "household",
+      "note": "ACTUAL, not budget. Mean of 81 full weeks in the statements is $319.09/wk (median $302.15, range $12.78-$791.32). The household sheet said $282.35, under by $36.74/wk. The mean is used rather than the median because under-forecasting an outflow is the direction that causes overdrafts."
+    },
+    {
+      "id": "capital-one",
+      "name": "Capital One CC",
+      "amount": "105.00",
+      "due_day": 17,
+      "frequency": "monthly",
+      "next_date": "2026-08-17",
+      "tier": 3,
+      "active": true,
+      "variable": true,
+      "needs_review": false,
+      "source": "household",
+      "note": "Renegotiated to $105.00 (household, 11 Aug 2026). Was $154.00."
+    },
+    {
+      "id": "chase-amazon",
+      "name": "Chase CC Amazon",
+      "amount": "80.00",
+      "due_day": 17,
+      "frequency": "monthly",
+      "next_date": "2026-08-17",
+      "tier": 3,
+      "active": true,
+      "variable": true,
+      "needs_review": false,
+      "source": "household",
+      "note": "Renegotiated to $80.00 (household, 11 Aug 2026). Card ending 8026. Autopay 16th-18th."
+    },
+    {
+      "id": "ccu-car-loan",
+      "name": "CCU car loan",
+      "amount": "306.90",
+      "due_day": 18,
+      "frequency": "monthly",
+      "next_date": "2026-08-18",
+      "tier": 1,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "household",
+      "note": "FOUND in the statements under 'CONSUMERSCREDITCK-WTH', which is why the earlier search for 'CCU' missed it. $306.90 on 01/20, 02/18, 03/18, 04/20, 05/18 and 06/18/2026. Secured against the car, so never proposed for deferral."
+    },
+    {
+      "id": "internet",
+      "name": "Comcast",
+      "amount": "138.93",
+      "due_day": 18,
+      "frequency": "monthly",
+      "next_date": "2026-08-18",
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "statement",
+      "note": "Amount corrected from $145.00, due day from 20 to 18."
     },
     {
       "id": "lowes",
@@ -1138,11 +854,195 @@
       "amount": "69.00",
       "due_day": 18,
       "frequency": "monthly",
+      "next_date": "2026-08-18",
       "tier": 5,
       "active": true,
       "variable": true,
       "needs_review": false,
+      "source": "household",
       "note": "Renegotiated to $69.00 (household, 11 Aug 2026). Was $122.00."
+    },
+    {
+      "id": "upgrade-basement",
+      "name": "Upgrade basement",
+      "amount": "86.36",
+      "due_day": 18,
+      "frequency": "monthly",
+      "next_date": "2026-08-18",
+      "tier": 3,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "household",
+      "note": "Renegotiated to $86.36 (household, 11 Aug 2026). Was $287.85."
+    },
+    {
+      "id": "irs-federal",
+      "name": "IRS federal",
+      "amount": "103.00",
+      "due_day": 19,
+      "frequency": "monthly",
+      "next_date": "2026-08-19",
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "household",
+      "note": "New instalment plan, $103.00/month, per the household. Not yet visible in any statement. Non-deferrable: missing an IRS instalment can void the agreement."
+    },
+    {
+      "id": "irs-state",
+      "name": "IRS state",
+      "amount": "114.00",
+      "due_day": 19,
+      "frequency": "monthly",
+      "next_date": "2026-08-19",
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "household",
+      "note": "New, $114.00/month, per the household. Due day assumed the same as the federal instalment; confirm. Not yet visible in any statement."
+    },
+    {
+      "id": "chase-united",
+      "name": "Chase CC United",
+      "amount": "46.00",
+      "due_day": 22,
+      "frequency": "monthly",
+      "next_date": "2026-08-22",
+      "tier": 3,
+      "active": true,
+      "variable": true,
+      "needs_review": false,
+      "source": "household",
+      "note": "Renegotiated to $46.00 (household, 11 Aug 2026). Card ending 6319. Autopay 21st-23rd."
+    },
+    {
+      "id": "netflix",
+      "name": "Netflix",
+      "amount": "21.31",
+      "due_day": 23,
+      "frequency": "monthly",
+      "next_date": "2026-08-23",
+      "tier": 5,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "statement",
+      "note": ""
+    },
+    {
+      "id": "car-payment",
+      "name": "Kia",
+      "amount": "742.65",
+      "due_day": 24,
+      "frequency": "monthly",
+      "next_date": "2026-08-24",
+      "tier": 1,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "statement",
+      "note": "Amount corrected from $578.64. Actually recurs every 28 days (05/04, 06/01, 06/29), not monthly, so it drifts earlier and yields 13 payments in some years. due_day 24 tracks the next two occurrences; revisit each quarter."
+    },
+    {
+      "id": "mortgage",
+      "name": "Mortgage",
+      "amount": "1801.62",
+      "due_day": null,
+      "frequency": "biweekly",
+      "next_date": "2026-08-24",
+      "tier": 1,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "statement",
+      "note": "CORRECTED from semimonthly to biweekly. 15 consecutive payments 12/15/2025-06/29/2026 are exactly 14 days apart. Semimonthly modelled 24/yr; biweekly is 26/yr, a $3,603.24/yr difference. Extra same-week entries in the statements are failed-payment retries, not additional payments."
+    },
+    {
+      "id": "upstart-past-bills",
+      "name": "Upstart past bills",
+      "amount": "86.46",
+      "due_day": 24,
+      "frequency": "monthly",
+      "next_date": "2026-08-24",
+      "tier": 3,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "household",
+      "note": "Renegotiated. $86.46 temporarily (bank shows exactly $86.46 on 06/24/2026), stepping up to $337.61 from 24 Sep 2026 - see upstart-past-bills-step2. Modelled as two entries with adjoining windows so neither period is wrong."
+    },
+    {
+      "id": "barclay-oldnavy",
+      "name": "Barclay Old Navy",
+      "amount": "60.74",
+      "due_day": 27,
+      "frequency": "monthly",
+      "next_date": "2026-08-27",
+      "tier": 3,
+      "active": true,
+      "variable": true,
+      "needs_review": false,
+      "source": "statement",
+      "note": ""
+    },
+    {
+      "id": "affirm",
+      "name": "Affirm",
+      "amount": "73.07",
+      "due_day": 29,
+      "frequency": "monthly",
+      "next_date": "2026-08-29",
+      "tier": 3,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "statement",
+      "note": "Stable monthly stream since 01/30/2026. Household sheet had day 18; actual is 29-30."
+    },
+    {
+      "id": "xfinity-mobile",
+      "name": "Xfinity Mobile",
+      "amount": "88.82",
+      "due_day": 29,
+      "frequency": "monthly",
+      "next_date": "2026-08-29",
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "statement",
+      "note": ""
+    },
+    {
+      "id": "sewer",
+      "name": "Sewer",
+      "amount": "304.50",
+      "due_day": 1,
+      "frequency": "annual",
+      "next_date": "2026-09-01",
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "household",
+      "note": "POSSIBLY ANNUAL, UNCONFIRMED - the household does not yet know. No matching payment appears in 19 months of statements, including the September window. Left active at $304.50 on 1 Sep so it is budgeted for rather than forgotten."
+    },
+    {
+      "id": "electric",
+      "name": "JCP&L / FirstEnergy",
+      "amount": "418.98",
+      "due_day": 3,
+      "frequency": "monthly",
+      "next_date": "2026-09-03",
+      "tier": 2,
+      "active": true,
+      "variable": true,
+      "needs_review": false,
+      "source": "statement",
+      "note": "Month-of-year profile blended from 34 JCP&L payments across Dec 2021-Dec 2024 and the 2025-26 statements. Electric is the one utility paid reliably every month, so a month-of-year mean is meaningful for it."
     },
     {
       "id": "culligan",
@@ -1150,10 +1050,12 @@
       "amount": "40.39",
       "due_day": 4,
       "frequency": "monthly",
+      "next_date": "2026-09-04",
       "tier": 5,
       "active": true,
       "variable": true,
       "needs_review": true,
+      "source": "statement",
       "note": "Base $40.39, but 01/05 was $307.70 and 04/06 was $143.39 - likely periodic salt or service deliveries on top."
     },
     {
@@ -1162,23 +1064,209 @@
       "amount": "36.00",
       "due_day": 4,
       "frequency": "monthly",
+      "next_date": "2026-09-04",
       "tier": 5,
       "active": true,
       "variable": false,
       "needs_review": false,
+      "source": "statement",
       "note": ""
     },
     {
-      "id": "netflix",
-      "name": "Netflix",
-      "amount": "21.31",
-      "due_day": 23,
+      "id": "onemain-loan",
+      "name": "One Main loan",
+      "amount": "388.24",
+      "due_day": 6,
       "frequency": "monthly",
-      "tier": 5,
+      "next_date": "2026-09-06",
+      "tier": 3,
       "active": true,
       "variable": false,
       "needs_review": false,
+      "source": "statement",
       "note": ""
+    },
+    {
+      "id": "pnc",
+      "name": "PNC",
+      "amount": "70.00",
+      "due_day": 8,
+      "frequency": "monthly",
+      "next_date": "2026-09-08",
+      "tier": 3,
+      "active": true,
+      "variable": true,
+      "needs_review": true,
+      "source": "statement",
+      "note": "Varies $70.00-$150.00 and the date moves. $70.00 is the recent floor."
+    },
+    {
+      "id": "gas-utility",
+      "name": "Elizabethtown Gas",
+      "amount": "54.03",
+      "due_day": 11,
+      "frequency": "monthly",
+      "next_date": "2026-09-11",
+      "tier": 2,
+      "active": true,
+      "variable": true,
+      "needs_review": false,
+      "source": "statement",
+      "note": "Seasonal profile from 19 statements, month-of-year maximum. Ranges $54.03 in August to $550.83 in March - a single figure was wrong eleven months a year. A flat $180.61 over-forecast summer by roughly $125/month."
+    },
+    {
+      "id": "tmobile-lia",
+      "name": "T-Mobile Lia",
+      "amount": "20.75",
+      "due_day": 11,
+      "frequency": "monthly",
+      "next_date": "2026-09-11",
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "statement",
+      "note": ""
+    },
+    {
+      "id": "comenity",
+      "name": "Comenity",
+      "amount": "50.00",
+      "due_day": 12,
+      "frequency": "monthly",
+      "next_date": "2026-09-12",
+      "tier": 3,
+      "active": true,
+      "variable": true,
+      "needs_review": true,
+      "source": "statement",
+      "note": "Irregular: 12/16, 02/03, 03/13, 05/05, 06/12, amounts $40.00-$65.00. Not on the household sheet."
+    },
+    {
+      "id": "auto-insurance",
+      "name": "Hanover Auto",
+      "amount": "513.27",
+      "due_day": 12,
+      "frequency": "monthly",
+      "next_date": "2026-09-12",
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "statement",
+      "note": "Amount corrected from $750.00, due day from 9 to 12."
+    },
+    {
+      "id": "clinton-water",
+      "name": "Town of Clinton water",
+      "amount": "294.03",
+      "due_day": null,
+      "frequency": "quarterly",
+      "next_date": "2026-09-19",
+      "tier": 2,
+      "active": true,
+      "variable": true,
+      "needs_review": true,
+      "source": "household",
+      "note": "Actual annual spend: 2022 $1,088.42, 2023 $1,121.76, 2024 $1,318.11 (mean $1,176.10). Billed irregularly - between two and five payments a year, not on a fixed date - so this is the annual mean spread over four quarters rather than a real due date."
+    },
+    {
+      "id": "upstart-past-bills-step2",
+      "name": "Upstart past bills (from Sep)",
+      "amount": "337.61",
+      "due_day": 24,
+      "frequency": "monthly",
+      "next_date": "2026-09-24",
+      "tier": 3,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "household",
+      "note": "Steps up from $86.46 on 24 Sep 2026 per the household. The household said the reduced rate ran 'two months'; if that means it ends after 24 Aug rather than 24 Sep, this start date is a month late and the forecast is optimistic by $251.15 for September. Confirm."
+    },
+    {
+      "id": "lacrosse-2627-inst-1",
+      "name": "NJ Total Select 1of4",
+      "amount": "517.50",
+      "due_day": null,
+      "frequency": "once",
+      "next_date": "2026-10-06",
+      "tier": 4,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "club-portal",
+      "note": "ACTUAL from the club portal (household, 11 Aug 2026): $500.00 due 2026-10-06. Modelled at $517.50 because every card payment in 19 months of statements carried the club's 3.5% convenience fee ($475.00 became $491.63). Paying by Venmo or check costs $500.00 - the one Venmo payment on 11/01/2024 was c"
+    },
+    {
+      "id": "trash",
+      "name": "Republic trash Q4",
+      "amount": "177.30",
+      "due_day": null,
+      "frequency": "once",
+      "next_date": "2026-10-07",
+      "tier": 4,
+      "active": true,
+      "variable": true,
+      "needs_review": true,
+      "source": "statement",
+      "note": "CORRECTED from biweekly $92.00 to QUARTERLY $177.30. Observed 01/07 $168.12 and 04/07 $177.30, exactly 90 days apart. Modelled as dated one-offs because the schema has no quarterly frequency."
+    },
+    {
+      "id": "trash-2027-q1",
+      "name": "Republic trash Q1",
+      "amount": "177.30",
+      "due_day": null,
+      "frequency": "once",
+      "next_date": "2027-01-07",
+      "tier": 4,
+      "active": true,
+      "variable": true,
+      "needs_review": true,
+      "source": "statement",
+      "note": "See trash. Next quarterly instalment."
+    },
+    {
+      "id": "lacrosse-2627-inst-2",
+      "name": "NJ Total Select 2of4",
+      "amount": "517.50",
+      "due_day": null,
+      "frequency": "once",
+      "next_date": "2027-01-12",
+      "tier": 4,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "club-portal",
+      "note": "ACTUAL from the club portal (household, 11 Aug 2026): $500.00 due 2027-01-12. Modelled at $517.50 because every card payment in 19 months of statements carried the club's 3.5% convenience fee ($475.00 became $491.63). Paying by Venmo or check costs $500.00 - the one Venmo payment on 11/01/2024 was c"
+    },
+    {
+      "id": "lacrosse-2627-inst-3",
+      "name": "NJ Total Select 3of4",
+      "amount": "517.50",
+      "due_day": null,
+      "frequency": "once",
+      "next_date": "2027-03-09",
+      "tier": 4,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "club-portal",
+      "note": "ACTUAL from the club portal (household, 11 Aug 2026): $500.00 due 2027-03-09. Modelled at $517.50 because every card payment in 19 months of statements carried the club's 3.5% convenience fee ($475.00 became $491.63). Paying by Venmo or check costs $500.00 - the one Venmo payment on 11/01/2024 was c"
+    },
+    {
+      "id": "lacrosse-2627-inst-4",
+      "name": "NJ Total Select 4of4",
+      "amount": "517.50",
+      "due_day": null,
+      "frequency": "once",
+      "next_date": "2027-05-18",
+      "tier": 4,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "club-portal",
+      "note": "ACTUAL from the club portal (household, 11 Aug 2026): $500.00 due 2027-05-18. Modelled at $517.50 because every card payment in 19 months of statements carried the club's 3.5% convenience fee ($475.00 became $491.63). Paying by Venmo or check costs $500.00 - the one Venmo payment on 11/01/2024 was c"
     },
     {
       "id": "affirm-large",
@@ -1186,10 +1274,12 @@
       "amount": "373.13",
       "due_day": 29,
       "frequency": "monthly",
+      "next_date": null,
       "tier": 3,
       "active": false,
       "variable": true,
       "needs_review": false,
+      "source": "statement",
       "note": "PAID OFF - confirmed by the household 11 Aug 2026. Ran 05/01, 06/12 and 06/29/2026 at $373.13. Deactivated, not deleted. The separate $73.07 monthly Affirm (id 'affirm') is unaffected and still active."
     },
     {
@@ -1198,11 +1288,57 @@
       "amount": "100.00",
       "due_day": 4,
       "frequency": "monthly",
+      "next_date": null,
       "tier": 4,
       "active": false,
       "variable": false,
       "needs_review": false,
+      "source": "household",
       "note": "ENDED - confirmed by the household 11 Aug 2026. Ran $100/month Jan-May 2026, plus $225.00 on 12/10/2025. Deactivated, not deleted."
+    }
+  ],
+  "income": [
+    {
+      "id": "charlie-and-clark",
+      "name": "Charlie and Clark",
+      "amount": "510.00",
+      "due_day": null,
+      "frequency": "once",
+      "next_date": "2026-08-13",
+      "tier": 5,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "app",
+      "note": "Added in the app 13 Aug 2026: once, first on 13 Aug 2026. Not yet seen on a statement."
+    },
+    {
+      "id": "boe-payroll",
+      "name": "Branchburg BOE payroll",
+      "amount": "2829.31",
+      "due_day": null,
+      "frequency": "biweekly",
+      "next_date": "2026-08-19",
+      "tier": 5,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "statement",
+      "note": "Amount corrected from $2,840.34. Observed $2,829.31 on 04/13, 04/28, 05/13, 05/27 and 06/10/2026, exactly 14-15 days apart. A $2,837.55 credit on 06/16 breaks the pattern and may be a summer-schedule payment - verify before the school year starts."
+    },
+    {
+      "id": "primary-payroll",
+      "name": "Insight Global payroll",
+      "amount": "2016.06",
+      "due_day": null,
+      "frequency": "weekly",
+      "next_date": "2026-08-19",
+      "tier": 5,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "statement",
+      "note": "CORRECTED. Was $2,853.17/week; the actual employer is Insight Global and the modal weekly deposit is $2,016.06. That is $837.11/week overstated, roughly $3,627/month of income the projection was counting and never receiving. Deposits range $1,648.05-$2,981.68, so this stays flagged."
     }
   ],
   "settings": {

@@ -48,26 +48,7 @@
       "date": "2026-08-13"
     }
   ],
-  "risks": {
-    "insufficient_cash:2026-08-18": {
-      "type": "insufficient_cash",
-      "severity": "medium",
-      "amount": "178.49",
-      "when": "2026-08-18",
-      "first_seen": "2026-08-13T07:46:57.612206-04:00",
-      "notified_at": "2026-08-13T07:46:57.612206-04:00",
-      "last_seen": "2026-08-13T07:46:57.612206-04:00"
-    },
-    "future_crunch:2026-08-18": {
-      "type": "future_crunch",
-      "severity": "medium",
-      "amount": "178.49",
-      "when": "2026-08-18",
-      "first_seen": "2026-08-13T07:46:57.612206-04:00",
-      "notified_at": "2026-08-13T07:46:57.612206-04:00",
-      "last_seen": "2026-08-13T07:46:57.612206-04:00"
-    }
-  },
+  "risks": {},
   "last_daily_sent": "2026-08-13T07:45:58.520936-04:00",
   "_migrated_from": {
     "last_run_iso": "2026-08-10T14:34:07.133815-04:00",
