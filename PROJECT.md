@@ -105,23 +105,65 @@ lets anyone who finds the URL read and write the household's finances.
   excludes it because it is not leaving the account, the lists keep it because
   it is still owed. `snapshot.json` carries a `deferred` flag on every row of
   `today_bills`, `this_week` and `upcoming` so both can be true at once.
-- 100 tests, all passing. `python -m unittest discover -s tests`
+- **Removing a bill in the app deactivates it.** It keeps its id, its note and
+  its place in the file, because the statement history is keyed to that id and a
+  bill that turns out to still be live has to be able to come back. The app
+  lists removed bills and can restore them.
+- 119 tests, all passing. `python -m unittest discover -s tests`
 
 ---
 
 ## 3. The discretionary formula
 
+Two readings, and **the lower one wins**.
+
 ```
-safe = balance + income_week - bills_week - committed_beyond - buffer
-committed_beyond = max(0, beyond_out - beyond_in)
+week_view  = balance + income_week - bills_week - committed_beyond - buffer
+             committed_beyond = max(0, beyond_out - beyond_in)
+curve_view = min(projected closing balance, today .. week_end + lookahead) - buffer
+safe       = min(week_view, curve_view)
 ```
 
-Duplicated in JS for live deferral updates and pinned by parity tests — same
-inputs must produce the same cent on both sides.
+The week view on its own was wrong in the direction that costs money. It nets a
+fortnight of bills against a fortnight of income without regard to order, so a
+paycheque on the 19th cancels a bill due on the 18th; and it never charges the
+daily allowance, which is real spending whatever the app says. Both errors push
+the figure up.
+
+The curve view has neither problem — the projection charges every bill and every
+day's allowance on the day it falls — and it is the honest reading of the
+question: money spent today comes off every later day too, so the most that can
+go without breaching the floor is `low - buffer`.
+
+The window is the same lookahead the week view already reserves for. Reaching
+further would drag every distant annual bill into this week's answer and pin it
+at zero year-round.
+
+Both halves are duplicated in JS for live deferral updates and pinned by parity
+tests — same inputs must produce the same cent on both sides. The browser
+re-finds the low point without a round trip: deferring a bill raises every
+projected day from its date onward by that amount.
 
 ---
 
 ## 4. Bugs worth remembering
+
+**Safe-to-spend offered money that was already gone.** With $2,612.92 in the
+account it read **$1,442.06 free** while the projection dipped to $321.51 on the
+18th — below the $500 floor, and the reason was already on screen as a risk.
+$6,861.43 of pay arriving on the 19th, 24th and 26th cancelled every bill in the
+lookahead window, because the week view nets totals and never asks which lands
+first. Spending the $1,442.06 would have put the 18th about $1,120 overdrawn.
+Capped at the projected low point, the honest figure is **−$178.49**. Reported by
+the owner, who simply did not believe the number — the arithmetic was right and
+the question it answered was the wrong one.
+
+**The app and the engine used different lookahead windows.** `beyond_in` in the
+snapshot ran `week_end + 1 .. week_end + 15`; `safe_discretionary` used
+`week_end + 1 .. week_end + 14`. Income landing on that extra day was credited
+live in the browser and not by the engine, so the figure moved on its own when
+the real forecast came back. Now pinned by a parity test with income on exactly
+that day.
 
 **Nothing could be saved at all: "Failed to fetch."** The app was on GitHub
 Pages and posted cross-site to the Access-protected Worker. Preflights carry no
@@ -247,7 +289,7 @@ massaged into agreement.
 ## 7. Operational state
 
 **Working:** Pages (read-only), email (SMTP secrets set and confirmed sending),
-the Worker, Cloudflare Access, 100 tests green.
+the Worker, Cloudflare Access, 119 tests green.
 
 **Outstanding for the owner:**
 - **Open `https://openfin.christadore.workers.dev` and use OpenFIN from there.**

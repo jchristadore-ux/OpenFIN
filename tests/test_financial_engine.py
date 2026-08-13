@@ -703,12 +703,201 @@ class TestDeferralState(unittest.TestCase):
         self.assertEqual(st["deferrals"], [])
 
 
+class TestEditableBillList(unittest.TestCase):
+    """The Edit screen's list: ordered by when each bill next falls due, and
+    removal that deactivates rather than deletes."""
+
+    def setUp(self):
+        import apply_edits
+        import engine
+        self.engine, self.apply_edits = engine, apply_edits
+        self.tmp = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, self.tmp, True)
+
+        self.bills = [
+            bill("late", "Late in the month", 100, day=28, tier=3),
+            bill("early", "Early", 200, day=14, tier=1),
+            bill("fortnightly", "Fortnightly", 300, freq="biweekly",
+                 anchor="2026-08-17", tier=2),
+            bill("annual", "Annual", 900, freq="once", due="2027-03-01", tier=4),
+        ]
+        (self.tmp / "bills.json").write_text(json.dumps(self.bills), encoding="utf-8")
+        (self.tmp / "income.json").write_text(json.dumps([]), encoding="utf-8")
+        self._root, self._snap = engine.ROOT, engine.SNAPSHOT
+        engine.ROOT, engine.SNAPSHOT = self.tmp, self.tmp / "snapshot.json"
+        self.addCleanup(self._restore)
+
+    def _restore(self):
+        self.engine.ROOT, self.engine.SNAPSHOT = self._root, self._snap
+
+    def _snapshot(self):
+        settings = self.engine.Settings()
+        state = {"balance": {"amount": "5000.00",
+                             "entered_at": "2026-08-11T09:00:00",
+                             "date": "2026-08-11"}}
+        now = datetime(2026, 8, 11, 9, 0)
+        r = self.engine.analyse(settings, state, now)
+        return self.engine.write_snapshot(r, settings, now)
+
+    def test_bills_come_back_in_the_order_they_next_fall_due(self):
+        rows = self._snapshot()["bills"]
+        self.assertEqual([b["id"] for b in rows],
+                         ["early", "fortnightly", "late", "annual"])
+
+    def test_every_bill_carries_the_date_it_next_lands(self):
+        rows = {b["id"]: b for b in self._snapshot()["bills"]}
+        self.assertEqual(rows["early"]["next_date"], "2026-08-14")
+        self.assertEqual(rows["fortnightly"]["next_date"], "2026-08-17")
+        self.assertEqual(rows["annual"]["next_date"], "2027-03-01")
+
+    def test_a_biweekly_bill_sorts_by_date_not_by_a_day_it_does_not_have(self):
+        rows = {b["id"]: b for b in self._snapshot()["bills"]}
+        self.assertIsNone(rows["fortnightly"]["due_day"])
+        self.assertIsNotNone(rows["fortnightly"]["next_date"])
+
+    def test_removing_a_bill_keeps_it_and_sorts_it_last(self):
+        self.apply_edits.apply([{"id": "early", "active": False}],
+                               path=self.tmp / "bills.json")
+        rows = self._snapshot()["bills"]
+        self.assertEqual(rows[-1]["id"], "early", "kept, not deleted")
+        self.assertFalse(rows[-1]["active"])
+        self.assertIsNone(rows[-1]["next_date"])
+
+    def test_removing_a_bill_rebuilds_the_whole_forecast(self):
+        before = self._snapshot()
+        self.apply_edits.apply([{"id": "early", "active": False}],
+                               path=self.tmp / "bills.json")
+        after = self._snapshot()
+        self.assertNotEqual(before["end_of_month"], after["end_of_month"])
+        self.assertNotEqual(before["minimum_balance"], after["minimum_balance"])
+        self.assertNotEqual(before["discretionary"]["safe"],
+                            after["discretionary"]["safe"])
+        self.assertNotIn("early", [x["id"] for x in after["deferral_window"]])
+
+    def test_a_removed_bill_can_be_restored(self):
+        path = self.tmp / "bills.json"
+        before = self._snapshot()
+        self.apply_edits.apply([{"id": "early", "active": False}], path=path)
+        self.apply_edits.apply([{"id": "early", "active": True}], path=path)
+        after = self._snapshot()
+        self.assertEqual(before["minimum_balance"], after["minimum_balance"])
+        self.assertEqual([b["id"] for b in after["bills"]],
+                         [b["id"] for b in before["bills"]])
+
+    def test_removal_records_why_on_the_bill(self):
+        path = self.tmp / "bills.json"
+        self.apply_edits.apply([{"id": "early", "active": False}], path=path)
+        kept = {b["id"]: b for b in json.loads(path.read_text())}["early"]
+        self.assertIn("deactivated", kept["note"])
+
+
+class TestSafeToSpendRespectsTheLowPoint(unittest.TestCase):
+    """Safe-to-spend may not exceed what keeps the projection above the buffer.
+
+    The week view nets a fortnight's bills against a fortnight's income and
+    ignores which lands first, so a paycheque arriving after a bill cancels it
+    on paper. Every one of those errors is in the direction of offering money
+    that is not there.
+    """
+
+    BUFFER, BALANCE = D("500"), D("2000")
+
+    def _run(self, bills, incomes, allowance=D("0"), lookahead=14):
+        c = fincal.build(bills, incomes, TODAY, TODAY + timedelta(days=60))
+        f = fc.run(c, self.BALANCE, TODAY, 60, allowance)
+        return f, fc.safe_discretionary(c, self.BALANCE, TODAY, self.BUFFER,
+                                        lookahead, projection=f)
+
+    def _late_pay(self):
+        """A bill on the 18th, the pay covering it on the 19th."""
+        return (
+            [bill("big", "Big", 1800, freq="once", due="2026-08-18", tier=1)],
+            [income("pay", "Pay", 2500, freq="once", due="2026-08-19")],
+        )
+
+    def test_pay_arriving_after_the_bill_does_not_fund_it(self):
+        bills, incomes = self._late_pay()
+        f, d = self._run(bills, incomes)
+        # The week view sees 2500 of income against 1800 of bills and offers the
+        # balance less the buffer. The curve knows the 18th comes first.
+        self.assertEqual(d.week_view, D("1500"))
+        self.assertEqual(d.projected_low, D("200"))
+        self.assertEqual(d.projected_low_day, date(2026, 8, 18))
+        self.assertEqual(d.safe, D("-300"))
+        self.assertTrue(d.limited_by_low_point)
+
+    def test_spending_the_answer_leaves_the_low_day_exactly_at_the_buffer(self):
+        """The definition, stated as a property: this is the most that can be
+        spent today without the worst day ahead dropping below the floor."""
+        bills, incomes = self._late_pay()
+        f, d = self._run(bills, incomes)
+        self.assertEqual(d.projected_low - d.safe, self.BUFFER)
+
+    def test_the_week_view_still_wins_when_it_is_the_smaller_one(self):
+        bills = [bill("soon", "Soon", 1900, freq="once", due="2026-08-14", tier=1)]
+        incomes = [income("pay", "Pay", 5000, freq="once", due="2026-08-25")]
+        f, d = self._run(bills, incomes)
+        self.assertEqual(d.safe, d.week_view)
+        self.assertFalse(d.limited_by_low_point)
+
+    def test_the_daily_allowance_is_charged_by_the_curve(self):
+        """It is real spending. The week view never sees it; the curve does."""
+        bills, incomes = self._late_pay()
+        _, plain = self._run(bills, incomes, allowance=D("0"))
+        _, spend = self._run(bills, incomes, allowance=D("100"))
+        self.assertEqual(plain.week_view, spend.week_view)
+        self.assertLess(spend.safe, plain.safe)
+
+    def test_without_a_projection_the_answer_is_the_week_view_alone(self):
+        bills, incomes = self._late_pay()
+        c = fincal.build(bills, incomes, TODAY, TODAY + timedelta(days=60))
+        d = fc.safe_discretionary(c, self.BALANCE, TODAY, self.BUFFER, 14)
+        self.assertEqual(d.safe, d.week_view)
+        self.assertIsNone(d.projected_low)
+        self.assertFalse(d.limited_by_low_point)
+
+    def test_a_crunch_past_the_lookahead_does_not_pin_this_week(self):
+        """Otherwise one distant annual bill holds the figure at zero all year."""
+        far = (TODAY + timedelta(days=45)).isoformat()
+        bills = [bill("annual", "Annual", 9000, freq="once", due=far, tier=1)]
+        f, d = self._run(bills, [])
+        self.assertEqual(d.safe, d.week_view)
+        self.assertLess(f.minimum_balance, D("0"))       # the curve still knows
+
+    def test_deferring_the_bill_lifts_the_low_point_and_the_answer(self):
+        bills, incomes = self._late_pay()
+        c = fincal.build(bills, incomes, TODAY, TODAY + timedelta(days=60),
+                         {("big", date(2026, 8, 18))})
+        f = fc.run(c, self.BALANCE, TODAY, 60, D("0"))
+        d = fc.safe_discretionary(c, self.BALANCE, TODAY, self.BUFFER, 14, projection=f)
+        self.assertEqual(d.safe, D("1500"))
+        self.assertFalse(d.limited_by_low_point)
+
+    def test_the_explanation_shows_the_overruled_figure_too(self):
+        bills, incomes = self._late_pay()
+        _, d = self._run(bills, incomes)
+        labels = [lbl for lbl, _ in d.explain()]
+        self.assertIn("Free on this week alone", labels)
+        self.assertTrue(any(l.startswith("Lowest projected balance") for l in labels))
+        self.assertEqual(labels[-1], "Safe to spend")
+        self.assertEqual(d.explain()[-1][1], d.safe)
+
+
 class TestClientFormulaParity(unittest.TestCase):
     """The dashboard recomputes safe-to-spend locally so ticking a box is
     instant. That arithmetic is duplicated in JavaScript, so it is pinned here:
-    if the engine's definition changes, this fails and the app must follow."""
+    if the engine's definition changes, this fails and the app must follow.
 
-    def _parity(self, deferrals):
+    The invariant is stronger than "same formula". The browser works from a
+    snapshot built with whatever was saved at the time, and adjusts it for the
+    boxes since ticked; the engine, when it next runs, starts from scratch. Both
+    have to land on the same cent, so each case names a saved state and a
+    current one and holds the two answers against each other.
+    """
+
+    BUFFER, BALANCE, ALLOWANCE, LOOKAHEAD = D("500"), D("1200"), D("40"), 14
+
+    def _model(self, deferrals):
         bills = [
             bill("a", "A", 300, freq="once", due="2026-08-13", tier=3),
             bill("b", "B", 900, freq="once", due="2026-08-19", tier=3),
@@ -716,20 +905,44 @@ class TestClientFormulaParity(unittest.TestCase):
         incomes = [income("p", "Pay", 700, freq="once", due="2026-08-14"),
                    income("q", "Pay2", 400, freq="once", due="2026-08-21")]
         c = fincal.build(bills, incomes, TODAY, TODAY + timedelta(days=60), deferrals)
-        buffer, balance = D("500"), D("1200")
-        d = fc.safe_discretionary(c, balance, TODAY, buffer, 14)
+        f = fc.run(c, self.BALANCE, TODAY, 60, self.ALLOWANCE)
+        d = fc.safe_discretionary(c, self.BALANCE, TODAY, self.BUFFER,
+                                  self.LOOKAHEAD, projection=f)
+        return c, f, d
 
-        # The JavaScript, transcribed.
+    def _parity(self, saved, current=None):
+        """Engine's answer for `current`, vs the app's from a `saved` snapshot."""
+        current = saved if current is None else current
+        _, _, engine_says = self._model(current)
+        cal, curve, snap = self._model(saved)
+
+        # ---- the JavaScript, transcribed -------------------------------
         we = fincal.week_end(TODAY)
-        window = c.bills_between(TODAY, we + timedelta(days=14), include_deferred=True)
-        beyond_in = c.total_in(we + timedelta(days=1), we + timedelta(days=15))
+        horizon = we + timedelta(days=self.LOOKAHEAD)
+        # What the snapshot hands the browser.
+        beyond_in = cal.total_in(we + timedelta(days=1), horizon)
+        window = cal.bills_between(TODAY, horizon, include_deferred=True)
+
         bills_week = sum((e.amount for e in window
-                          if e.day <= we and not e.deferred), D("0"))
+                          if e.day <= we and (e.item_id, e.day) not in current), D("0"))
         beyond_out = sum((e.amount for e in window
-                          if e.day > we and not e.deferred), D("0"))
+                          if e.day > we and (e.item_id, e.day) not in current), D("0"))
         committed = max(D("0"), beyond_out - beyond_in)
-        client = balance + d.income_this_week - bills_week - committed - buffer
-        return d.safe, money(client)
+        week_view = (self.BALANCE + snap.income_this_week - bills_week
+                     - committed - self.BUFFER)
+
+        # Boxes changed since the snapshot shift every later day of the curve.
+        shifts = []
+        for e in window:
+            was, now = (e.item_id, e.day) in saved, (e.item_id, e.day) in current
+            if was != now:
+                shifts.append((e.day, e.amount if now else -e.amount))
+        low = min(
+            d.closing + sum((amt for when, amt in shifts if when <= d.day), D("0"))
+            for d in curve.days if TODAY <= d.day <= horizon
+        )
+        client = min(week_view, low - self.BUFFER)
+        return engine_says.safe, money(client)
 
     def test_parity_with_nothing_deferred(self):
         a, b = self._parity(set())
@@ -746,6 +959,36 @@ class TestClientFormulaParity(unittest.TestCase):
     def test_parity_with_everything_deferred(self):
         a, b = self._parity({("a", date(2026, 8, 13)), ("b", date(2026, 8, 19))})
         self.assertEqual(a, b)
+
+    def test_parity_when_a_box_is_ticked_after_the_snapshot(self):
+        a, b = self._parity(set(), {("b", date(2026, 8, 19))})
+        self.assertEqual(a, b)
+
+    def test_parity_when_a_box_is_unticked_after_the_snapshot(self):
+        a, b = self._parity({("a", date(2026, 8, 13))}, set())
+        self.assertEqual(a, b)
+
+    def test_parity_when_the_whole_set_is_swapped(self):
+        a, b = self._parity({("a", date(2026, 8, 13))}, {("b", date(2026, 8, 19))})
+        self.assertEqual(a, b)
+
+    def test_income_on_the_last_lookahead_day_counts_the_same_both_sides(self):
+        """The window the app is given must be the window the engine uses.
+
+        It used to be a day wider, so a paycheque landing on that extra day was
+        credited in the browser and not in the engine — the figure changed on
+        its own the moment the real forecast came back.
+        """
+        we = fincal.week_end(TODAY)
+        horizon = we + timedelta(days=self.LOOKAHEAD)
+        bills = [bill("a", "A", 300, freq="once", due="2026-08-13", tier=3)]
+        incomes = [income("late", "Pay", 900, freq="once",
+                          due=(horizon + timedelta(days=1)).isoformat())]
+        c = fincal.build(bills, incomes, TODAY, TODAY + timedelta(days=60))
+        d = fc.safe_discretionary(c, self.BALANCE, TODAY, self.BUFFER, self.LOOKAHEAD)
+        # Income one day past the horizon is outside the window on both sides.
+        self.assertEqual(c.total_in(we + timedelta(days=1), horizon), D("0"))
+        self.assertEqual(d.committed_beyond_week, D("0"))
 
 
 # --------------------------------------------------------------------------

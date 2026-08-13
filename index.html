@@ -114,6 +114,19 @@
   .row.dfd .l .nm{text-decoration:line-through}
   .row.dfd .v{color:var(--warn);text-decoration:line-through}
   .row.owe .v{color:var(--warn)}
+
+  /* Removing a bill is staged, not immediate: struck through until Save, so a
+     mis-tap on a phone costs a second tap and not the household's model. */
+  .e-del,.e-restore{border:1px solid var(--line);background:#fff;color:var(--mute);
+    border-radius:8px;font:inherit;cursor:pointer}
+  .e-del{width:30px;height:32px;flex:0 0 30px;font-size:17px;line-height:1;padding:0}
+  .e-restore{font-size:13px;font-weight:600;padding:6px 12px}
+  .e-del:active,.e-restore:active{background:#f1f5f9}
+  .row.rm{background:#fef2f2;margin:0 -8px;padding-left:8px;padding-right:8px;border-radius:8px}
+  .row.rm .nm{text-decoration:line-through;color:var(--danger)}
+  .row.rm .e-del{border-color:#fca5a5;color:var(--danger)}
+  .row.back{background:#ecfdf5;margin:0 -8px;padding-left:8px;padding-right:8px;border-radius:8px}
+  .row.back .nm{color:var(--ok)!important;font-weight:600}
   .tot{border-top:2px solid var(--line);margin-top:6px;padding-top:10px;font-weight:700}
   .empty{color:var(--mute);font-size:14px;padding:6px 0}
 
@@ -391,11 +404,45 @@ function collectEdits(){
     const amt = row.querySelector('.e-amt');
     const day = row.querySelector('.e-day');
     const out = {id};
-    if(amt && amt.value !== '' && amt.value !== amt.defaultValue) out.amount = amt.value;
-    if(day && day.value !== '' && day.value !== day.defaultValue) out.due_day = Number(day.value);
+    // Removal is a staged change like any other, so it goes through the same
+    // Save and can be undone before it is sent.
+    if(row.classList.contains('rm')) out.active = false;
+    else if(row.classList.contains('back')) out.active = true;
+    else {
+      if(amt && amt.value !== '' && amt.value !== amt.defaultValue) out.amount = amt.value;
+      if(day && day.value !== '' && day.value !== day.defaultValue) out.due_day = Number(day.value);
+    }
     if(Object.keys(out).length > 1) edits.push(out);
   });
   return edits;
+}
+
+// Removing a bill does not delete it — it is marked inactive and kept, because
+// the statement history is keyed to the id and a bill that turns out to still
+// be live has to be able to come back. Saving rebuilds the forecast without it:
+// this week, upcoming, the curve, safe-to-spend and the risks all follow.
+function markRemoval(row){
+  const on = row.classList.toggle('rm');
+  const btn = row.querySelector('.e-del');
+  if(btn){ btn.textContent = on ? '↺' : '×'; btn.title = on ? 'Keep this bill' : 'Remove this bill'; }
+  row.querySelectorAll('input').forEach(i => { i.disabled = on || i.dataset.wasDisabled === '1'; });
+  editHint();
+}
+function markRestore(row){
+  const on = row.classList.toggle('back');
+  const btn = row.querySelector('.e-restore');
+  if(btn) btn.textContent = on ? 'Undo' : 'Restore';
+  editHint();
+}
+function editHint(){
+  const msg = document.getElementById('editmsg');
+  if(!msg) return;
+  const rm = document.querySelectorAll('[data-bill].rm').length;
+  const back = document.querySelectorAll('[data-bill].back').length;
+  const bits = [];
+  if(rm) bits.push(`${rm} to remove`);
+  if(back) bits.push(`${back} to restore`);
+  msg.textContent = bits.length ? bits.join(', ') + ' — press Save changes.' : '';
 }
 
 async function saveEdits(){
@@ -407,8 +454,9 @@ async function saveEdits(){
   msg.innerHTML = '';
   try{
     const r = await post('/bills', {edits});
-    msg.innerHTML = `Saved ${r.count} change${r.count>1?'s':''}. The forecast is `
-      + 'rebuilding and will refresh here.';
+    msg.innerHTML = `Saved ${r.count} change${r.count>1?'s':''}. The whole forecast `
+      + 'is rebuilding — safe to spend, this week, upcoming, the curve and the '
+      + 'risks all follow. This page refreshes when it lands.';
     pollForSnapshot();
   } catch(e){
     msg.innerHTML = e.message + ' Nothing was saved.';
@@ -435,26 +483,54 @@ function pollForSnapshot(){
 }
 
 // ---- live deferral maths -------------------------------------------------
-// Mirrors forecast.safe_discretionary():
-//   safe = balance + income_week - bills_week - committed_beyond - buffer
-//   committed_beyond = max(0, beyond_out - beyond_in)
+// Mirrors forecast.safe_discretionary(), both halves of it:
+//   week_view  = balance + income_week - bills_week - committed_beyond - buffer
+//               committed_beyond = max(0, beyond_out - beyond_in)
+//   curve_view = lowest projected balance inside the same window - buffer
+//   safe       = min(week_view, curve_view)
 // Verified against the engine: same inputs produce the same cent.
+//
+// The curve half needs no round trip either. Deferring a bill means its money
+// does not leave on its date, so every projected day from that date onward is
+// higher by that amount — and un-deferring one lowers them again. Applying that
+// to the curve the engine already sent re-finds the low point exactly.
 let SNAP = null;
 
 function recalc(){
   if(!SNAP) return;
   const c = SNAP.discretionary.components;
   let billsWeek = 0, beyondOut = 0, owed = 0;
+  const shifts = [];   // {date, amount} — signed, applied from that date on
   document.querySelectorAll('[data-defer]').forEach(row => {
     const on = row.querySelector('input').checked;
     const amt = num(row.getAttribute('data-amt'));
     const wk = row.getAttribute('data-inweek') === '1';
+    const was = row.getAttribute('data-was') === '1';
     row.classList.toggle('on', on);
+    if(on !== was) shifts.push({date: row.getAttribute('data-date'), amount: on ? amt : -amt});
     if(on){ owed += amt; return; }
     if(wk) billsWeek += amt; else beyondOut += amt;
   });
   const committed = Math.max(0, beyondOut - num(c.beyond_in));
-  const safe = num(c.balance) + num(c.income_week) - billsWeek - committed - num(c.buffer);
+  const weekView = num(c.balance) + num(c.income_week) - billsWeek - committed - num(c.buffer);
+
+  let safe = weekView, low = null, lowDay = null;
+  const horizon = c.horizon_end;
+  (SNAP.curve || []).forEach(d => {
+    if(horizon && d.date > horizon) return;
+    const closing = num(d.closing)
+      + shifts.reduce((a, s) => a + (s.date <= d.date ? s.amount : 0), 0);
+    if(low === null || closing < low){ low = closing; lowDay = d.date; }
+  });
+  if(low !== null) safe = Math.min(weekView, low - num(c.buffer));
+
+  // Say which of the two readings is holding the number down. "You have it,
+  // but a day you have not reached yet has already spent it" is the whole
+  // point of the figure, and it is invisible if only the total is shown.
+  const pinned = low !== null && (low - num(c.buffer)) < weekView;
+  const why = pinned
+    ? `Held down by ${dt(lowDay)}, when the balance dips to ${m(low)}.`
+    : `Through ${dt(SNAP.week_end)}, after bills and buffer.`;
 
   const box = document.getElementById('livebox');
   box.className = 'live ' + (safe < 0 ? 'bad' : 'good');
@@ -466,10 +542,11 @@ function recalc(){
   const card = document.getElementById('disccard');
   document.getElementById('discamt').textContent = m(safe);
   card.classList.toggle('neg', safe < 0);
-  document.getElementById('discsub').textContent = owed > 0
-    ? `With ${m(owed)} deferred. Not yet saved.`
-    : (safe < 0 ? 'Negative — there is nothing free this week.'
-                : 'Through ' + dt(SNAP.week_end) + ', after bills and buffer.');
+  // "Not yet saved" only when a box has actually been moved since the engine
+  // last ran — otherwise it appears against deferrals that were saved days ago.
+  document.getElementById('discsub').textContent =
+    (owed > 0 ? `With ${m(owed)} deferred${shifts.length ? ', not yet saved' : ''}. ` : '')
+    + (safe < 0 ? 'Nothing is free this week. ' + why : why);
 }
 
 async function saveDeferrals(){
@@ -566,11 +643,17 @@ function render(s){
       the daily summary.</div>
   </div>`);
 
+  // The sub-line names the constraint. When the low point is what is holding
+  // the figure down, the week has money in it and a day not yet reached has
+  // already claimed it — which is the single most useful thing this card says.
+  const d = s.discretionary;
+  const why = d.limited_by_low_point && d.projected_low_day
+    ? `Held down by ${dt(d.projected_low_day)}, when the balance dips to ${m(d.projected_low)}.`
+    : `Through ${dt(s.week_end)}, after bills and buffer.`;
   out.push(`<div class="disc ${neg?'neg':''}" id="disccard">
     <div class="lab">Safe to spend this week</div>
     <div class="amt" id="discamt">${m(s.discretionary.safe)}</div>
-    <div class="sub" id="discsub">${neg ? 'Negative — there is nothing free this week.'
-      : 'Through ' + dt(s.week_end) + ', after bills and buffer.'}</div></div>`);
+    <div class="sub" id="discsub">${neg ? 'Nothing is free this week. ' + esc(why) : esc(why)}</div></div>`);
 
   const tb = s.today_bills, ti = s.today_income;
   out.push(tile('Today', live(tb).length ? m(sum(live(tb))) : 'Clear',
@@ -617,9 +700,11 @@ function render(s){
   const inWeek = win.filter(x => x.in_week);
   const beyond = win.filter(x => !x.in_week);
   const already = win.filter(x => x.deferred).length;
+  // data-was is the state the engine's curve was built with. The live maths
+  // shifts the curve only for boxes that have CHANGED since then.
   const line = (x) => `<label class="dfr ${x.deferred?'on':''} ${x.secured||!x.deferrable?'sec':''}"
       data-defer="${esc(x.id)}" data-date="${esc(x.date)}" data-amt="${esc(x.amount)}"
-      data-inweek="${x.in_week?1:0}">
+      data-inweek="${x.in_week?1:0}" data-was="${x.deferred?1:0}">
       <input type="checkbox" ${x.deferred?'checked':''}>
       <span class="nm">${esc(x.name)}
         <small>${dt(x.date)}${x.secured?' · SECURED — missing this has real consequences'
@@ -656,34 +741,47 @@ function render(s){
 
   // Edit bills — routine amount and day changes, saved permanently and synced
   // to every device because the model lives in the repo, not on a phone.
+  // Ordered by when each next falls due; the engine works that out, because a
+  // biweekly bill has no day of the month to sort on.
   const editable = (s.bills || []).filter(b => b.active);
+  const gone = (s.bills || []).filter(b => !b.active);
   out.push(tile('Edit bills', `${editable.length}`,
     `<div style="font-size:13px;color:var(--mute);margin-bottom:10px">
-       Change an amount or the day it lands. Saved for both phones. Leave a box
+       In the order they next fall due. Change an amount or the day it lands,
+       or remove one that has ended. Saved for both phones. Leave a box
        untouched to keep it as it is.</div>`
     + editable.map(b => `<div class="row" data-bill="${esc(b.id)}">
-        <div class="l">${esc(b.name)}<span class="pill t${b.tier}">T${b.tier}</span>
-          <small>${esc(b.frequency)}${b.variable?' · varies':''}${b.needs_review?' · needs review':''}</small></div>
+        <div class="l"><span class="nm">${esc(b.name)}</span><span class="pill t${b.tier}">T${b.tier}</span>
+          <small>${b.next_date?dt(b.next_date)+' · ':''}${esc(b.frequency)}${b.variable?' · varies':''}${b.needs_review?' · needs review':''}</small></div>
         <div class="v" style="display:flex;gap:6px;align-items:center">
           <input class="e-amt" type="number" inputmode="decimal" step="0.01"
-                 value="${esc(b.amount)}" style="width:92px;padding:7px 8px;border:1px solid var(--line);
+                 value="${esc(b.amount)}" style="width:88px;padding:7px 8px;border:1px solid var(--line);
                  border-radius:8px;font:inherit;font-size:14px;text-align:right">
           <input class="e-day" type="number" inputmode="numeric" min="1" max="31"
                  value="${b.due_day ?? ''}" placeholder="–"
                  title="Day of month${b.due_day===null?' (not used for this frequency)':''}"
                  ${b.due_day===null?'disabled':''}
-                 style="width:52px;padding:7px 8px;border:1px solid var(--line);
+                 style="width:48px;padding:7px 8px;border:1px solid var(--line);
                  border-radius:8px;font:inherit;font-size:14px;text-align:center">
+          <button class="e-del" type="button" title="Remove this bill"
+                  aria-label="Remove ${esc(b.name)}">×</button>
         </div></div>`).join('')
     + `<div style="margin-top:14px;display:flex;gap:10px;align-items:center">
          <button id="savebills" type="button" style="border:0;border-radius:10px;
            background:var(--teal);color:#04231e;font-weight:800;font-size:14px;
            padding:11px 18px;font-family:inherit;cursor:pointer">Save changes</button>
          <span id="editmsg" style="font-size:13px;color:var(--mute)"></span></div>`
-    + ((s.bills || []).some(b => !b.active)
-        ? `<div style="margin-top:14px;font-size:12.5px;color:var(--mute)">
-             Inactive, kept for history: ${(s.bills||[]).filter(b=>!b.active)
-               .map(b=>esc(b.name)).join(', ')}</div>` : '')));
+    // Removed bills are kept and listed, never dropped from the file — the
+    // history is keyed to the id, and a bill that turns out to still be live
+    // has to be able to come back.
+    + (gone.length
+        ? `<div class="grp" style="margin-top:18px">Removed, kept for history</div>`
+          + gone.map(b => `<div class="row" data-bill="${esc(b.id)}" data-inactive="1">
+               <div class="l"><span class="nm" style="color:var(--mute)">${esc(b.name)}</span>
+                 <small>${esc(b.frequency)} · ${m(b.amount)} · not counted in the forecast</small></div>
+               <div class="v"><button class="e-restore" type="button">Restore</button></div>
+             </div>`).join('')
+        : '')));
 
   out.push(tile('Settings', '',
     `<div class="row"><div class="l">Minimum safe balance</div><div class="v">${m(s.settings.minimum_safe_balance)}</div></div>
@@ -706,6 +804,15 @@ function render(s){
   });
   const sb = document.getElementById('savebills');
   if(sb) sb.addEventListener('click', saveEdits);
+  // Remember which day boxes were already disabled (frequencies with no day of
+  // the month), so un-staging a removal does not enable one that never applied.
+  document.querySelectorAll('[data-bill] input').forEach(i => {
+    if(i.disabled) i.dataset.wasDisabled = '1';
+  });
+  document.querySelectorAll('.e-del').forEach(b =>
+    b.addEventListener('click', () => markRemoval(b.closest('[data-bill]'))));
+  document.querySelectorAll('.e-restore').forEach(b =>
+    b.addEventListener('click', () => markRestore(b.closest('[data-bill]'))));
   const sd = document.getElementById('savedefer');
   if(sd) sd.addEventListener('click', saveDeferrals);
   document.querySelectorAll('[data-defer] input').forEach(cb =>
