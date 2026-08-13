@@ -48,7 +48,71 @@
       "date": "2026-08-13"
     }
   ],
-  "risks": {},
+  "risks": {
+    "secured_payment:mortgage:2026-08-24": {
+      "type": "secured_payment",
+      "severity": "critical",
+      "amount": "243.02",
+      "when": "2026-08-24",
+      "first_seen": "2026-08-13T09:54:28.237066-04:00",
+      "notified_at": "2026-08-13T09:54:28.237066-04:00",
+      "last_seen": "2026-08-13T09:54:28.237066-04:00"
+    },
+    "negative_balance:2026-08-24": {
+      "type": "negative_balance",
+      "severity": "critical",
+      "amount": "9861.02",
+      "when": "2026-08-24",
+      "first_seen": "2026-08-13T09:54:28.237066-04:00",
+      "notified_at": "2026-08-13T09:54:28.237066-04:00",
+      "last_seen": "2026-08-13T09:54:28.237066-04:00"
+    },
+    "secured_payment:ccu-car-loan:2026-09-18": {
+      "type": "secured_payment",
+      "severity": "critical",
+      "amount": "306.90",
+      "when": "2026-09-18",
+      "first_seen": "2026-08-13T09:54:28.237066-04:00",
+      "notified_at": "2026-08-13T09:54:28.237066-04:00",
+      "last_seen": "2026-08-13T09:54:28.237066-04:00"
+    },
+    "secured_payment:car-payment:2026-09-24": {
+      "type": "secured_payment",
+      "severity": "critical",
+      "amount": "742.65",
+      "when": "2026-09-24",
+      "first_seen": "2026-08-13T09:54:28.237066-04:00",
+      "notified_at": "2026-08-13T09:54:28.237066-04:00",
+      "last_seen": "2026-08-13T09:54:28.237066-04:00"
+    },
+    "large_payment:mortgage:2026-08-24": {
+      "type": "large_payment",
+      "severity": "high",
+      "amount": "243.02",
+      "when": "2026-08-24",
+      "first_seen": "2026-08-13T09:54:28.237066-04:00",
+      "notified_at": "2026-08-13T09:54:28.237066-04:00",
+      "last_seen": "2026-08-13T09:54:28.237066-04:00"
+    },
+    "large_payment:clinton-water:2026-09-19": {
+      "type": "large_payment",
+      "severity": "high",
+      "amount": "873.53",
+      "when": "2026-09-19",
+      "first_seen": "2026-08-13T09:54:28.237066-04:00",
+      "notified_at": "2026-08-13T09:54:28.237066-04:00",
+      "last_seen": "2026-08-13T09:54:28.237066-04:00"
+    },
+    "discretionary:2026-08-16": {
+      "type": "discretionary",
+      "severity": "medium",
+      "amount": "1793.25",
+      "when": "2026-08-16",
+      "first_seen": "2026-08-13T09:54:28.237066-04:00",
+      "notified_at": "2026-08-13T09:54:28.237066-04:00",
+      "last_seen": "2026-08-13T09:54:28.237066-04:00"
+    }
+  },
   "last_daily_sent": "2026-08-13T07:45:58.520936-04:00",
   "_migrated_from": {
     "last_run_iso": "2026-08-10T14:34:07.133815-04:00",
