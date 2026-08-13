@@ -11,7 +11,9 @@ monthly debt) because that shape is what the engine has to get right.
 from __future__ import annotations
 
 import json
+import shutil
 import sys
+import tempfile
 import unittest
 from datetime import date, datetime, timedelta
 from decimal import Decimal
@@ -744,6 +746,119 @@ class TestClientFormulaParity(unittest.TestCase):
     def test_parity_with_everything_deferred(self):
         a, b = self._parity({("a", date(2026, 8, 13)), ("b", date(2026, 8, 19))})
         self.assertEqual(a, b)
+
+
+# --------------------------------------------------------------------------
+# the snapshot the dashboard reads: saving a deferral has to cascade
+# --------------------------------------------------------------------------
+
+class TestSnapshotCascade(unittest.TestCase):
+    """Everything downstream of a deferral moves, and nothing is hidden.
+
+    The dashboard computes nothing, so a deferral that reaches state.json but
+    not the snapshot would leave the app showing pre-deferral figures under a
+    "saved" message. And the lists have to keep showing what was deferred: the
+    forecast leaves it out because it is not leaving the account, the lists keep
+    it because it is still owed, and the flag is what lets both be true at once.
+    """
+
+    def setUp(self):
+        import engine
+        self.engine = engine
+        self.tmp = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, self.tmp, True)
+
+        bills = [
+            # In-week, deferrable, and big enough to reach Upcoming's floor.
+            bill("braces", "Braces", 400, freq="once", due="2026-08-14", tier=3),
+            # Beyond the week end (Sun 16 Aug), so it lands in Upcoming.
+            bill("card", "Credit card", 300, freq="once", due="2026-08-20", tier=3),
+            bill("today", "Due today", 120, freq="once", due="2026-08-11", tier=3),
+        ]
+        (self.tmp / "bills.json").write_text(json.dumps(bills), encoding="utf-8")
+        (self.tmp / "income.json").write_text(json.dumps([]), encoding="utf-8")
+
+        self._root, self._snap = engine.ROOT, engine.SNAPSHOT
+        engine.ROOT = self.tmp
+        engine.SNAPSHOT = self.tmp / "snapshot.json"
+        self.addCleanup(self._restore)
+
+    def _restore(self):
+        self.engine.ROOT, self.engine.SNAPSHOT = self._root, self._snap
+
+    def _snapshot(self, deferrals):
+        settings = self.engine.Settings()
+        state = {
+            "balance": {"amount": "2000.00",
+                        "entered_at": "2026-08-11T09:00:00",
+                        "date": "2026-08-11"},
+            "deferrals": deferrals,
+        }
+        now = datetime(2026, 8, 11, 9, 0)
+        r = self.engine.analyse(settings, state, now)
+        return self.engine.write_snapshot(r, settings, now)
+
+    DEFER_BRACES = [{"bill_id": "braces", "date": "2026-08-14"}]
+
+    def test_saving_a_deferral_moves_every_derived_figure(self):
+        before = self._snapshot([])
+        after = self._snapshot(self.DEFER_BRACES)
+        for key in ("end_of_week", "end_of_month", "minimum_balance"):
+            self.assertNotEqual(before[key], after[key], key)
+        self.assertNotEqual(before["discretionary"]["safe"],
+                            after["discretionary"]["safe"])
+        self.assertNotEqual(before["curve"][5]["closing"],
+                            after["curve"][5]["closing"])
+        self.assertEqual(D(after["deferred_total"]), D("400"))
+
+    def test_this_week_still_lists_the_deferred_bill_and_marks_it(self):
+        after = self._snapshot(self.DEFER_BRACES)
+        braces = [x for x in after["this_week"] if x["name"] == "Braces"]
+        self.assertEqual(len(braces), 1, "a deferred bill must not vanish")
+        self.assertTrue(braces[0]["deferred"])
+
+    def test_upcoming_still_lists_the_deferred_bill_and_marks_it(self):
+        after = self._snapshot([{"bill_id": "card", "date": "2026-08-20"}])
+        card = [x for x in after["upcoming"] if x["name"] == "Credit card"]
+        self.assertEqual(len(card), 1, "a deferred bill must not vanish")
+        self.assertTrue(card[0]["deferred"])
+
+    def test_today_still_lists_the_deferred_bill_and_marks_it(self):
+        after = self._snapshot([{"bill_id": "today", "date": "2026-08-11"}])
+        due = [x for x in after["today_bills"] if x["name"] == "Due today"]
+        self.assertEqual(len(due), 1, "a deferred bill must not vanish")
+        self.assertTrue(due[0]["deferred"])
+
+    def test_undeferred_lists_carry_the_flag_as_false(self):
+        # The dashboard sums on `not deferred`, so the key has to be there.
+        before = self._snapshot([])
+        for section in ("this_week", "upcoming", "today_bills"):
+            for row in before[section]:
+                self.assertIn("deferred", row, section)
+
+    def test_listed_bills_less_deferred_equals_what_the_week_charges(self):
+        """What the app totals must equal what the engine subtracted."""
+        after = self._snapshot(self.DEFER_BRACES)
+        listed = sum(
+            D(x["amount"]) for x in after["this_week"]
+            if x["direction"] == "out" and not x["deferred"]
+        )
+        charged = [v for label, v in after["discretionary"]["explain"]
+                   if label.startswith("Bills before")][0]
+        self.assertEqual(listed, -D(charged))
+
+    def test_the_ticked_boxes_come_back_ticked(self):
+        after = self._snapshot(self.DEFER_BRACES)
+        ticked = {x["id"] for x in after["deferral_window"] if x["deferred"]}
+        self.assertEqual(ticked, {"braces"})
+
+    def test_clearing_deferrals_restores_the_original_figures(self):
+        before = self._snapshot([])
+        self._snapshot(self.DEFER_BRACES)
+        cleared = self._snapshot([])
+        self.assertEqual(before["discretionary"]["safe"],
+                         cleared["discretionary"]["safe"])
+        self.assertEqual(D(cleared["deferred_total"]), D("0"))
 
 
 if __name__ == "__main__":

@@ -93,7 +93,10 @@ def daily_text(
     if upcoming:
         L.append("UPCOMING")
         for e in upcoming[:6]:
-            L.append(f"  {d(e.day)}  {e.name} — {m(e.amount)}")
+            # A deferred occurrence stays on the list and says so. It is still
+            # owed; only its date has moved.
+            mark = "  (DEFERRED — still owed)" if getattr(e, "deferred", False) else ""
+            L.append(f"  {d(e.day)}  {e.name} — {m(e.amount)}{mark}")
         L.append("")
 
     L.append("FORECAST")
@@ -203,7 +206,15 @@ def daily_html(
             card(
                 "Upcoming",
                 "<table style='width:100%;border-collapse:collapse'>"
-                + "".join(row(f"{d(e.day)}  {e.name}", m(e.amount)) for e in upcoming[:6])
+                + "".join(
+                    row(
+                        f"{d(e.day)}  {e.name}"
+                        + (" — deferred, still owed"
+                           if getattr(e, "deferred", False) else ""),
+                        m(e.amount),
+                    )
+                    for e in upcoming[:6]
+                )
                 + "</table>",
             )
         )

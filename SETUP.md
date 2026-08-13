@@ -8,9 +8,14 @@ half-finished setup is never a broken one:
 | # | Thing | Without it |
 |---|---|---|
 | 1 | Repository secrets | No email goes out |
-| 2 | GitHub Pages | No app to open |
+| 2 | GitHub Pages | No read-only copy of the app |
 | 3 | The Worker | The app can show figures but not update them |
-| 4 | The Worker's address | Same — see [worker/README.md](worker/README.md) |
+| 4 | The Worker's address in `app.json` | The Pages copy cannot point you at the one that saves |
+
+> **The app you actually use is the Worker's address**, not the github.io one.
+> The Worker serves the same dashboard, and only that copy can save — the
+> browser will not send a sign-in cookie to a page on another site. Details in
+> [worker/README.md](worker/README.md).
 
 ---
 
@@ -58,8 +63,10 @@ it shows a green tick and the address, which will be
 https://<your-username>.github.io/OpenFIN/
 ```
 
-Open that on your phone and add it to the home screen (Safari: **Share → Add to
-Home Screen**). It then opens full-screen like an app.
+Open that on your phone to check it renders. **Do not add it to the home screen
+yet** — once the Worker exists in step 3, its address serves the same app and is
+the one that can save. Put that on the home screen instead. This copy is a
+read-only fallback, and says so at the top of the page.
 
 ### If the page is blank, 404s, or shows a README
 
@@ -90,12 +97,17 @@ the root folder is the correct setting.
 Separate walkthrough, because it is the longest: **[worker/README.md](worker/README.md)**.
 
 Short version: it is a small Cloudflare Worker that holds a GitHub token so
-your phone does not have to. The app posts to it, it starts the workflow. Free,
-and about fifteen minutes of clicking. Cloudflare Access sits in front of it and
-signs you in by emailed code, so there is nothing to type on a phone and nothing
-stored on it.
+your phone does not have to. **It also serves the app.** You open its address,
+it signs you in by emailed code, and everything you change posts back to the
+same address. Free, and about fifteen minutes of clicking.
 
-Until it exists, the app still shows every figure — it just cannot update them.
+It serves the app rather than only accepting writes because a page on
+github.io cannot send the sign-in cookie that belongs to the Worker's address —
+Safari blocks another site's cookie, and no setting on either end changes that.
+That is why saving from the Pages copy failed with "Failed to fetch".
+
+Until the Worker exists, the Pages copy still shows every figure — it just
+cannot update them.
 
 ---
 

@@ -9,6 +9,10 @@
 <link rel="icon" href="assets/mark.svg">
 <link rel="apple-touch-icon" href="assets/mark.svg">
 <title>OpenFIN</title>
+<!-- Replaced by the Worker when it serves this page, so the app knows it is
+     running first-party and posts to its own origin. Left as a comment when
+     GitHub Pages serves it. Do not remove: worker/index.js looks for it. -->
+<!--OPENFIN_HOST-->
 <style>
   /* Mobile first and mobile only, really. Opened one-handed on a phone while
      standing in a kitchen. Everything that matters is above the fold, and the
@@ -103,6 +107,13 @@
   .row .l small{display:block;color:var(--mute);font-size:12px}
   .row .v{font-weight:600;white-space:nowrap}
   .in .v{color:var(--ok)}
+  /* A deferred occurrence is shown struck through wherever it is listed, and
+     left out of the totals beside it. It is still owed; it is just not leaving
+     the account on that date. */
+  .row.dfd .l{color:var(--mute)}
+  .row.dfd .l .nm{text-decoration:line-through}
+  .row.dfd .v{color:var(--warn);text-decoration:line-through}
+  .row.owe .v{color:var(--warn)}
   .tot{border-top:2px solid var(--line);margin-top:6px;padding-top:10px;font-weight:700}
   .empty{color:var(--mute);font-size:14px;padding:6px 0}
 
@@ -174,14 +185,22 @@
 // sits behind Cloudflare Access, so no credential is ever entered or stored on
 // a phone — only this address, which is not a secret.
 //
-// Two sources, device first:
+// The Worker also serves this page. When it does, WORKER_HOSTED is true and
+// every write goes to our own origin: no cross-site request, no CORS preflight
+// for Access to reject, and a first-party sign-in cookie the browser will
+// actually send. Served from GitHub Pages instead, writes are cross-site and a
+// browser that blocks third-party cookies — Safari does, by default — will
+// refuse them however the request is framed. Reading works from either place.
+//
+// Two sources for the address, device first:
 //   1. localStorage, set by pasting the URL into the setup box in the app.
 //      Takes effect immediately and needs no commit, but is per-device.
 //   2. app.json in this repository, which every device picks up. Editable on
 //      github.com with no terminal.
 // The device value wins so a phone can be pointed at a new Worker without
-// waiting on a commit; "Forget" clears it and falls back to app.json.
+// waiting on a commit.
 const WORKER_KEY = 'openfin.worker';
+const WORKER_HOSTED = !!window.OPENFIN_WORKER_HOSTED;
 let WORKER = '';
 
 function workerFromDevice(){
@@ -209,6 +228,8 @@ function cleanWorkerUrl(raw){
 }
 
 async function loadWorkerUrl(){
+  // Served by the Worker: it is its own address, whatever app.json says.
+  if(WORKER_HOSTED){ WORKER = location.origin; return; }
   const device = workerFromDevice();
   if(device){ WORKER = device; return; }
   try{
@@ -220,24 +241,59 @@ async function loadWorkerUrl(){
   }catch(e){ /* app.json missing or unparseable; the setup box handles it */ }
 }
 
+/** What to tell someone whose write never reached the Worker at all. */
+function unreachable(){
+  if(WORKER_HOSTED){
+    return 'Lost contact with OpenFIN — the sign-in may have expired. '
+      + 'Reload this page and try again.';
+  }
+  return 'This browser blocked the request. Saving cannot work from this '
+    + 'address because the sign-in cookie belongs to ' + esc(WORKER) + ', and '
+    + 'browsers do not send another site’s cookie. Open '
+    + `<a href="${esc(WORKER)}/">${esc(WORKER)}</a> and use OpenFIN from there `
+    + '— same app, same numbers, and saving works.';
+}
+
 async function post(path, payload){
   if(!WORKER){
     throw new Error('The Worker address is not set yet. Use the setup box '
       + 'above to paste it in.');
   }
-  const res = await fetch(WORKER + path, {
-    method:'POST', credentials:'include',
-    headers:{'Content-Type':'application/json'},
-    body: JSON.stringify(payload)
-  });
+  // Relative when the Worker serves us, so the request is same-origin.
+  const target = WORKER_HOSTED ? path : WORKER + path;
+  let res;
+  try{
+    res = await fetch(target, {
+      method:'POST', credentials:'include',
+      // 'manual' so an expired Access session comes back as a redirect we can
+      // name, instead of a bare "Failed to fetch" that says nothing.
+      redirect:'manual',
+      // text/plain keeps this a simple request, so the browser sends no CORS
+      // preflight. Cloudflare Access answers an unauthenticated preflight —
+      // and a preflight never carries cookies — with a login redirect, which a
+      // preflight is not allowed to follow. The Worker parses the body as JSON
+      // regardless of the label.
+      headers:{'Content-Type':'text/plain;charset=UTF-8'},
+      body: JSON.stringify(payload)
+    });
+  }catch(e){
+    throw new Error(unreachable());
+  }
+  if(res.type === 'opaqueredirect' || res.status === 0){
+    throw new Error('Sign-in has expired. Reload this page, enter the email '
+      + 'code, then try again.');
+  }
   let data = {};
   try { data = await res.json(); } catch(e){ /* non-JSON error page */ }
   if(res.status === 202) return data;
   if(res.status === 401 || res.status === 403){
-    throw new Error('Sign-in needed. Open the Worker URL once in this browser '
-      + 'to get the email code, then try again.');
+    throw new Error('Sign-in needed. Open '
+      + `<a href="${esc(WORKER)}/">${esc(WORKER)}</a> in this browser to get `
+      + 'the email code, then try again.');
   }
-  throw new Error(data.error || ('Request failed: ' + res.status));
+  // Every message thrown here is HTML, because some of them carry a link. The
+  // Worker's own text is escaped at the point it enters one.
+  throw new Error(data.error ? esc(data.error) : ('Request failed: ' + res.status));
 }
 
 const esc = (s) => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -250,12 +306,29 @@ function tile(title, note, inner, cls='', open=false){
     <summary>${esc(title)}${note?`<span class="n">${esc(note)}</span>`:''}</summary>
     <div class="body">${inner}</div></details>`;
 }
+// Deferred occurrences are listed like everything else and struck through.
+// They are excluded from the totals beside them, because they are not leaving
+// the account — but never from the list, because they are still owed.
+const live = (list) => (list || []).filter(x => !x.deferred);
+const held = (list) => (list || []).filter(x => x.deferred);
+const sum  = (list) => (list || []).reduce((a,b) => a + num(b.amount), 0);
+
 function rows(list, dir){
   if(!list.length) return '<div class="empty">Nothing scheduled.</div>';
-  return list.map(x => `<div class="row ${dir==='in'?'in':''}">
-      <div class="l">${esc(x.name)}${x.tier?`<span class="pill t${x.tier}">T${x.tier}</span>`:''}
-        ${x.date?`<small>${dt(x.date)}</small>`:''}</div>
+  return list.map(x => `<div class="row ${dir==='in'?'in':''} ${x.deferred?'dfd':''}">
+      <div class="l"><span class="nm">${esc(x.name)}</span>${x.tier?`<span class="pill t${x.tier}">T${x.tier}</span>`:''}
+        ${x.date?`<small>${dt(x.date)}${x.deferred?' · deferred — still owed':''}</small>`
+                :(x.deferred?'<small>deferred — still owed</small>':'')}</div>
       <div class="v">${dir==='in'?'+':''}${m(x.amount)}</div></div>`).join('');
+}
+
+/** A footer line for what was deferred out of the total just shown. */
+function owedRow(list, label){
+  const total = sum(held(list));
+  if(!total) return '';
+  return `<div class="row owe"><div class="l">${esc(label)}
+      <small>deferred, not paid on the date — still owed</small></div>
+    <div class="v">${m(total)}</div></div>`;
 }
 
 // ---- one-time setup ------------------------------------------------------
@@ -301,7 +374,7 @@ async function submitBalance(){
     input.value = '';
     pollForSnapshot();
   } catch(e){
-    setMsg(esc(e.message) + ' Nothing was recorded.', true);
+    setMsg(e.message + ' Nothing was recorded.', true);
   } finally {
     btn.disabled = false; btn.textContent = 'Update';
   }
@@ -331,14 +404,14 @@ async function saveEdits(){
   const edits = collectEdits();
   if(edits.length === 0){ msg.textContent = 'Nothing changed.'; return; }
   btn.disabled = true; btn.textContent = 'Saving…';
-  msg.textContent = '';
+  msg.innerHTML = '';
   try{
     const r = await post('/bills', {edits});
-    msg.textContent = `Saved ${r.count} change${r.count>1?'s':''}. The forecast is `
+    msg.innerHTML = `Saved ${r.count} change${r.count>1?'s':''}. The forecast is `
       + 'rebuilding and will refresh here.';
     pollForSnapshot();
   } catch(e){
-    msg.textContent = e.message + ' Nothing was saved.';
+    msg.innerHTML = e.message + ' Nothing was saved.';
   } finally {
     btn.disabled = false; btn.textContent = 'Save changes';
   }
@@ -408,15 +481,17 @@ async function saveDeferrals(){
       items.push({bill_id: row.getAttribute('data-defer'), date: row.getAttribute('data-date')});
     }
   });
-  btn.disabled = true; btn.textContent = 'Saving…'; msg.textContent = '';
+  btn.disabled = true; btn.textContent = 'Saving…'; msg.innerHTML = '';
   try{
     await post('/defer', {items});
-    msg.textContent = items.length
-      ? `${items.length} deferral${items.length>1?'s':''} saved. The forecast is rebuilding.`
-      : 'All deferrals cleared. The forecast is rebuilding.';
+    msg.innerHTML = (items.length
+      ? `${items.length} deferral${items.length>1?'s':''} saved. `
+      : 'All deferrals cleared. ')
+      + 'The whole forecast is rebuilding — this week, upcoming, the curve and '
+      + 'the risks all follow. This page refreshes when it lands.';
     pollForSnapshot();
   } catch(e){
-    msg.textContent = e.message + ' Nothing was saved.';
+    msg.innerHTML = e.message + ' Nothing was saved.';
   } finally {
     btn.disabled = false; btn.textContent = 'Save deferrals';
   }
@@ -443,6 +518,18 @@ function render(s){
     out.push(`<div class="stale"><strong>Balance is not from today.</strong>
       Figures below project from the last entered balance. Enter today's balance
       to refresh them and send the daily summary.</div>`);
+  }
+
+  // Reading works from anywhere. Saving only works from the Worker's own
+  // address, because that is where the sign-in cookie lives and no browser
+  // sends one site's cookie to another. Say so here rather than letting a
+  // button press fail with a network error that explains nothing.
+  if(!WORKER_HOSTED && WORKER){
+    out.push(`<div class="stale" style="background:#e0f2fe;border-color:#7dd3fc;color:#0c4a6e">
+      <strong>To save anything, open <a href="${esc(WORKER)}/" style="color:#0369a1">${esc(WORKER)}</a>.</strong>
+      This copy shows the forecast but cannot write to it. That address runs the
+      same app, signs you in with an email code, and saving works there. Worth
+      adding to your home screen in place of this one.</div>`);
   }
 
   // Until the Worker address is known nothing can be written, so say exactly
@@ -486,15 +573,16 @@ function render(s){
       : 'Through ' + dt(s.week_end) + ', after bills and buffer.'}</div></div>`);
 
   const tb = s.today_bills, ti = s.today_income;
-  out.push(tile('Today', tb.length ? m(tb.reduce((a,b)=>a+num(b.amount),0)) : 'Clear',
-    (ti.length ? rows(ti,'in') : '') + rows(tb) +
+  out.push(tile('Today', live(tb).length ? m(sum(live(tb))) : 'Clear',
+    (ti.length ? rows(ti,'in') : '') + rows(tb) + owedRow(tb, 'Held back today') +
     `<div class="row tot"><div class="l">End of day</div><div class="v">${m(s.end_of_day)}</div></div>`,
     '', true));
 
   const wb = s.this_week.filter(x=>x.direction==='out'), wi = s.this_week.filter(x=>x.direction==='in');
   out.push(tile('This week', m(s.end_of_week),
-    `<div class="row"><div class="l">Bills to ${dt(s.week_end)}</div><div class="v">${m(wb.reduce((a,b)=>a+num(b.amount),0))}</div></div>
-     <div class="row in"><div class="l">Income</div><div class="v">+${m(wi.reduce((a,b)=>a+num(b.amount),0))}</div></div>
+    `<div class="row"><div class="l">Bills to ${dt(s.week_end)}</div><div class="v">${m(sum(live(wb)))}</div></div>
+     <div class="row in"><div class="l">Income</div><div class="v">+${m(sum(wi))}</div></div>
+     ${owedRow(wb, 'Deferred this week')}
      <div class="row tot"><div class="l">End of week</div><div class="v">${m(s.end_of_week)}</div></div>
      <div style="margin-top:12px">${rows(s.this_week.map(x=>({...x,tier:x.direction==='in'?0:x.tier})))}</div>`));
 
@@ -503,8 +591,8 @@ function render(s){
       `<div class="row ${i===a.length-1?'tot':''}"><div class="l">${esc(l)}</div>
        <div class="v">${m(v)}</div></div>`).join('')));
 
-  out.push(tile('Upcoming', s.upcoming.length ? m(s.upcoming.reduce((a,b)=>a+num(b.amount),0)) : '—',
-    rows(s.upcoming)));
+  out.push(tile('Upcoming', live(s.upcoming).length ? m(sum(live(s.upcoming))) : '—',
+    rows(s.upcoming) + owedRow(s.upcoming, 'Deferred, still ahead')));
 
   const curve = s.curve || [];
   const vals = curve.map(c=>num(c.closing));
@@ -516,19 +604,15 @@ function render(s){
      <div class="row"><div class="l">End of month</div><div class="v">${m(s.end_of_month)}</div></div>
      ${num(s.shortfall)>0?`<div class="row"><div class="l">Shortfall to cover</div><div class="v" style="color:var(--danger)">${m(s.shortfall)}</div></div>`:''}`));
 
-  const rk = s.risks || [];
-  out.push(tile('Risk', rk.length ? `${rk.length}` : 'Clear',
-    (rk.length
-      ? rk.map(r=>`<div class="sev">${esc(r.severity)}</div><h4>${esc(r.title)}</h4>
-          <p>${esc(r.detail)}</p>`).join('')
-        + (s.plan && s.plan.problem_day ? `<div class="plan"><strong>What could be done</strong><br>${esc(s.plan.summary)}</div>` : '')
-      : '<div class="ok">No material financial risks detected.</div>'),
-    rk.length ? 'risk' : '', rk.length > 0));
-
-  // Defer to stay afloat. Ticking recalculates safe-to-spend in the browser,
-  // reproducing forecast.safe_discretionary exactly, so the effect of a choice
-  // is visible before it is committed. Saving hands it to the engine, which
-  // remains the authority.
+  // Defer to stay afloat sits above Risk deliberately. Risk describes what is
+  // going to go wrong; this is the one thing on the page that can be done about
+  // it, and the thing to act on belongs above the thing to read about.
+  //
+  // Ticking recalculates safe-to-spend in the browser, reproducing
+  // forecast.safe_discretionary exactly, so the effect of a choice is visible
+  // before it is committed. Saving hands it to the engine, which remains the
+  // authority: the whole snapshot is rebuilt from the new deferral set, so
+  // this week, upcoming, the curve and the risks all follow.
   const win = s.deferral_window || [];
   const inWeek = win.filter(x => x.in_week);
   const beyond = win.filter(x => !x.in_week);
@@ -560,6 +644,15 @@ function render(s){
          padding:11px 18px;font-family:inherit;cursor:pointer">Save deferrals</button>
        <span id="defermsg" style="font-size:13px;color:var(--mute)"></span></div>`,
     '', num(s.discretionary.safe) < 0));
+
+  const rk = s.risks || [];
+  out.push(tile('Risk', rk.length ? `${rk.length}` : 'Clear',
+    (rk.length
+      ? rk.map(r=>`<div class="sev">${esc(r.severity)}</div><h4>${esc(r.title)}</h4>
+          <p>${esc(r.detail)}</p>`).join('')
+        + (s.plan && s.plan.problem_day ? `<div class="plan"><strong>What could be done</strong><br>${esc(s.plan.summary)}</div>` : '')
+      : '<div class="ok">No material financial risks detected.</div>'),
+    rk.length ? 'risk' : '', rk.length > 0));
 
   // Edit bills — routine amount and day changes, saved permanently and synced
   // to every device because the model lives in the repo, not on a phone.
