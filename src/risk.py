@@ -249,20 +249,28 @@ def detect(
                 )
 
     # -- 7. nothing free to spend -------------------------------------------
-    if discretionary is not None and discretionary.safe < 0:
+    # Negative headroom means the bills alone do not fit, before a penny of
+    # everyday spending. Nothing is assumed here: the figure is the low point of
+    # a curve carrying income and bills only.
+    if discretionary is not None and discretionary.headroom < 0:
         risks.append(
             Risk(
-                id=f"{DISCRETIONARY}:{discretionary.week_end.isoformat()}",
+                id=f"{DISCRETIONARY}:{discretionary.headroom_day.isoformat()}"
+                   if discretionary.headroom_day
+                   else f"{DISCRETIONARY}:{discretionary.window_end.isoformat()}",
                 type=DISCRETIONARY,
                 severity="medium",
-                title=f"Discretionary is {_m(discretionary.safe)}",
+                title=f"Nothing available to spend: {_m(discretionary.headroom)}",
                 detail=(
-                    f"After bills through {_d(discretionary.week_end)} and "
-                    f"{_m(discretionary.committed_beyond_week)} committed just beyond "
-                    f"it, there is {_m(discretionary.safe)} free to spend this week."
+                    f"Over the next {discretionary.window_days} days the balance "
+                    f"reaches {_m(discretionary.headroom)}"
+                    + (f" on {_d(discretionary.headroom_day)}"
+                       if discretionary.headroom_day else "")
+                    + ". That is bills and income only — no everyday spending is "
+                    "counted in it, so anything spent makes it worse by that much."
                 ),
-                amount=money(-discretionary.safe),
-                when=discretionary.week_end,
+                amount=money(-discretionary.headroom),
+                when=discretionary.headroom_day or discretionary.window_end,
             )
         )
 

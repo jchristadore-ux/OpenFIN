@@ -58,8 +58,9 @@ class Settings:
     forecast_days: int = 60
     minimum_safe_balance: Decimal = money(500)
     large_payment_threshold: Decimal = money(750)
-    daily_discretionary_allowance: Decimal = money(100)
+    daily_discretionary_allowance: Decimal = money(0)
     discretionary_lookahead_days: int = 14
+    spending_window_days: int = 30
     alert_reminder_days: int = 3
     balance_max_age_hours: int = 20
 
@@ -78,6 +79,9 @@ def load_settings(path: Path = CONFIG) -> Settings:
             setattr(s, key, money(raw[key]))
     s.discretionary_lookahead_days = int(
         raw.get("discretionary_lookahead_days", s.discretionary_lookahead_days)
+    )
+    s.spending_window_days = int(
+        raw.get("spending_window_days", s.spending_window_days)
     )
     s.alert_reminder_days = int(raw.get("alert_reminder_days", s.alert_reminder_days))
     s.balance_max_age_hours = int(
@@ -211,6 +215,9 @@ def analyse(settings: Settings, state: dict, now: datetime) -> Result:
 
     fresh = balance_is_fresh(state, now, settings.balance_max_age_hours)
 
+    # Bills and income only. The allowance is 0 in config and must stay there:
+    # a curve that charges assumed spending cannot answer how much spending is
+    # affordable, because it has already spent it.
     projection = fc.run(
         calendar,
         opening_balance=balance,
@@ -218,15 +225,12 @@ def analyse(settings: Settings, state: dict, now: datetime) -> Result:
         days=settings.forecast_days,
         allowance=settings.daily_discretionary_allowance,
     )
-    disc = fc.safe_discretionary(
+    disc = fc.available(
         calendar,
         balance=balance,
         today=today,
-        buffer=settings.minimum_safe_balance,
-        lookahead_days=settings.discretionary_lookahead_days,
-        # So the answer is capped by the day the money actually runs lowest,
-        # not just by a fortnight's totals netted against each other.
         projection=projection,
+        window_days=settings.spending_window_days,
     )
 
     risks = riskmod.detect(
@@ -336,52 +340,27 @@ def write_snapshot(r: Result, settings: Settings, now: datetime) -> dict:
             settings.daily_discretionary_allowance
         ),
         "discretionary": {
-            "safe": str(r.discretionary.safe),
+            "safe": str(r.discretionary.headroom),
             "explain": [[lbl, str(val)] for lbl, val in r.discretionary.explain()],
-            # Which of the two readings bound the answer, so the app can say why
-            # rather than showing a number that looks arbitrarily small.
-            "limited_by_low_point": r.discretionary.limited_by_low_point,
-            "projected_low": (
-                str(r.discretionary.projected_low)
-                if r.discretionary.projected_low is not None else None
-            ),
-            "projected_low_day": (
-                r.discretionary.projected_low_day.isoformat()
-                if r.discretionary.projected_low_day else None
-            ),
-            # Raw inputs, so the app can recompute "safe to spend" as boxes are
-            # ticked without a round trip. It reproduces exactly the arithmetic
-            # in forecast.safe_discretionary; the engine stays the authority.
-            # `curve` above carries the projection, and deferring a bill adds its
-            # amount back to every day from its date onward — which is all the
-            # app needs to re-find the low point without the engine.
+            # The two figures the card shows. Both are facts about the curve:
+            # nothing is assumed, held back, or charged on the household's behalf.
+            "headroom": str(r.discretionary.headroom),
+            "headroom_day": (r.discretionary.headroom_day.isoformat()
+                             if r.discretionary.headroom_day else None),
+            "per_day": str(r.discretionary.per_day),
+            "per_day_day": (r.discretionary.per_day_day.isoformat()
+                            if r.discretionary.per_day_day else None),
+            "window_days": r.discretionary.window_days,
+            "window_end": r.discretionary.window_end.isoformat(),
+            # Raw inputs, so the app can recompute both as boxes are ticked
+            # without a round trip. `curve` above carries the projection, and
+            # deferring a bill adds its amount back to every day from its date
+            # onward — which is all the app needs to redo this arithmetic.
             "components": {
                 "balance": str(r.balance),
-                "income_week": str(r.discretionary.income_this_week),
-                # Exactly the window safe_discretionary uses: week_end + 1 to
-                # week_end + lookahead, inclusive. It was a day wider here, so
-                # income landing on that extra day was credited by the app and
-                # not by the engine, and the live figure quietly disagreed with
-                # the saved one.
-                "beyond_in": str(
-                    r.calendar.total_in(
-                        r.discretionary.week_end + timedelta(days=1),
-                        r.discretionary.week_end + timedelta(
-                            days=settings.discretionary_lookahead_days),
-                    )
-                ),
-                "buffer": str(settings.minimum_safe_balance),
-                "horizon_end": (
-                    r.discretionary.week_end
-                    + timedelta(days=settings.discretionary_lookahead_days)
-                ).isoformat(),
+                "window_end": r.discretionary.window_end.isoformat(),
             },
         },
-        # Deferred occurrences carry a flag everywhere they appear rather than
-        # being dropped. The forecast excludes them because they do not leave the
-        # account; the lists still show them because the money is still owed. The
-        # dashboard reads the flag to strike them through and to keep them out of
-        # its totals, so what is listed and what is projected agree.
         "today_bills": [
             {"name": e.name, "amount": str(e.amount), "tier": e.priority_tier,
              "autopay": e.autopay, "deferred": e.deferred}

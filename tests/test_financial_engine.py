@@ -216,61 +216,128 @@ class TestForecast(unittest.TestCase):
 # discretionary
 # --------------------------------------------------------------------------
 
-class TestDiscretionary(unittest.TestCase):
-    def _disc(self, bills, incomes, balance, buffer="0", lookahead=14):
-        c = cal(bills, incomes)
-        return fc.safe_discretionary(c, D(balance), TODAY, D(buffer), lookahead)
+class TestAvailableToSpend(unittest.TestCase):
+    """The figure the whole app is built around.
 
-    def test_plenty_of_money(self):
-        d = self._disc([], [], "5000")
-        self.assertEqual(d.safe, D("5000"))
+    Two numbers, both read off a curve that carries bills and income and nothing
+    else. No buffer, no assumed rate of everyday spending: the owner asked for
+    neither, and both were judgements dressed as arithmetic.
+    """
 
-    def test_bills_this_week_reduce_it(self):
-        d = self._disc([bill("b", "B", 1000, day=14)], [], "5000")
-        self.assertEqual(d.safe, D("4000"))
+    def _avail(self, bills, incomes, balance, window=30):
+        c = cal(bills, incomes, days=window + 60)
+        f = fc.run(c, D(balance), TODAY, window + 30, D("0"))
+        return fc.available(c, D(balance), TODAY, f, window)
 
-    def test_income_this_week_increases_it(self):
-        d = self._disc([], [income("i", "Pay", 800, freq="once", due="2026-08-13")],
-                       "100")
-        self.assertEqual(d.safe, D("900"))
+    # ---- headroom: the most that could go today ---------------------------
+    def test_with_no_bills_the_whole_balance_is_available(self):
+        d = self._avail([], [], "5000")
+        self.assertEqual(d.headroom, D("5000"))
 
-    def test_buffer_is_held_back(self):
-        d = self._disc([], [], "1000", buffer="500")
-        self.assertEqual(d.safe, D("500"))
+    def test_nothing_is_held_back_as_a_buffer(self):
+        # The old model subtracted a $500 floor here. It no longer does.
+        self.assertEqual(self._avail([], [], "500").headroom, D("500"))
 
-    def test_obligations_just_beyond_the_week_are_reserved(self):
-        # A mortgage two days after the week ends must not look spendable now.
-        d = self._disc([bill("m", "M", 1800, freq="once", due="2026-08-18")],
-                       [], "2000")
-        self.assertEqual(d.committed_beyond_week, D("1800"))
-        self.assertEqual(d.safe, D("200"))
+    def test_no_everyday_spending_is_assumed(self):
+        # 30 days x $110.56 used to come off this figure before anyone spent it.
+        self.assertEqual(self._avail([], [], "5000").headroom, D("5000"))
 
-    def test_income_in_the_lookahead_offsets_those_obligations(self):
-        d = self._disc(
+    def test_a_bill_in_the_window_reduces_it(self):
+        d = self._avail([bill("b", "B", 1000, day=14)], [], "5000")
+        self.assertEqual(d.headroom, D("4000"))
+
+    def test_it_is_the_low_point_not_the_end_point(self):
+        """A bill before the paycheque that covers it still binds."""
+        d = self._avail(
             [bill("m", "M", 1800, freq="once", due="2026-08-18")],
-            [income("i", "Pay", 1800, freq="once", due="2026-08-17")],
+            [income("p", "Pay", 1800, freq="once", due="2026-08-19")],
             "2000",
         )
-        self.assertEqual(d.committed_beyond_week, D("0"))
-        self.assertEqual(d.safe, D("2000"))
+        self.assertEqual(d.headroom, D("200"))          # not 2000
+        self.assertEqual(d.headroom_day, date(2026, 8, 18))
 
-    def test_negative_result_is_returned_unclamped(self):
-        d = self._disc([bill("b", "B", 3000, day=14)], [], "1000")
-        self.assertEqual(d.safe, D("-2000"))
-        self.assertLess(d.safe, 0)
+    def test_spending_the_headroom_leaves_the_low_day_at_zero(self):
+        """The definition, stated as a property."""
+        d = self._avail([bill("b", "B", 1200, day=20)], [], "3000")
+        c = cal([bill("b", "B", 1200, day=20)], [], days=90)
+        f = fc.run(c, D("3000") - d.headroom, TODAY, 60, D("0"))
+        self.assertEqual(min(x.closing for x in f.days
+                             if x.day <= d.window_end), D("0"))
 
-    def test_explain_reconciles_to_the_answer(self):
-        d = self._disc([bill("b", "B", 400, day=14)], [], "1000", buffer="100")
+    def test_a_crunch_past_the_window_does_not_count(self):
+        far = (TODAY + timedelta(days=45)).isoformat()
+        d = self._avail([bill("a", "Annual", 9000, freq="once", due=far)], [], "3000")
+        self.assertEqual(d.headroom, D("3000"))
+
+    def test_negative_headroom_is_returned_unclamped(self):
+        d = self._avail([bill("b", "B", 3000, day=14)], [], "1000")
+        self.assertEqual(d.headroom, D("-2000"))
+
+    # ---- per day: what can be spent day to day ----------------------------
+    def test_per_day_spreads_the_headroom_across_the_window(self):
+        d = self._avail([], [], "3000", window=30)
+        # Nothing else moves, so the tightest day is the last: 3000 / 30.
+        self.assertEqual(d.per_day, D("100"))
+
+    def test_spending_the_rate_every_day_never_goes_below_zero(self):
+        """The other definition, stated as a property, day by day."""
+        bills = [bill("m", "M", 1800, freq="once", due="2026-08-18"),
+                 bill("c", "C", 300, day=25)]
+        incomes = [income("p", "Pay", 1500, freq="weekly", anchor="2026-08-14")]
+        d = self._avail(bills, incomes, "2500")
+        c = cal(bills, incomes, days=90)
+        f = fc.run(c, D("2500"), TODAY, 60, D("0"))
+        for n, day in enumerate([x for x in f.days if x.day <= d.window_end], start=1):
+            self.assertGreaterEqual(day.closing - d.per_day * n, D("0"),
+                                    f"day {n} ({day.day}) would go negative")
+
+    def test_a_dollar_a_day_more_would_break_a_day(self):
+        """It is the LARGEST such rate, not merely a safe one."""
+        bills = [bill("m", "M", 1800, freq="once", due="2026-08-18")]
+        d = self._avail(bills, [], "2500")
+        c = cal(bills, [], days=90)
+        f = fc.run(c, D("2500"), TODAY, 60, D("0"))
+        rate = d.per_day + D("1")
+        self.assertTrue(any(day.closing - rate * n < 0
+                            for n, day in enumerate(
+                                [x for x in f.days if x.day <= d.window_end], start=1)))
+
+    def test_per_day_is_negative_when_the_bills_do_not_fit(self):
+        d = self._avail([bill("b", "B", 3000, day=14)], [], "1000")
+        self.assertLess(d.per_day, 0)
+
+    def test_income_later_in_the_window_lifts_the_rate(self):
+        without = self._avail([], [], "3000")
+        with_pay = self._avail([], [income("p", "Pay", 900, freq="once",
+                                           due="2026-08-20")], "3000")
+        self.assertGreater(with_pay.per_day, without.per_day)
+
+    # ---- the explanation ---------------------------------------------------
+    def test_explain_ends_on_the_answer(self):
+        d = self._avail([bill("b", "B", 400, day=14)], [], "1000")
         lines = d.explain()
-        self.assertEqual(sum(v for _, v in lines[:-1]), lines[-1][1])
+        self.assertEqual(lines[-1][0], "Available to spend")
+        self.assertEqual(lines[-1][1], d.headroom)
 
-    def test_not_simply_income_minus_bills(self):
-        # Same month totals, different timing -> different safe number.
-        early = self._disc([bill("b", "B", 900, freq="once", due="2026-08-13")],
+    def test_explain_mentions_no_buffer_and_no_allowance(self):
+        labels = " ".join(l for l, _ in self._avail([], [], "1000").explain()).lower()
+        self.assertNotIn("buffer", labels)
+        self.assertNotIn("allowance", labels)
+
+    def test_the_week_figures_are_still_reported_for_display(self):
+        d = self._avail([bill("b", "B", 400, day=14)],
+                        [income("p", "Pay", 100, freq="once", due="2026-08-13")],
+                        "1000")
+        self.assertEqual(d.bills_this_week, D("400"))
+        self.assertEqual(d.income_this_week, D("100"))
+        self.assertEqual(d.week_end, date(2026, 8, 16))
+
+    def test_timing_changes_the_answer_not_just_totals(self):
+        early = self._avail([bill("b", "B", 900, freq="once", due="2026-08-13")],
+                            [], "1000")
+        late = self._avail([bill("b", "B", 900, freq="once", due="2026-09-30")],
                            [], "1000")
-        late = self._disc([bill("b", "B", 900, freq="once", due="2026-09-30")],
-                          [], "1000")
-        self.assertNotEqual(early.safe, late.safe)
+        self.assertNotEqual(early.headroom, late.headroom)
 
 
 # --------------------------------------------------------------------------
@@ -281,7 +348,7 @@ class TestRisk(unittest.TestCase):
     def _detect(self, bills, incomes, balance, allowance="0",
                 floor="500", large="750"):
         c, f = project(bills, incomes, balance, allowance=allowance)
-        d = fc.safe_discretionary(c, D(balance), TODAY, D(floor))
+        d = fc.available(c, D(balance), TODAY, f)
         return riskmod.detect(f, c, d, minimum_safe_balance=D(floor),
                               large_payment_threshold=D(large), today=TODAY)
 
@@ -479,7 +546,9 @@ class TestRecommend(unittest.TestCase):
 # household-shaped scenarios
 # --------------------------------------------------------------------------
 
-def household(balance, allowance="216.98"):
+def household(balance, allowance="0"):
+    """The real household's shape. Allowance is 0: the engine no longer charges
+    assumed everyday spending, and `available()` refuses a curve that does."""
     bills = [
         bill("mortgage", "Mortgage", 1801.62, freq="biweekly", anchor="2026-08-24",
              tier=1, deferrable=False, secured=True),
@@ -495,7 +564,7 @@ def household(balance, allowance="216.98"):
         income("boe", "BOE", 2829.31, freq="biweekly", anchor="2026-08-19"),
     ]
     c, f = project(bills, incomes, balance, allowance=allowance, days=60)
-    d = fc.safe_discretionary(c, D(balance), TODAY, D("500"))
+    d = fc.available(c, D(balance), TODAY, f)
     rs = riskmod.detect(f, c, d, minimum_safe_balance=D("500"),
                         large_payment_threshold=D("750"), today=TODAY)
     return c, f, d, rs
@@ -506,11 +575,27 @@ class TestHouseholdScenarios(unittest.TestCase):
         _, _, d, _ = household("20000")
         self.assertGreater(d.safe, 0)
 
-    def test_real_world_thin_balance_is_negative_and_says_so(self):
+    def test_real_world_thin_balance_leaves_nothing_to_spend(self):
+        """On $118.25 the bills fit, but only just, and nothing is free.
+
+        This used to assert the projection went negative. It did — because the
+        curve charged $216.98 a day of everyday spending nobody had agreed to.
+        With that gone, the honest statement is narrower and more useful: the
+        bills clear, and there is nothing spare while they do.
+        """
         _, f, d, rs = household("118.25")
-        self.assertLess(f.minimum_balance, 0)
+        self.assertGreaterEqual(f.minimum_balance, 0)      # the bills do fit
+        self.assertEqual(d.headroom, D("118.25"))          # nothing spare
+        self.assertLess(d.per_day, D("35"))                # a few dollars a day
         self.assertTrue(rs)
-        self.assertIn(riskmod.NEGATIVE_BALANCE, [r.type for r in rs])
+        self.assertIn(riskmod.INSUFFICIENT_CASH, [r.type for r in rs])
+
+    def test_a_thin_balance_still_warns_before_it_goes_wrong(self):
+        # The $500 line survives as an alert threshold even though it is no
+        # longer held back from the spending figure.
+        _, _, _, rs = household("118.25")
+        low = [r for r in rs if r.type == riskmod.INSUFFICIENT_CASH]
+        self.assertTrue(low, "a balance under the floor must still raise a risk")
 
     def test_annual_expense_is_visible_months_ahead(self):
         c, _, _, _ = household("5000")
@@ -530,8 +615,10 @@ class TestHouseholdScenarios(unittest.TestCase):
 
     def test_discretionary_explanation_adds_up_on_real_shape(self):
         _, _, d, _ = household("1500")
-        lines = d.explain()
-        self.assertEqual(sum(v for _, v in lines[:-1]), lines[-1][1])
+        balance, income, bills, ends_up, low, answer = d.explain()
+        self.assertEqual(balance[1] + income[1] + bills[1], ends_up[1])
+        self.assertEqual(low[1], answer[1])
+        self.assertLessEqual(low[1], ends_up[1])
 
 
 # --------------------------------------------------------------------------
@@ -628,7 +715,7 @@ class TestDeferrals(unittest.TestCase):
         ]
         c = fincal.build(bills, [], TODAY, TODAY + timedelta(days=60), deferrals)
         f = fc.run(c, D("2000"), TODAY, 60, D("0"))
-        d = fc.safe_discretionary(c, D("2000"), TODAY, D("0"))
+        d = fc.available(c, D("2000"), TODAY, f)
         return c, f, d
 
     def test_deferred_bill_does_not_move_the_curve(self):
@@ -1015,111 +1102,19 @@ class TestEditableBillList(unittest.TestCase):
         self.assertIn("deactivated", kept["note"])
 
 
-class TestSafeToSpendRespectsTheLowPoint(unittest.TestCase):
-    """Safe-to-spend may not exceed what keeps the projection above the buffer.
-
-    The week view nets a fortnight's bills against a fortnight's income and
-    ignores which lands first, so a paycheque arriving after a bill cancels it
-    on paper. Every one of those errors is in the direction of offering money
-    that is not there.
-    """
-
-    BUFFER, BALANCE = D("500"), D("2000")
-
-    def _run(self, bills, incomes, allowance=D("0"), lookahead=14):
-        c = fincal.build(bills, incomes, TODAY, TODAY + timedelta(days=60))
-        f = fc.run(c, self.BALANCE, TODAY, 60, allowance)
-        return f, fc.safe_discretionary(c, self.BALANCE, TODAY, self.BUFFER,
-                                        lookahead, projection=f)
-
-    def _late_pay(self):
-        """A bill on the 18th, the pay covering it on the 19th."""
-        return (
-            [bill("big", "Big", 1800, freq="once", due="2026-08-18", tier=1)],
-            [income("pay", "Pay", 2500, freq="once", due="2026-08-19")],
-        )
-
-    def test_pay_arriving_after_the_bill_does_not_fund_it(self):
-        bills, incomes = self._late_pay()
-        f, d = self._run(bills, incomes)
-        # The week view sees 2500 of income against 1800 of bills and offers the
-        # balance less the buffer. The curve knows the 18th comes first.
-        self.assertEqual(d.week_view, D("1500"))
-        self.assertEqual(d.projected_low, D("200"))
-        self.assertEqual(d.projected_low_day, date(2026, 8, 18))
-        self.assertEqual(d.safe, D("-300"))
-        self.assertTrue(d.limited_by_low_point)
-
-    def test_spending_the_answer_leaves_the_low_day_exactly_at_the_buffer(self):
-        """The definition, stated as a property: this is the most that can be
-        spent today without the worst day ahead dropping below the floor."""
-        bills, incomes = self._late_pay()
-        f, d = self._run(bills, incomes)
-        self.assertEqual(d.projected_low - d.safe, self.BUFFER)
-
-    def test_the_week_view_still_wins_when_it_is_the_smaller_one(self):
-        bills = [bill("soon", "Soon", 1900, freq="once", due="2026-08-14", tier=1)]
-        incomes = [income("pay", "Pay", 5000, freq="once", due="2026-08-25")]
-        f, d = self._run(bills, incomes)
-        self.assertEqual(d.safe, d.week_view)
-        self.assertFalse(d.limited_by_low_point)
-
-    def test_the_daily_allowance_is_charged_by_the_curve(self):
-        """It is real spending. The week view never sees it; the curve does."""
-        bills, incomes = self._late_pay()
-        _, plain = self._run(bills, incomes, allowance=D("0"))
-        _, spend = self._run(bills, incomes, allowance=D("100"))
-        self.assertEqual(plain.week_view, spend.week_view)
-        self.assertLess(spend.safe, plain.safe)
-
-    def test_without_a_projection_the_answer_is_the_week_view_alone(self):
-        bills, incomes = self._late_pay()
-        c = fincal.build(bills, incomes, TODAY, TODAY + timedelta(days=60))
-        d = fc.safe_discretionary(c, self.BALANCE, TODAY, self.BUFFER, 14)
-        self.assertEqual(d.safe, d.week_view)
-        self.assertIsNone(d.projected_low)
-        self.assertFalse(d.limited_by_low_point)
-
-    def test_a_crunch_past_the_lookahead_does_not_pin_this_week(self):
-        """Otherwise one distant annual bill holds the figure at zero all year."""
-        far = (TODAY + timedelta(days=45)).isoformat()
-        bills = [bill("annual", "Annual", 9000, freq="once", due=far, tier=1)]
-        f, d = self._run(bills, [])
-        self.assertEqual(d.safe, d.week_view)
-        self.assertLess(f.minimum_balance, D("0"))       # the curve still knows
-
-    def test_deferring_the_bill_lifts_the_low_point_and_the_answer(self):
-        bills, incomes = self._late_pay()
-        c = fincal.build(bills, incomes, TODAY, TODAY + timedelta(days=60),
-                         {("big", date(2026, 8, 18))})
-        f = fc.run(c, self.BALANCE, TODAY, 60, D("0"))
-        d = fc.safe_discretionary(c, self.BALANCE, TODAY, self.BUFFER, 14, projection=f)
-        self.assertEqual(d.safe, D("1500"))
-        self.assertFalse(d.limited_by_low_point)
-
-    def test_the_explanation_shows_the_overruled_figure_too(self):
-        bills, incomes = self._late_pay()
-        _, d = self._run(bills, incomes)
-        labels = [lbl for lbl, _ in d.explain()]
-        self.assertIn("Free on this week alone", labels)
-        self.assertTrue(any(l.startswith("Lowest projected balance") for l in labels))
-        self.assertEqual(labels[-1], "Safe to spend")
-        self.assertEqual(d.explain()[-1][1], d.safe)
-
-
 class TestClientFormulaParity(unittest.TestCase):
-    """The dashboard recomputes safe-to-spend locally so ticking a box is
+    """The dashboard recomputes both figures locally so ticking a box is
     instant. That arithmetic is duplicated in JavaScript, so it is pinned here:
     if the engine's definition changes, this fails and the app must follow.
 
     The invariant is stronger than "same formula". The browser works from a
-    snapshot built with whatever was saved at the time, and adjusts it for the
+    snapshot built with whatever was saved at the time and adjusts it for the
     boxes since ticked; the engine, when it next runs, starts from scratch. Both
     have to land on the same cent, so each case names a saved state and a
     current one and holds the two answers against each other.
     """
 
-    BUFFER, BALANCE, ALLOWANCE, LOOKAHEAD = D("500"), D("1200"), D("40"), 14
+    BALANCE, WINDOW = D("1200"), 30
 
     def _model(self, deferrals):
         bills = [
@@ -1128,45 +1123,37 @@ class TestClientFormulaParity(unittest.TestCase):
         ]
         incomes = [income("p", "Pay", 700, freq="once", due="2026-08-14"),
                    income("q", "Pay2", 400, freq="once", due="2026-08-21")]
-        c = fincal.build(bills, incomes, TODAY, TODAY + timedelta(days=60), deferrals)
-        f = fc.run(c, self.BALANCE, TODAY, 60, self.ALLOWANCE)
-        d = fc.safe_discretionary(c, self.BALANCE, TODAY, self.BUFFER,
-                                  self.LOOKAHEAD, projection=f)
-        return c, f, d
+        c = fincal.build(bills, incomes, TODAY, TODAY + timedelta(days=90), deferrals)
+        # allowance 0: the curve the app is handed carries bills and income only.
+        f = fc.run(c, self.BALANCE, TODAY, 60, D("0"))
+        return c, f, fc.available(c, self.BALANCE, TODAY, f, self.WINDOW)
 
     def _parity(self, saved, current=None):
         """Engine's answer for `current`, vs the app's from a `saved` snapshot."""
         current = saved if current is None else current
         _, _, engine_says = self._model(current)
-        cal, curve, snap = self._model(saved)
+        cal_base, curve, snap = self._model(saved)
 
         # ---- the JavaScript, transcribed -------------------------------
-        we = fincal.week_end(TODAY)
-        horizon = we + timedelta(days=self.LOOKAHEAD)
-        # What the snapshot hands the browser.
-        beyond_in = cal.total_in(we + timedelta(days=1), horizon)
-        window = cal.bills_between(TODAY, horizon, include_deferred=True)
-
-        bills_week = sum((e.amount for e in window
-                          if e.day <= we and (e.item_id, e.day) not in current), D("0"))
-        beyond_out = sum((e.amount for e in window
-                          if e.day > we and (e.item_id, e.day) not in current), D("0"))
-        committed = max(D("0"), beyond_out - beyond_in)
-        week_view = (self.BALANCE + snap.income_this_week - bills_week
-                     - committed - self.BUFFER)
-
         # Boxes changed since the snapshot shift every later day of the curve.
+        window = cal_base.bills_between(TODAY, snap.window_end, include_deferred=True)
         shifts = []
         for e in window:
             was, now = (e.item_id, e.day) in saved, (e.item_id, e.day) in current
             if was != now:
                 shifts.append((e.day, e.amount if now else -e.amount))
-        low = min(
-            d.closing + sum((amt for when, amt in shifts if when <= d.day), D("0"))
-            for d in curve.days if TODAY <= d.day <= horizon
-        )
-        client = min(week_view, low - self.BUFFER)
-        return engine_says.safe, money(client)
+
+        headroom = per_day = None
+        for n, d in enumerate([x for x in curve.days if x.day <= snap.window_end], 1):
+            closing = d.closing + sum((amt for when, amt in shifts if when <= d.day),
+                                      D("0"))
+            if headroom is None or closing < headroom:
+                headroom = closing
+            rate = closing / n
+            if per_day is None or rate < per_day:
+                per_day = rate
+        return (engine_says.headroom, engine_says.per_day), (money(headroom),
+                                                             money(per_day))
 
     def test_parity_with_nothing_deferred(self):
         a, b = self._parity(set())
@@ -1196,28 +1183,16 @@ class TestClientFormulaParity(unittest.TestCase):
         a, b = self._parity({("a", date(2026, 8, 13))}, {("b", date(2026, 8, 19))})
         self.assertEqual(a, b)
 
-    def test_income_on_the_last_lookahead_day_counts_the_same_both_sides(self):
-        """The window the app is given must be the window the engine uses.
+    def test_the_app_is_given_the_window_the_engine_used(self):
+        """The curve the app trims must be trimmed to the same last day.
 
-        It used to be a day wider, so a paycheque landing on that extra day was
-        credited in the browser and not in the engine — the figure changed on
-        its own the moment the real forecast came back.
+        A window one day wider in the browser than in the engine made the figure
+        change on its own the moment the real forecast came back.
         """
-        we = fincal.week_end(TODAY)
-        horizon = we + timedelta(days=self.LOOKAHEAD)
-        bills = [bill("a", "A", 300, freq="once", due="2026-08-13", tier=3)]
-        incomes = [income("late", "Pay", 900, freq="once",
-                          due=(horizon + timedelta(days=1)).isoformat())]
-        c = fincal.build(bills, incomes, TODAY, TODAY + timedelta(days=60))
-        d = fc.safe_discretionary(c, self.BALANCE, TODAY, self.BUFFER, self.LOOKAHEAD)
-        # Income one day past the horizon is outside the window on both sides.
-        self.assertEqual(c.total_in(we + timedelta(days=1), horizon), D("0"))
-        self.assertEqual(d.committed_beyond_week, D("0"))
+        _, _, snap = self._model(set())
+        self.assertEqual(snap.window_end, TODAY + timedelta(days=self.WINDOW - 1))
+        self.assertEqual(snap.window_days, self.WINDOW)
 
-
-# --------------------------------------------------------------------------
-# the snapshot the dashboard reads: saving a deferral has to cascade
-# --------------------------------------------------------------------------
 
 class TestSnapshotCascade(unittest.TestCase):
     """Everything downstream of a deferral moves, and nothing is hidden.
@@ -1304,15 +1279,18 @@ class TestSnapshotCascade(unittest.TestCase):
                 self.assertIn("deferred", row, section)
 
     def test_listed_bills_less_deferred_equals_what_the_week_charges(self):
-        """What the app totals must equal what the engine subtracted."""
+        """What the app totals must equal what the curve actually spent.
+
+        With no assumed everyday spending, end-of-week is exactly balance plus
+        the week's income less the week's undeferred bills — so the tile's own
+        arithmetic and the engine's have to agree by identity.
+        """
         after = self._snapshot(self.DEFER_BRACES)
-        listed = sum(
-            D(x["amount"]) for x in after["this_week"]
-            if x["direction"] == "out" and not x["deferred"]
-        )
-        charged = [v for label, v in after["discretionary"]["explain"]
-                   if label.startswith("Bills before")][0]
-        self.assertEqual(listed, -D(charged))
+        out = sum(D(x["amount"]) for x in after["this_week"]
+                  if x["direction"] == "out" and not x["deferred"])
+        into = sum(D(x["amount"]) for x in after["this_week"]
+                   if x["direction"] == "in")
+        self.assertEqual(out, D(after["balance"]) + into - D(after["end_of_week"]))
 
     def test_the_ticked_boxes_come_back_ticked(self):
         after = self._snapshot(self.DEFER_BRACES)

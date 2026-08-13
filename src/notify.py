@@ -40,9 +40,9 @@ def d(day: date) -> str:
 def daily_subject(forecast: Forecast, disc: Discretionary, risks: list[Risk]) -> str:
     if risks and risks[0].severity == "critical":
         return f"{BRAND}: ACTION NEEDED — {risks[0].title}"
-    if disc.safe < 0:
-        return f"{BRAND}: {m(disc.safe)} to spend this week"
-    return f"{BRAND}: {m(disc.safe)} safe this week"
+    if disc.per_day < 0:
+        return f"{BRAND}: nothing available to spend ({m(disc.headroom)})"
+    return f"{BRAND}: {m(disc.per_day)} a day available"
 
 
 def daily_text(
@@ -80,10 +80,16 @@ def daily_text(
     L.append(f"  End of week: {m(forecast.end_of_week)}")
     L.append("")
 
-    L.append("SAFE TO SPEND THIS WEEK")
-    L.append(f"  {m(disc.safe)}")
-    if disc.safe < 0:
-        L.append("  Negative. There is nothing free this week.")
+    L.append(f"AVAILABLE TO SPEND (next {disc.window_days} days)")
+    L.append(f"  {m(disc.per_day)} a day, to {d(disc.window_end)}")
+    L.append(f"  {m(disc.headroom)} in total before a day goes below zero")
+    if disc.headroom_day:
+        L.append(f"  Limited by {d(disc.headroom_day)}.")
+    if disc.headroom < 0:
+        L.append("  The bills alone do not fit. Nothing is free.")
+    L.append("")
+    L.append("  Bills and income only. No everyday spending is assumed, and")
+    L.append("  nothing is held back as a buffer.")
     L.append("")
     L.append("  How that is worked out:")
     for label, value in disc.explain():
@@ -185,12 +191,17 @@ def daily_html(
     explain = "".join(row(lbl, m(val)) for lbl, val in disc.explain()[:-1])
     parts.append(
         card(
-            "Safe to spend this week",
+            f"Available to spend — next {disc.window_days} days",
             f'<div style="font-size:34px;font-weight:700;color:{danger if neg else accent};'
-            f'margin:2px 0 12px">{escape(m(disc.safe))}</div>'
+            f'margin:2px 0 2px">{escape(m(disc.per_day))} a day</div>'
+            + '<div style="font-size:13px;color:#4A5568;margin-bottom:12px">'
+            + escape(f"{m(disc.headroom)} in total to {d(disc.window_end)}")
+            + (escape(f", limited by {d(disc.headroom_day)}") if disc.headroom_day else "")
+            + ". Bills and income only — no everyday spending assumed, no buffer held back."
+            + "</div>"
             + (
                 '<div style="font-size:13px;color:#b91c1c;margin-bottom:10px">'
-                "Negative — there is nothing free this week.</div>"
+                "The bills alone do not fit. Nothing is free.</div>"
                 if neg
                 else ""
             )

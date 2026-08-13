@@ -150,161 +150,142 @@ def run(
     )
 
 
+
+
 # --------------------------------------------------------------------------
-# safe discretionary
+# what is available to spend
 # --------------------------------------------------------------------------
 
 @dataclass
 class Discretionary:
-    """What is genuinely free to spend this week, and the arithmetic behind it.
+    """What is actually available to spend, derived and never assumed.
 
-    Deliberately NOT `income - bills`. That answers "did we earn more than we
-    owe this month", which is a different and much less useful question than
-    "can we spend money today without breaking something next week".
+    Two numbers, both facts about the projection rather than judgements about it:
 
-    Two readings are taken and the lower one wins:
+      headroom  The most that could leave the account today without any day in
+                the window going below zero. It is the lowest point the curve
+                reaches — spending today comes off every later day too, so the
+                low point is the binding constraint.
+      per_day   The largest flat daily amount that never puts a day below zero.
+                Spending `x` every day means `n * x` is gone by day n, so the
+                limit is the smallest `closing(n) / n` across the window. This
+                is the answer to "what can we spend day to day".
 
-      week_view   balance, plus this week's income, less this week's bills, less
-                  what is committed just beyond the week, less the buffer.
-      curve_view  the lowest balance the projection reaches inside the same
-                  window, less the buffer.
+    Both are negative when the window cannot be funded at all, and are returned
+    unclamped: "less than nothing" is the honest answer to how much is free.
 
-    The week view alone was wrong in the one direction that costs money. It
-    nets a fortnight's bills against a fortnight's income without regard to
-    which lands first, so a paycheque arriving on the 19th cancels a bill due
-    on the 18th; and it never charges the daily allowance, which is real
-    spending that happens whatever the app says. Both errors push the figure
-    up. The curve view has neither problem — the projection charges every bill
-    and every day's allowance on the day it happens — so it catches exactly the
-    case the week view flatters.
+    WHAT IS DELIBERATELY NOT IN HERE
 
-    Money spent today comes off every later day too, so the most that can be
-    spent without breaching the buffer at the low point is `low - buffer`.
+    A cash buffer, and an assumed rate of everyday spending. Both used to be,
+    and both were assumptions dressed as arithmetic — the buffer was a judgement
+    about how much to hold back, and the allowance was $110.56/day of spending
+    the model invented on the household's behalf and then charged them for. The
+    owner asked for neither. `per_day` replaces the allowance properly: instead
+    of assuming a spending rate and deducting it, it derives the rate the
+    forecast can actually carry.
+
+    The curve behind both must therefore be run with `allowance=0` — bills and
+    income only. `config.json` sets it there.
     """
 
-    week_end: date
+    window_end: date
+    window_days: int
     starting_balance: Decimal
+    headroom: Decimal
+    headroom_day: date | None
+    per_day: Decimal
+    per_day_day: date | None
+    # The week, kept for display. Facts about what lands before Sunday, not
+    # inputs to anything above.
+    week_end: date
     income_this_week: Decimal
     bills_this_week: Decimal
-    committed_beyond_week: Decimal
-    buffer: Decimal
-    safe: Decimal
-    lookahead_days: int
-    week_view: Decimal | None = None
-    projected_low: Decimal | None = None
-    projected_low_day: date | None = None
+    window_income: Decimal
+    window_bills: Decimal
+    window_close: Decimal
 
     @property
-    def limited_by_low_point(self) -> bool:
-        """True when the projection, not the week's arithmetic, is the binding
-        constraint. Worth saying out loud: it means the money exists this week
-        and is already spoken for by a day that has not arrived yet."""
-        return (
-            self.projected_low is not None
-            and self.week_view is not None
-            and self.safe < self.week_view
-        )
+    def safe(self) -> Decimal:
+        """The headline figure. Named `safe` because the whole system reads it."""
+        return self.headroom
 
     def explain(self) -> list[tuple[str, Decimal]]:
         """Line items, in the order they are applied. Signed for display."""
-        lines = [
+        # The first three reconcile to where the window ends. The answer is not
+        # that figure, though — it is the lowest point along the way, because
+        # money spent today is gone on every day after it. Both are shown, in
+        # that order, so the gap between them is visible rather than asserted.
+        return [
             ("Balance now", self.starting_balance),
-            ("Income before end of week", self.income_this_week),
-            ("Bills before end of week", -self.bills_this_week),
+            (f"Income over the next {self.window_days} days", self.window_income),
+            (f"Bills over the next {self.window_days} days", -self.window_bills),
+            (f"Where that ends up, {self.window_end:%-d %b}", self.window_close),
             (
-                f"Committed in the {self.lookahead_days} days after that",
-                -self.committed_beyond_week,
+                "Lowest point along the way"
+                + (f", {self.headroom_day:%-d %b}" if self.headroom_day else ""),
+                self.headroom,
             ),
-            ("Required cash buffer", -self.buffer),
+            ("Available to spend", self.headroom),
         ]
-        if not self.limited_by_low_point:
-            lines.append(("Safe to spend", self.safe))
-            return lines
-
-        # The week's own arithmetic is shown in full and then overruled, so the
-        # smaller answer never looks arbitrary.
-        day = self.projected_low_day
-        lines += [
-            ("Free on this week alone", self.week_view),
-            (
-                "Lowest projected balance" + (f", {day:%-d %b}" if day else ""),
-                self.projected_low,
-            ),
-            ("Buffer to hold at that point", -self.buffer),
-            ("Safe to spend", self.safe),
-        ]
-        return lines
 
 
-def safe_discretionary(
+def available(
     calendar: Calendar,
     balance: Decimal,
     today: date,
-    buffer: Decimal,
-    lookahead_days: int = 14,
-    projection: Forecast | None = None,
+    projection: Forecast,
+    window_days: int = 30,
 ) -> Discretionary:
-    """Money that can be spent this week without creating a problem later.
+    """How much is available to spend, from the projection and nothing else.
 
-    The lookahead is what makes this honest. Spending everything that is not
-    owed *this week* is exactly how a mortgage two days into next week goes
-    unpaid, so obligations landing shortly beyond the week boundary are reserved
-    now. Income arriving in that same lookahead window is credited against them
-    — reserving a bill while ignoring the paycheque that covers it would be just
-    as wrong in the other direction.
+    `projection` must have been run with no daily allowance, or the answer is
+    net of spending the model assumed rather than spending that happened.
 
-    Netting a window's bills against a window's income says nothing about the
-    order they arrive in, and order is the whole problem. Pass `projection` and
-    the answer is also capped at what keeps the projection's lowest day at the
-    buffer, which is where timing shows up. A worked case from the live ledger:
-    balance $2,612.92, one week's bills $670.86, and $6,861.43 of pay arriving
-    inside the lookahead cancelled every bill in it, so the week view offered
-    $1,442.06 as free — while the projection dipped to $321.51 on the 18th,
-    below the $500 floor, because the pay lands on the 19th. Spending the
-    $1,442.06 would have put that day $1,120 overdrawn.
-
-    Without a projection only the week view is available, and the result is the
-    old, more optimistic figure. Callers that have a projection should pass it.
-
-    The result can be negative. A negative number is the honest answer to "how
-    much can we spend" when the answer is "less than nothing"; it is returned
-    unclamped and callers are expected to show it.
+    The window is a choice and the only one left in here: 30 days covers a full
+    mortgage cycle and every payday inside it, so nothing large hides just past
+    the edge, while staying short enough that the figure still moves when
+    something is fixed. Reaching further would let one distant annual bill hold
+    the number negative for months while the next three weeks were comfortable.
     """
+    # A curve that has already charged assumed spending cannot answer how much
+    # spending is affordable — it has spent it. Silently returning a figure net
+    # of an invented allowance is exactly the kind of quiet wrongness this
+    # project refuses, so it fails here instead.
+    if projection.allowance != 0:
+        raise ValueError(
+            f"available() needs a projection run with no daily allowance; this "
+            f"one charges {projection.allowance} a day. Run forecast.run(...) "
+            f"with allowance=0."
+        )
+
+    end = today + timedelta(days=window_days - 1)
+    days = [d for d in projection.days if today <= d.day <= end]
+    if not days:
+        days = [Day(today, balance, [], [], money(0), money(balance))]
+
+    low = min(days, key=lambda d: d.closing)
+
+    # The tightest constraint on a flat daily spend. `n` counts today as the
+    # first day, because money spent today is gone by the end of today.
+    rate_day, rate = days[0], days[0].closing
+    for n, d in enumerate(days, start=1):
+        r = d.closing / n
+        if r < rate:
+            rate, rate_day = r, d
+
     we = week_end(today)
-    horizon = we + timedelta(days=lookahead_days)
-
-    income_week = calendar.total_in(today, we)
-    bills_week = calendar.total_out(today, we)
-
-    beyond_out = calendar.total_out(we + timedelta(days=1), horizon)
-    beyond_in = calendar.total_in(we + timedelta(days=1), horizon)
-    committed = money(max(money(0), beyond_out - beyond_in))
-
-    week_view = money(balance + income_week - bills_week - committed - buffer)
-    safe = week_view
-    low = low_day = None
-
-    if projection is not None:
-        # Same window as the lookahead, deliberately. Reaching further would
-        # import every distant annual bill into this week's answer and pin it at
-        # zero year-round; the window this figure already claims to reserve for
-        # is the window it should be tested against.
-        ahead = [d for d in projection.days if today <= d.day <= horizon]
-        if ahead:
-            worst = min(ahead, key=lambda d: d.closing)
-            low, low_day = worst.closing, worst.day
-            safe = min(week_view, money(low - buffer))
-
     return Discretionary(
-        week_end=we,
+        window_end=end,
+        window_days=window_days,
         starting_balance=money(balance),
-        income_this_week=income_week,
-        bills_this_week=bills_week,
-        committed_beyond_week=committed,
-        buffer=money(buffer),
-        safe=safe,
-        lookahead_days=lookahead_days,
-        week_view=week_view,
-        projected_low=low,
-        projected_low_day=low_day,
+        headroom=money(low.closing),
+        headroom_day=low.day,
+        per_day=money(rate),
+        per_day_day=rate_day.day,
+        week_end=we,
+        income_this_week=calendar.total_in(today, we),
+        bills_this_week=calendar.total_out(today, we),
+        window_income=calendar.total_in(today, end),
+        window_bills=calendar.total_out(today, end),
+        window_close=money(days[-1].closing),
     )
