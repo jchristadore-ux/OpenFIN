@@ -63,7 +63,8 @@ lets anyone who finds the URL read and write the household's finances.
 - Deployed from this repo via Cloudflare Workers Builds, **root directory
   `worker`** (not `/` — `wrangler.toml` lives in `worker/`)
 - Routes: `GET /` and an allowlist of `snapshot.json`, `app.json`,
-  `assets/mark.svg`; `POST /balance`, `POST /bills`, `POST /defer`
+  `assets/mark.svg`; `POST /balance`, `POST /bills`, `POST /defer`,
+  `POST /income`
 - Only secret: `GITHUB_TOKEN`, set **in Cloudflare, not GitHub** (GitHub reserves
   the `GITHUB_` prefix and refuses to create one)
 
@@ -78,7 +79,8 @@ lets anyone who finds the URL read and write the household's finances.
 | `src/risk.py` | Seven risk types, detection and deduplication |
 | `src/recommend.py` | Deferral plans; never proposes a secured bill |
 | `src/engine.py` | Orchestrator. Modes: `daily`, `watch`, `defer` |
-| `src/apply_edits.py` | Server-side re-validation of in-app bill edits |
+| `src/apply_edits.py` | Server-side re-validation of in-app bill and income edits |
+| `src/add_income.py` | Adding an income source from the app, recurring or one-off |
 | `src/notify.py` | Daily and alert email, text + HTML |
 | `src/bills.py` | Occurrence maths |
 | `index.html` | The dashboard. Renders `snapshot.json` and computes nothing. |
@@ -105,11 +107,14 @@ lets anyone who finds the URL read and write the household's finances.
   excludes it because it is not leaving the account, the lists keep it because
   it is still owed. `snapshot.json` carries a `deferred` flag on every row of
   `today_bills`, `this_week` and `upcoming` so both can be true at once.
-- **Removing a bill in the app deactivates it.** It keeps its id, its note and
-  its place in the file, because the statement history is keyed to that id and a
-  bill that turns out to still be live has to be able to come back. The app
-  lists removed bills and can restore them.
-- 119 tests, all passing. `python -m unittest discover -s tests`
+- **Removing a bill or an income in the app deactivates it.** It keeps its id,
+  its note and its place in the file, because the statement history is keyed to
+  that id and something that turns out to still be live has to be able to come
+  back. The app lists removed entries and can restore them.
+- **Income added in the app is flagged `needs_review` until a statement
+  confirms it.** It is the one edit that makes the forecast optimistic, so it is
+  marked as unverified from the moment it is counted.
+- 142 tests, all passing. `python -m unittest discover -s tests`
 
 ---
 
@@ -143,6 +148,22 @@ Both halves are duplicated in JS for live deferral updates and pinned by parity
 tests — same inputs must produce the same cent on both sides. The browser
 re-finds the low point without a round trip: deferring a bill raises every
 projected day from its date onward by that amount.
+
+---
+
+### Adding income is the one edit that flatters the forecast
+
+Everything else the app can write makes the projection more pessimistic, which
+costs nothing but nerves. An income that is not really coming raises
+safe-to-spend, lifts the curve's floor, and silences the risks that would have
+warned about the day it fails to arrive. This project has already been burned
+once by exactly that — income was overstated by $837.11/week for months.
+
+So the app sends four answers and nothing else: what it is, how much, how often,
+and one date. `src/add_income.py` derives the id, decides which of the three
+date fields that date belongs in, and marks the entry `needs_review`. A phone
+never writes a field it does not understand, adding the same income twice is
+refused outright, and a removal is a deactivation like any other.
 
 ---
 
@@ -289,7 +310,7 @@ massaged into agreement.
 ## 7. Operational state
 
 **Working:** Pages (read-only), email (SMTP secrets set and confirmed sending),
-the Worker, Cloudflare Access, 119 tests green.
+the Worker, Cloudflare Access, 142 tests green.
 
 **Outstanding for the owner:**
 - **Open `https://openfin.christadore.workers.dev` and use OpenFIN from there.**

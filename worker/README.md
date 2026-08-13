@@ -221,6 +221,11 @@ It serves an allowlist — `index.html`, `snapshot.json`, `app.json` and the log
 — rather than proxying any path, because the token here can read the whole
 repository.
 
+Writes are `POST /balance`, `/bills`, `/defer` and `/income`. Each one is
+shape-checked here and re-validated by the engine on the other side: the Worker
+is a different codebase on a different host, and what is being written is the
+household's financial model.
+
 ---
 
 ## Why it refuses when Access is missing

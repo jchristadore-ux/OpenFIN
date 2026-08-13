@@ -56,10 +56,17 @@ def parse_edits(raw: str) -> list[dict]:
     return data
 
 
-def apply(edits: list[dict], path: Path = BILLS, *, now: datetime | None = None) -> list[str]:
-    """Apply every edit, or none. Returns a human-readable change log."""
+def apply(edits: list[dict], path: Path = BILLS, *, key: str = "bills",
+          now: datetime | None = None) -> list[str]:
+    """Apply every edit, or none. Returns a human-readable change log.
+
+    `key` selects the list being edited. Income is the same shape as bills and
+    is edited by the same rules — an amount that moves by more than 40% is
+    applied and flagged, and removing one deactivates rather than deletes — so
+    it goes through here rather than through a second copy of this logic.
+    """
     now = now or datetime.now(ZoneInfo("America/New_York"))
-    items = load_items(path, "bills")
+    items = load_items(path, key)
     by_id = {b["id"]: b for b in items}
 
     staged: list[tuple[dict, dict, list[str]]] = []
@@ -68,7 +75,7 @@ def apply(edits: list[dict], path: Path = BILLS, *, now: datetime | None = None)
         bid = str(edit.get("id", ""))
         target = by_id.get(bid)
         if target is None:
-            raise EditError(f"no bill with id {bid!r}")
+            raise EditError(f"no {key[:-1] if key.endswith('s') else key} with id {bid!r}")
 
         proposed = dict(target)
         notes: list[str] = []
@@ -131,16 +138,21 @@ def apply(edits: list[dict], path: Path = BILLS, *, now: datetime | None = None)
         target.clear()
         target.update(proposed)
 
-    save_items(path, "bills", items)
+    save_items(path, key, items)
     return [f"{p['name']}: {'; '.join(n)}" for _, p, n in staged]
 
 
 def main(argv: list[str]) -> int:
-    if len(argv) != 2:
-        print("usage: apply_edits.py '<json edits>'", file=sys.stderr)
+    if not 2 <= len(argv) <= 3:
+        print("usage: apply_edits.py '<json edits>' [bills|income]", file=sys.stderr)
         return 2
+    key = argv[2] if len(argv) == 3 else "bills"
+    if key not in ("bills", "income"):
+        print(f"unknown list {key!r}", file=sys.stderr)
+        return 2
+    path = ROOT / f"{key}.json"
     try:
-        changes = apply(parse_edits(argv[1]))
+        changes = apply(parse_edits(argv[1]), path, key=key)
     except (EditError, BillError) as exc:
         print(f"EDIT REJECTED: {exc}", file=sys.stderr)
         return 1

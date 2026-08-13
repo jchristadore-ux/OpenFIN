@@ -283,19 +283,19 @@ def analyse(settings: Settings, state: dict, now: datetime) -> Result:
 # snapshot for the dashboard
 # --------------------------------------------------------------------------
 
-def _editable_bills(today: date) -> list[dict]:
-    """Every bill the Edit screen shows, in the order it next falls due.
+def _editable(today: date, file: str, key: str) -> list[dict]:
+    """Every entry the Edit screens show, in the order it next falls due.
 
-    A year and a bit of lookahead, so an annual bill gets a real date rather
+    A year and a bit of lookahead, so an annual item gets a real date rather
     than sorting to the bottom with everything else that has none. Inactive
-    bills have no occurrences by definition and sort last, which is where they
+    entries have no occurrences by definition and sort last, which is where they
     belong: they are kept for history, not for editing.
     """
     from bills import occurrences
 
     horizon = today + timedelta(days=400)
     out = []
-    for b in load_items(ROOT / "bills.json", "bills"):
+    for b in load_items(ROOT / file, key):
         when = occurrences(b, today, horizon)
         out.append({
             "id": b["id"], "name": b["name"], "amount": str(money(b["amount"])),
@@ -304,6 +304,7 @@ def _editable_bills(today: date) -> list[dict]:
             "tier": b.get("priority_tier", 5), "active": bool(b.get("active", True)),
             "variable": bool(b.get("variable", False)),
             "needs_review": bool(b.get("needs_review", False)),
+            "source": b.get("source") or "",
             "note": (b.get("note") or "")[:300],
         })
     out.sort(key=lambda x: (
@@ -459,7 +460,12 @@ def write_snapshot(r: Result, settings: Settings, now: datetime) -> dict:
         # priority tier, which is a modelling decision, and not its size.
         # Frequency is why due_day cannot be sorted on directly: a biweekly
         # mortgage has no day of the month at all.
-        "bills": _editable_bills(r.today),
+        "bills": _editable(r.today, "bills.json", "bills"),
+        # Income the same way, so the app can show what is already counted
+        # before someone adds another one. Double-counting a paycheque is
+        # invisible in the output — the forecast simply gets better — so the
+        # list has to be in front of them at the moment they are adding to it.
+        "income": _editable(r.today, "income.json", "income"),
         "settings": {
             "minimum_safe_balance": str(settings.minimum_safe_balance),
             "daily_discretionary_allowance": str(settings.daily_discretionary_allowance),

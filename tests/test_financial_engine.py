@@ -25,7 +25,7 @@ import fincal                                                    # noqa: E402
 import forecast as fc                                            # noqa: E402
 import recommend                                                 # noqa: E402
 import risk as riskmod                                           # noqa: E402
-from bills import money                                          # noqa: E402
+from bills import BillError, money                               # noqa: E402
 
 TODAY = date(2026, 8, 11)          # a Tuesday
 D = money
@@ -701,6 +701,230 @@ class TestDeferralState(unittest.TestCase):
         st = {}
         self.engine.record_deferrals(st, [{"bill_id": "a", "date": "2026-08-01"}], now)
         self.assertEqual(st["deferrals"], [])
+
+
+class TestAddingIncome(unittest.TestCase):
+    """Income added from the app.
+
+    An overstated income is the one edit that makes the forecast optimistic, so
+    these tests are mostly about what is refused.
+    """
+
+    def setUp(self):
+        import add_income
+        self.mod = add_income
+        self.tmp = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, self.tmp, True)
+        self.path = self.tmp / "income.json"
+        # With the documentation wrapper the real file carries, so the test
+        # exercises the same save path production does.
+        self.path.write_text(
+            json.dumps({"_comments": ["docs"], "income": []}), encoding="utf-8")
+        self.now = datetime(2026, 8, 13, 9, 0)
+
+    def _add(self, **kw):
+        spec = {"name": "Side work", "amount": "250",
+                "frequency": "weekly", "date": "2026-08-21"}
+        spec.update(kw)
+        return self.mod.add(self.mod.parse(spec), self.path, now=self.now)
+
+    def _saved(self):
+        return json.loads(self.path.read_text())["income"]
+
+    # ---- the date means what the frequency needs it to mean --------------
+    def test_a_one_off_falls_on_the_date_given(self):
+        item = self._add(frequency="once", date="2026-09-04")
+        self.assertEqual(item["due_date"], "2026-09-04")
+        self.assertIsNone(item["anchor_date"])
+        self.assertIsNone(item["due_day"])
+
+    def test_a_weekly_income_anchors_to_the_date_given(self):
+        item = self._add(frequency="weekly", date="2026-08-21")
+        self.assertEqual(item["anchor_date"], "2026-08-21")
+        self.assertIsNone(item["due_day"])
+
+    def test_a_monthly_income_takes_its_day_from_the_date_given(self):
+        item = self._add(frequency="monthly", date="2026-09-19")
+        self.assertEqual(item["due_day"], 19)
+        self.assertIsNone(item["due_date"])
+        self.assertIsNone(item["anchor_date"])
+
+    def test_every_frequency_the_app_offers_produces_a_valid_entry(self):
+        for i, freq in enumerate(sorted(self.mod.DATE_FIELD)):
+            item = self._add(name=f"Income {i}", frequency=freq, date="2026-09-19")
+            self.assertEqual(item["frequency"], freq)     # validate() ran inside
+
+    # ---- what it refuses --------------------------------------------------
+    def test_a_nameless_income_is_refused(self):
+        with self.assertRaises(self.mod.IncomeError):
+            self._add(name=" ")
+
+    def test_zero_and_negative_are_refused(self):
+        for bad in ("0", "-100"):
+            with self.assertRaises(self.mod.IncomeError):
+                self._add(amount=bad)
+
+    def test_an_implausible_amount_is_refused_as_a_typo(self):
+        with self.assertRaises(self.mod.IncomeError):
+            self._add(amount="250000")
+
+    def test_an_unknown_frequency_is_refused(self):
+        with self.assertRaises(self.mod.IncomeError):
+            self._add(frequency="fortnightly")
+
+    def test_a_date_that_is_not_a_date_is_refused(self):
+        with self.assertRaises(BillError):
+            self._add(date="next tuesday")
+
+    def test_adding_the_same_income_twice_is_refused(self):
+        self._add()
+        with self.assertRaises(self.mod.IncomeError) as ctx:
+            self._add()
+        self.assertIn("twice", str(ctx.exception))
+
+    def test_nothing_is_written_when_an_entry_is_refused(self):
+        with self.assertRaises(self.mod.IncomeError):
+            self._add(amount="0")
+        self.assertEqual(self._saved(), [])
+
+    # ---- how it is stored -------------------------------------------------
+    def test_a_new_income_is_flagged_for_review(self):
+        self.assertTrue(self._add()["needs_review"])
+        self.assertEqual(self._saved()[0]["source"], "app")
+
+    def test_the_id_comes_from_the_name_and_stays_unique(self):
+        first = self._add(name="Side work")
+        second = self._add(name="Side work", amount="300")
+        self.assertEqual(first["id"], "side-work")
+        self.assertEqual(second["id"], "side-work-2")
+
+    def test_a_name_of_punctuation_still_gets_a_usable_id(self):
+        item = self._add(name="!!! ??? !!!")
+        self.assertRegex(item["id"], r"^[a-z0-9][a-z0-9-]*$")
+
+    def test_adding_appends_and_never_overwrites(self):
+        self._add(name="One")
+        self._add(name="Two")
+        self.assertEqual([i["name"] for i in self._saved()], ["One", "Two"])
+
+    def test_the_files_documentation_block_survives_a_write(self):
+        self._add()
+        self.assertEqual(json.loads(self.path.read_text())["_comments"], ["docs"])
+
+
+class TestIncomeReachesTheForecast(unittest.TestCase):
+    """Adding income has to move the forecast, not just the file."""
+
+    def setUp(self):
+        import add_income
+        import apply_edits
+        import engine
+        self.mod, self.apply_edits, self.engine = add_income, apply_edits, engine
+        self.tmp = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, self.tmp, True)
+        (self.tmp / "bills.json").write_text(json.dumps(
+            [bill("rent", "Rent", 1200, day=20, tier=1)]), encoding="utf-8")
+        (self.tmp / "income.json").write_text(
+            json.dumps({"_comments": ["docs"], "income": []}), encoding="utf-8")
+        self._root, self._snap = engine.ROOT, engine.SNAPSHOT
+        engine.ROOT, engine.SNAPSHOT = self.tmp, self.tmp / "snapshot.json"
+        self.addCleanup(self._restore)
+
+    def _restore(self):
+        self.engine.ROOT, self.engine.SNAPSHOT = self._root, self._snap
+
+    def _snapshot(self):
+        settings = self.engine.Settings()
+        state = {"balance": {"amount": "1000.00",
+                             "entered_at": "2026-08-11T09:00:00",
+                             "date": "2026-08-11"}}
+        now = datetime(2026, 8, 11, 9, 0)
+        r = self.engine.analyse(settings, state, now)
+        return self.engine.write_snapshot(r, settings, now)
+
+    def _add(self, **kw):
+        spec = {"name": "Side work", "amount": "400",
+                "frequency": "weekly", "date": "2026-08-14"}
+        spec.update(kw)
+        return self.mod.add(self.mod.parse(spec), self.tmp / "income.json",
+                            now=datetime(2026, 8, 13, 9, 0))
+
+    def test_recurring_income_lifts_the_whole_forecast(self):
+        before = self._snapshot()
+        self._add()
+        after = self._snapshot()
+        self.assertGreater(D(after["end_of_week"]), D(before["end_of_week"]))
+        self.assertGreater(D(after["end_of_month"]), D(before["end_of_month"]))
+        self.assertGreater(D(after["minimum_balance"]), D(before["minimum_balance"]))
+        self.assertGreater(D(after["discretionary"]["safe"]),
+                           D(before["discretionary"]["safe"]))
+
+    def test_a_one_off_lands_once_and_only_once(self):
+        self._add(frequency="once", date="2026-08-14")
+        after = self._snapshot()
+        hits = [x for x in after["curve"]]
+        arrivals = [x for x in after["this_week"]
+                    if x["direction"] == "in" and x["name"] == "Side work"]
+        self.assertEqual(len(arrivals), 1)
+        self.assertEqual(arrivals[0]["date"], "2026-08-14")
+        self.assertTrue(hits)
+
+    def test_a_one_off_does_not_repeat_next_week(self):
+        self._add(frequency="once", date="2026-08-14")
+        snap = self._snapshot()
+        # Only one credit anywhere in the projected window.
+        cal = self.engine.analyse(
+            self.engine.Settings(),
+            {"balance": {"amount": "1000.00",
+                         "entered_at": "2026-08-11T09:00:00",
+                         "date": "2026-08-11"}},
+            datetime(2026, 8, 11, 9, 0),
+        ).calendar
+        credits = [e for e in cal.events
+                   if e.direction == "in" and e.item_id == "side-work"]
+        self.assertEqual(len(credits), 1)
+
+    def test_weekly_income_repeats(self):
+        self._add(frequency="weekly", date="2026-08-14")
+        rows = [x for x in self._snapshot()["curve"]]
+        self.assertTrue(rows)
+        cal = self.engine.analyse(
+            self.engine.Settings(),
+            {"balance": {"amount": "1000.00",
+                         "entered_at": "2026-08-11T09:00:00",
+                         "date": "2026-08-11"}},
+            datetime(2026, 8, 11, 9, 0),
+        ).calendar
+        credits = [e for e in cal.events
+                   if e.direction == "in" and e.item_id == "side-work"]
+        self.assertGreater(len(credits), 4)
+
+    def test_the_new_income_appears_in_the_snapshot_list(self):
+        self._add()
+        rows = {x["id"]: x for x in self._snapshot()["income"]}
+        self.assertIn("side-work", rows)
+        self.assertTrue(rows["side-work"]["active"])
+        self.assertTrue(rows["side-work"]["needs_review"])
+        self.assertEqual(rows["side-work"]["next_date"], "2026-08-14")
+
+    def test_removing_an_income_takes_it_back_out_of_the_forecast(self):
+        before = self._snapshot()
+        self._add()
+        self.apply_edits.apply([{"id": "side-work", "active": False}],
+                               self.tmp / "income.json", key="income")
+        after = self._snapshot()
+        self.assertEqual(before["minimum_balance"], after["minimum_balance"])
+        kept = {x["id"]: x for x in after["income"]}["side-work"]
+        self.assertFalse(kept["active"], "kept, not deleted")
+
+    def test_an_income_added_in_error_can_be_restored(self):
+        path = self.tmp / "income.json"
+        self._add()
+        with_it = self._snapshot()
+        self.apply_edits.apply([{"id": "side-work", "active": False}], path, key="income")
+        self.apply_edits.apply([{"id": "side-work", "active": True}], path, key="income")
+        self.assertEqual(self._snapshot()["minimum_balance"],
+                         with_it["minimum_balance"])
 
 
 class TestEditableBillList(unittest.TestCase):
