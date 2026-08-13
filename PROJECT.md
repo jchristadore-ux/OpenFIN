@@ -117,7 +117,7 @@ lets anyone who finds the URL read and write the household's finances.
 - **Income added in the app is flagged `needs_review` until a statement
   confirms it.** It is the one edit that makes the forecast optimistic, so it is
   marked as unverified from the moment it is counted.
-- 143 tests, all passing. `python -m unittest discover -s tests`
+- 149 tests, all passing. `python -m unittest discover -s tests`
 
 ---
 
@@ -148,9 +148,11 @@ spending rate on the household's behalf, charged them for it, and then reported
 what was left as though it were a fact. `per_day` replaces it properly — instead
 of assuming a rate and deducting it, it derives the rate the forecast can carry.
 
-`minimum_safe_balance` survives as an **alert threshold only**. A projected day
-under $500 still raises a risk, because an early warning is worth having; it is
-not deducted from anything.
+`minimum_safe_balance` is **0**, so alerts fire only on a real overdraft. It was
+kept briefly as an early-warning line at $500 and then taken to zero at the
+owner's request: a warning should mean the account actually goes below zero, not
+that it crossed a line someone picked. Setting it above 0 brings that warning
+back and changes nothing else — no figure is derived from it.
 
 The curve behind both figures must be run with `allowance=0`. `available()`
 raises rather than accept a projection that charges one — a figure net of
@@ -325,7 +327,7 @@ massaged into agreement.
 ## 7. Operational state
 
 **Working:** Pages (read-only), email (SMTP secrets set and confirmed sending),
-the Worker, Cloudflare Access, 143 tests green.
+the Worker, Cloudflare Access, 149 tests green.
 
 **Outstanding for the owner:**
 - **Open `https://openfin.christadore.workers.dev` and use OpenFIN from there.**
@@ -339,8 +341,9 @@ the Worker, Cloudflare Access, 143 tests green.
 
 **Cloudflare gotchas already hit, documented in `worker/README.md`:** build
 token rolling, root directory defaulting to `/`, the Access "Public DNS" tab
-being wrong for a `workers.dev` address, and `GITHUB_` being a reserved prefix
-on GitHub but not Cloudflare.
+being wrong for a `workers.dev` address, `GITHUB_` being a reserved prefix on
+GitHub but not Cloudflare, and pull-request branch builds failing red while
+`main` deploys perfectly — different builds, and only the second one matters.
 
 ---
 

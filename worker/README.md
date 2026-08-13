@@ -174,6 +174,33 @@ Deployments tab → the red build → read the last line of the log.
 The build token and the root directory are separate faults that look like one.
 A rolled token stops the build before it ever reads the root directory, so
 fixing only the token gets you a second red build with a different message.
+**How long the build ran tells them apart**: a token fault dies in the same
+second it starts, because it never gets to do any work. Anything that runs for
+twenty seconds and then fails got as far as the code.
+
+### A red ✗ on a pull request while `main` deploys fine
+
+These are different builds. Cloudflare builds the **production branch** and, by
+default, **every other branch too**. A branch build cannot deploy — that would
+put unreviewed code on the live Worker — so on some plans it fails, every time,
+on every pull request, while `main` deploys perfectly.
+
+**The tell is that the app keeps working.** If a feature that needs new Worker
+code is live, `main` deployed, whatever the pull request's tick says.
+
+Turn the noise off:
+
+1. dash.cloudflare.com → **Workers & Pages** → **openfin**
+2. **Settings** → **Build**
+3. **Branch control** → **Non-production branches** → **None**
+   *(or Excluded branches → `*`, depending on which the dashboard offers)*
+4. **Build watch paths** → Include paths → `worker/*`
+5. **Save**
+
+Step 3 stops the failing pull-request builds. Step 4 stops the engine's own
+commits triggering rebuilds — it writes to `main` every time a balance is
+entered and twice a day for the risk watch, and none of those touch the Worker.
+Neither step changes how `main` deploys.
 
 ---
 

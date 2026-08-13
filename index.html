@@ -947,8 +947,13 @@ function render(s){
          <small>none — the daily figure is derived, not deducted</small></div>
        <div class="v">${m(s.settings.daily_discretionary_allowance)}</div></div>
      <div class="row"><div class="l">Cash buffer held back
-         <small>none — ${m(s.settings.minimum_safe_balance)} is an alert line only</small></div>
+         <small>none — nothing is kept back from the figure above</small></div>
        <div class="v">$0.00</div></div>
+     <div class="row"><div class="l">Alert when the balance drops below
+         <small>${num(s.settings.minimum_safe_balance) > 0
+           ? 'still positive, but under this line'
+           : 'alerts fire only on a real overdraft'}</small></div>
+       <div class="v">${m(s.settings.minimum_safe_balance)}</div></div>
      <div class="row"><div class="l">Forecast horizon</div><div class="v">${s.settings.forecast_days} days</div></div>
      <div class="row"><div class="l">Sign-in</div>
        <div class="v">Cloudflare Access</div></div>`));
