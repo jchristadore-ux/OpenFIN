@@ -1,66 +1,54 @@
 {
-  "generated_at": "2026-08-13T09:54:28.237066-04:00",
+  "generated_at": "2026-08-13T17:34:27.291875-04:00",
   "today": "2026-08-13",
   "balance": "2612.92",
   "balance_is_fresh": true,
-  "balance_entered_at": "2026-08-13T09:54:28.237066-04:00",
-  "end_of_day": "3012.36",
-  "end_of_week": "2009.82",
-  "end_of_month": "-597.08",
+  "balance_entered_at": "2026-08-13T17:34:27.291875-04:00",
+  "end_of_day": "3122.92",
+  "end_of_week": "2452.06",
+  "end_of_month": "1503.56",
   "week_end": "2026-08-16",
-  "minimum_balance": "-9861.02",
+  "minimum_balance": "-3780.22",
   "minimum_date": "2026-10-06",
-  "shortfall": "9861.02",
-  "allowance": "110.56",
+  "shortfall": "3780.22",
+  "allowance": "0.00",
   "discretionary": {
-    "safe": "-1793.25",
+    "safe": "-252.52",
     "explain": [
       [
         "Balance now",
         "2612.92"
       ],
       [
-        "Income before end of week",
-        "510.00"
+        "Income over the next 30 days",
+        "8574.24"
       ],
       [
-        "Bills before end of week",
-        "-670.86"
+        "Bills over the next 30 days",
+        "-9504.38"
       ],
       [
-        "Committed in the 14 days after that",
-        "-948.50"
+        "Where that ends up, 11 Sep",
+        "1682.78"
       ],
       [
-        "Required cash buffer",
-        "-500.00"
+        "Lowest point along the way, 8 Sep",
+        "-252.52"
       ],
       [
-        "Free on this week alone",
-        "1003.56"
-      ],
-      [
-        "Lowest projected balance, 25 Aug",
-        "-1293.25"
-      ],
-      [
-        "Buffer to hold at that point",
-        "-500.00"
-      ],
-      [
-        "Safe to spend",
-        "-1793.25"
+        "Available to spend",
+        "-252.52"
       ]
     ],
-    "limited_by_low_point": true,
-    "projected_low": "-1293.25",
-    "projected_low_day": "2026-08-25",
+    "headroom": "-252.52",
+    "headroom_day": "2026-09-08",
+    "per_day": "-9.35",
+    "per_day_day": "2026-09-08",
+    "window_days": 30,
+    "window_end": "2026-09-11",
     "components": {
       "balance": "2612.92",
-      "income_week": "510.00",
-      "beyond_in": "4032.12",
-      "buffer": "500.00",
-      "horizon_end": "2026-08-30"
+      "window_end": "2026-09-11"
     }
   },
   "today_bills": [],
@@ -195,315 +183,303 @@
   "curve": [
     {
       "date": "2026-08-13",
-      "closing": "3012.36"
+      "closing": "3122.92"
     },
     {
       "date": "2026-08-14",
-      "closing": "2801.80"
+      "closing": "3022.92"
     },
     {
       "date": "2026-08-15",
-      "closing": "2530.24"
+      "closing": "2861.92"
     },
     {
       "date": "2026-08-16",
-      "closing": "2009.82"
+      "closing": "2452.06"
     },
     {
       "date": "2026-08-17",
-      "closing": "1600.26"
+      "closing": "2153.06"
     },
     {
       "date": "2026-08-18",
-      "closing": "831.51"
+      "closing": "1494.87"
     },
     {
       "date": "2026-08-19",
-      "closing": "2520.01"
+      "closing": "3293.93"
     },
     {
       "date": "2026-08-20",
-      "closing": "2409.45"
+      "closing": "3293.93"
     },
     {
       "date": "2026-08-21",
-      "closing": "2298.89"
+      "closing": "3293.93"
     },
     {
       "date": "2026-08-22",
-      "closing": "2100.33"
+      "closing": "3205.93"
     },
     {
       "date": "2026-08-23",
-      "closing": "1558.60"
+      "closing": "2774.76"
     },
     {
       "date": "2026-08-24",
-      "closing": "-1182.69"
+      "closing": "144.03"
     },
     {
       "date": "2026-08-25",
-      "closing": "-1293.25"
+      "closing": "144.03"
     },
     {
       "date": "2026-08-26",
-      "closing": "612.25"
+      "closing": "2160.09"
     },
     {
       "date": "2026-08-27",
-      "closing": "416.91"
+      "closing": "2075.31"
     },
     {
       "date": "2026-08-28",
-      "closing": "306.35"
+      "closing": "2075.31"
     },
     {
       "date": "2026-08-29",
-      "closing": "33.90"
+      "closing": "1913.42"
     },
     {
       "date": "2026-08-30",
-      "closing": "-486.52"
+      "closing": "1503.56"
     },
     {
       "date": "2026-08-31",
-      "closing": "-597.08"
+      "closing": "1503.56"
     },
     {
       "date": "2026-09-01",
-      "closing": "-1012.14"
+      "closing": "1199.06"
     },
     {
       "date": "2026-09-02",
-      "closing": "893.36"
+      "closing": "3215.12"
     },
     {
       "date": "2026-09-03",
-      "closing": "408.58"
+      "closing": "2840.90"
     },
     {
       "date": "2026-09-04",
-      "closing": "-45.68"
+      "closing": "2497.20"
     },
     {
       "date": "2026-09-05",
-      "closing": "-156.24"
+      "closing": "2497.20"
     },
     {
       "date": "2026-09-06",
-      "closing": "-1064.90"
+      "closing": "1699.10"
     },
     {
       "date": "2026-09-07",
-      "closing": "-2977.08"
+      "closing": "-102.52"
     },
     {
       "date": "2026-09-08",
-      "closing": "-3237.64"
+      "closing": "-252.52"
     },
     {
       "date": "2026-09-09",
-      "closing": "-1332.14"
+      "closing": "1763.54"
     },
     {
       "date": "2026-09-10",
-      "closing": "-1442.70"
+      "closing": "1763.54"
     },
     {
       "date": "2026-09-11",
-      "closing": "-1634.02"
+      "closing": "1682.78"
     },
     {
       "date": "2026-09-12",
-      "closing": "-2322.85"
+      "closing": "1104.51"
     },
     {
       "date": "2026-09-13",
-      "closing": "-2843.27"
+      "closing": "694.65"
     },
     {
       "date": "2026-09-14",
-      "closing": "-3053.83"
+      "closing": "594.65"
     },
     {
       "date": "2026-09-15",
-      "closing": "-3725.39"
+      "closing": "33.65"
     },
     {
       "date": "2026-09-16",
-      "closing": "-1819.89"
+      "closing": "2049.71"
     },
     {
       "date": "2026-09-17",
-      "closing": "-2229.45"
+      "closing": "1750.71"
     },
     {
       "date": "2026-09-18",
-      "closing": "-2998.20"
+      "closing": "1092.52"
     },
     {
       "date": "2026-09-19",
-      "closing": "-4199.29"
+      "closing": "1.99"
     },
     {
       "date": "2026-09-20",
-      "closing": "-4719.71"
+      "closing": "-407.87"
     },
     {
       "date": "2026-09-21",
-      "closing": "-6631.89"
+      "closing": "-2209.49"
     },
     {
       "date": "2026-09-22",
-      "closing": "-6830.45"
+      "closing": "-2297.49"
     },
     {
       "date": "2026-09-23",
-      "closing": "-4946.26"
+      "closing": "-302.74"
     },
     {
       "date": "2026-09-24",
-      "closing": "-6137.08"
+      "closing": "-1383.00"
     },
     {
       "date": "2026-09-25",
-      "closing": "-6247.64"
+      "closing": "-1383.00"
     },
     {
       "date": "2026-09-26",
-      "closing": "-6358.20"
+      "closing": "-1383.00"
     },
     {
       "date": "2026-09-27",
-      "closing": "-6963.40"
+      "closing": "-1877.64"
     },
     {
       "date": "2026-09-28",
-      "closing": "-7073.96"
+      "closing": "-1877.64"
     },
     {
       "date": "2026-09-29",
-      "closing": "-7346.41"
+      "closing": "-2039.53"
     },
     {
       "date": "2026-09-30",
-      "closing": "-5440.91"
+      "closing": "-23.47"
     },
     {
       "date": "2026-10-01",
-      "closing": "-5551.47"
+      "closing": "-23.47"
     },
     {
       "date": "2026-10-02",
-      "closing": "-5662.03"
+      "closing": "-23.47"
     },
     {
       "date": "2026-10-03",
-      "closing": "-6068.42"
+      "closing": "-319.30"
     },
     {
       "date": "2026-10-04",
-      "closing": "-6932.54"
+      "closing": "-1072.86"
     },
     {
       "date": "2026-10-05",
-      "closing": "-8844.72"
+      "closing": "-2874.48"
     },
     {
       "date": "2026-10-06",
-      "closing": "-9861.02"
+      "closing": "-3780.22"
     },
     {
       "date": "2026-10-07",
-      "closing": "-8132.82"
+      "closing": "-1941.46"
     },
     {
       "date": "2026-10-08",
-      "closing": "-8393.38"
+      "closing": "-2091.46"
     },
     {
       "date": "2026-10-09",
-      "closing": "-8503.94"
+      "closing": "-2091.46"
     },
     {
       "date": "2026-10-10",
-      "closing": "-8614.50"
+      "closing": "-2091.46"
     },
     {
       "date": "2026-10-11",
-      "closing": "-9224.83"
+      "closing": "-2591.23"
     }
   ],
   "risks": [
     {
-      "id": "secured_payment:mortgage:2026-08-24",
+      "id": "secured_payment:mortgage:2026-09-07",
       "type": "secured_payment",
       "severity": "critical",
       "title": "Mortgage may not clear",
-      "detail": "Mortgage of $1,801.62 is due Mon 24 Aug with only $1,558.60 available that day.",
-      "amount": "243.02",
-      "when": "2026-08-24"
+      "detail": "Mortgage of $1,801.62 is due Mon 7 Sep with only $1,699.10 available that day.",
+      "amount": "102.52",
+      "when": "2026-09-07"
     },
     {
-      "id": "negative_balance:2026-08-24",
+      "id": "negative_balance:2026-09-07",
       "type": "negative_balance",
       "severity": "critical",
-      "title": "Balance goes negative Mon 24 Aug",
-      "detail": "Projected -$1,182.69 on Mon 24 Aug. Lowest point is -$9,861.02 on Tue 6 Oct.",
-      "amount": "9861.02",
-      "when": "2026-08-24"
-    },
-    {
-      "id": "secured_payment:ccu-car-loan:2026-09-18",
-      "type": "secured_payment",
-      "severity": "critical",
-      "title": "CCU car loan may not clear",
-      "detail": "CCU car loan of $306.90 is due Fri 18 Sep with only -$2,229.45 available that day.",
-      "amount": "306.90",
-      "when": "2026-09-18"
+      "title": "Balance goes negative Mon 7 Sep",
+      "detail": "Projected -$102.52 on Mon 7 Sep. Lowest point is -$3,780.22 on Tue 6 Oct.",
+      "amount": "3780.22",
+      "when": "2026-09-07"
     },
     {
       "id": "secured_payment:car-payment:2026-09-24",
       "type": "secured_payment",
       "severity": "critical",
       "title": "Kia may not clear",
-      "detail": "Kia of $742.65 is due Thu 24 Sep with only -$4,946.26 available that day.",
+      "detail": "Kia of $742.65 is due Thu 24 Sep with only -$302.74 available that day.",
       "amount": "742.65",
       "when": "2026-09-24"
     },
     {
-      "id": "large_payment:mortgage:2026-08-24",
+      "id": "large_payment:mortgage:2026-09-07",
       "type": "large_payment",
       "severity": "high",
       "title": "Mortgage $1,801.62 may be short",
-      "detail": "Mortgage of $1,801.62 is due Mon 24 Aug against a projected opening balance of $1,558.60.",
-      "amount": "243.02",
-      "when": "2026-08-24"
+      "detail": "Mortgage of $1,801.62 is due Mon 7 Sep against a projected opening balance of $1,699.10.",
+      "amount": "102.52",
+      "when": "2026-09-07"
     },
     {
-      "id": "large_payment:clinton-water:2026-09-19",
-      "type": "large_payment",
-      "severity": "high",
-      "title": "Town of Clinton water $873.53 may be short",
-      "detail": "Town of Clinton water of $873.53 is due Sat 19 Sep against a projected opening balance of -$2,998.20.",
-      "amount": "873.53",
-      "when": "2026-09-19"
-    },
-    {
-      "id": "discretionary:2026-08-16",
+      "id": "discretionary:2026-09-08",
       "type": "discretionary",
       "severity": "medium",
-      "title": "Discretionary is -$1,793.25",
-      "detail": "After bills through Sun 16 Aug and $948.50 committed just beyond it, there is -$1,793.25 free to spend this week.",
-      "amount": "1793.25",
-      "when": "2026-08-16"
+      "title": "Nothing available to spend: -$252.52",
+      "detail": "Over the next 30 days the balance reaches -$252.52 on Tue 8 Sep. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
+      "amount": "252.52",
+      "when": "2026-09-08"
     }
   ],
   "plan": {
-    "summary": "Deferring Lowes $126.00, Home Depot $100.00, Netflix $21.31, Capital One CC $163.00, Chase CC Amazon $136.00, Chase CC United $88.00, Comcast $138.93 frees $773.24, which is short of the $9,861.02 needed by 24 Aug.",
-    "shortfall": "9861.02",
-    "problem_day": "2026-08-24",
+    "summary": "Deferring Culligan $307.70, Lowes $126.00, Home Depot $100.00, TJX Rewards $36.00, Netflix $21.31, Capital One CC $163.00, Chase CC Amazon $136.00, Chase CC United $88.00, Barclay Old Navy $84.78, Affirm $73.07, Comcast $138.93, Xfinity Mobile $88.82 frees $1,363.61, which is short of the $3,780.22 needed by 7 Sep.",
+    "shortfall": "3780.22",
+    "problem_day": "2026-09-07",
     "candidates": [
+      {
+        "name": "Culligan",
+        "amount": "307.70",
+        "date": "2026-09-04",
+        "tier": 5
+      },
       {
         "name": "Lowes",
         "amount": "126.00",
@@ -514,6 +490,12 @@
         "name": "Home Depot",
         "amount": "100.00",
         "date": "2026-08-14",
+        "tier": 5
+      },
+      {
+        "name": "TJX Rewards",
+        "amount": "36.00",
+        "date": "2026-09-04",
         "tier": 5
       },
       {
@@ -541,9 +523,27 @@
         "tier": 3
       },
       {
+        "name": "Barclay Old Navy",
+        "amount": "84.78",
+        "date": "2026-08-27",
+        "tier": 3
+      },
+      {
+        "name": "Affirm",
+        "amount": "73.07",
+        "date": "2026-08-29",
+        "tier": 3
+      },
+      {
         "name": "Comcast",
         "amount": "138.93",
         "date": "2026-08-18",
+        "tier": 2
+      },
+      {
+        "name": "Xfinity Mobile",
+        "amount": "88.82",
+        "date": "2026-08-29",
         "tier": 2
       }
     ],
@@ -1449,8 +1449,8 @@
     }
   ],
   "settings": {
-    "minimum_safe_balance": "500.00",
-    "daily_discretionary_allowance": "110.56",
+    "minimum_safe_balance": "0.00",
+    "daily_discretionary_allowance": "0.00",
     "forecast_days": 60
   }
 }
