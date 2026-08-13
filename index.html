@@ -578,70 +578,70 @@ function pollForSnapshot(){
 }
 
 // ---- live deferral maths -------------------------------------------------
-// Mirrors forecast.safe_discretionary(), both halves of it:
-//   week_view  = balance + income_week - bills_week - committed_beyond - buffer
-//               committed_beyond = max(0, beyond_out - beyond_in)
-//   curve_view = lowest projected balance inside the same window - buffer
-//   safe       = min(week_view, curve_view)
+// Mirrors forecast.available(). Two numbers, both read straight off the curve,
+// with nothing assumed, held back, or charged on the household's behalf:
+//
+//   headroom = the lowest closing balance in the window. Money spent today
+//              comes off every later day, so the low point is the limit.
+//   per day  = min over the window of closing(n) / n, counting today as day 1.
+//              Spending x a day means n*x is gone by day n.
+//
 // Verified against the engine: same inputs produce the same cent.
 //
-// The curve half needs no round trip either. Deferring a bill means its money
-// does not leave on its date, so every projected day from that date onward is
-// higher by that amount — and un-deferring one lowers them again. Applying that
-// to the curve the engine already sent re-finds the low point exactly.
+// Ticking a box needs no round trip. Deferring a bill means its money does not
+// leave on its date, so every projected day from that date onward is higher by
+// that amount — and un-deferring one lowers them again. Applying that to the
+// curve the engine already sent redoes both figures exactly.
 let SNAP = null;
+
+function spendable(shifts){
+  const end = SNAP.discretionary.components.window_end;
+  let headroom = null, headroomDay = null, perDay = null, perDayDay = null, n = 0;
+  (SNAP.curve || []).forEach(d => {
+    if(end && d.date > end) return;
+    n += 1;
+    const closing = num(d.closing)
+      + shifts.reduce((a, s) => a + (s.date <= d.date ? s.amount : 0), 0);
+    if(headroom === null || closing < headroom){ headroom = closing; headroomDay = d.date; }
+    const rate = closing / n;
+    if(perDay === null || rate < perDay){ perDay = rate; perDayDay = d.date; }
+  });
+  return {headroom, headroomDay, perDay, perDayDay};
+}
 
 function recalc(){
   if(!SNAP) return;
-  const c = SNAP.discretionary.components;
-  let billsWeek = 0, beyondOut = 0, owed = 0;
+  let owed = 0;
   const shifts = [];   // {date, amount} — signed, applied from that date on
   document.querySelectorAll('[data-defer]').forEach(row => {
     const on = row.querySelector('input').checked;
     const amt = num(row.getAttribute('data-amt'));
-    const wk = row.getAttribute('data-inweek') === '1';
     const was = row.getAttribute('data-was') === '1';
     row.classList.toggle('on', on);
     if(on !== was) shifts.push({date: row.getAttribute('data-date'), amount: on ? amt : -amt});
-    if(on){ owed += amt; return; }
-    if(wk) billsWeek += amt; else beyondOut += amt;
+    if(on) owed += amt;
   });
-  const committed = Math.max(0, beyondOut - num(c.beyond_in));
-  const weekView = num(c.balance) + num(c.income_week) - billsWeek - committed - num(c.buffer);
-
-  let safe = weekView, low = null, lowDay = null;
-  const horizon = c.horizon_end;
-  (SNAP.curve || []).forEach(d => {
-    if(horizon && d.date > horizon) return;
-    const closing = num(d.closing)
-      + shifts.reduce((a, s) => a + (s.date <= d.date ? s.amount : 0), 0);
-    if(low === null || closing < low){ low = closing; lowDay = d.date; }
-  });
-  if(low !== null) safe = Math.min(weekView, low - num(c.buffer));
-
-  // Say which of the two readings is holding the number down. "You have it,
-  // but a day you have not reached yet has already spent it" is the whole
-  // point of the figure, and it is invisible if only the total is shown.
-  const pinned = low !== null && (low - num(c.buffer)) < weekView;
-  const why = pinned
-    ? `Held down by ${dt(lowDay)}, when the balance dips to ${m(low)}.`
-    : `Through ${dt(SNAP.week_end)}, after bills and buffer.`;
+  const s = spendable(shifts);
+  if(s.headroom === null) return;
 
   const box = document.getElementById('livebox');
-  box.className = 'live ' + (safe < 0 ? 'bad' : 'good');
-  document.getElementById('liveamt').textContent = m(safe);
+  box.className = 'live ' + (s.perDay < 0 ? 'bad' : 'good');
+  document.getElementById('liveamt').textContent = m(s.perDay) + ' a day';
   document.getElementById('liveowed').textContent =
-    owed > 0 ? `${m(owed)} deferred — still owed, just not this week.` : '';
+    owed > 0 ? `${m(owed)} deferred — still owed, just moved.` : '';
 
   // Keep the headline card in step so the top of the page never disagrees.
   const card = document.getElementById('disccard');
-  document.getElementById('discamt').textContent = m(safe);
-  card.classList.toggle('neg', safe < 0);
+  document.getElementById('discamt').textContent = m(s.perDay) + ' a day';
+  card.classList.toggle('neg', s.perDay < 0);
   // "Not yet saved" only when a box has actually been moved since the engine
   // last ran — otherwise it appears against deferrals that were saved days ago.
   document.getElementById('discsub').textContent =
     (owed > 0 ? `With ${m(owed)} deferred${shifts.length ? ', not yet saved' : ''}. ` : '')
-    + (safe < 0 ? 'Nothing is free this week. ' + why : why);
+    + `${m(s.headroom)} in total through ${dt(SNAP.discretionary.window_end)}`
+    + (s.headroomDay ? `, limited by ${dt(s.headroomDay)}` : '') + '. '
+    + (s.headroom < 0 ? 'The bills alone do not fit.'
+                      : 'Bills and income only — nothing assumed, nothing held back.');
 }
 
 async function saveDeferrals(){
@@ -674,7 +674,7 @@ function render(s){
   baseline = s.generated_at;
   SNAP = s;
   const out = [];
-  const disc = num(s.discretionary.safe), neg = disc < 0;
+  const negRate = num(s.discretionary.per_day) < 0;
 
   // The snapshot only changes when the engine runs. If it is from an earlier
   // day, every figure below is anchored to that day - including bills that have
@@ -738,17 +738,19 @@ function render(s){
       the daily summary.</div>
   </div>`);
 
-  // The sub-line names the constraint. When the low point is what is holding
-  // the figure down, the week has money in it and a day not yet reached has
-  // already claimed it — which is the single most useful thing this card says.
-  const d = s.discretionary;
-  const why = d.limited_by_low_point && d.projected_low_day
-    ? `Held down by ${dt(d.projected_low_day)}, when the balance dips to ${m(d.projected_low)}.`
-    : `Through ${dt(s.week_end)}, after bills and buffer.`;
-  out.push(`<div class="disc ${neg?'neg':''}" id="disccard">
-    <div class="lab">Safe to spend this week</div>
-    <div class="amt" id="discamt">${m(s.discretionary.safe)}</div>
-    <div class="sub" id="discsub">${neg ? 'Nothing is free this week. ' + esc(why) : esc(why)}</div></div>`);
+  // The rate is the headline because it is the question actually being asked:
+  // what can we spend day to day. The total sits underneath for one-off
+  // decisions, with the day that limits it named — "you have it, but a day you
+  // have not reached yet has already claimed it" is the useful part.
+  const dsc = s.discretionary;
+  const sub = `${m(dsc.headroom)} in total through ${dt(dsc.window_end)}`
+    + (dsc.headroom_day ? `, limited by ${dt(dsc.headroom_day)}` : '') + '. '
+    + (num(dsc.headroom) < 0 ? 'The bills alone do not fit.'
+        : 'Bills and income only — nothing assumed, nothing held back.');
+  out.push(`<div class="disc ${negRate?'neg':''}" id="disccard">
+    <div class="lab">Available to spend · next ${dsc.window_days} days</div>
+    <div class="amt" id="discamt">${m(dsc.per_day)} a day</div>
+    <div class="sub" id="discsub">${esc(sub)}</div></div>`);
 
   const tb = s.today_bills, ti = s.today_income;
   out.push(tile('Today', live(tb).length ? m(sum(live(tb))) : 'Clear',
@@ -812,8 +814,8 @@ function render(s){
        updates as you tick. <strong>Deferring does not reduce what you owe</strong>
        — it moves it.</div>
      <div class="live" id="livebox">
-       <div class="a" id="liveamt">${m(s.discretionary.safe)}</div>
-       <div class="b">safe to spend this week if you defer the ticked items</div>
+       <div class="a" id="liveamt">${m(s.discretionary.per_day)} a day</div>
+       <div class="b">available to spend a day if you defer the ticked items</div>
        <div class="owed" id="liveowed"></div>
      </div>
      ${inWeek.length ? `<div class="grp">Due this week</div>` + inWeek.map(line).join('') : ''}
@@ -823,7 +825,7 @@ function render(s){
          background:var(--teal);color:#04231e;font-weight:800;font-size:14px;
          padding:11px 18px;font-family:inherit;cursor:pointer">Save deferrals</button>
        <span id="defermsg" style="font-size:13px;color:var(--mute)"></span></div>`,
-    '', num(s.discretionary.safe) < 0));
+    '', num(s.discretionary.per_day) < 0));
 
   const rk = s.risks || [];
   out.push(tile('Risk', rk.length ? `${rk.length}` : 'Clear',
@@ -938,8 +940,15 @@ function render(s){
        </div>`));
 
   out.push(tile('Settings', '',
-    `<div class="row"><div class="l">Minimum safe balance</div><div class="v">${m(s.settings.minimum_safe_balance)}</div></div>
-     <div class="row"><div class="l">Daily discretionary allowance</div><div class="v">${m(s.settings.daily_discretionary_allowance)}</div></div>
+    `<div class="row"><div class="l">Available-to-spend window
+         <small>how far ahead the figure at the top looks</small></div>
+       <div class="v">${dsc.window_days} days</div></div>
+     <div class="row"><div class="l">Assumed everyday spending
+         <small>none — the daily figure is derived, not deducted</small></div>
+       <div class="v">${m(s.settings.daily_discretionary_allowance)}</div></div>
+     <div class="row"><div class="l">Cash buffer held back
+         <small>none — ${m(s.settings.minimum_safe_balance)} is an alert line only</small></div>
+       <div class="v">$0.00</div></div>
      <div class="row"><div class="l">Forecast horizon</div><div class="v">${s.settings.forecast_days} days</div></div>
      <div class="row"><div class="l">Sign-in</div>
        <div class="v">Cloudflare Access</div></div>`));

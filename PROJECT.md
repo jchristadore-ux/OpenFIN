@@ -1,8 +1,9 @@
 # OpenFIN — project state and handoff
 
 A household cash-flow engine for one family. Not a budgeting app: it answers
-"what is actually safe to spend this week, given what is really going to leave
-the account." Everything is derived from bank statements rather than estimates.
+"what is actually available to spend, given what is really going to leave the
+account." Everything is derived from bank statements rather than estimates, and
+nothing is assumed on the household's behalf.
 
 **Owner does not code and has no terminal.** Every change reaches them as a
 GitHub pull request or a settings toggle in a web dashboard. This constraint has
@@ -75,7 +76,7 @@ lets anyone who finds the URL read and write the household's finances.
 | Path | What it is |
 |---|---|
 | `src/fincal.py` | The calendar. Single authority for what moves on which day. |
-| `src/forecast.py` | Balance curve and `safe_discretionary()` |
+| `src/forecast.py` | Balance curve and `available()` |
 | `src/risk.py` | Seven risk types, detection and deduplication |
 | `src/recommend.py` | Deferral plans; never proposes a secured bill |
 | `src/engine.py` | Orchestrator. Modes: `daily`, `watch`, `defer` |
@@ -96,12 +97,14 @@ lets anyone who finds the URL read and write the household's finances.
 - **The dashboard computes nothing.** Every figure comes from `engine.py`. If a
   number looks wrong it is wrong in the engine, and there is one place to fix it.
   The single exception is live deferral maths, which mirrors
-  `forecast.safe_discretionary()` and is pinned by parity tests.
+  `forecast.available()` and is pinned by parity tests.
 - **Nothing is ever deleted.** A bill missing from an upload is deactivated with
   a note. A deferred bill is marked, not removed — the money is still owed, and
   hiding it is the one thing this tool must never do.
 - **Never invent a number.** On failure the engine says so rather than
-  substituting a plausible figure.
+  substituting a plausible figure. This includes numbers about the household:
+  no assumed spending rate, no buffer held back on their behalf. If a figure is
+  not derived from the statements or the calendar, it is not shown.
 - **A deferred bill is listed everywhere it was listed before, struck through,
   and left out of the totals beside it.** Both halves matter: the forecast
   excludes it because it is not leaving the account, the lists keep it because
@@ -114,60 +117,72 @@ lets anyone who finds the URL read and write the household's finances.
 - **Income added in the app is flagged `needs_review` until a statement
   confirms it.** It is the one edit that makes the forecast optimistic, so it is
   marked as unverified from the moment it is counted.
-- 142 tests, all passing. `python -m unittest discover -s tests`
+- 143 tests, all passing. `python -m unittest discover -s tests`
 
 ---
 
-## 3. The discretionary formula
+## 3. What is available to spend
 
-Two readings, and **the lower one wins**.
+Two numbers, both facts about the projection. **Nothing is assumed, held back,
+or charged on the household's behalf.**
 
 ```
-week_view  = balance + income_week - bills_week - committed_beyond - buffer
-             committed_beyond = max(0, beyond_out - beyond_in)
-curve_view = min(projected closing balance, today .. week_end + lookahead) - buffer
-safe       = min(week_view, curve_view)
+curve(d)  = balance + income up to d - bills up to d        (no allowance)
+headroom  = min(curve(d)) for d in the next 30 days
+per_day   = min(curve(d) / n) where n counts today as day 1
 ```
 
-The week view on its own was wrong in the direction that costs money. It nets a
-fortnight of bills against a fortnight of income without regard to order, so a
-paycheque on the 19th cancels a bill due on the 18th; and it never charges the
-daily allowance, which is real spending whatever the app says. Both errors push
-the figure up.
+`headroom` is the most that could leave the account today without any day in the
+window going below zero — money spent today comes off every later day, so the
+low point binds. `per_day` is the largest flat daily amount that never puts a
+day below zero: spending `x` a day means `n * x` is gone by day n.
 
-The curve view has neither problem — the projection charges every bill and every
-day's allowance on the day it falls — and it is the honest reading of the
-question: money spent today comes off every later day too, so the most that can
-go without breaching the floor is `low - buffer`.
+Both are returned unclamped. Negative means the bills alone do not fit.
 
-The window is the same lookahead the week view already reserves for. Reaching
-further would drag every distant annual bill into this week's answer and pin it
-at zero year-round.
+### What was taken out, and why
+
+A **$500 cash buffer** and an assumed **$110.56/day of everyday spending** used
+to be subtracted here. Both were judgements dressed as arithmetic, and the owner
+asked for neither. The allowance was the worse of the two: the model invented a
+spending rate on the household's behalf, charged them for it, and then reported
+what was left as though it were a fact. `per_day` replaces it properly — instead
+of assuming a rate and deducting it, it derives the rate the forecast can carry.
+
+`minimum_safe_balance` survives as an **alert threshold only**. A projected day
+under $500 still raises a risk, because an early warning is worth having; it is
+not deducted from anything.
+
+The curve behind both figures must be run with `allowance=0`. `available()`
+raises rather than accept a projection that charges one — a figure net of
+invented spending is exactly the quiet wrongness this project refuses.
+
+### Why 30 days
+
+Chosen by the owner from the real alternatives. It covers a full mortgage cycle
+and every payday inside it, so nothing large hides just past the edge, and it is
+short enough that the figure still moves when something is fixed. Reaching
+further lets one distant annual bill hold the number negative for months while
+the next three weeks are comfortable; reaching less far — to the next payday —
+reads well but is blind to the mortgage four days after it.
 
 Both halves are duplicated in JS for live deferral updates and pinned by parity
-tests — same inputs must produce the same cent on both sides. The browser
-re-finds the low point without a round trip: deferring a bill raises every
-projected day from its date onward by that amount.
-
----
-
-### Adding income is the one edit that flatters the forecast
-
-Everything else the app can write makes the projection more pessimistic, which
-costs nothing but nerves. An income that is not really coming raises
-safe-to-spend, lifts the curve's floor, and silences the risks that would have
-warned about the day it fails to arrive. This project has already been burned
-once by exactly that — income was overstated by $837.11/week for months.
-
-So the app sends four answers and nothing else: what it is, how much, how often,
-and one date. `src/add_income.py` derives the id, decides which of the three
-date fields that date belongs in, and marks the entry `needs_review`. A phone
-never writes a field it does not understand, adding the same income twice is
-refused outright, and a removal is a deactivation like any other.
+tests: the engine starting from scratch must agree to the cent with the browser
+adjusting a snapshot built from an older deferral set. Deferring a bill raises
+every projected day from its date onward by that amount, which redoes both
+figures exactly.
 
 ---
 
 ## 4. Bugs worth remembering
+
+**Safe-to-spend answered a question nobody asked.** It offered $1,442.06 as free
+while the projection dipped below zero days later, then — once capped at the low
+point — read −$1,793.25, which the owner reasonably read as "we must find
+$1,793.25". Neither number was the thing they wanted. $1,437 of that gap was the
+model's own assumed spending and $500 was a buffer it had decided to hold; the
+household's actual obligations fitted. Replaced with two derived figures and no
+assumptions at all. The lesson is not arithmetic: the maths was right both
+times, and the question was wrong.
 
 **Safe-to-spend offered money that was already gone.** With $2,612.92 in the
 account it read **$1,442.06 free** while the projection dipped to $321.51 on the
@@ -310,7 +325,7 @@ massaged into agreement.
 ## 7. Operational state
 
 **Working:** Pages (read-only), email (SMTP secrets set and confirmed sending),
-the Worker, Cloudflare Access, 142 tests green.
+the Worker, Cloudflare Access, 143 tests green.
 
 **Outstanding for the owner:**
 - **Open `https://openfin.christadore.workers.dev` and use OpenFIN from there.**
