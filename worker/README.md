@@ -192,10 +192,15 @@ Turn the noise off:
 
 1. dash.cloudflare.com → **Workers & Pages** → **openfin**
 2. **Settings** → **Build**
-3. **Branch control** → **Non-production branches** → **None**
-   *(or Excluded branches → `*`, depending on which the dashboard offers)*
-4. **Build watch paths** → Include paths → `worker/*`
+3. Under **Branch control**, beside the Production branch box, **untick
+   "Builds for non-production branches"**
+4. Under **Build watch paths**, put `worker/*` in **Include paths**
 5. **Save**
+
+**Leave Production branch set to `main`.** It is a dropdown of branch names with
+no "none" option, and it is not the setting that causes this — it names the
+branch that deploys. The checkbox beside it is what decides whether every
+*other* branch gets built as well, and those are the builds that fail.
 
 Step 3 stops the failing pull-request builds. Step 4 stops the engine's own
 commits triggering rebuilds — it writes to `main` every time a balance is
