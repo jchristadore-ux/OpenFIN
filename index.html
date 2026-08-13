@@ -117,16 +117,39 @@
 
   /* Removing a bill is staged, not immediate: struck through until Save, so a
      mis-tap on a phone costs a second tap and not the household's model. */
-  .e-del,.e-restore{border:1px solid var(--line);background:#fff;color:var(--mute);
-    border-radius:8px;font:inherit;cursor:pointer}
-  .e-del{width:30px;height:32px;flex:0 0 30px;font-size:17px;line-height:1;padding:0}
-  .e-restore{font-size:13px;font-weight:600;padding:6px 12px}
-  .e-del:active,.e-restore:active{background:#f1f5f9}
+  .e-del,.e-restore,.i-del,.i-restore{border:1px solid var(--line);background:#fff;
+    color:var(--mute);border-radius:8px;font:inherit;cursor:pointer}
+  .e-del,.i-del{width:30px;height:32px;flex:0 0 30px;font-size:17px;line-height:1;padding:0}
+  .e-restore,.i-restore{font-size:13px;font-weight:600;padding:6px 12px}
+  .e-del:active,.e-restore:active,.i-del:active,.i-restore:active{background:#f1f5f9}
+  .e-del:disabled,.i-del:disabled,.i-restore:disabled{opacity:.5}
   .row.rm{background:#fef2f2;margin:0 -8px;padding-left:8px;padding-right:8px;border-radius:8px}
   .row.rm .nm{text-decoration:line-through;color:var(--danger)}
-  .row.rm .e-del{border-color:#fca5a5;color:var(--danger)}
+  .row.rm .e-del,.row.rm .i-del{border-color:#fca5a5;color:var(--danger)}
+  .row.rm .v span{text-decoration:line-through}
   .row.back{background:#ecfdf5;margin:0 -8px;padding-left:8px;padding-right:8px;border-radius:8px}
   .row.back .nm{color:var(--ok)!important;font-weight:600}
+
+  /* Add income. Full-width controls at 16px, because anything smaller makes
+     iOS zoom the page on focus and the household loses their place. */
+  .addinc input,.addinc select{width:100%;padding:12px;border:1px solid var(--line);
+    border-radius:10px;font:inherit;font-size:16px;background:#fff;color:var(--ink)}
+  .addinc .two{display:flex;gap:8px;margin-top:8px}
+  .addinc .two .fld{flex:1;position:relative;min-width:0}
+  .addinc .two .fld span{position:absolute;left:12px;top:50%;transform:translateY(-50%);
+    color:var(--mute);font-weight:700;pointer-events:none}
+  .addinc .two .fld input{padding-left:26px;text-align:right}
+  .addinc .two select{flex:1.15;min-width:0;-webkit-appearance:none;appearance:none;
+    background-image:linear-gradient(45deg,transparent 50%,var(--mute) 50%),
+      linear-gradient(135deg,var(--mute) 50%,transparent 50%);
+    background-position:calc(100% - 17px) 55%,calc(100% - 12px) 55%;
+    background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:30px}
+  .addinc .dl{display:block;margin-top:8px;font-size:12.5px;color:var(--mute);font-weight:600}
+  .addinc .dl input{margin-top:4px}
+  .addinc button{border:0;border-radius:10px;background:var(--teal);color:#04231e;
+    font-weight:800;font-size:14px;padding:11px 18px;font-family:inherit;cursor:pointer}
+  .addinc button:disabled{opacity:.55;cursor:default}
+  .addinc .bad{color:var(--danger);font-weight:600}
   .tot{border-top:2px solid var(--line);margin-top:6px;padding-top:10px;font-weight:700}
   .empty{color:var(--mute);font-size:14px;padding:6px 0}
 
@@ -465,6 +488,78 @@ async function saveEdits(){
   }
 }
 
+// ---- income --------------------------------------------------------------
+// Four answers and nothing else: what it is, how much, how often, and one date.
+// The engine derives the id, decides which of the three date fields that date
+// belongs in, and flags the entry for review — a phone never writes a field it
+// does not understand.
+//
+// The date question changes with the frequency because the answer means
+// different things: a one-off falls on that date, a weekly income is anchored
+// to it, a monthly one takes its day of the month from it.
+function incomeDateLabel(){
+  const freq = document.getElementById('inc-freq').value;
+  const lab = document.getElementById('inc-datelab');
+  if(!lab) return;
+  lab.textContent = freq === 'once' ? 'What date does it land?'
+    : (freq === 'weekly' || freq === 'biweekly') ? 'When is the next one?'
+    : 'When is the first one?';
+}
+
+async function addIncome(){
+  const btn = document.getElementById('addinc');
+  const msg = document.getElementById('incmsg');
+  const name = document.getElementById('inc-name');
+  const amt = document.getElementById('inc-amt');
+  const freq = document.getElementById('inc-freq');
+  const date = document.getElementById('inc-date');
+  const fail = (why, el) => { msg.className = 'bad'; msg.textContent = why; if(el) el.focus(); };
+
+  msg.className = ''; msg.textContent = '';
+  if(name.value.trim().length < 2) return fail('Give it a name.', name);
+  if(amt.value === '' || !(Number(amt.value) > 0)) return fail('How much is it?', amt);
+  if(!date.value) return fail('Pick the date it lands.', date);
+
+  btn.disabled = true; btn.textContent = 'Adding…';
+  msg.textContent = 'Adding…';
+  try{
+    await post('/income', {add: {
+      name: name.value.trim(), amount: amt.value,
+      frequency: freq.value, date: date.value
+    }});
+    msg.innerHTML = `Added. The forecast is rebuilding with it — safe to spend, `
+      + 'the curve and the risks all follow. This page refreshes when it lands. '
+      + 'It stays flagged for review until it turns up on a statement.';
+    name.value = ''; amt.value = ''; date.value = '';
+    pollForSnapshot();
+  } catch(e){
+    msg.className = 'bad'; msg.innerHTML = e.message + ' Nothing was added.';
+  } finally {
+    btn.disabled = false; btn.textContent = 'Add income';
+  }
+}
+
+// Removing an income deactivates it, exactly like a bill: kept, not deleted,
+// and restorable. Sent immediately rather than staged — there is no Save button
+// on this tile, and an income counted in error is the direction that overstates
+// what is safe to spend, so it should be undoable in one tap.
+async function setIncomeActive(row, active){
+  const msg = document.getElementById('incmsg');
+  const btn = row.querySelector('button');
+  msg.className = ''; msg.textContent = active ? 'Restoring…' : 'Removing…';
+  btn.disabled = true;
+  try{
+    await post('/income', {edits: [{id: row.getAttribute('data-income'), active}]});
+    row.classList.add(active ? 'back' : 'rm');
+    msg.textContent = (active ? 'Restored. ' : 'Removed. ')
+      + 'The forecast is rebuilding; this page refreshes when it lands.';
+    pollForSnapshot();
+  } catch(e){
+    msg.className = 'bad'; msg.innerHTML = e.message + ' Nothing changed.';
+    btn.disabled = false;
+  }
+}
+
 // The workflow commits a new snapshot.json. Watch for generated_at to change,
 // then re-render. Gives up quietly rather than spinning forever.
 let baseline = null;
@@ -783,6 +878,65 @@ function render(s){
              </div>`).join('')
         : '')));
 
+  // Income — what is already counted, and a way to add more. The existing list
+  // sits above the form deliberately: adding a paycheque that is already
+  // modelled double-counts it, and the effect is invisible because the forecast
+  // simply gets better. Seeing the list first is the only guard against that.
+  const inc = s.income || [];
+  const liveInc = inc.filter(x => x.active);
+  const oldInc = inc.filter(x => !x.active);
+  const freqLabel = {once:'one-off', weekly:'weekly', biweekly:'every 2 weeks',
+    semimonthly:'twice a month', monthly:'monthly', quarterly:'quarterly',
+    annual:'yearly'};
+  out.push(tile('Income', `${liveInc.length}`,
+    liveInc.map(x => `<div class="row" data-income="${esc(x.id)}">
+        <div class="l"><span class="nm">${esc(x.name)}</span>
+          <small>${x.next_date?dt(x.next_date)+' · ':''}${esc(freqLabel[x.frequency]||x.frequency)}${
+            x.needs_review?' · needs review':''}</small></div>
+        <div class="v in" style="display:flex;gap:8px;align-items:center">
+          <span style="color:var(--ok)">+${m(x.amount)}</span>
+          <button class="i-del" type="button" title="Remove this income"
+                  aria-label="Remove ${esc(x.name)}">×</button>
+        </div></div>`).join('')
+    + (liveInc.length ? '' : '<div class="empty">No income is being counted.</div>')
+    + (oldInc.length
+        ? `<div class="grp" style="margin-top:16px">Removed, kept for history</div>`
+          + oldInc.map(x => `<div class="row" data-income="${esc(x.id)}" data-inactive="1">
+               <div class="l"><span class="nm" style="color:var(--mute)">${esc(x.name)}</span>
+                 <small>${esc(freqLabel[x.frequency]||x.frequency)} · ${m(x.amount)} · not counted</small></div>
+               <div class="v"><button class="i-restore" type="button">Restore</button></div>
+             </div>`).join('')
+        : '')
+    + `<div class="grp" style="margin-top:18px">Add income</div>
+       <div style="font-size:13px;color:var(--mute);margin-bottom:10px">
+         Only money that actually lands in this account. Anything added here is
+         counted in the forecast straight away and flagged for review until it
+         has been seen on a statement.</div>
+       <div class="addinc">
+         <input id="inc-name" type="text" placeholder="What is it? e.g. Side work"
+                autocomplete="off" maxlength="60">
+         <div class="two">
+           <div class="fld"><span>$</span>
+             <input id="inc-amt" type="number" inputmode="decimal" step="0.01"
+                    placeholder="0.00" autocomplete="off"></div>
+           <select id="inc-freq">
+             <option value="once">Just once</option>
+             <option value="weekly">Every week</option>
+             <option value="biweekly">Every 2 weeks</option>
+             <option value="semimonthly">Twice a month</option>
+             <option value="monthly" selected>Every month</option>
+             <option value="quarterly">Every 3 months</option>
+             <option value="annual">Every year</option>
+           </select>
+         </div>
+         <label class="dl" for="inc-date"><span id="inc-datelab">When is the first one?</span>
+           <input id="inc-date" type="date"></label>
+         <div style="display:flex;gap:10px;align-items:center;margin-top:12px">
+           <button id="addinc" type="button">Add income</button>
+           <span id="incmsg" style="font-size:13px;color:var(--mute)"></span>
+         </div>
+       </div>`));
+
   out.push(tile('Settings', '',
     `<div class="row"><div class="l">Minimum safe balance</div><div class="v">${m(s.settings.minimum_safe_balance)}</div></div>
      <div class="row"><div class="l">Daily discretionary allowance</div><div class="v">${m(s.settings.daily_discretionary_allowance)}</div></div>
@@ -813,6 +967,15 @@ function render(s){
     b.addEventListener('click', () => markRemoval(b.closest('[data-bill]'))));
   document.querySelectorAll('.e-restore').forEach(b =>
     b.addEventListener('click', () => markRestore(b.closest('[data-bill]'))));
+
+  const ai = document.getElementById('addinc');
+  if(ai) ai.addEventListener('click', addIncome);
+  const ifq = document.getElementById('inc-freq');
+  if(ifq){ ifq.addEventListener('change', incomeDateLabel); incomeDateLabel(); }
+  document.querySelectorAll('.i-del').forEach(b =>
+    b.addEventListener('click', () => setIncomeActive(b.closest('[data-income]'), false)));
+  document.querySelectorAll('.i-restore').forEach(b =>
+    b.addEventListener('click', () => setIncomeActive(b.closest('[data-income]'), true)));
   const sd = document.getElementById('savedefer');
   if(sd) sd.addEventListener('click', saveDeferrals);
   document.querySelectorAll('[data-defer] input').forEach(cb =>

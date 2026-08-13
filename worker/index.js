@@ -35,6 +35,9 @@
  *   POST /balance  {"balance": "4382.17"}
  *   POST /bills    {"edits": [{"id": "netflix", "amount": "21.31", "due_day": 23}]}
  *   POST /defer    {"items": [{"bill_id": "netflix", "date": "2026-08-23"}]}
+ *   POST /income   {"add": {"name": "Side work", "amount": "250",
+ *                           "frequency": "weekly", "date": "2026-08-21"}}
+ *                  {"edits": [{"id": "side-work", "active": false}]}
  *
  * DEPLOYING WITHOUT A TERMINAL
  * Cloudflare's dashboard has a code editor, so this whole file can be pasted in
@@ -68,6 +71,10 @@ function cfg(env, key) {
 const MONEY = /^-?\d+(\.\d{1,2})?$/;
 const ID = /^[a-z0-9][a-z0-9-]{0,48}$/;
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
+// Must stay in step with src/add_income.py's DATE_FIELD. Checked here only to
+// refuse nonsense early; the engine validates it properly either way.
+const FREQUENCIES = ["once", "weekly", "biweekly", "semimonthly", "monthly",
+                     "quarterly", "annual"];
 
 /**
  * Files served from this origin so the app runs first-party. An allowlist, not
@@ -301,6 +308,62 @@ export default {
       const res = await dispatch(env, "bills", { edits: JSON.stringify(clean) });
       if (res.status !== 204) return dispatchFailed(env, request, res);
       return json(env, request, 202, { ok: true, count: clean.length });
+    }
+
+    // ---- income ----------------------------------------------------------
+    // Adding carries four answers and nothing else: the id, the date plumbing
+    // and the review flag are all decided by the engine, so a phone can never
+    // write a field it does not understand. Edits are the same shape as bills'
+    // and are how an income added by mistake gets removed.
+    if (url.pathname === "/income") {
+        const add = body.add && typeof body.add === "object" ? body.add : null;
+        const edits = Array.isArray(body.edits) ? body.edits : null;
+        if (!add && !edits) {
+          return json(env, request, 400, { error: "send an income to add, or edits" });
+        }
+        const payload = {};
+
+        if (add) {
+          const name = String(add.name ?? "").trim();
+          if (name.length < 2 || name.length > 60) {
+            return json(env, request, 400, { error: "give the income a name" });
+          }
+          const amount = cleanMoney(add.amount);
+          if (amount === null || Number(amount) <= 0) {
+            return json(env, request, 400, { error: `'${add.amount}' is not an amount` });
+          }
+          if (!FREQUENCIES.includes(String(add.frequency))) {
+            return json(env, request, 400, { error: `'${add.frequency}' is not a frequency` });
+          }
+          if (!DATE.test(String(add.date ?? ""))) {
+            return json(env, request, 400, { error: `'${add.date}' is not a date` });
+          }
+          payload.add = JSON.stringify({
+            name, amount, frequency: String(add.frequency), date: String(add.date),
+          });
+        }
+
+        if (edits) {
+          if (edits.length === 0 || edits.length > 30) {
+            return json(env, request, 400, { error: "edits must be 1-30 items" });
+          }
+          const clean = [];
+          for (const e of edits) {
+            if (!ID.test(String(e.id ?? ""))) {
+              return json(env, request, 400, { error: `bad income id: ${e.id}` });
+            }
+            if (e.active === undefined) continue;
+            clean.push({ id: e.id, active: Boolean(e.active) });
+          }
+          if (clean.length === 0 && !add) {
+            return json(env, request, 400, { error: "no changes supplied" });
+          }
+          if (clean.length) payload.edits = JSON.stringify(clean);
+        }
+
+        const res = await dispatch(env, "income", payload);
+        if (res.status !== 204) return dispatchFailed(env, request, res);
+        return json(env, request, 202, { ok: true, added: Boolean(add) });
     }
 
     // ---- deferrals -------------------------------------------------------

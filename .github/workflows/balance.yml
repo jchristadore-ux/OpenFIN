@@ -13,7 +13,7 @@ name: Daily balance
 
 on:
   repository_dispatch:
-    types: [balance, bills, defer]
+    types: [balance, bills, defer, income]
   workflow_dispatch:
     inputs:
       balance:
@@ -53,10 +53,26 @@ jobs:
           git add bills.json
           git diff --staged --quiet || git commit -m "Bill edits from the app"
 
+      - name: Add or remove income, if this run carries any
+        # Adding is an append and removing is a deactivation, so both are safe
+        # to run in either order; the add goes first so a run that does both
+        # ends with the new entry present.
+        if: github.event.action == 'income'
+        env:
+          ADD: ${{ github.event.client_payload.add }}
+          EDITS: ${{ github.event.client_payload.edits }}
+        run: |
+          if [ -n "$ADD" ]; then python src/add_income.py "$ADD"; fi
+          if [ -n "$EDITS" ]; then python src/apply_edits.py "$EDITS" income; fi
+          git config user.name  "OpenFIN"
+          git config user.email "noreply@github.com"
+          git add income.json
+          git diff --staged --quiet || git commit -m "Income updated from the app"
+
       - name: Rebuild the forecast after an edit
         # An edit changes the model, so the forecast is rebuilt and the summary
         # re-sent using the balance already on file. No balance is required.
-        if: github.event.action == 'bills'
+        if: github.event.action == 'bills' || github.event.action == 'income'
         env:
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_APP_PASSWORD: ${{ secrets.SMTP_APP_PASSWORD }}
@@ -75,7 +91,9 @@ jobs:
         run: python src/engine.py defer --items "$ITEMS"
 
       - name: Read the balance
-        if: github.event.action != 'bills' && github.event.action != 'defer'
+        if: >-
+          github.event.action != 'bills' && github.event.action != 'defer'
+          && github.event.action != 'income'
         id: read
         env:
           FROM_APP: ${{ github.event.client_payload.balance }}
@@ -96,8 +114,11 @@ jobs:
         # Balance entries only. A deferral has already rebuilt the snapshot in
         # `defer` mode above; running `daily` after it re-sent the whole daily
         # summary as though a balance had just been entered, off a balance that
-        # might be days old. Saving a deferral is not a reading of the account.
-        if: github.event.action != 'bills' && github.event.action != 'defer'
+        # might be days old. Saving a deferral is not a reading of the account,
+        # and neither is adding an income.
+        if: >-
+          github.event.action != 'bills' && github.event.action != 'defer'
+          && github.event.action != 'income'
         env:
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_APP_PASSWORD: ${{ secrets.SMTP_APP_PASSWORD }}
@@ -117,5 +138,6 @@ jobs:
           git diff --staged --quiet || \
             git commit -m "${{ github.event.action == 'defer' && 'Deferrals updated'
                             || github.event.action == 'bills' && 'Forecast rebuilt after bill edits'
+                            || github.event.action == 'income' && 'Forecast rebuilt after an income change'
                             || format('Balance {0}', steps.read.outputs.balance) }}"
           git push

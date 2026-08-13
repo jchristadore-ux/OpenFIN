@@ -124,6 +124,64 @@ await t("an expired token is named, not reduced to a status code", async () => {
   assert.match(err, /Not Found/);
 });
 
+// ---- income ----------------------------------------------------------------
+await t("adding income dispatches the four answers and nothing else", async () => {
+  const add = { name: " Side work ", amount: "$1,250.50", frequency: "weekly", date: "2026-08-21" };
+  const res = await run(req("/income", { body: JSON.stringify({ add }) }));
+  assert.equal(res.status, 202);
+  const gh = calls.find((c) => c.url.endsWith("/dispatches"));
+  const payload = JSON.parse(gh.init.body);
+  assert.equal(payload.event_type, "income");
+  assert.deepEqual(JSON.parse(payload.client_payload.add), {
+    name: "Side work", amount: "1250.50", frequency: "weekly", date: "2026-08-21",
+  });
+  // The id, the date plumbing and the review flag are the engine's to decide.
+  assert.equal(payload.client_payload.edits, undefined);
+});
+
+await t("every frequency the app offers is accepted", async () => {
+  for (const frequency of ["once", "weekly", "biweekly", "semimonthly",
+                           "monthly", "quarterly", "annual"]) {
+    const res = await run(req("/income", {
+      body: JSON.stringify({ add: { name: "Side work", amount: "10", frequency, date: "2026-08-21" } }),
+    }));
+    assert.equal(res.status, 202, frequency);
+  }
+});
+
+await t("a made-up frequency never reaches GitHub", async () => {
+  const res = await run(req("/income", {
+    body: JSON.stringify({ add: { name: "Side work", amount: "10", frequency: "fortnightly", date: "2026-08-21" } }),
+  }));
+  assert.equal(res.status, 400);
+  assert.equal(calls.filter((c) => c.url.endsWith("/dispatches")).length, 0);
+});
+
+await t("a nameless, zero, or undated income is refused", async () => {
+  // A valid baseline, so each case fails for the reason it names and not on
+  // some other field.
+  const base = { name: "Side work", amount: "10", frequency: "weekly", date: "2026-08-21" };
+  for (const bad of [{ name: "" }, { amount: "0" }, { amount: "-5" }, { date: "soon" }]) {
+    const res = await run(req("/income", { body: JSON.stringify({ add: { ...base, ...bad } }) }));
+    assert.equal(res.status, 400, JSON.stringify(bad));
+  }
+  assert.equal(calls.filter((c) => c.url.endsWith("/dispatches")).length, 0);
+});
+
+await t("removing an income sends only the id and the flag", async () => {
+  const res = await run(req("/income", {
+    body: JSON.stringify({ edits: [{ id: "side-work", active: false, amount: "99999" }] }),
+  }));
+  assert.equal(res.status, 202);
+  const payload = JSON.parse(calls.find((c) => c.url.endsWith("/dispatches")).init.body);
+  assert.deepEqual(JSON.parse(payload.client_payload.edits), [{ id: "side-work", active: false }]);
+});
+
+await t("an empty income request is refused", async () => {
+  const res = await run(req("/income", { body: JSON.stringify({}) }));
+  assert.equal(res.status, 400);
+});
+
 // ---- CORS, for the Pages copy ---------------------------------------------
 await t("a cross-site write from Pages is allowed WITH credentials", async () => {
   const res = await run(req("/balance", {
