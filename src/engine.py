@@ -224,6 +224,9 @@ def analyse(settings: Settings, state: dict, now: datetime) -> Result:
         today=today,
         buffer=settings.minimum_safe_balance,
         lookahead_days=settings.discretionary_lookahead_days,
+        # So the answer is capped by the day the money actually runs lowest,
+        # not just by a fortnight's totals netted against each other.
+        projection=projection,
     )
 
     risks = riskmod.detect(
@@ -280,6 +283,37 @@ def analyse(settings: Settings, state: dict, now: datetime) -> Result:
 # snapshot for the dashboard
 # --------------------------------------------------------------------------
 
+def _editable_bills(today: date) -> list[dict]:
+    """Every bill the Edit screen shows, in the order it next falls due.
+
+    A year and a bit of lookahead, so an annual bill gets a real date rather
+    than sorting to the bottom with everything else that has none. Inactive
+    bills have no occurrences by definition and sort last, which is where they
+    belong: they are kept for history, not for editing.
+    """
+    from bills import occurrences
+
+    horizon = today + timedelta(days=400)
+    out = []
+    for b in load_items(ROOT / "bills.json", "bills"):
+        when = occurrences(b, today, horizon)
+        out.append({
+            "id": b["id"], "name": b["name"], "amount": str(money(b["amount"])),
+            "due_day": b.get("due_day"), "frequency": b["frequency"],
+            "next_date": when[0].isoformat() if when else None,
+            "tier": b.get("priority_tier", 5), "active": bool(b.get("active", True)),
+            "variable": bool(b.get("variable", False)),
+            "needs_review": bool(b.get("needs_review", False)),
+            "note": (b.get("note") or "")[:300],
+        })
+    out.sort(key=lambda x: (
+        not x["active"],
+        x["next_date"] or "9999-12-31",
+        x["name"].lower(),
+    ))
+    return out
+
+
 def write_snapshot(r: Result, settings: Settings, now: datetime) -> dict:
     """The dashboard reads this and computes nothing. One source of truth."""
     f = r.forecast
@@ -303,20 +337,43 @@ def write_snapshot(r: Result, settings: Settings, now: datetime) -> dict:
         "discretionary": {
             "safe": str(r.discretionary.safe),
             "explain": [[lbl, str(val)] for lbl, val in r.discretionary.explain()],
+            # Which of the two readings bound the answer, so the app can say why
+            # rather than showing a number that looks arbitrarily small.
+            "limited_by_low_point": r.discretionary.limited_by_low_point,
+            "projected_low": (
+                str(r.discretionary.projected_low)
+                if r.discretionary.projected_low is not None else None
+            ),
+            "projected_low_day": (
+                r.discretionary.projected_low_day.isoformat()
+                if r.discretionary.projected_low_day else None
+            ),
             # Raw inputs, so the app can recompute "safe to spend" as boxes are
             # ticked without a round trip. It reproduces exactly the arithmetic
             # in forecast.safe_discretionary; the engine stays the authority.
+            # `curve` above carries the projection, and deferring a bill adds its
+            # amount back to every day from its date onward — which is all the
+            # app needs to re-find the low point without the engine.
             "components": {
                 "balance": str(r.balance),
                 "income_week": str(r.discretionary.income_this_week),
+                # Exactly the window safe_discretionary uses: week_end + 1 to
+                # week_end + lookahead, inclusive. It was a day wider here, so
+                # income landing on that extra day was credited by the app and
+                # not by the engine, and the live figure quietly disagreed with
+                # the saved one.
                 "beyond_in": str(
                     r.calendar.total_in(
                         r.discretionary.week_end + timedelta(days=1),
                         r.discretionary.week_end + timedelta(
-                            days=1 + settings.discretionary_lookahead_days),
+                            days=settings.discretionary_lookahead_days),
                     )
                 ),
                 "buffer": str(settings.minimum_safe_balance),
+                "horizon_end": (
+                    r.discretionary.week_end
+                    + timedelta(days=settings.discretionary_lookahead_days)
+                ).isoformat(),
             },
         },
         # Deferred occurrences carry a flag everywhere they appear rather than
@@ -395,19 +452,14 @@ def write_snapshot(r: Result, settings: Settings, now: datetime) -> dict:
         # The full editable model, so the app's Edit screen renders from the
         # same snapshot as everything else rather than fetching bills.json and
         # re-implementing what counts as active.
-        "bills": [
-            {"id": b["id"], "name": b["name"], "amount": str(money(b["amount"])),
-             "due_day": b.get("due_day"), "frequency": b["frequency"],
-             "tier": b.get("priority_tier", 5), "active": bool(b.get("active", True)),
-             "variable": bool(b.get("variable", False)),
-             "needs_review": bool(b.get("needs_review", False)),
-             "note": (b.get("note") or "")[:300]}
-            for b in sorted(
-                load_items(ROOT / "bills.json", "bills"),
-                key=lambda x: (not x.get("active", True), x.get("priority_tier", 5),
-                               -float(x.get("amount") or 0)),
-            )
-        ],
+        #
+        # Ordered by when each one next lands. Someone opening this screen is
+        # looking for the bill they just got a notice about, and the only thing
+        # they reliably know about it is roughly when it is due — not its
+        # priority tier, which is a modelling decision, and not its size.
+        # Frequency is why due_day cannot be sorted on directly: a biweekly
+        # mortgage has no day of the month at all.
+        "bills": _editable_bills(r.today),
         "settings": {
             "minimum_safe_balance": str(settings.minimum_safe_balance),
             "daily_discretionary_allowance": str(settings.daily_discretionary_allowance),
