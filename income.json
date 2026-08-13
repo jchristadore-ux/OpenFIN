@@ -23,11 +23,11 @@
         "board of ed",
         "payroll"
       ],
-      "active": true,
+      "active": false,
       "needs_review": true,
-      "note": "Amount corrected from $2,840.34. Observed $2,829.31 on 04/13, 04/28, 05/13, 05/27 and 06/10/2026, exactly 14-15 days apart. A $2,837.55 credit on 06/16 breaks the pattern and may be a summer-schedule payment - verify before the school year starts.",
-      "last_updated": "2026-08-11T00:00:00-04:00",
-      "source": "statement"
+      "note": "Edited in the app 13 Aug 2026: deactivated. Previous note: Amount corrected from $2,840.34. Observed $2,829.31 on 04/13, 04/28, 05/13, 05/27 and 06/10/2026, exactly 14-15 days apart. A $2,837.55 credit on 06/16 breaks the pattern and may be a summer-schedule payment - verify before the school year starts.",
+      "last_updated": "2026-08-13T09:54:27.824231-04:00",
+      "source": "app"
     },
     {
       "id": "primary-payroll",
