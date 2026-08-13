@@ -49,6 +49,21 @@
       "note": "CORRECTED. Was $2,853.17/week; the actual employer is Insight Global and the modal weekly deposit is $2,016.06. That is $837.11/week overstated, roughly $3,627/month of income the projection was counting and never receiving. Deposits range $1,648.05-$2,981.68, so this stays flagged.",
       "last_updated": "2026-08-11T00:00:00-04:00",
       "source": "statement"
+    },
+    {
+      "id": "charlie-and-clark",
+      "name": "Charlie and Clark",
+      "amount": 510.0,
+      "frequency": "once",
+      "due_day": null,
+      "due_date": "2026-08-13",
+      "anchor_date": null,
+      "match_keywords": [],
+      "active": true,
+      "needs_review": true,
+      "note": "Added in the app 13 Aug 2026: once, first on 13 Aug 2026. Not yet seen on a statement.",
+      "last_updated": "2026-08-13T09:53:37.207964-04:00",
+      "source": "app"
     }
   ]
 }
