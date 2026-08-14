@@ -1,8 +1,13 @@
 name: Risk watch
 
-# The early-warning half of the system. Runs on a schedule, needs no balance
-# entry, and emails only when the forecast engine finds something worth saying.
-# Deduplication lives in state.json, so an unchanged risk stays quiet.
+# The early-warning half of the system. Runs on a schedule and needs no balance
+# entry, so the app's figures and its Risk tile stay current twice a day.
+#
+# It does NOT email. `risk_emails_enabled` is false in config.json: the daily
+# summary, which carries the risk list itself, is the only email that sends.
+# The SMTP secrets are still passed in so that flipping that one value in
+# config.json is all it takes to turn alerts back on. Deduplication lives in
+# state.json and only applies when they are on.
 
 on:
   schedule:
@@ -32,7 +37,7 @@ jobs:
           python-version: '3.11'
       - run: pip install --quiet requests openpyxl
 
-      - name: Scan for risk
+      - name: Scan for risk and rebuild the snapshot
         env:
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_APP_PASSWORD: ${{ secrets.SMTP_APP_PASSWORD }}

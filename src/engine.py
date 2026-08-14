@@ -6,8 +6,10 @@ Two modes, and the difference between them is the whole design:
          figure, so the full daily check goes out.
 
   watch  Nobody entered anything. Runs on a schedule, projects from the last
-         known balance, and emails ONLY if a genuine risk is found. A mortgage
-         about to bounce is true whether or not the app was opened.
+         known balance and rebuilds the snapshot, so the app's Risk tile is
+         current twice a day whether or not anyone opened it. It can also email
+         an alert, but that is off: `risk_emails_enabled` is false, and the
+         daily summary is the only email that sends.
 
 `daily` refuses to send when the balance is not from today. A financial email
 built on a stale balance is worse than no email — it reads as authoritative and
@@ -63,6 +65,7 @@ class Settings:
     spending_window_days: int = 30
     alert_reminder_days: int = 3
     balance_max_age_hours: int = 20
+    risk_emails_enabled: bool = False
 
 
 def load_settings(path: Path = CONFIG) -> Settings:
@@ -86,6 +89,9 @@ def load_settings(path: Path = CONFIG) -> Settings:
     s.alert_reminder_days = int(raw.get("alert_reminder_days", s.alert_reminder_days))
     s.balance_max_age_hours = int(
         raw.get("balance_max_age_hours", s.balance_max_age_hours)
+    )
+    s.risk_emails_enabled = bool(
+        raw.get("risk_emails_enabled", s.risk_emails_enabled)
     )
     return s
 
@@ -191,8 +197,20 @@ class Result:
     upcoming: list
 
 
-def analyse(settings: Settings, state: dict, now: datetime) -> Result:
-    """Load everything, build the calendar, forecast, and score the risks."""
+def analyse(
+    settings: Settings, state: dict, now: datetime, *, notify: bool = False
+) -> Result:
+    """Load everything, build the calendar, forecast, and score the risks.
+
+    `notify` says whether this run will actually send alert emails. It defaults
+    to False because most runs do not: the daily check folds risks into the
+    summary and `defer` sends nothing at all. Only the scheduled watch sends
+    alerts, and only when they are switched on in config.
+
+    It matters because the dedup state is written here. Marking a risk notified
+    on a run that sends nothing buys three days of silence for a message nobody
+    got — which is what used to happen every time a balance was entered.
+    """
     today = now.date()
 
     try:
@@ -246,6 +264,7 @@ def analyse(settings: Settings, state: dict, now: datetime) -> Result:
         state.get("risks", {}),
         now=now,
         reminder_days=settings.alert_reminder_days,
+        notify=notify,
     )
     state["risks"] = new_state
 
@@ -539,14 +558,29 @@ def run_defer(items_json: str, *, dry_run: bool) -> int:
 
 
 def run_watch(*, dry_run: bool) -> int:
-    """Scheduled risk sweep. Never needs a balance entered today."""
+    """Scheduled risk sweep. Never needs a balance entered today.
+
+    The sweep runs whatever `risk_emails_enabled` says. What the setting turns
+    off is the email, not the detection: the snapshot is rebuilt on every run
+    and committed, so the app's Risk tile is current twice a day regardless.
+    The daily summary also carries the risk list, so nothing is only ever
+    knowable from an alert.
+    """
     settings = load_settings()
     tz = ZoneInfo(settings.timezone)
     now = datetime.now(tz)
     state = load_state()
 
-    r = analyse(settings, state, now)
+    r = analyse(settings, state, now, notify=settings.risk_emails_enabled)
     write_snapshot(r, settings, now)
+
+    if not settings.risk_emails_enabled:
+        save_state(state)
+        print(
+            f"{len(r.risks)} risk(s) found; risk emails are off, so nothing was "
+            f"sent. The snapshot is updated and the app shows them."
+        )
+        return 0
 
     if not r.to_notify:
         save_state(state)
