@@ -28,9 +28,14 @@ phone (the Worker serves the app)  ->  same-origin POST  ->  repository_dispatch
 
 **Entering the balance is the trigger for everything.** There is no scheduled
 daily summary, deliberately: a summary anchored to a stale balance reads as
-authoritative and is quietly wrong. Risk alerts are the exception — they run on
-a schedule twice a day and never depend on a balance being entered, because the
-whole point of an early warning is that it arrives when nobody is looking.
+authoritative and is quietly wrong.
+
+**The daily summary is the only email that sends.** The risk watch still runs
+twice a day and still needs no balance, but it publishes rather than emails: it
+rebuilds `snapshot.json`, so the app's Risk tile is current whether or not
+anyone opened it, and the daily summary carries the risk list too. Alert emails
+are one value in `config.json` away — `risk_emails_enabled` — and the SMTP
+secrets stay wired up so turning them on needs no code.
 
 ### The Worker exists to keep tokens off phones, and to be the app's origin
 
@@ -80,9 +85,9 @@ lets anyone who finds the URL read and write the household's finances.
 | `src/risk.py` | Seven risk types, detection and deduplication |
 | `src/recommend.py` | Deferral plans; never proposes a secured bill |
 | `src/engine.py` | Orchestrator. Modes: `daily`, `watch`, `defer` |
+| `src/notify.py` | Daily email; alert email kept for if alerts are re-enabled |
 | `src/apply_edits.py` | Server-side re-validation of in-app bill and income edits |
 | `src/add_income.py` | Adding an income source from the app, recurring or one-off |
-| `src/notify.py` | Daily and alert email, text + HTML |
 | `src/bills.py` | Occurrence maths |
 | `index.html` | The dashboard. Renders `snapshot.json` and computes nothing. |
 | `app.json` | Browser-read settings. Holds the Worker URL. |
@@ -117,7 +122,7 @@ lets anyone who finds the URL read and write the household's finances.
 - **Income added in the app is flagged `needs_review` until a statement
   confirms it.** It is the one edit that makes the forecast optimistic, so it is
   marked as unverified from the moment it is counted.
-- 149 tests, all passing. `python -m unittest discover -s tests`
+- 156 tests, all passing. `python -m unittest discover -s tests`
 
 ---
 
@@ -327,7 +332,7 @@ massaged into agreement.
 ## 7. Operational state
 
 **Working:** Pages (read-only), email (SMTP secrets set and confirmed sending),
-the Worker, Cloudflare Access, 149 tests green.
+the Worker, Cloudflare Access, 156 tests green.
 
 **Outstanding for the owner:**
 - **Open `https://openfin.christadore.workers.dev` and use OpenFIN from there.**

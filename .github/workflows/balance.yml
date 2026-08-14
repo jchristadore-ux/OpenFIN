@@ -70,8 +70,9 @@ jobs:
           git diff --staged --quiet || git commit -m "Income updated from the app"
 
       - name: Rebuild the forecast after an edit
-        # An edit changes the model, so the forecast is rebuilt and the summary
-        # re-sent using the balance already on file. No balance is required.
+        # An edit changes the model, so the forecast is rebuilt from the balance
+        # already on file. No balance is required, and no email is sent: `watch`
+        # only publishes a new snapshot for the app to read.
         if: github.event.action == 'bills' || github.event.action == 'income'
         env:
           SMTP_USER: ${{ secrets.SMTP_USER }}

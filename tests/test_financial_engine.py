@@ -479,6 +479,108 @@ class TestDedup(unittest.TestCase):
 # deferral recommendations
 # --------------------------------------------------------------------------
 
+class TestRiskEmailsCanBeSwitchedOff(unittest.TestCase):
+    """The daily summary is the only email that sends.
+
+    Risks are still detected on every run and shown in the app; what is off is
+    the separate alert email. The dedup state has to respect that — marking a
+    risk notified for a message nobody received would buy three days of silence
+    if alerts were ever switched back on.
+    """
+
+    def setUp(self):
+        self.now = datetime(2026, 8, 11, 7, 0)
+        self.r = riskmod.Risk(
+            id="negative_balance:2026-08-20", type=riskmod.NEGATIVE_BALANCE,
+            severity="critical", title="t", detail="d",
+            amount=D("500"), when=date(2026, 8, 20))
+
+    def test_nothing_is_notified_when_alerts_are_off(self):
+        notify, _, state = riskmod.triage([self.r], {}, now=self.now, notify=False)
+        self.assertEqual(notify, [])
+        self.assertIn(self.r.id, state, "the risk is still recorded")
+
+    def test_a_risk_seen_while_off_is_not_marked_notified(self):
+        _, _, state = riskmod.triage([self.r], {}, now=self.now, notify=False)
+        self.assertIsNone(state[self.r.id].get("notified_at"))
+
+    def test_switching_alerts_back_on_sends_the_backlog(self):
+        _, _, state = riskmod.triage([self.r], {}, now=self.now, notify=False)
+        notify, _, _ = riskmod.triage([self.r], state,
+                                      now=self.now + timedelta(hours=6))
+        self.assertEqual(len(notify), 1, "never sent, so still due")
+
+    def test_a_run_that_sends_nothing_does_not_silence_the_next_one(self):
+        """The daily check folds risks into the summary and sends no alert. It
+        used to stamp them notified anyway, so entering a balance suppressed the
+        next alert email for up to three days."""
+        _, _, after_daily = riskmod.triage([self.r], {}, now=self.now, notify=False)
+        notify, _, _ = riskmod.triage([self.r], after_daily,
+                                      now=self.now + timedelta(hours=1))
+        self.assertEqual(len(notify), 1)
+
+    def test_first_seen_survives_a_run_with_alerts_off(self):
+        _, _, first = riskmod.triage([self.r], {}, now=self.now, notify=False)
+        _, _, later = riskmod.triage([self.r], first,
+                                     now=self.now + timedelta(days=2), notify=False)
+        self.assertEqual(later[self.r.id]["first_seen"], first[self.r.id]["first_seen"])
+
+    def test_the_watch_still_rebuilds_the_snapshot_with_alerts_off(self):
+        import engine
+        tmp = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp, True)
+        (tmp / "bills.json").write_text(json.dumps(
+            [bill("big", "Big", 4000, freq="once", due="2026-08-20", tier=1,
+                  deferrable=False, secured=True)]), encoding="utf-8")
+        (tmp / "income.json").write_text(json.dumps([]), encoding="utf-8")
+
+        # load_state and save_state bind their default path at import time, so
+        # patching engine.STATE would not redirect them — and a test that got
+        # that wrong wrote over the real state.json. Patch the functions.
+        saved = {}
+        original = {
+            "send_mail": engine.messaging.send_mail,
+            "load_settings": engine.load_settings,
+            "load_state": engine.load_state,
+            "save_state": engine.save_state,
+            "ROOT": engine.ROOT,
+            "SNAPSHOT": engine.SNAPSHOT,
+        }
+
+        def restore():
+            engine.messaging.send_mail = original["send_mail"]
+            engine.load_settings = original["load_settings"]
+            engine.load_state = original["load_state"]
+            engine.save_state = original["save_state"]
+            engine.ROOT, engine.SNAPSHOT = original["ROOT"], original["SNAPSHOT"]
+        self.addCleanup(restore)
+
+        sent = []
+        settings = engine.Settings()
+        settings.risk_emails_enabled = False
+        engine.messaging.send_mail = lambda *a, **k: sent.append(a) or []
+        engine.load_settings = lambda *a, **k: settings
+        engine.load_state = lambda *a, **k: {"balance": {
+            "amount": "1000.00",
+            "entered_at": datetime.now().isoformat(),
+            "date": date.today().isoformat()}}
+        engine.save_state = lambda state, *a, **k: saved.update(state)
+        engine.ROOT, engine.SNAPSHOT = tmp, tmp / "snapshot.json"
+
+        self.assertEqual(engine.run_watch(dry_run=False), 0)
+        self.assertEqual(sent, [], "no alert email may be sent")
+        snap = json.loads(engine.SNAPSHOT.read_text())
+        self.assertTrue(snap["risks"], "risks are still detected and published")
+        self.assertTrue(saved["risks"], "and still recorded in state")
+        self.assertTrue(
+            all(v.get("notified_at") is None for v in saved["risks"].values()),
+            "nothing may be marked notified when nothing was sent")
+
+    def test_the_shipped_config_has_risk_emails_off(self):
+        import engine
+        self.assertFalse(engine.load_settings().risk_emails_enabled)
+
+
 class TestRecommend(unittest.TestCase):
     def test_no_shortfall_means_no_plan(self):
         _, f = project([], [], "5000", allowance="0")

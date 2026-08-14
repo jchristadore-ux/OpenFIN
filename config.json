@@ -28,7 +28,13 @@
     "                                    further would let one distant annual bill hold it",
     "                                    negative for months while the next three weeks",
     "                                    were fine.",
+    "risk_emails_enabled .............. false. The daily summary is the only email that",
+    "                                    sends. Risks are still detected on every run and",
+    "                                    shown in the app's Risk tile, and the daily summary",
+    "                                    lists them too - what this turns off is the separate",
+    "                                    alert email, not the detection.",
     "alert_reminder_days ............... An unchanged risk is re-sent after this many days.",
+    "                                    Only read when risk_emails_enabled is true.",
     "balance_max_age_hours ............. A balance older than this is stale; the daily",
     "                                    email will not send on it.",
     "parser_model ...................... Anthropic model that reads uploaded screenshots.",
@@ -100,5 +106,6 @@
   "alert_reminder_days": 3,
   "balance_max_age_hours": 20,
   "sms_enabled": false,
-  "spending_window_days": 30
+  "spending_window_days": 30,
+  "risk_emails_enabled": false
 }

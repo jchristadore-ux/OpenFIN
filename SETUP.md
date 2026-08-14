@@ -7,7 +7,7 @@ half-finished setup is never a broken one:
 
 | # | Thing | Without it |
 |---|---|---|
-| 1 | Repository secrets | No email goes out |
+| 1 | Repository secrets | No daily summary email goes out |
 | 2 | GitHub Pages | No read-only copy of the app |
 | 3 | The Worker | The app can show figures but not update them |
 | 4 | The Worker's address in `app.json` | The Pages copy cannot point you at the one that saves |
@@ -126,8 +126,9 @@ There is no separate "balance received" email and nothing to reply to.
 
 ### Mark a bill as deferred
 
-Tick its box in the app. **Safe to spend** updates as you tick, before you save
-anything, so you can try combinations and see the effect. **Save** commits it.
+Tick its box in the app. **Available to spend** updates as you tick, before you
+save anything, so you can try combinations and see the effect. **Save** commits
+it.
 
 A deferred bill is marked, never deleted — the money is still owed and the app
 keeps showing it under what is deferred.
@@ -146,11 +147,17 @@ Click **inbox** → **Add file → Upload files** → drag in a PNG, JPG, `.xlsx
 you what changed. A bill missing from the upload is switched off with a note,
 never deleted, so a bad photo cannot wipe your mortgage.
 
-### Risk alerts
+### Risk
 
-These run twice a day on their own (about 7am and 5pm Eastern) and **do not
-need a balance entry** — that is the point of them. They email only when
-something has actually changed; an unchanged risk stays quiet.
+The risk sweep runs twice a day on its own (about 7am and 5pm Eastern) and **does
+not need a balance entry** — that is the point of it. It rebuilds the forecast
+and publishes it, so the app's **Risk** tile is up to date whether or not anyone
+opened it.
+
+**It does not email.** The daily summary is the only email that sends, and it
+carries the risk list itself. To turn alert emails back on, edit `config.json`
+on github.com and set `risk_emails_enabled` to `true` — nothing else needs to
+change, the credentials are already wired up.
 
 ---
 
@@ -164,16 +171,17 @@ the email sent.
 |---|---|
 | `EMAIL_RECIPIENTS is not set` | Step 1 is incomplete |
 | `SMTP authentication failed` | The app password is wrong, or a normal Gmail password was used |
-| Run is green, no email | Check spam, then that `EMAIL_RECIPIENTS` has no spaces |
+| Run is green, no email | Check spam, then that `EMAIL_RECIPIENTS` has no spaces. Note only the *daily summary* emails; risk alerts are off by default. |
 | Workflow never starts when you tap Update in the app | The Worker — see its README's symptom table |
 
 ---
 
 ## 6. Changing the schedule
 
-Risk alerts fire from `.github/workflows/watch.yml`. Two cron lines are set
+The risk sweep runs from `.github/workflows/watch.yml`. Two cron lines are set
 (11:00 and 21:00 UTC) so the times hold across daylight saving. Editing them on
-github.com is enough; nothing else needs to change.
+github.com is enough; nothing else needs to change. It refreshes what the app
+shows; it does not email unless `risk_emails_enabled` is turned on.
 
 The daily summary has no schedule by design. It sends when you enter a balance,
 because a summary anchored to yesterday's balance reads as authoritative and is

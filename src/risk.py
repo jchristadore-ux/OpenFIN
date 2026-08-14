@@ -307,10 +307,17 @@ def triage(
     *,
     now: datetime,
     reminder_days: int = 3,
+    notify: bool = True,
 ) -> tuple[list[Risk], list[str], dict]:
     """Split risks into notify / stay-quiet, and return the state to persist.
 
     Re-notify when: new, materially worse, moved in time, or a reminder is due.
+
+    `notify=False` means no alert is going out on this run — either because the
+    caller does not send them, or because they are switched off in config. The
+    risks are still seen and still recorded; what must NOT happen is stamping
+    `notified_at` for a message nobody received. That mark is what buys three
+    days of silence, and it has to be earned by an email actually being sent.
     """
     to_notify: list[Risk] = []
     state = {}
@@ -318,31 +325,36 @@ def triage(
     for r in risks:
         prev = known.get(r.id)
         entry = r.to_state()
-        if prev is None:
-            entry["first_seen"] = now.isoformat()
+        first = now.isoformat() if prev is None else prev.get("first_seen", now.isoformat())
+        entry["first_seen"] = first
+
+        last = None if prev is None else prev.get("notified_at")
+        # Never notified — a brand-new risk, or one first seen while alerts were
+        # off — is due the moment anything is willing to send it.
+        due = (
+            prev is None
+            or last is None
+            or _material_change(prev, r)
+            or _reminder_due(last, now, reminder_days)
+        )
+        if due and notify:
             entry["notified_at"] = now.isoformat()
             to_notify.append(r)
-        else:
-            entry["first_seen"] = prev.get("first_seen", now.isoformat())
-            last = prev.get("notified_at")
-            due_reminder = False
-            if last:
-                try:
-                    due_reminder = (
-                        now - datetime.fromisoformat(last)
-                    ).days >= reminder_days
-                except ValueError:
-                    due_reminder = True
-            if _material_change(prev, r) or due_reminder:
-                entry["notified_at"] = now.isoformat()
-                to_notify.append(r)
-            else:
-                entry["notified_at"] = last
+        elif last is not None:
+            entry["notified_at"] = last
+
         entry["last_seen"] = now.isoformat()
         state[r.id] = entry
 
     resolved = [rid for rid in known if rid not in state]
     return to_notify, resolved, state
+
+
+def _reminder_due(last: str, now: datetime, reminder_days: int) -> bool:
+    try:
+        return (now - datetime.fromisoformat(last)).days >= reminder_days
+    except ValueError:
+        return True                       # unparseable stamp: treat as overdue
 
 
 def load_state(path: Path) -> dict:
