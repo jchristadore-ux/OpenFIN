@@ -616,11 +616,39 @@ def _log(snapshot: dict, day: date) -> None:
     )
 
 
+def run_audit(out: str, *, days: int | None, assume_days: int) -> int:
+    """Write the cash-flow audit PDF. Reads only; changes nothing.
+
+    Kept out of `daily` and `watch` deliberately. Those two run on a schedule
+    and their job is to be current; producing a multi-page PDF on every balance
+    entry would commit a binary to the repository several times a day for no
+    one's benefit. This is run when a report is wanted.
+    """
+    import report
+
+    a = report.build_audit(horizon_days=days, assume_days=assume_days)
+    pages = report.render(a, Path(out))
+    print(
+        f"{out} written - {pages} pages.\n"
+        f"  anchored {a.today} at {notify.m(a.balance)}\n"
+        f"  lowest projected {notify.m(a.plan.baseline_minimum)}, "
+        f"{a.plan.negative_days_before} day(s) below zero\n"
+        f"  {len(a.plan.moves)} evidence-backed date change(s), "
+        f"{len(a.plan.shortfalls)} unavoidable shortfall(s)"
+    )
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(description="OpenFIN financial engine")
-    p.add_argument("mode", choices=["daily", "watch", "defer"])
+    p.add_argument("mode", choices=["daily", "watch", "defer", "audit"])
     p.add_argument("--balance", help="today's actual bank balance")
     p.add_argument("--items", help="JSON list of {bill_id, date} deferrals")
+    p.add_argument("--out", default="cashflow-audit.pdf",
+                   help="audit mode: where to write the PDF")
+    p.add_argument("--days", type=int, help="audit mode: projection length")
+    p.add_argument("--assume-days", type=int, default=7,
+                   help="audit mode: conditional window for UNKNOWN bills")
     p.add_argument("--dry-run", action="store_true")
     args = p.parse_args(argv)
 
@@ -638,6 +666,9 @@ def main(argv: list[str] | None = None) -> int:
             return run_daily(bal, dry_run=args.dry_run)
         if args.mode == "defer":
             return run_defer(args.items or "[]", dry_run=args.dry_run)
+        if args.mode == "audit":
+            return run_audit(args.out, days=args.days,
+                             assume_days=args.assume_days)
         return run_watch(dry_run=args.dry_run)
     except EngineError as exc:
         # Financial software does not fail silently and does not invent numbers.
