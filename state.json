@@ -59,21 +59,21 @@
     }
   ],
   "risks": {
-    "secured_payment:mortgage:2026-09-07": {
-      "type": "secured_payment",
-      "severity": "critical",
-      "amount": "139.78",
-      "when": "2026-09-07",
-      "first_seen": "2026-08-16T19:49:34.615879-04:00",
-      "last_seen": "2026-08-17T17:16:16.400306-04:00"
-    },
-    "negative_balance:2026-09-07": {
+    "negative_balance:2026-09-20": {
       "type": "negative_balance",
       "severity": "critical",
-      "amount": "3817.48",
-      "when": "2026-09-07",
-      "first_seen": "2026-08-17T07:20:12.109550-04:00",
-      "last_seen": "2026-08-17T17:16:16.400306-04:00"
+      "amount": "3518.48",
+      "when": "2026-09-20",
+      "first_seen": "2026-08-18T07:19:49.270046-04:00",
+      "last_seen": "2026-08-18T07:19:49.270046-04:00"
+    },
+    "secured_payment:mortgage:2026-09-21": {
+      "type": "secured_payment",
+      "severity": "critical",
+      "amount": "1801.62",
+      "when": "2026-09-21",
+      "first_seen": "2026-08-18T07:19:49.270046-04:00",
+      "last_seen": "2026-08-18T07:19:49.270046-04:00"
     },
     "secured_payment:car-payment:2026-09-24": {
       "type": "secured_payment",
@@ -82,24 +82,15 @@
       "when": "2026-09-24",
       "first_seen": "2026-08-13T09:54:28.237066-04:00",
       "notified_at": "2026-08-14T07:40:32.278820-04:00",
-      "last_seen": "2026-08-17T17:16:16.400306-04:00"
+      "last_seen": "2026-08-18T07:19:49.270046-04:00"
     },
-    "large_payment:mortgage:2026-09-07": {
+    "large_payment:mortgage:2026-09-21": {
       "type": "large_payment",
       "severity": "high",
-      "amount": "139.78",
-      "when": "2026-09-07",
-      "first_seen": "2026-08-16T19:49:34.615879-04:00",
-      "last_seen": "2026-08-17T17:16:16.400306-04:00"
-    },
-    "discretionary:2026-09-08": {
-      "type": "discretionary",
-      "severity": "medium",
-      "amount": "289.78",
-      "when": "2026-09-08",
-      "first_seen": "2026-08-14T07:40:32.278820-04:00",
-      "notified_at": "2026-08-14T07:40:32.278820-04:00",
-      "last_seen": "2026-08-17T17:16:16.400306-04:00"
+      "amount": "1801.62",
+      "when": "2026-09-21",
+      "first_seen": "2026-08-18T07:19:49.270046-04:00",
+      "last_seen": "2026-08-18T07:19:49.270046-04:00"
     }
   },
   "last_daily_sent": "2026-08-16T19:49:34.615879-04:00",
