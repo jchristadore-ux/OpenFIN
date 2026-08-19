@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-08-18T17:13:50.544837-04:00",
-  "today": "2026-08-18",
+  "generated_at": "2026-08-19T07:19:41.077716-04:00",
+  "today": "2026-08-19",
   "balance": "2414.80",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "1756.61",
-  "end_of_week": "3036.50",
-  "end_of_month": "1765.30",
+  "end_of_day": "4213.86",
+  "end_of_week": "3694.69",
+  "end_of_month": "2423.49",
   "week_end": "2026-08-23",
-  "minimum_balance": "-3518.48",
+  "minimum_balance": "-2860.29",
   "minimum_date": "2026-10-06",
-  "shortfall": "3518.48",
+  "shortfall": "2860.29",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "9.22",
+    "safe": "667.41",
     "explain": [
       [
         "Balance now",
@@ -25,96 +25,55 @@
       ],
       [
         "Bills over the next 30 days",
-        "-10183.65"
+        "-9824.46"
       ],
       [
-        "Where that ends up, 16 Sep",
-        "2311.45"
+        "Where that ends up, 17 Sep",
+        "2670.64"
       ],
       [
         "Lowest point along the way, 8 Sep",
-        "9.22"
+        "667.41"
       ],
       [
         "Available to spend",
-        "9.22"
+        "667.41"
       ]
     ],
-    "headroom": "9.22",
+    "headroom": "667.41",
     "headroom_day": "2026-09-08",
-    "per_day": "0.42",
+    "per_day": "31.78",
     "per_day_day": "2026-09-08",
     "window_days": 30,
-    "window_end": "2026-09-16",
+    "window_end": "2026-09-17",
     "components": {
       "balance": "2414.80",
-      "window_end": "2026-09-16"
+      "window_end": "2026-09-17"
     }
   },
   "today_bills": [
     {
-      "name": "CCU car loan",
-      "amount": "306.90",
-      "tier": 1,
-      "autopay": true,
-      "deferred": false
-    },
-    {
-      "name": "Comcast",
-      "amount": "138.93",
+      "name": "IRS state",
+      "amount": "114.00",
       "tier": 2,
-      "autopay": true,
+      "autopay": false,
       "deferred": false
     },
     {
-      "name": "Lowes",
-      "amount": "126.00",
-      "tier": 5,
-      "autopay": true,
-      "deferred": false
-    },
-    {
-      "name": "Upgrade basement",
-      "amount": "86.36",
-      "tier": 3,
-      "autopay": true,
+      "name": "IRS federal",
+      "amount": "103.00",
+      "tier": 2,
+      "autopay": false,
       "deferred": false
     }
   ],
-  "today_income": [],
+  "today_income": [
+    {
+      "name": "Insight Global payroll",
+      "amount": "2016.06"
+    }
+  ],
   "this_week": [
-    {
-      "date": "2026-08-18",
-      "name": "CCU car loan",
-      "amount": "306.90",
-      "direction": "out",
-      "tier": 1,
-      "deferred": false
-    },
-    {
-      "date": "2026-08-18",
-      "name": "Comcast",
-      "amount": "138.93",
-      "direction": "out",
-      "tier": 2,
-      "deferred": false
-    },
-    {
-      "date": "2026-08-18",
-      "name": "Lowes",
-      "amount": "126.00",
-      "direction": "out",
-      "tier": 5,
-      "deferred": false
-    },
-    {
-      "date": "2026-08-18",
-      "name": "Upgrade basement",
-      "amount": "86.36",
-      "direction": "out",
-      "tier": 3,
-      "deferred": false
-    },
     {
       "date": "2026-08-19",
       "name": "Insight Global payroll",
@@ -246,263 +205,263 @@
   ],
   "curve": [
     {
-      "date": "2026-08-18",
-      "closing": "1756.61"
-    },
-    {
       "date": "2026-08-19",
-      "closing": "3555.67"
+      "closing": "4213.86"
     },
     {
       "date": "2026-08-20",
-      "closing": "3555.67"
+      "closing": "4213.86"
     },
     {
       "date": "2026-08-21",
-      "closing": "3555.67"
+      "closing": "4213.86"
     },
     {
       "date": "2026-08-22",
-      "closing": "3467.67"
+      "closing": "4125.86"
     },
     {
       "date": "2026-08-23",
-      "closing": "3036.50"
+      "closing": "3694.69"
     },
     {
       "date": "2026-08-24",
-      "closing": "405.77"
+      "closing": "1063.96"
     },
     {
       "date": "2026-08-25",
-      "closing": "405.77"
+      "closing": "1063.96"
     },
     {
       "date": "2026-08-26",
-      "closing": "2421.83"
+      "closing": "3080.02"
     },
     {
       "date": "2026-08-27",
-      "closing": "2337.05"
+      "closing": "2995.24"
     },
     {
       "date": "2026-08-28",
-      "closing": "2337.05"
+      "closing": "2995.24"
     },
     {
       "date": "2026-08-29",
-      "closing": "2175.16"
+      "closing": "2833.35"
     },
     {
       "date": "2026-08-30",
-      "closing": "1765.30"
+      "closing": "2423.49"
     },
     {
       "date": "2026-08-31",
-      "closing": "1765.30"
+      "closing": "2423.49"
     },
     {
       "date": "2026-09-01",
-      "closing": "1460.80"
+      "closing": "2118.99"
     },
     {
       "date": "2026-09-02",
-      "closing": "3476.86"
+      "closing": "4135.05"
     },
     {
       "date": "2026-09-03",
-      "closing": "3102.64"
+      "closing": "3760.83"
     },
     {
       "date": "2026-09-04",
-      "closing": "2758.94"
+      "closing": "3417.13"
     },
     {
       "date": "2026-09-05",
-      "closing": "2758.94"
+      "closing": "3417.13"
     },
     {
       "date": "2026-09-06",
-      "closing": "1960.84"
+      "closing": "2619.03"
     },
     {
       "date": "2026-09-07",
-      "closing": "159.22"
+      "closing": "817.41"
     },
     {
       "date": "2026-09-08",
-      "closing": "9.22"
+      "closing": "667.41"
     },
     {
       "date": "2026-09-09",
-      "closing": "2025.28"
+      "closing": "2683.47"
     },
     {
       "date": "2026-09-10",
-      "closing": "2025.28"
+      "closing": "2683.47"
     },
     {
       "date": "2026-09-11",
-      "closing": "1944.52"
+      "closing": "2602.71"
     },
     {
       "date": "2026-09-12",
-      "closing": "1366.25"
+      "closing": "2024.44"
     },
     {
       "date": "2026-09-13",
-      "closing": "956.39"
+      "closing": "1614.58"
     },
     {
       "date": "2026-09-14",
-      "closing": "856.39"
+      "closing": "1514.58"
     },
     {
       "date": "2026-09-15",
-      "closing": "295.39"
+      "closing": "953.58"
     },
     {
       "date": "2026-09-16",
-      "closing": "2311.45"
+      "closing": "2969.64"
     },
     {
       "date": "2026-09-17",
-      "closing": "2012.45"
+      "closing": "2670.64"
     },
     {
       "date": "2026-09-18",
-      "closing": "1354.26"
+      "closing": "2012.45"
     },
     {
       "date": "2026-09-19",
-      "closing": "263.73"
+      "closing": "921.92"
     },
     {
       "date": "2026-09-20",
-      "closing": "-146.13"
+      "closing": "512.06"
     },
     {
       "date": "2026-09-21",
-      "closing": "-1947.75"
+      "closing": "-1289.56"
     },
     {
       "date": "2026-09-22",
-      "closing": "-2035.75"
+      "closing": "-1377.56"
     },
     {
       "date": "2026-09-23",
-      "closing": "-41.00"
+      "closing": "617.19"
     },
     {
       "date": "2026-09-24",
-      "closing": "-1121.26"
+      "closing": "-463.07"
     },
     {
       "date": "2026-09-25",
-      "closing": "-1121.26"
+      "closing": "-463.07"
     },
     {
       "date": "2026-09-26",
-      "closing": "-1121.26"
+      "closing": "-463.07"
     },
     {
       "date": "2026-09-27",
-      "closing": "-1615.90"
+      "closing": "-957.71"
     },
     {
       "date": "2026-09-28",
-      "closing": "-1615.90"
+      "closing": "-957.71"
     },
     {
       "date": "2026-09-29",
-      "closing": "-1777.79"
+      "closing": "-1119.60"
     },
     {
       "date": "2026-09-30",
-      "closing": "238.27"
+      "closing": "896.46"
     },
     {
       "date": "2026-10-01",
-      "closing": "238.27"
+      "closing": "896.46"
     },
     {
       "date": "2026-10-02",
-      "closing": "238.27"
+      "closing": "896.46"
     },
     {
       "date": "2026-10-03",
-      "closing": "-57.56"
+      "closing": "600.63"
     },
     {
       "date": "2026-10-04",
-      "closing": "-811.12"
+      "closing": "-152.93"
     },
     {
       "date": "2026-10-05",
-      "closing": "-2612.74"
+      "closing": "-1954.55"
     },
     {
       "date": "2026-10-06",
-      "closing": "-3518.48"
+      "closing": "-2860.29"
     },
     {
       "date": "2026-10-07",
-      "closing": "-1679.72"
+      "closing": "-1021.53"
     },
     {
       "date": "2026-10-08",
-      "closing": "-1829.72"
+      "closing": "-1171.53"
     },
     {
       "date": "2026-10-09",
-      "closing": "-1829.72"
+      "closing": "-1171.53"
     },
     {
       "date": "2026-10-10",
-      "closing": "-1829.72"
+      "closing": "-1171.53"
     },
     {
       "date": "2026-10-11",
-      "closing": "-2329.49"
+      "closing": "-1671.30"
     },
     {
       "date": "2026-10-12",
-      "closing": "-2907.76"
+      "closing": "-2249.57"
     },
     {
       "date": "2026-10-13",
-      "closing": "-2907.76"
+      "closing": "-2249.57"
     },
     {
       "date": "2026-10-14",
-      "closing": "-991.70"
+      "closing": "-333.51"
     },
     {
       "date": "2026-10-15",
-      "closing": "-1552.70"
+      "closing": "-894.51"
     },
     {
       "date": "2026-10-16",
-      "closing": "-1552.70"
+      "closing": "-894.51"
+    },
+    {
+      "date": "2026-10-17",
+      "closing": "-1193.51"
     }
   ],
   "risks": [
-    {
-      "id": "negative_balance:2026-09-20",
-      "type": "negative_balance",
-      "severity": "critical",
-      "title": "Balance goes negative Sun 20 Sep",
-      "detail": "Projected -$146.13 on Sun 20 Sep. Lowest point is -$3,518.48 on Tue 6 Oct.",
-      "amount": "3518.48",
-      "when": "2026-09-20"
-    },
     {
       "id": "secured_payment:mortgage:2026-09-21",
       "type": "secured_payment",
       "severity": "critical",
       "title": "Mortgage may not clear",
-      "detail": "Mortgage of $1,801.62 is due Mon 21 Sep with only -$146.13 available that day.",
-      "amount": "1801.62",
+      "detail": "Mortgage of $1,801.62 is due Mon 21 Sep with only $512.06 available that day.",
+      "amount": "1289.56",
+      "when": "2026-09-21"
+    },
+    {
+      "id": "negative_balance:2026-09-21",
+      "type": "negative_balance",
+      "severity": "critical",
+      "title": "Balance goes negative Mon 21 Sep",
+      "detail": "Projected -$1,289.56 on Mon 21 Sep. Lowest point is -$2,860.29 on Tue 6 Oct.",
+      "amount": "2860.29",
       "when": "2026-09-21"
     },
     {
@@ -510,8 +469,8 @@
       "type": "secured_payment",
       "severity": "critical",
       "title": "Kia may not clear",
-      "detail": "Kia of $742.65 is due Thu 24 Sep with only -$41.00 available that day.",
-      "amount": "742.65",
+      "detail": "Kia of $742.65 is due Thu 24 Sep with only $617.19 available that day.",
+      "amount": "125.46",
       "when": "2026-09-24"
     },
     {
@@ -519,26 +478,20 @@
       "type": "large_payment",
       "severity": "high",
       "title": "Mortgage $1,801.62 may be short",
-      "detail": "Mortgage of $1,801.62 is due Mon 21 Sep against a projected opening balance of -$146.13.",
-      "amount": "1801.62",
+      "detail": "Mortgage of $1,801.62 is due Mon 21 Sep against a projected opening balance of $512.06.",
+      "amount": "1289.56",
       "when": "2026-09-21"
     }
   ],
   "plan": {
-    "summary": "Deferring Culligan $307.70, Lowes $126.00, Lowes $126.00, Home Depot $100.00, TJX Rewards $36.00, Netflix $21.31, Loew & Patel braces $400.00, Capital One CC $163.00, PNC $150.00, Chase CC Amazon $136.00, Chase CC United $88.00, Barclay Old Navy $84.78, Affirm $73.07, Comenity $65.00, Comcast $138.93, Comcast $138.93, Xfinity Mobile $88.82, T-Mobile Lia $20.75 frees $2,264.29, which is short of the $3,518.48 needed by 20 Sep.",
-    "shortfall": "3518.48",
-    "problem_day": "2026-09-20",
+    "summary": "Deferring Culligan $307.70, Lowes $126.00, Home Depot $100.00, TJX Rewards $36.00, Netflix $21.31, Loew & Patel braces $400.00, Capital One CC $163.00, PNC $150.00, Chase CC Amazon $136.00, Chase CC United $88.00, Barclay Old Navy $84.78, Affirm $73.07, Comenity $65.00, Comcast $138.93, Xfinity Mobile $88.82, T-Mobile Lia $20.75 frees $1,999.36, which is short of the $2,860.29 needed by 21 Sep.",
+    "shortfall": "2860.29",
+    "problem_day": "2026-09-21",
     "candidates": [
       {
         "name": "Culligan",
         "amount": "307.70",
         "date": "2026-09-04",
-        "tier": 5
-      },
-      {
-        "name": "Lowes",
-        "amount": "126.00",
-        "date": "2026-08-18",
         "tier": 5
       },
       {
@@ -616,12 +569,6 @@
       {
         "name": "Comcast",
         "amount": "138.93",
-        "date": "2026-08-18",
-        "tier": 2
-      },
-      {
-        "name": "Comcast",
-        "amount": "138.93",
         "date": "2026-09-18",
         "tier": 2
       },
@@ -641,50 +588,6 @@
     "covered": false
   },
   "deferral_window": [
-    {
-      "id": "ccu-car-loan",
-      "name": "CCU car loan",
-      "date": "2026-08-18",
-      "amount": "306.90",
-      "tier": 1,
-      "deferrable": false,
-      "secured": true,
-      "deferred": false,
-      "in_week": true
-    },
-    {
-      "id": "internet",
-      "name": "Comcast",
-      "date": "2026-08-18",
-      "amount": "138.93",
-      "tier": 2,
-      "deferrable": true,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
-    {
-      "id": "lowes",
-      "name": "Lowes",
-      "date": "2026-08-18",
-      "amount": "126.00",
-      "tier": 5,
-      "deferrable": true,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
-    {
-      "id": "upgrade-basement",
-      "name": "Upgrade basement",
-      "date": "2026-08-18",
-      "amount": "86.36",
-      "tier": 3,
-      "deferrable": false,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
     {
       "id": "irs-state",
       "name": "IRS state",
@@ -920,62 +823,6 @@
   "deferred_total": "0.00",
   "lookahead_days": 14,
   "bills": [
-    {
-      "id": "ccu-car-loan",
-      "name": "CCU car loan",
-      "amount": "306.90",
-      "due_day": 18,
-      "frequency": "monthly",
-      "next_date": "2026-08-18",
-      "tier": 1,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "source": "household",
-      "note": "FOUND in the statements under 'CONSUMERSCREDITCK-WTH', which is why the earlier search for 'CCU' missed it. $306.90 on 01/20, 02/18, 03/18, 04/20, 05/18 and 06/18/2026. Secured against the car, so never proposed for deferral."
-    },
-    {
-      "id": "internet",
-      "name": "Comcast",
-      "amount": "138.93",
-      "due_day": 18,
-      "frequency": "monthly",
-      "next_date": "2026-08-18",
-      "tier": 2,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "source": "statement",
-      "note": "Amount corrected from $145.00, due day from 20 to 18."
-    },
-    {
-      "id": "lowes",
-      "name": "Lowes",
-      "amount": "69.00",
-      "due_day": 18,
-      "frequency": "monthly",
-      "next_date": "2026-08-18",
-      "tier": 5,
-      "active": true,
-      "variable": true,
-      "needs_review": false,
-      "source": "household",
-      "note": "Renegotiated to $69.00 (household, 11 Aug 2026). Was $122.00."
-    },
-    {
-      "id": "upgrade-basement",
-      "name": "Upgrade basement",
-      "amount": "86.36",
-      "due_day": 18,
-      "frequency": "monthly",
-      "next_date": "2026-08-18",
-      "tier": 3,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "source": "household",
-      "note": "Renegotiated to $86.36 (household, 11 Aug 2026). Was $287.85."
-    },
     {
       "id": "irs-federal",
       "name": "IRS federal",
@@ -1353,6 +1200,62 @@
       "needs_review": false,
       "source": "household",
       "note": "Renegotiated to $80.00 (household, 11 Aug 2026). Card ending 8026. Autopay 16th-18th."
+    },
+    {
+      "id": "ccu-car-loan",
+      "name": "CCU car loan",
+      "amount": "306.90",
+      "due_day": 18,
+      "frequency": "monthly",
+      "next_date": "2026-09-18",
+      "tier": 1,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "household",
+      "note": "FOUND in the statements under 'CONSUMERSCREDITCK-WTH', which is why the earlier search for 'CCU' missed it. $306.90 on 01/20, 02/18, 03/18, 04/20, 05/18 and 06/18/2026. Secured against the car, so never proposed for deferral."
+    },
+    {
+      "id": "internet",
+      "name": "Comcast",
+      "amount": "138.93",
+      "due_day": 18,
+      "frequency": "monthly",
+      "next_date": "2026-09-18",
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "statement",
+      "note": "Amount corrected from $145.00, due day from 20 to 18."
+    },
+    {
+      "id": "lowes",
+      "name": "Lowes",
+      "amount": "69.00",
+      "due_day": 18,
+      "frequency": "monthly",
+      "next_date": "2026-09-18",
+      "tier": 5,
+      "active": true,
+      "variable": true,
+      "needs_review": false,
+      "source": "household",
+      "note": "Renegotiated to $69.00 (household, 11 Aug 2026). Was $122.00."
+    },
+    {
+      "id": "upgrade-basement",
+      "name": "Upgrade basement",
+      "amount": "86.36",
+      "due_day": 18,
+      "frequency": "monthly",
+      "next_date": "2026-09-18",
+      "tier": 3,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "household",
+      "note": "Renegotiated to $86.36 (household, 11 Aug 2026). Was $287.85."
     },
     {
       "id": "clinton-water",
