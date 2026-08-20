@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-08-19T17:16:04.659185-04:00",
-  "today": "2026-08-19",
+  "generated_at": "2026-08-20T07:20:49.884349-04:00",
+  "today": "2026-08-20",
   "balance": "1172.01",
-  "balance_is_fresh": true,
-  "balance_entered_at": "2026-08-19T17:16:04.659185-04:00",
-  "end_of_day": "2971.07",
-  "end_of_week": "2451.90",
-  "end_of_month": "1180.70",
+  "balance_is_fresh": false,
+  "balance_entered_at": null,
+  "end_of_day": "1172.01",
+  "end_of_week": "652.84",
+  "end_of_month": "-618.36",
   "week_end": "2026-08-23",
-  "minimum_balance": "-4103.08",
+  "minimum_balance": "-5902.14",
   "minimum_date": "2026-10-06",
-  "shortfall": "4103.08",
+  "shortfall": "5902.14",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "-575.38",
+    "safe": "-2374.44",
     "explain": [
       [
         "Balance now",
@@ -21,83 +21,39 @@
       ],
       [
         "Income over the next 30 days",
-        "10080.30"
+        "8064.24"
       ],
       [
         "Bills over the next 30 days",
-        "-9824.46"
+        "-10265.65"
       ],
       [
-        "Where that ends up, 17 Sep",
-        "1427.85"
+        "Where that ends up, 18 Sep",
+        "-1029.40"
       ],
       [
         "Lowest point along the way, 8 Sep",
-        "-575.38"
+        "-2374.44"
       ],
       [
         "Available to spend",
-        "-575.38"
+        "-2374.44"
       ]
     ],
-    "headroom": "-575.38",
+    "headroom": "-2374.44",
     "headroom_day": "2026-09-08",
-    "per_day": "-29.81",
+    "per_day": "-395.58",
     "per_day_day": "2026-08-24",
     "window_days": 30,
-    "window_end": "2026-09-17",
+    "window_end": "2026-09-18",
     "components": {
       "balance": "1172.01",
-      "window_end": "2026-09-17"
+      "window_end": "2026-09-18"
     }
   },
-  "today_bills": [
-    {
-      "name": "IRS state",
-      "amount": "114.00",
-      "tier": 2,
-      "autopay": false,
-      "deferred": false
-    },
-    {
-      "name": "IRS federal",
-      "amount": "103.00",
-      "tier": 2,
-      "autopay": false,
-      "deferred": false
-    }
-  ],
-  "today_income": [
-    {
-      "name": "Insight Global payroll",
-      "amount": "2016.06"
-    }
-  ],
+  "today_bills": [],
+  "today_income": [],
   "this_week": [
-    {
-      "date": "2026-08-19",
-      "name": "Insight Global payroll",
-      "amount": "2016.06",
-      "direction": "in",
-      "tier": 0,
-      "deferred": false
-    },
-    {
-      "date": "2026-08-19",
-      "name": "IRS state",
-      "amount": "114.00",
-      "direction": "out",
-      "tier": 2,
-      "deferred": false
-    },
-    {
-      "date": "2026-08-19",
-      "name": "IRS federal",
-      "amount": "103.00",
-      "direction": "out",
-      "tier": 2,
-      "deferred": false
-    },
     {
       "date": "2026-08-22",
       "name": "Chase CC United",
@@ -205,305 +161,314 @@
   ],
   "curve": [
     {
-      "date": "2026-08-19",
-      "closing": "2971.07"
-    },
-    {
       "date": "2026-08-20",
-      "closing": "2971.07"
+      "closing": "1172.01"
     },
     {
       "date": "2026-08-21",
-      "closing": "2971.07"
+      "closing": "1172.01"
     },
     {
       "date": "2026-08-22",
-      "closing": "2883.07"
+      "closing": "1084.01"
     },
     {
       "date": "2026-08-23",
-      "closing": "2451.90"
+      "closing": "652.84"
     },
     {
       "date": "2026-08-24",
-      "closing": "-178.83"
+      "closing": "-1977.89"
     },
     {
       "date": "2026-08-25",
-      "closing": "-178.83"
+      "closing": "-1977.89"
     },
     {
       "date": "2026-08-26",
-      "closing": "1837.23"
+      "closing": "38.17"
     },
     {
       "date": "2026-08-27",
-      "closing": "1752.45"
+      "closing": "-46.61"
     },
     {
       "date": "2026-08-28",
-      "closing": "1752.45"
+      "closing": "-46.61"
     },
     {
       "date": "2026-08-29",
-      "closing": "1590.56"
+      "closing": "-208.50"
     },
     {
       "date": "2026-08-30",
-      "closing": "1180.70"
+      "closing": "-618.36"
     },
     {
       "date": "2026-08-31",
-      "closing": "1180.70"
+      "closing": "-618.36"
     },
     {
       "date": "2026-09-01",
-      "closing": "876.20"
+      "closing": "-922.86"
     },
     {
       "date": "2026-09-02",
-      "closing": "2892.26"
+      "closing": "1093.20"
     },
     {
       "date": "2026-09-03",
-      "closing": "2518.04"
+      "closing": "718.98"
     },
     {
       "date": "2026-09-04",
-      "closing": "2174.34"
+      "closing": "375.28"
     },
     {
       "date": "2026-09-05",
-      "closing": "2174.34"
+      "closing": "375.28"
     },
     {
       "date": "2026-09-06",
-      "closing": "1376.24"
+      "closing": "-422.82"
     },
     {
       "date": "2026-09-07",
-      "closing": "-425.38"
+      "closing": "-2224.44"
     },
     {
       "date": "2026-09-08",
-      "closing": "-575.38"
+      "closing": "-2374.44"
     },
     {
       "date": "2026-09-09",
-      "closing": "1440.68"
+      "closing": "-358.38"
     },
     {
       "date": "2026-09-10",
-      "closing": "1440.68"
+      "closing": "-358.38"
     },
     {
       "date": "2026-09-11",
-      "closing": "1359.92"
+      "closing": "-439.14"
     },
     {
       "date": "2026-09-12",
-      "closing": "781.65"
+      "closing": "-1017.41"
     },
     {
       "date": "2026-09-13",
-      "closing": "371.79"
+      "closing": "-1427.27"
     },
     {
       "date": "2026-09-14",
-      "closing": "271.79"
+      "closing": "-1527.27"
     },
     {
       "date": "2026-09-15",
-      "closing": "-289.21"
+      "closing": "-2088.27"
     },
     {
       "date": "2026-09-16",
-      "closing": "1726.85"
+      "closing": "-72.21"
     },
     {
       "date": "2026-09-17",
-      "closing": "1427.85"
+      "closing": "-371.21"
     },
     {
       "date": "2026-09-18",
-      "closing": "769.66"
+      "closing": "-1029.40"
     },
     {
       "date": "2026-09-19",
-      "closing": "-320.87"
+      "closing": "-2119.93"
     },
     {
       "date": "2026-09-20",
-      "closing": "-730.73"
+      "closing": "-2529.79"
     },
     {
       "date": "2026-09-21",
-      "closing": "-2532.35"
+      "closing": "-4331.41"
     },
     {
       "date": "2026-09-22",
-      "closing": "-2620.35"
+      "closing": "-4419.41"
     },
     {
       "date": "2026-09-23",
-      "closing": "-625.60"
+      "closing": "-2424.66"
     },
     {
       "date": "2026-09-24",
-      "closing": "-1705.86"
+      "closing": "-3504.92"
     },
     {
       "date": "2026-09-25",
-      "closing": "-1705.86"
+      "closing": "-3504.92"
     },
     {
       "date": "2026-09-26",
-      "closing": "-1705.86"
+      "closing": "-3504.92"
     },
     {
       "date": "2026-09-27",
-      "closing": "-2200.50"
+      "closing": "-3999.56"
     },
     {
       "date": "2026-09-28",
-      "closing": "-2200.50"
+      "closing": "-3999.56"
     },
     {
       "date": "2026-09-29",
-      "closing": "-2362.39"
+      "closing": "-4161.45"
     },
     {
       "date": "2026-09-30",
-      "closing": "-346.33"
+      "closing": "-2145.39"
     },
     {
       "date": "2026-10-01",
-      "closing": "-346.33"
+      "closing": "-2145.39"
     },
     {
       "date": "2026-10-02",
-      "closing": "-346.33"
+      "closing": "-2145.39"
     },
     {
       "date": "2026-10-03",
-      "closing": "-642.16"
+      "closing": "-2441.22"
     },
     {
       "date": "2026-10-04",
-      "closing": "-1395.72"
+      "closing": "-3194.78"
     },
     {
       "date": "2026-10-05",
-      "closing": "-3197.34"
+      "closing": "-4996.40"
     },
     {
       "date": "2026-10-06",
-      "closing": "-4103.08"
+      "closing": "-5902.14"
     },
     {
       "date": "2026-10-07",
-      "closing": "-2264.32"
+      "closing": "-4063.38"
     },
     {
       "date": "2026-10-08",
-      "closing": "-2414.32"
+      "closing": "-4213.38"
     },
     {
       "date": "2026-10-09",
-      "closing": "-2414.32"
+      "closing": "-4213.38"
     },
     {
       "date": "2026-10-10",
-      "closing": "-2414.32"
+      "closing": "-4213.38"
     },
     {
       "date": "2026-10-11",
-      "closing": "-2914.09"
+      "closing": "-4713.15"
     },
     {
       "date": "2026-10-12",
-      "closing": "-3492.36"
+      "closing": "-5291.42"
     },
     {
       "date": "2026-10-13",
-      "closing": "-3492.36"
+      "closing": "-5291.42"
     },
     {
       "date": "2026-10-14",
-      "closing": "-1576.30"
+      "closing": "-3375.36"
     },
     {
       "date": "2026-10-15",
-      "closing": "-2137.30"
+      "closing": "-3936.36"
     },
     {
       "date": "2026-10-16",
-      "closing": "-2137.30"
+      "closing": "-3936.36"
     },
     {
       "date": "2026-10-17",
-      "closing": "-2436.30"
+      "closing": "-4235.36"
+    },
+    {
+      "date": "2026-10-18",
+      "closing": "-5303.41"
     }
   ],
   "risks": [
+    {
+      "id": "secured_payment:mortgage:2026-08-24",
+      "type": "secured_payment",
+      "severity": "critical",
+      "title": "Mortgage may not clear",
+      "detail": "Mortgage of $1,801.62 is due Mon 24 Aug with only $652.84 available that day.",
+      "amount": "1148.78",
+      "when": "2026-08-24"
+    },
+    {
+      "id": "secured_payment:car-payment:2026-08-24",
+      "type": "secured_payment",
+      "severity": "critical",
+      "title": "Kia may not clear",
+      "detail": "Kia of $742.65 is due Mon 24 Aug with only $652.84 available that day.",
+      "amount": "89.81",
+      "when": "2026-08-24"
+    },
     {
       "id": "negative_balance:2026-08-24",
       "type": "negative_balance",
       "severity": "critical",
       "title": "Balance goes negative Mon 24 Aug",
-      "detail": "Projected -$178.83 on Mon 24 Aug. Lowest point is -$4,103.08 on Tue 6 Oct.",
-      "amount": "4103.08",
+      "detail": "Projected -$1,977.89 on Mon 24 Aug. Lowest point is -$5,902.14 on Tue 6 Oct.",
+      "amount": "5902.14",
       "when": "2026-08-24"
     },
     {
-      "id": "secured_payment:mortgage:2026-09-07",
+      "id": "secured_payment:ccu-car-loan:2026-09-18",
       "type": "secured_payment",
       "severity": "critical",
-      "title": "Mortgage may not clear",
-      "detail": "Mortgage of $1,801.62 is due Mon 7 Sep with only $1,376.24 available that day.",
-      "amount": "425.38",
-      "when": "2026-09-07"
+      "title": "CCU car loan may not clear",
+      "detail": "CCU car loan of $306.90 is due Fri 18 Sep with only -$371.21 available that day.",
+      "amount": "306.90",
+      "when": "2026-09-18"
     },
     {
-      "id": "secured_payment:car-payment:2026-09-24",
-      "type": "secured_payment",
-      "severity": "critical",
-      "title": "Kia may not clear",
-      "detail": "Kia of $742.65 is due Thu 24 Sep with only -$625.60 available that day.",
-      "amount": "742.65",
-      "when": "2026-09-24"
-    },
-    {
-      "id": "large_payment:mortgage:2026-09-07",
+      "id": "large_payment:mortgage:2026-08-24",
       "type": "large_payment",
       "severity": "high",
       "title": "Mortgage $1,801.62 may be short",
-      "detail": "Mortgage of $1,801.62 is due Mon 7 Sep against a projected opening balance of $1,376.24.",
-      "amount": "425.38",
-      "when": "2026-09-07"
+      "detail": "Mortgage of $1,801.62 is due Mon 24 Aug against a projected opening balance of $652.84.",
+      "amount": "1148.78",
+      "when": "2026-08-24"
     },
     {
       "id": "large_payment:clinton-water:2026-09-19",
       "type": "large_payment",
       "severity": "high",
       "title": "Town of Clinton water $873.53 may be short",
-      "detail": "Town of Clinton water of $873.53 is due Sat 19 Sep against a projected opening balance of $769.66.",
-      "amount": "103.87",
+      "detail": "Town of Clinton water of $873.53 is due Sat 19 Sep against a projected opening balance of -$1,029.40.",
+      "amount": "873.53",
       "when": "2026-09-19"
     },
     {
       "id": "discretionary:2026-09-08",
       "type": "discretionary",
       "severity": "medium",
-      "title": "Nothing available to spend: -$575.38",
-      "detail": "Over the next 30 days the balance reaches -$575.38 on Tue 8 Sep. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
-      "amount": "575.38",
+      "title": "Nothing available to spend: -$2,374.44",
+      "detail": "Over the next 30 days the balance reaches -$2,374.44 on Tue 8 Sep. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
+      "amount": "2374.44",
       "when": "2026-09-08"
     }
   ],
   "plan": {
-    "summary": "Deferring Netflix $21.31, Chase CC United $88.00 frees $109.31, which is short of the $4,103.08 needed by 24 Aug.",
-    "shortfall": "4103.08",
+    "summary": "Deferring Netflix $21.31, Chase CC United $88.00 frees $109.31, which is short of the $5,902.14 needed by 24 Aug.",
+    "shortfall": "5902.14",
     "problem_day": "2026-08-24",
     "candidates": [
       {
@@ -522,28 +487,6 @@
     "covered": false
   },
   "deferral_window": [
-    {
-      "id": "irs-state",
-      "name": "IRS state",
-      "date": "2026-08-19",
-      "amount": "114.00",
-      "tier": 2,
-      "deferrable": false,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
-    {
-      "id": "irs-federal",
-      "name": "IRS federal",
-      "date": "2026-08-19",
-      "amount": "103.00",
-      "tier": 2,
-      "deferrable": false,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
     {
       "id": "chase-united",
       "name": "Chase CC United",
@@ -757,34 +700,6 @@
   "deferred_total": "0.00",
   "lookahead_days": 14,
   "bills": [
-    {
-      "id": "irs-federal",
-      "name": "IRS federal",
-      "amount": "103.00",
-      "due_day": 19,
-      "frequency": "monthly",
-      "next_date": "2026-08-19",
-      "tier": 2,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "source": "household",
-      "note": "New instalment plan, $103.00/month, per the household. Not yet visible in any statement. Non-deferrable: missing an IRS instalment can void the agreement."
-    },
-    {
-      "id": "irs-state",
-      "name": "IRS state",
-      "amount": "114.00",
-      "due_day": 19,
-      "frequency": "monthly",
-      "next_date": "2026-08-19",
-      "tier": 2,
-      "active": true,
-      "variable": false,
-      "needs_review": true,
-      "source": "household",
-      "note": "New, $114.00/month, per the household. Due day assumed the same as the federal instalment; confirm. Not yet visible in any statement."
-    },
     {
       "id": "chase-united",
       "name": "Chase CC United",
@@ -1192,6 +1107,34 @@
       "note": "Renegotiated to $86.36 (household, 11 Aug 2026). Was $287.85."
     },
     {
+      "id": "irs-federal",
+      "name": "IRS federal",
+      "amount": "103.00",
+      "due_day": 19,
+      "frequency": "monthly",
+      "next_date": "2026-09-19",
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "household",
+      "note": "New instalment plan, $103.00/month, per the household. Not yet visible in any statement. Non-deferrable: missing an IRS instalment can void the agreement."
+    },
+    {
+      "id": "irs-state",
+      "name": "IRS state",
+      "amount": "114.00",
+      "due_day": 19,
+      "frequency": "monthly",
+      "next_date": "2026-09-19",
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "household",
+      "note": "New, $114.00/month, per the household. Due day assumed the same as the federal instalment; confirm. Not yet visible in any statement."
+    },
+    {
       "id": "clinton-water",
       "name": "Town of Clinton water",
       "amount": "294.03",
@@ -1339,7 +1282,7 @@
       "amount": "2016.06",
       "due_day": null,
       "frequency": "weekly",
-      "next_date": "2026-08-19",
+      "next_date": "2026-08-26",
       "tier": 5,
       "active": true,
       "variable": false,
