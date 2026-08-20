@@ -126,6 +126,9 @@ One authoritative engine. Business logic never lives in the dashboard.
 | `src/forecast.py` | Balance projection and safe discretionary |
 | `src/risk.py` | Risk detection and alert deduplication |
 | `src/recommend.py` | Deferral options — recommends, never acts |
+| `src/schedule.py` | Payment-date optimisation — moves a bill, never drops it |
+| `src/report.py` | The cash-flow audit PDF |
+| `src/pdfwrite.py` | Minimal PDF writer, standard library only |
 | `src/notify.py` | Email composition, daily and alert |
 | `src/messaging.py` | SMTP delivery |
 | `src/engine.py` | The orchestrator and the only entry point |
@@ -161,11 +164,26 @@ note. OCR misses a line far more often than a household cancels a mortgage.
 ## Running it
 
 ```bash
-python -m unittest discover -s tests -v      # 87 tests, no network
+python -m unittest discover -s tests -v      # 214 tests, no network
 python src/engine.py daily --balance 4382.17 --dry-run
 python src/engine.py watch --dry-run
 python src/engine.py defer --items '[{"bill_id":"netflix","date":"2026-08-23"}]'
+python src/engine.py audit --out cashflow-audit.pdf
 ```
+
+## When should each bill actually be paid?
+
+`audit` answers four questions in order: if nothing changes, when does the money
+run out; what is the smallest set of legitimate date changes that prevents it;
+what is the balance every day afterwards; and what is left over that no schedule
+can fix.
+
+It will not move a bill it cannot justify moving. A payment date may only change
+if `bills.json` records how late is still safe — a `payment_window`. Without one
+a bill is **UNKNOWN — USER CONFIRMATION REQUIRED** and stays where it is, because
+`deferrable` says missing it is survivable, not that there is no deadline.
+Rather than guess, the report lists the confirmations that would unlock the
+optimisation and prices each one.
 
 ## Configuration
 

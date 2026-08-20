@@ -45,7 +45,24 @@
     "  starts_on / ends_on  Optional ISO dates bounding when a bill is live. A bill whose",
     "                    amount changes on a known date is modelled as TWO entries with",
     "                    adjoining windows, so neither period is ever wrong.",
-    "  frequency now also accepts 'quarterly' - every three months from due_date."
+    "  frequency now also accepts 'quarterly' - every three months from due_date.",
+    "",
+    "Added for payment-date optimisation (src/schedule.py):",
+    "  payment_window .. Optional. How far this bill's PAYMENT DATE may legitimately move,",
+    "                    in days relative to the scheduled date:",
+    "                        {\"earliest_days\": -7, \"latest_days\": 10, \"reason\": \"...\"}",
+    "                    latest_days is the one that matters and the one nothing else in",
+    "                    this file records: it is the number of days the payment may slip",
+    "                    WITHOUT a late fee, a penalty, or a broken agreement. Take it from",
+    "                    the statement due date or the biller's terms, never from a guess.",
+    "",
+    "                    Absent this field a bill is classified:",
+    "                      FIXED    if secured or deferrable=false - never moved later;",
+    "                      UNKNOWN  otherwise - 'deferrable' says missing it is survivable,",
+    "                               which is NOT the same as knowing how late is safe, so",
+    "                               the optimiser refuses to move it and asks instead.",
+    "                    Paying EARLIER never needs this field: paying ahead is never late,",
+    "                    so it is allowed up to one cadence for every bill."
   ],
   "bills": [
     {

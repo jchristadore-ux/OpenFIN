@@ -84,7 +84,10 @@ lets anyone who finds the URL read and write the household's finances.
 | `src/forecast.py` | Balance curve and `available()` |
 | `src/risk.py` | Seven risk types, detection and deduplication |
 | `src/recommend.py` | Deferral plans; never proposes a secured bill |
-| `src/engine.py` | Orchestrator. Modes: `daily`, `watch`, `defer` |
+| `src/schedule.py` | Payment-date optimisation. Moves bills, never drops them. |
+| `src/report.py` | The cash-flow audit PDF |
+| `src/pdfwrite.py` | Minimal PDF writer, stdlib only |
+| `src/engine.py` | Orchestrator. Modes: `daily`, `watch`, `defer`, `audit` |
 | `src/notify.py` | Daily email; alert email kept for if alerts are re-enabled |
 | `src/apply_edits.py` | Server-side re-validation of in-app bill and income edits |
 | `src/add_income.py` | Adding an income source from the app, recurring or one-off |
@@ -122,7 +125,17 @@ lets anyone who finds the URL read and write the household's finances.
 - **Income added in the app is flagged `needs_review` until a statement
   confirms it.** It is the one edit that makes the forecast optimistic, so it is
   marked as unverified from the moment it is counted.
-- 156 tests, all passing. `python -m unittest discover -s tests`
+- **Deferring and rescheduling are different things.** A deferral drops an
+  occurrence out of the balance curve and it never lands again, so a curve built
+  from deferrals is optimistic by exactly the deferred amount. `schedule.py`
+  moves a payment to a new date and charges it there, so total outflow is
+  unchanged — asserted in the tests, not assumed.
+- **A bill is only movable if something records how late is safe.** `secured` or
+  `deferrable: false` means FIXED. An explicit `payment_window` means FLEXIBLE.
+  Everything else is UNKNOWN and is never moved later, because "deferrable"
+  says missing it is survivable, which is not the same as knowing the deadline.
+  Paying *earlier* needs no confirmation and is always allowed, up to one cadence.
+- 214 tests, all passing. `python -m unittest discover -s tests`
 
 ---
 
