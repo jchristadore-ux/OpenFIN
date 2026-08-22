@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-08-21T21:12:36.491744-04:00",
-  "today": "2026-08-21",
+  "generated_at": "2026-08-22T07:15:44.744175-04:00",
+  "today": "2026-08-22",
   "balance": "2619.58",
-  "balance_is_fresh": true,
-  "balance_entered_at": "2026-08-21T21:12:36.491744-04:00",
-  "end_of_day": "2619.58",
+  "balance_is_fresh": false,
+  "balance_entered_at": null,
+  "end_of_day": "2531.58",
   "end_of_week": "2100.41",
   "end_of_month": "829.21",
   "week_end": "2026-08-23",
@@ -13,7 +13,7 @@
   "shortfall": "5874.46",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "-926.87",
+    "safe": "-1082.22",
     "explain": [
       [
         "Balance now",
@@ -25,33 +25,41 @@
       ],
       [
         "Bills over the next 30 days",
-        "-11356.18"
+        "-11766.04"
       ],
       [
-        "Where that ends up, 19 Sep",
-        "-672.36"
+        "Where that ends up, 20 Sep",
+        "-1082.22"
       ],
       [
-        "Lowest point along the way, 8 Sep",
-        "-926.87"
+        "Lowest point along the way, 20 Sep",
+        "-1082.22"
       ],
       [
         "Available to spend",
-        "-926.87"
+        "-1082.22"
       ]
     ],
-    "headroom": "-926.87",
-    "headroom_day": "2026-09-08",
-    "per_day": "-132.58",
+    "headroom": "-1082.22",
+    "headroom_day": "2026-09-20",
+    "per_day": "-176.77",
     "per_day_day": "2026-08-24",
     "window_days": 30,
-    "window_end": "2026-09-19",
+    "window_end": "2026-09-20",
     "components": {
       "balance": "2619.58",
-      "window_end": "2026-09-19"
+      "window_end": "2026-09-20"
     }
   },
-  "today_bills": [],
+  "today_bills": [
+    {
+      "name": "Chase CC United",
+      "amount": "88.00",
+      "tier": 3,
+      "autopay": true,
+      "deferred": false
+    }
+  ],
   "today_income": [],
   "this_week": [
     {
@@ -160,10 +168,6 @@
     }
   ],
   "curve": [
-    {
-      "date": "2026-08-21",
-      "closing": "2619.58"
-    },
     {
       "date": "2026-08-22",
       "closing": "2531.58"
@@ -399,6 +403,10 @@
     {
       "date": "2026-10-19",
       "closing": "-5874.46"
+    },
+    {
+      "date": "2026-10-20",
+      "closing": "-5874.46"
     }
   ],
   "risks": [
@@ -457,13 +465,13 @@
       "when": "2026-09-19"
     },
     {
-      "id": "discretionary:2026-09-08",
+      "id": "discretionary:2026-09-20",
       "type": "discretionary",
       "severity": "medium",
-      "title": "Nothing available to spend: -$926.87",
-      "detail": "Over the next 30 days the balance reaches -$926.87 on Tue 8 Sep. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
-      "amount": "926.87",
-      "when": "2026-09-08"
+      "title": "Nothing available to spend: -$1,082.22",
+      "detail": "Over the next 30 days the balance reaches -$1,082.22 on Sun 20 Sep. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
+      "amount": "1082.22",
+      "when": "2026-09-20"
     }
   ],
   "plan": {
