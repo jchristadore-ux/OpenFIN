@@ -12,9 +12,9 @@
     "  last_daily_sent .... When the daily check last went out."
   ],
   "balance": {
-    "amount": "1172.01",
-    "entered_at": "2026-08-19T14:39:04.517273-04:00",
-    "date": "2026-08-19"
+    "amount": "2619.58",
+    "entered_at": "2026-08-21T21:12:36.491744-04:00",
+    "date": "2026-08-21"
   },
   "balance_history": [
     {
@@ -61,67 +61,72 @@
       "amount": "1172.01",
       "entered_at": "2026-08-19T14:39:04.517273-04:00",
       "date": "2026-08-19"
+    },
+    {
+      "amount": "2619.58",
+      "entered_at": "2026-08-21T21:12:36.491744-04:00",
+      "date": "2026-08-21"
     }
   ],
   "risks": {
-    "secured_payment:mortgage:2026-08-24": {
-      "type": "secured_payment",
-      "severity": "critical",
-      "amount": "1148.78",
-      "when": "2026-08-24",
-      "first_seen": "2026-08-20T07:20:49.884349-04:00",
-      "last_seen": "2026-08-21T17:13:55.677759-04:00"
-    },
-    "secured_payment:car-payment:2026-08-24": {
-      "type": "secured_payment",
-      "severity": "critical",
-      "amount": "89.81",
-      "when": "2026-08-24",
-      "first_seen": "2026-08-20T07:20:49.884349-04:00",
-      "last_seen": "2026-08-21T17:13:55.677759-04:00"
-    },
     "negative_balance:2026-08-24": {
       "type": "negative_balance",
       "severity": "critical",
-      "amount": "7322.03",
+      "amount": "5874.46",
       "when": "2026-08-24",
       "first_seen": "2026-08-19T14:39:04.517273-04:00",
-      "last_seen": "2026-08-21T17:13:55.677759-04:00"
+      "last_seen": "2026-08-21T21:12:36.491744-04:00"
     },
-    "secured_payment:ccu-car-loan:2026-09-18": {
+    "secured_payment:mortgage:2026-09-07": {
+      "type": "secured_payment",
+      "severity": "critical",
+      "amount": "776.87",
+      "when": "2026-09-07",
+      "first_seen": "2026-08-21T21:12:36.491744-04:00",
+      "last_seen": "2026-08-21T21:12:36.491744-04:00"
+    },
+    "secured_payment:car-payment:2026-09-24": {
+      "type": "secured_payment",
+      "severity": "critical",
+      "amount": "742.65",
+      "when": "2026-09-24",
+      "first_seen": "2026-08-21T21:12:36.491744-04:00",
+      "last_seen": "2026-08-21T21:12:36.491744-04:00"
+    },
+    "secured_payment:ccu-car-loan:2026-10-18": {
       "type": "secured_payment",
       "severity": "critical",
       "amount": "306.90",
-      "when": "2026-09-18",
-      "first_seen": "2026-08-20T07:20:49.884349-04:00",
-      "last_seen": "2026-08-21T17:13:55.677759-04:00"
+      "when": "2026-10-18",
+      "first_seen": "2026-08-21T21:12:36.491744-04:00",
+      "last_seen": "2026-08-21T21:12:36.491744-04:00"
     },
-    "large_payment:mortgage:2026-08-24": {
+    "large_payment:mortgage:2026-09-07": {
       "type": "large_payment",
       "severity": "high",
-      "amount": "1148.78",
-      "when": "2026-08-24",
-      "first_seen": "2026-08-20T07:20:49.884349-04:00",
-      "last_seen": "2026-08-21T17:13:55.677759-04:00"
+      "amount": "776.87",
+      "when": "2026-09-07",
+      "first_seen": "2026-08-21T21:12:36.491744-04:00",
+      "last_seen": "2026-08-21T21:12:36.491744-04:00"
     },
     "large_payment:clinton-water:2026-09-19": {
       "type": "large_payment",
       "severity": "high",
-      "amount": "873.53",
+      "amount": "455.36",
       "when": "2026-09-19",
       "first_seen": "2026-08-19T14:39:04.517273-04:00",
-      "last_seen": "2026-08-21T17:13:55.677759-04:00"
+      "last_seen": "2026-08-21T21:12:36.491744-04:00"
     },
     "discretionary:2026-09-08": {
       "type": "discretionary",
       "severity": "medium",
-      "amount": "2374.44",
+      "amount": "926.87",
       "when": "2026-09-08",
       "first_seen": "2026-08-19T14:39:04.517273-04:00",
-      "last_seen": "2026-08-21T17:13:55.677759-04:00"
+      "last_seen": "2026-08-21T21:12:36.491744-04:00"
     }
   },
-  "last_daily_sent": "2026-08-19T14:39:04.517273-04:00",
+  "last_daily_sent": "2026-08-21T21:12:36.491744-04:00",
   "_migrated_from": {
     "last_run_iso": "2026-08-10T14:34:07.133815-04:00",
     "last_known_balance": "118.25",
