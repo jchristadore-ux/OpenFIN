@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-08-23T17:12:03.925128-04:00",
-  "today": "2026-08-23",
+  "generated_at": "2026-08-24T07:21:22.085889-04:00",
+  "today": "2026-08-24",
   "balance": "2606.67",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "2175.50",
-  "end_of_week": "2175.50",
-  "end_of_month": "904.30",
-  "week_end": "2026-08-23",
-  "minimum_balance": "-5799.37",
+  "end_of_day": "-24.06",
+  "end_of_week": "1335.47",
+  "end_of_month": "1335.47",
+  "week_end": "2026-08-30",
+  "minimum_balance": "-5368.20",
   "minimum_date": "2026-10-19",
-  "shortfall": "5799.37",
+  "shortfall": "5368.20",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "-2808.75",
+    "safe": "-2465.58",
     "explain": [
       [
         "Balance now",
@@ -25,51 +25,51 @@
       ],
       [
         "Bills over the next 30 days",
-        "-13479.66"
+        "-13136.49"
       ],
       [
-        "Where that ends up, 21 Sep",
-        "-2808.75"
+        "Where that ends up, 22 Sep",
+        "-2465.58"
       ],
       [
-        "Lowest point along the way, 21 Sep",
-        "-2808.75"
+        "Lowest point along the way, 22 Sep",
+        "-2465.58"
       ],
       [
         "Available to spend",
-        "-2808.75"
+        "-2465.58"
       ]
     ],
-    "headroom": "-2808.75",
-    "headroom_day": "2026-09-21",
-    "per_day": "-227.62",
-    "per_day_day": "2026-08-24",
+    "headroom": "-2465.58",
+    "headroom_day": "2026-09-22",
+    "per_day": "-82.19",
+    "per_day_day": "2026-09-22",
     "window_days": 30,
-    "window_end": "2026-09-21",
+    "window_end": "2026-09-22",
     "components": {
       "balance": "2606.67",
-      "window_end": "2026-09-21"
+      "window_end": "2026-09-22"
     }
   },
   "today_bills": [
     {
-      "name": "Groceries",
-      "amount": "319.09",
-      "tier": 2,
+      "name": "Mortgage",
+      "amount": "1801.62",
+      "tier": 1,
       "autopay": false,
       "deferred": false
     },
     {
-      "name": "Fuel",
-      "amount": "90.77",
-      "tier": 2,
-      "autopay": false,
+      "name": "Kia",
+      "amount": "742.65",
+      "tier": 1,
+      "autopay": true,
       "deferred": false
     },
     {
-      "name": "Netflix",
-      "amount": "21.31",
-      "tier": 5,
+      "name": "Upstart past bills",
+      "amount": "86.46",
+      "tier": 3,
       "autopay": true,
       "deferred": false
     }
@@ -77,35 +77,10 @@
   "today_income": [],
   "this_week": [
     {
-      "date": "2026-08-23",
-      "name": "Groceries",
-      "amount": "319.09",
-      "direction": "out",
-      "tier": 2,
-      "deferred": false
-    },
-    {
-      "date": "2026-08-23",
-      "name": "Fuel",
-      "amount": "90.77",
-      "direction": "out",
-      "tier": 2,
-      "deferred": false
-    },
-    {
-      "date": "2026-08-23",
-      "name": "Netflix",
-      "amount": "21.31",
-      "direction": "out",
-      "tier": 5,
-      "deferred": false
-    }
-  ],
-  "upcoming": [
-    {
       "date": "2026-08-24",
       "name": "Mortgage",
       "amount": "1801.62",
+      "direction": "out",
       "tier": 1,
       "deferred": false
     },
@@ -113,16 +88,68 @@
       "date": "2026-08-24",
       "name": "Kia",
       "amount": "742.65",
+      "direction": "out",
       "tier": 1,
+      "deferred": false
+    },
+    {
+      "date": "2026-08-24",
+      "name": "Upstart past bills",
+      "amount": "86.46",
+      "direction": "out",
+      "tier": 3,
+      "deferred": false
+    },
+    {
+      "date": "2026-08-26",
+      "name": "Insight Global payroll",
+      "amount": "2016.06",
+      "direction": "in",
+      "tier": 0,
+      "deferred": false
+    },
+    {
+      "date": "2026-08-27",
+      "name": "Barclay Old Navy",
+      "amount": "84.78",
+      "direction": "out",
+      "tier": 3,
+      "deferred": false
+    },
+    {
+      "date": "2026-08-29",
+      "name": "Xfinity Mobile",
+      "amount": "88.82",
+      "direction": "out",
+      "tier": 2,
+      "deferred": false
+    },
+    {
+      "date": "2026-08-29",
+      "name": "Affirm",
+      "amount": "73.07",
+      "direction": "out",
+      "tier": 3,
       "deferred": false
     },
     {
       "date": "2026-08-30",
       "name": "Groceries",
       "amount": "319.09",
+      "direction": "out",
       "tier": 2,
       "deferred": false
     },
+    {
+      "date": "2026-08-30",
+      "name": "Fuel",
+      "amount": "90.77",
+      "direction": "out",
+      "tier": 2,
+      "deferred": false
+    }
+  ],
+  "upcoming": [
     {
       "date": "2026-09-01",
       "name": "Sewer",
@@ -171,248 +198,269 @@
       "amount": "513.27",
       "tier": 2,
       "deferred": false
+    },
+    {
+      "date": "2026-09-13",
+      "name": "Groceries",
+      "amount": "319.09",
+      "tier": 2,
+      "deferred": false
+    },
+    {
+      "date": "2026-09-15",
+      "name": "Loew & Patel braces",
+      "amount": "400.00",
+      "tier": 4,
+      "deferred": false
+    },
+    {
+      "date": "2026-09-15",
+      "name": "Upstart debt consol",
+      "amount": "161.00",
+      "tier": 3,
+      "deferred": false
     }
   ],
   "curve": [
     {
-      "date": "2026-08-23",
-      "closing": "2175.50"
-    },
-    {
       "date": "2026-08-24",
-      "closing": "-455.23"
+      "closing": "-24.06"
     },
     {
       "date": "2026-08-25",
-      "closing": "-455.23"
+      "closing": "-24.06"
     },
     {
       "date": "2026-08-26",
-      "closing": "1560.83"
+      "closing": "1992.00"
     },
     {
       "date": "2026-08-27",
-      "closing": "1476.05"
+      "closing": "1907.22"
     },
     {
       "date": "2026-08-28",
-      "closing": "1476.05"
+      "closing": "1907.22"
     },
     {
       "date": "2026-08-29",
-      "closing": "1314.16"
+      "closing": "1745.33"
     },
     {
       "date": "2026-08-30",
-      "closing": "904.30"
+      "closing": "1335.47"
     },
     {
       "date": "2026-08-31",
-      "closing": "904.30"
+      "closing": "1335.47"
     },
     {
       "date": "2026-09-01",
-      "closing": "599.80"
+      "closing": "1030.97"
     },
     {
       "date": "2026-09-02",
-      "closing": "2615.86"
+      "closing": "3047.03"
     },
     {
       "date": "2026-09-03",
-      "closing": "2241.64"
+      "closing": "2672.81"
     },
     {
       "date": "2026-09-04",
-      "closing": "1897.94"
+      "closing": "2329.11"
     },
     {
       "date": "2026-09-05",
-      "closing": "1897.94"
+      "closing": "2329.11"
     },
     {
       "date": "2026-09-06",
-      "closing": "1099.84"
+      "closing": "1531.01"
     },
     {
       "date": "2026-09-07",
-      "closing": "-701.78"
+      "closing": "-270.61"
     },
     {
       "date": "2026-09-08",
-      "closing": "-851.78"
+      "closing": "-420.61"
     },
     {
       "date": "2026-09-09",
-      "closing": "1164.28"
+      "closing": "1595.45"
     },
     {
       "date": "2026-09-10",
-      "closing": "1164.28"
+      "closing": "1595.45"
     },
     {
       "date": "2026-09-11",
-      "closing": "1083.52"
+      "closing": "1514.69"
     },
     {
       "date": "2026-09-12",
-      "closing": "505.25"
+      "closing": "936.42"
     },
     {
       "date": "2026-09-13",
-      "closing": "95.39"
+      "closing": "526.56"
     },
     {
       "date": "2026-09-14",
-      "closing": "-4.61"
+      "closing": "426.56"
     },
     {
       "date": "2026-09-15",
-      "closing": "-565.61"
+      "closing": "-134.44"
     },
     {
       "date": "2026-09-16",
-      "closing": "1450.45"
+      "closing": "1881.62"
     },
     {
       "date": "2026-09-17",
-      "closing": "1151.45"
+      "closing": "1582.62"
     },
     {
       "date": "2026-09-18",
-      "closing": "493.26"
+      "closing": "924.43"
     },
     {
       "date": "2026-09-19",
-      "closing": "-597.27"
+      "closing": "-166.10"
     },
     {
       "date": "2026-09-20",
-      "closing": "-1007.13"
+      "closing": "-575.96"
     },
     {
       "date": "2026-09-21",
-      "closing": "-2808.75"
+      "closing": "-2377.58"
     },
     {
       "date": "2026-09-22",
-      "closing": "-2896.75"
+      "closing": "-2465.58"
     },
     {
       "date": "2026-09-23",
-      "closing": "-902.00"
+      "closing": "-470.83"
     },
     {
       "date": "2026-09-24",
-      "closing": "-1982.26"
+      "closing": "-1551.09"
     },
     {
       "date": "2026-09-25",
-      "closing": "-1982.26"
+      "closing": "-1551.09"
     },
     {
       "date": "2026-09-26",
-      "closing": "-1982.26"
+      "closing": "-1551.09"
     },
     {
       "date": "2026-09-27",
-      "closing": "-2476.90"
+      "closing": "-2045.73"
     },
     {
       "date": "2026-09-28",
-      "closing": "-2476.90"
+      "closing": "-2045.73"
     },
     {
       "date": "2026-09-29",
-      "closing": "-2638.79"
+      "closing": "-2207.62"
     },
     {
       "date": "2026-09-30",
-      "closing": "-622.73"
+      "closing": "-191.56"
     },
     {
       "date": "2026-10-01",
-      "closing": "-622.73"
+      "closing": "-191.56"
     },
     {
       "date": "2026-10-02",
-      "closing": "-622.73"
+      "closing": "-191.56"
     },
     {
       "date": "2026-10-03",
-      "closing": "-918.56"
+      "closing": "-487.39"
     },
     {
       "date": "2026-10-04",
-      "closing": "-1672.12"
+      "closing": "-1240.95"
     },
     {
       "date": "2026-10-05",
-      "closing": "-3473.74"
+      "closing": "-3042.57"
     },
     {
       "date": "2026-10-06",
-      "closing": "-4379.48"
+      "closing": "-3948.31"
     },
     {
       "date": "2026-10-07",
-      "closing": "-2540.72"
+      "closing": "-2109.55"
     },
     {
       "date": "2026-10-08",
-      "closing": "-2690.72"
+      "closing": "-2259.55"
     },
     {
       "date": "2026-10-09",
-      "closing": "-2690.72"
+      "closing": "-2259.55"
     },
     {
       "date": "2026-10-10",
-      "closing": "-2690.72"
+      "closing": "-2259.55"
     },
     {
       "date": "2026-10-11",
-      "closing": "-3190.49"
+      "closing": "-2759.32"
     },
     {
       "date": "2026-10-12",
-      "closing": "-3768.76"
+      "closing": "-3337.59"
     },
     {
       "date": "2026-10-13",
-      "closing": "-3768.76"
+      "closing": "-3337.59"
     },
     {
       "date": "2026-10-14",
-      "closing": "-1852.70"
+      "closing": "-1421.53"
     },
     {
       "date": "2026-10-15",
-      "closing": "-2413.70"
+      "closing": "-1982.53"
     },
     {
       "date": "2026-10-16",
-      "closing": "-2413.70"
+      "closing": "-1982.53"
     },
     {
       "date": "2026-10-17",
-      "closing": "-2712.70"
+      "closing": "-2281.53"
     },
     {
       "date": "2026-10-18",
-      "closing": "-3780.75"
+      "closing": "-3349.58"
     },
     {
       "date": "2026-10-19",
-      "closing": "-5799.37"
+      "closing": "-5368.20"
     },
     {
       "date": "2026-10-20",
-      "closing": "-5799.37"
+      "closing": "-5368.20"
     },
     {
       "date": "2026-10-21",
-      "closing": "-3783.31"
+      "closing": "-3352.14"
+    },
+    {
+      "date": "2026-10-22",
+      "closing": "-3440.14"
     }
   ],
   "risks": [
@@ -421,8 +469,8 @@
       "type": "negative_balance",
       "severity": "critical",
       "title": "Balance goes negative Mon 24 Aug",
-      "detail": "Projected -$455.23 on Mon 24 Aug. Lowest point is -$5,799.37 on Mon 19 Oct.",
-      "amount": "5799.37",
+      "detail": "Projected -$24.06 on Mon 24 Aug. Lowest point is -$5,368.20 on Mon 19 Oct.",
+      "amount": "5368.20",
       "when": "2026-08-24"
     },
     {
@@ -430,8 +478,8 @@
       "type": "secured_payment",
       "severity": "critical",
       "title": "Mortgage may not clear",
-      "detail": "Mortgage of $1,801.62 is due Mon 7 Sep with only $1,099.84 available that day.",
-      "amount": "701.78",
+      "detail": "Mortgage of $1,801.62 is due Mon 7 Sep with only $1,531.01 available that day.",
+      "amount": "270.61",
       "when": "2026-09-07"
     },
     {
@@ -439,7 +487,7 @@
       "type": "secured_payment",
       "severity": "critical",
       "title": "Kia may not clear",
-      "detail": "Kia of $742.65 is due Thu 24 Sep with only -$902.00 available that day.",
+      "detail": "Kia of $742.65 is due Thu 24 Sep with only -$470.83 available that day.",
       "amount": "742.65",
       "when": "2026-09-24"
     },
@@ -448,7 +496,7 @@
       "type": "secured_payment",
       "severity": "critical",
       "title": "CCU car loan may not clear",
-      "detail": "CCU car loan of $306.90 is due Sun 18 Oct with only -$2,712.70 available that day.",
+      "detail": "CCU car loan of $306.90 is due Sun 18 Oct with only -$2,281.53 available that day.",
       "amount": "306.90",
       "when": "2026-10-18"
     },
@@ -457,77 +505,28 @@
       "type": "large_payment",
       "severity": "high",
       "title": "Mortgage $1,801.62 may be short",
-      "detail": "Mortgage of $1,801.62 is due Mon 7 Sep against a projected opening balance of $1,099.84.",
-      "amount": "701.78",
+      "detail": "Mortgage of $1,801.62 is due Mon 7 Sep against a projected opening balance of $1,531.01.",
+      "amount": "270.61",
       "when": "2026-09-07"
     },
     {
-      "id": "large_payment:clinton-water:2026-09-19",
-      "type": "large_payment",
-      "severity": "high",
-      "title": "Town of Clinton water $873.53 may be short",
-      "detail": "Town of Clinton water of $873.53 is due Sat 19 Sep against a projected opening balance of $493.26.",
-      "amount": "380.27",
-      "when": "2026-09-19"
-    },
-    {
-      "id": "discretionary:2026-09-21",
+      "id": "discretionary:2026-09-22",
       "type": "discretionary",
       "severity": "medium",
-      "title": "Nothing available to spend: -$2,808.75",
-      "detail": "Over the next 30 days the balance reaches -$2,808.75 on Mon 21 Sep. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
-      "amount": "2808.75",
-      "when": "2026-09-21"
+      "title": "Nothing available to spend: -$2,465.58",
+      "detail": "Over the next 30 days the balance reaches -$2,465.58 on Tue 22 Sep. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
+      "amount": "2465.58",
+      "when": "2026-09-22"
     }
   ],
   "plan": {
-    "summary": "Deferring Netflix $21.31 frees $21.31, which is short of the $5,799.37 needed by 24 Aug.",
-    "shortfall": "5799.37",
+    "summary": "Projected shortfall of $5,368.20 on 24 Aug, and nothing deferrable falls before it. This one needs income or an outside arrangement.",
+    "shortfall": "5368.20",
     "problem_day": "2026-08-24",
-    "candidates": [
-      {
-        "name": "Netflix",
-        "amount": "21.31",
-        "date": "2026-08-23",
-        "tier": 5
-      }
-    ],
+    "candidates": [],
     "covered": false
   },
   "deferral_window": [
-    {
-      "id": "groceries",
-      "name": "Groceries",
-      "date": "2026-08-23",
-      "amount": "319.09",
-      "tier": 2,
-      "deferrable": false,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
-    {
-      "id": "fuel",
-      "name": "Fuel",
-      "date": "2026-08-23",
-      "amount": "90.77",
-      "tier": 2,
-      "deferrable": false,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
-    {
-      "id": "netflix",
-      "name": "Netflix",
-      "date": "2026-08-23",
-      "amount": "21.31",
-      "tier": 5,
-      "deferrable": true,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
     {
       "id": "mortgage",
       "name": "Mortgage",
@@ -537,7 +536,7 @@
       "deferrable": false,
       "secured": true,
       "deferred": false,
-      "in_week": false
+      "in_week": true
     },
     {
       "id": "car-payment",
@@ -548,7 +547,7 @@
       "deferrable": false,
       "secured": true,
       "deferred": false,
-      "in_week": false
+      "in_week": true
     },
     {
       "id": "upstart-past-bills",
@@ -559,7 +558,7 @@
       "deferrable": false,
       "secured": false,
       "deferred": false,
-      "in_week": false
+      "in_week": true
     },
     {
       "id": "barclay-oldnavy",
@@ -570,7 +569,7 @@
       "deferrable": true,
       "secured": false,
       "deferred": false,
-      "in_week": false
+      "in_week": true
     },
     {
       "id": "xfinity-mobile",
@@ -581,7 +580,7 @@
       "deferrable": true,
       "secured": false,
       "deferred": false,
-      "in_week": false
+      "in_week": true
     },
     {
       "id": "affirm",
@@ -592,7 +591,7 @@
       "deferrable": true,
       "secured": false,
       "deferred": false,
-      "in_week": false
+      "in_week": true
     },
     {
       "id": "groceries",
@@ -603,7 +602,7 @@
       "deferrable": false,
       "secured": false,
       "deferred": false,
-      "in_week": false
+      "in_week": true
     },
     {
       "id": "fuel",
@@ -614,7 +613,7 @@
       "deferrable": false,
       "secured": false,
       "deferred": false,
-      "in_week": false
+      "in_week": true
     },
     {
       "id": "sewer",
@@ -692,53 +691,99 @@
       "secured": false,
       "deferred": false,
       "in_week": false
+    },
+    {
+      "id": "mortgage",
+      "name": "Mortgage",
+      "date": "2026-09-07",
+      "amount": "1801.62",
+      "tier": 1,
+      "deferrable": false,
+      "secured": true,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "pnc",
+      "name": "PNC",
+      "date": "2026-09-08",
+      "amount": "150.00",
+      "tier": 3,
+      "deferrable": true,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "gas-utility",
+      "name": "Elizabethtown Gas",
+      "date": "2026-09-11",
+      "amount": "60.01",
+      "tier": 2,
+      "deferrable": false,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "tmobile-lia",
+      "name": "T-Mobile Lia",
+      "date": "2026-09-11",
+      "amount": "20.75",
+      "tier": 2,
+      "deferrable": true,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "auto-insurance",
+      "name": "Hanover Auto",
+      "date": "2026-09-12",
+      "amount": "513.27",
+      "tier": 2,
+      "deferrable": false,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "comenity",
+      "name": "Comenity",
+      "date": "2026-09-12",
+      "amount": "65.00",
+      "tier": 3,
+      "deferrable": true,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "groceries",
+      "name": "Groceries",
+      "date": "2026-09-13",
+      "amount": "319.09",
+      "tier": 2,
+      "deferrable": false,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "fuel",
+      "name": "Fuel",
+      "date": "2026-09-13",
+      "amount": "90.77",
+      "tier": 2,
+      "deferrable": false,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
     }
   ],
   "deferred_total": "0.00",
   "lookahead_days": 14,
   "bills": [
-    {
-      "id": "fuel",
-      "name": "Fuel",
-      "amount": "90.77",
-      "due_day": null,
-      "frequency": "weekly",
-      "next_date": "2026-08-23",
-      "tier": 2,
-      "active": true,
-      "variable": true,
-      "needs_review": false,
-      "source": "household",
-      "note": "ACTUAL, not budget. Mean of 69 full weeks is $90.77/wk (median $65.53). The household sheet said $95.48 - close, and slightly high."
-    },
-    {
-      "id": "groceries",
-      "name": "Groceries",
-      "amount": "319.09",
-      "due_day": null,
-      "frequency": "weekly",
-      "next_date": "2026-08-23",
-      "tier": 2,
-      "active": true,
-      "variable": true,
-      "needs_review": false,
-      "source": "household",
-      "note": "ACTUAL, not budget. Mean of 81 full weeks in the statements is $319.09/wk (median $302.15, range $12.78-$791.32). The household sheet said $282.35, under by $36.74/wk. The mean is used rather than the median because under-forecasting an outflow is the direction that causes overdrafts."
-    },
-    {
-      "id": "netflix",
-      "name": "Netflix",
-      "amount": "21.31",
-      "due_day": 23,
-      "frequency": "monthly",
-      "next_date": "2026-08-23",
-      "tier": 5,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "source": "statement",
-      "note": ""
-    },
     {
       "id": "car-payment",
       "name": "Kia",
@@ -822,6 +867,34 @@
       "needs_review": false,
       "source": "statement",
       "note": ""
+    },
+    {
+      "id": "fuel",
+      "name": "Fuel",
+      "amount": "90.77",
+      "due_day": null,
+      "frequency": "weekly",
+      "next_date": "2026-08-30",
+      "tier": 2,
+      "active": true,
+      "variable": true,
+      "needs_review": false,
+      "source": "household",
+      "note": "ACTUAL, not budget. Mean of 69 full weeks is $90.77/wk (median $65.53). The household sheet said $95.48 - close, and slightly high."
+    },
+    {
+      "id": "groceries",
+      "name": "Groceries",
+      "amount": "319.09",
+      "due_day": null,
+      "frequency": "weekly",
+      "next_date": "2026-08-30",
+      "tier": 2,
+      "active": true,
+      "variable": true,
+      "needs_review": false,
+      "source": "household",
+      "note": "ACTUAL, not budget. Mean of 81 full weeks in the statements is $319.09/wk (median $302.15, range $12.78-$791.32). The household sheet said $282.35, under by $36.74/wk. The mean is used rather than the median because under-forecasting an outflow is the direction that causes overdrafts."
     },
     {
       "id": "sewer",
@@ -1144,6 +1217,20 @@
       "needs_review": false,
       "source": "household",
       "note": "Renegotiated to $46.00 (household, 11 Aug 2026). Card ending 6319. Autopay 21st-23rd."
+    },
+    {
+      "id": "netflix",
+      "name": "Netflix",
+      "amount": "21.31",
+      "due_day": 23,
+      "frequency": "monthly",
+      "next_date": "2026-09-23",
+      "tier": 5,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "statement",
+      "note": ""
     },
     {
       "id": "upstart-past-bills-step2",
