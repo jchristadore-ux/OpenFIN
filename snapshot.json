@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-08-25T17:17:55.601268-04:00",
-  "today": "2026-08-25",
+  "generated_at": "2026-08-26T07:23:41.322434-04:00",
+  "today": "2026-08-26",
   "balance": "2606.67",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "2606.67",
+  "end_of_day": "4622.73",
   "end_of_week": "3966.20",
   "end_of_month": "3966.20",
   "week_end": "2026-08-30",
@@ -25,11 +25,11 @@
       ],
       [
         "Bills over the next 30 days",
-        "-10527.07"
+        "-11607.33"
       ],
       [
-        "Where that ends up, 23 Sep",
-        "2159.90"
+        "Where that ends up, 24 Sep",
+        "1079.64"
       ],
       [
         "Lowest point along the way, 22 Sep",
@@ -42,17 +42,22 @@
     ],
     "headroom": "165.15",
     "headroom_day": "2026-09-22",
-    "per_day": "5.69",
+    "per_day": "5.90",
     "per_day_day": "2026-09-22",
     "window_days": 30,
-    "window_end": "2026-09-23",
+    "window_end": "2026-09-24",
     "components": {
       "balance": "2606.67",
-      "window_end": "2026-09-23"
+      "window_end": "2026-09-24"
     }
   },
   "today_bills": [],
-  "today_income": [],
+  "today_income": [
+    {
+      "name": "Insight Global payroll",
+      "amount": "2016.06"
+    }
+  ],
   "this_week": [
     {
       "date": "2026-08-26",
@@ -176,10 +181,6 @@
     }
   ],
   "curve": [
-    {
-      "date": "2026-08-25",
-      "closing": "2606.67"
-    },
     {
       "date": "2026-08-26",
       "closing": "4622.73"
@@ -415,6 +416,10 @@
     {
       "date": "2026-10-23",
       "closing": "-830.72"
+    },
+    {
+      "date": "2026-10-24",
+      "closing": "-1910.98"
     }
   ],
   "risks": [
@@ -435,6 +440,15 @@
       "detail": "Projected -$411.84 on Mon 5 Oct. Lowest point is -$2,737.47 on Mon 19 Oct.",
       "amount": "2737.47",
       "when": "2026-10-05"
+    },
+    {
+      "id": "secured_payment:car-payment:2026-10-24",
+      "type": "secured_payment",
+      "severity": "critical",
+      "title": "Kia may not clear",
+      "detail": "Kia of $742.65 is due Sat 24 Oct with only -$830.72 available that day.",
+      "amount": "742.65",
+      "when": "2026-10-24"
     },
     {
       "id": "large_payment:mortgage:2026-10-05",
