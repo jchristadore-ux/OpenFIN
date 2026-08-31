@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-31T14:19:49.288583-04:00",
+  "generated_at": "2026-08-31T14:23:47.458869-04:00",
   "today": "2026-08-31",
   "balance": "1077.77",
   "balance_is_fresh": true,
-  "balance_entered_at": "2026-08-31T14:19:49.288583-04:00",
+  "balance_entered_at": "2026-08-31T14:23:47.458869-04:00",
   "end_of_day": "1077.77",
   "end_of_week": "1273.31",
   "end_of_month": "1077.77",
@@ -1433,20 +1433,6 @@
       "note": "CORRECTED. Was $2,853.17/week; the actual employer is Insight Global and the modal weekly deposit is $2,016.06. That is $837.11/week overstated, roughly $3,627/month of income the projection was counting and never receiving. Deposits range $1,648.05-$2,981.68, so this stays flagged."
     },
     {
-      "id": "charlie-and-clark",
-      "name": "Charlie and Clark",
-      "amount": "510.00",
-      "due_day": null,
-      "frequency": "once",
-      "next_date": null,
-      "tier": 5,
-      "active": true,
-      "variable": false,
-      "needs_review": true,
-      "source": "app",
-      "note": "Added in the app 13 Aug 2026: once, first on 13 Aug 2026. Not yet seen on a statement."
-    },
-    {
       "id": "boe-payroll",
       "name": "Branchburg BOE payroll",
       "amount": "2829.31",
@@ -1459,6 +1445,20 @@
       "needs_review": true,
       "source": "app",
       "note": "Edited in the app 13 Aug 2026: deactivated. Previous note: Amount corrected from $2,840.34. Observed $2,829.31 on 04/13, 04/28, 05/13, 05/27 and 06/10/2026, exactly 14-15 days apart. A $2,837.55 credit on 06/16 breaks the pattern and may be a summer-schedule payment - verify before the school year s"
+    },
+    {
+      "id": "charlie-and-clark",
+      "name": "Charlie and Clark",
+      "amount": "510.00",
+      "due_day": null,
+      "frequency": "once",
+      "next_date": null,
+      "tier": 5,
+      "active": false,
+      "variable": false,
+      "needs_review": true,
+      "source": "app",
+      "note": "Edited in the app 31 Aug 2026: deactivated. Previous note: Added in the app 13 Aug 2026: once, first on 13 Aug 2026. Not yet seen on a statement."
     }
   ],
   "settings": {
