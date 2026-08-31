@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-08-31T14:23:47.458869-04:00",
+  "generated_at": "2026-08-31T14:32:05.988750-04:00",
   "today": "2026-08-31",
   "balance": "1077.77",
   "balance_is_fresh": true,
-  "balance_entered_at": "2026-08-31T14:23:47.458869-04:00",
+  "balance_entered_at": "2026-08-31T14:32:05.988750-04:00",
   "end_of_day": "1077.77",
-  "end_of_week": "1273.31",
+  "end_of_week": "-742.75",
   "end_of_month": "1077.77",
   "week_end": "2026-09-06",
-  "minimum_balance": "-5625.90",
-  "minimum_date": "2026-10-19",
-  "shortfall": "5625.90",
+  "minimum_balance": "-21584.42",
+  "minimum_date": "2026-10-29",
+  "shortfall": "21584.42",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "-2723.28",
+    "safe": "-10529.56",
     "explain": [
       [
         "Balance now",
@@ -21,7 +21,7 @@
       ],
       [
         "Income over the next 30 days",
-        "8064.24"
+        "0.00"
       ],
       [
         "Bills over the next 30 days",
@@ -29,21 +29,21 @@
       ],
       [
         "Where that ends up, 29 Sep",
-        "-2465.32"
+        "-10529.56"
       ],
       [
-        "Lowest point along the way, 22 Sep",
-        "-2723.28"
+        "Lowest point along the way, 29 Sep",
+        "-10529.56"
       ],
       [
         "Available to spend",
-        "-2723.28"
+        "-10529.56"
       ]
     ],
-    "headroom": "-2723.28",
-    "headroom_day": "2026-09-22",
-    "per_day": "-119.79",
-    "per_day_day": "2026-09-21",
+    "headroom": "-10529.56",
+    "headroom_day": "2026-09-29",
+    "per_day": "-394.92",
+    "per_day_day": "2026-09-24",
     "window_days": 30,
     "window_end": "2026-09-29",
     "components": {
@@ -60,14 +60,6 @@
       "amount": "304.50",
       "direction": "out",
       "tier": 2,
-      "deferred": false
-    },
-    {
-      "date": "2026-09-02",
-      "name": "Insight Global payroll",
-      "amount": "2016.06",
-      "direction": "in",
-      "tier": 0,
       "deferred": false
     },
     {
@@ -202,281 +194,281 @@
     },
     {
       "date": "2026-09-02",
-      "closing": "2789.33"
+      "closing": "773.27"
     },
     {
       "date": "2026-09-03",
-      "closing": "2415.11"
+      "closing": "399.05"
     },
     {
       "date": "2026-09-04",
-      "closing": "2071.41"
+      "closing": "55.35"
     },
     {
       "date": "2026-09-05",
-      "closing": "2071.41"
+      "closing": "55.35"
     },
     {
       "date": "2026-09-06",
-      "closing": "1273.31"
+      "closing": "-742.75"
     },
     {
       "date": "2026-09-07",
-      "closing": "-528.31"
+      "closing": "-2544.37"
     },
     {
       "date": "2026-09-08",
-      "closing": "-678.31"
+      "closing": "-2694.37"
     },
     {
       "date": "2026-09-09",
-      "closing": "1337.75"
+      "closing": "-2694.37"
     },
     {
       "date": "2026-09-10",
-      "closing": "1337.75"
+      "closing": "-2694.37"
     },
     {
       "date": "2026-09-11",
-      "closing": "1256.99"
+      "closing": "-2775.13"
     },
     {
       "date": "2026-09-12",
-      "closing": "678.72"
+      "closing": "-3353.40"
     },
     {
       "date": "2026-09-13",
-      "closing": "268.86"
+      "closing": "-3763.26"
     },
     {
       "date": "2026-09-14",
-      "closing": "168.86"
+      "closing": "-3863.26"
     },
     {
       "date": "2026-09-15",
-      "closing": "-392.14"
+      "closing": "-4424.26"
     },
     {
       "date": "2026-09-16",
-      "closing": "1623.92"
+      "closing": "-4424.26"
     },
     {
       "date": "2026-09-17",
-      "closing": "1324.92"
+      "closing": "-4723.26"
     },
     {
       "date": "2026-09-18",
-      "closing": "666.73"
+      "closing": "-5381.45"
     },
     {
       "date": "2026-09-19",
-      "closing": "-423.80"
+      "closing": "-6471.98"
     },
     {
       "date": "2026-09-20",
-      "closing": "-833.66"
+      "closing": "-6881.84"
     },
     {
       "date": "2026-09-21",
-      "closing": "-2635.28"
+      "closing": "-8683.46"
     },
     {
       "date": "2026-09-22",
-      "closing": "-2723.28"
+      "closing": "-8771.46"
     },
     {
       "date": "2026-09-23",
-      "closing": "-728.53"
+      "closing": "-8792.77"
     },
     {
       "date": "2026-09-24",
-      "closing": "-1808.79"
+      "closing": "-9873.03"
     },
     {
       "date": "2026-09-25",
-      "closing": "-1808.79"
+      "closing": "-9873.03"
     },
     {
       "date": "2026-09-26",
-      "closing": "-1808.79"
+      "closing": "-9873.03"
     },
     {
       "date": "2026-09-27",
-      "closing": "-2303.43"
+      "closing": "-10367.67"
     },
     {
       "date": "2026-09-28",
-      "closing": "-2303.43"
+      "closing": "-10367.67"
     },
     {
       "date": "2026-09-29",
-      "closing": "-2465.32"
+      "closing": "-10529.56"
     },
     {
       "date": "2026-09-30",
-      "closing": "-449.26"
+      "closing": "-10529.56"
     },
     {
       "date": "2026-10-01",
-      "closing": "-449.26"
+      "closing": "-10529.56"
     },
     {
       "date": "2026-10-02",
-      "closing": "-449.26"
+      "closing": "-10529.56"
     },
     {
       "date": "2026-10-03",
-      "closing": "-745.09"
+      "closing": "-10825.39"
     },
     {
       "date": "2026-10-04",
-      "closing": "-1498.65"
+      "closing": "-11578.95"
     },
     {
       "date": "2026-10-05",
-      "closing": "-3300.27"
+      "closing": "-13380.57"
     },
     {
       "date": "2026-10-06",
-      "closing": "-4206.01"
+      "closing": "-14286.31"
     },
     {
       "date": "2026-10-07",
-      "closing": "-2367.25"
+      "closing": "-14463.61"
     },
     {
       "date": "2026-10-08",
-      "closing": "-2517.25"
+      "closing": "-14613.61"
     },
     {
       "date": "2026-10-09",
-      "closing": "-2517.25"
+      "closing": "-14613.61"
     },
     {
       "date": "2026-10-10",
-      "closing": "-2517.25"
+      "closing": "-14613.61"
     },
     {
       "date": "2026-10-11",
-      "closing": "-3017.02"
+      "closing": "-15113.38"
     },
     {
       "date": "2026-10-12",
-      "closing": "-3595.29"
+      "closing": "-15691.65"
     },
     {
       "date": "2026-10-13",
-      "closing": "-3595.29"
+      "closing": "-15691.65"
     },
     {
       "date": "2026-10-14",
-      "closing": "-1679.23"
+      "closing": "-15791.65"
     },
     {
       "date": "2026-10-15",
-      "closing": "-2240.23"
+      "closing": "-16352.65"
     },
     {
       "date": "2026-10-16",
-      "closing": "-2240.23"
+      "closing": "-16352.65"
     },
     {
       "date": "2026-10-17",
-      "closing": "-2539.23"
+      "closing": "-16651.65"
     },
     {
       "date": "2026-10-18",
-      "closing": "-3607.28"
+      "closing": "-17719.70"
     },
     {
       "date": "2026-10-19",
-      "closing": "-5625.90"
+      "closing": "-19738.32"
     },
     {
       "date": "2026-10-20",
-      "closing": "-5625.90"
+      "closing": "-19738.32"
     },
     {
       "date": "2026-10-21",
-      "closing": "-3609.84"
+      "closing": "-19738.32"
     },
     {
       "date": "2026-10-22",
-      "closing": "-3697.84"
+      "closing": "-19826.32"
     },
     {
       "date": "2026-10-23",
-      "closing": "-3719.15"
+      "closing": "-19847.63"
     },
     {
       "date": "2026-10-24",
-      "closing": "-4799.41"
+      "closing": "-20927.89"
     },
     {
       "date": "2026-10-25",
-      "closing": "-5209.27"
+      "closing": "-21337.75"
     },
     {
       "date": "2026-10-26",
-      "closing": "-5209.27"
+      "closing": "-21337.75"
     },
     {
       "date": "2026-10-27",
-      "closing": "-5294.05"
+      "closing": "-21422.53"
     },
     {
       "date": "2026-10-28",
-      "closing": "-3277.99"
+      "closing": "-21422.53"
     },
     {
       "date": "2026-10-29",
-      "closing": "-3439.88"
+      "closing": "-21584.42"
     }
   ],
   "risks": [
+    {
+      "id": "negative_balance:2026-09-06",
+      "type": "negative_balance",
+      "severity": "critical",
+      "title": "Balance goes negative Sun 6 Sep",
+      "detail": "Projected -$742.75 on Sun 6 Sep. Lowest point is -$21,584.42 on Thu 29 Oct.",
+      "amount": "21584.42",
+      "when": "2026-09-06"
+    },
     {
       "id": "secured_payment:mortgage:2026-09-07",
       "type": "secured_payment",
       "severity": "critical",
       "title": "Mortgage may not clear",
-      "detail": "Mortgage of $1,801.62 is due Mon 7 Sep with only $1,273.31 available that day.",
-      "amount": "528.31",
+      "detail": "Mortgage of $1,801.62 is due Mon 7 Sep with only -$742.75 available that day.",
+      "amount": "1801.62",
       "when": "2026-09-07"
     },
     {
-      "id": "negative_balance:2026-09-07",
-      "type": "negative_balance",
+      "id": "secured_payment:ccu-car-loan:2026-09-18",
+      "type": "secured_payment",
       "severity": "critical",
-      "title": "Balance goes negative Mon 7 Sep",
-      "detail": "Projected -$528.31 on Mon 7 Sep. Lowest point is -$5,625.90 on Mon 19 Oct.",
-      "amount": "5625.90",
-      "when": "2026-09-07"
+      "title": "CCU car loan may not clear",
+      "detail": "CCU car loan of $306.90 is due Fri 18 Sep with only -$4,723.26 available that day.",
+      "amount": "306.90",
+      "when": "2026-09-18"
     },
     {
       "id": "secured_payment:car-payment:2026-09-24",
       "type": "secured_payment",
       "severity": "critical",
       "title": "Kia may not clear",
-      "detail": "Kia of $742.65 is due Thu 24 Sep with only -$728.53 available that day.",
+      "detail": "Kia of $742.65 is due Thu 24 Sep with only -$8,792.77 available that day.",
       "amount": "742.65",
       "when": "2026-09-24"
-    },
-    {
-      "id": "secured_payment:ccu-car-loan:2026-10-18",
-      "type": "secured_payment",
-      "severity": "critical",
-      "title": "CCU car loan may not clear",
-      "detail": "CCU car loan of $306.90 is due Sun 18 Oct with only -$2,539.23 available that day.",
-      "amount": "306.90",
-      "when": "2026-10-18"
     },
     {
       "id": "large_payment:mortgage:2026-09-07",
       "type": "large_payment",
       "severity": "high",
       "title": "Mortgage $1,801.62 may be short",
-      "detail": "Mortgage of $1,801.62 is due Mon 7 Sep against a projected opening balance of $1,273.31.",
-      "amount": "528.31",
+      "detail": "Mortgage of $1,801.62 is due Mon 7 Sep against a projected opening balance of -$742.75.",
+      "amount": "1801.62",
       "when": "2026-09-07"
     },
     {
@@ -484,24 +476,24 @@
       "type": "large_payment",
       "severity": "high",
       "title": "Town of Clinton water $873.53 may be short",
-      "detail": "Town of Clinton water of $873.53 is due Sat 19 Sep against a projected opening balance of $666.73.",
-      "amount": "206.80",
+      "detail": "Town of Clinton water of $873.53 is due Sat 19 Sep against a projected opening balance of -$5,381.45.",
+      "amount": "873.53",
       "when": "2026-09-19"
     },
     {
-      "id": "discretionary:2026-09-22",
+      "id": "discretionary:2026-09-29",
       "type": "discretionary",
       "severity": "medium",
-      "title": "Nothing available to spend: -$2,723.28",
-      "detail": "Over the next 30 days the balance reaches -$2,723.28 on Tue 22 Sep. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
-      "amount": "2723.28",
-      "when": "2026-09-22"
+      "title": "Nothing available to spend: -$10,529.56",
+      "detail": "Over the next 30 days the balance reaches -$10,529.56 on Tue 29 Sep. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
+      "amount": "10529.56",
+      "when": "2026-09-29"
     }
   ],
   "plan": {
-    "summary": "Deferring Culligan $307.70, TJX Rewards $36.00 frees $343.70, which is short of the $5,625.90 needed by 7 Sep.",
-    "shortfall": "5625.90",
-    "problem_day": "2026-09-07",
+    "summary": "Deferring Culligan $307.70, TJX Rewards $36.00 frees $343.70, which is short of the $21,584.42 needed by 6 Sep.",
+    "shortfall": "21584.42",
+    "problem_day": "2026-09-06",
     "candidates": [
       {
         "name": "Culligan",
@@ -1419,20 +1411,6 @@
   ],
   "income": [
     {
-      "id": "primary-payroll",
-      "name": "Insight Global payroll",
-      "amount": "2016.06",
-      "due_day": null,
-      "frequency": "weekly",
-      "next_date": "2026-09-02",
-      "tier": 5,
-      "active": true,
-      "variable": false,
-      "needs_review": true,
-      "source": "statement",
-      "note": "CORRECTED. Was $2,853.17/week; the actual employer is Insight Global and the modal weekly deposit is $2,016.06. That is $837.11/week overstated, roughly $3,627/month of income the projection was counting and never receiving. Deposits range $1,648.05-$2,981.68, so this stays flagged."
-    },
-    {
       "id": "boe-payroll",
       "name": "Branchburg BOE payroll",
       "amount": "2829.31",
@@ -1459,6 +1437,20 @@
       "needs_review": true,
       "source": "app",
       "note": "Edited in the app 31 Aug 2026: deactivated. Previous note: Added in the app 13 Aug 2026: once, first on 13 Aug 2026. Not yet seen on a statement."
+    },
+    {
+      "id": "primary-payroll",
+      "name": "Insight Global payroll",
+      "amount": "2016.06",
+      "due_day": null,
+      "frequency": "weekly",
+      "next_date": null,
+      "tier": 5,
+      "active": false,
+      "variable": false,
+      "needs_review": true,
+      "source": "app",
+      "note": "Edited in the app 31 Aug 2026: deactivated. Previous note: CORRECTED. Was $2,853.17/week; the actual employer is Insight Global and the modal weekly deposit is $2,016.06. That is $837.11/week overstated, roughly $3,627/month of income the projection was counting and never receiving. Deposits range $"
     }
   ],
   "settings": {
