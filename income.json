@@ -59,10 +59,10 @@
       "due_date": "2026-08-13",
       "anchor_date": null,
       "match_keywords": [],
-      "active": true,
+      "active": false,
       "needs_review": true,
-      "note": "Added in the app 13 Aug 2026: once, first on 13 Aug 2026. Not yet seen on a statement.",
-      "last_updated": "2026-08-13T09:53:37.207964-04:00",
+      "note": "Edited in the app 31 Aug 2026: deactivated. Previous note: Added in the app 13 Aug 2026: once, first on 13 Aug 2026. Not yet seen on a statement.",
+      "last_updated": "2026-08-31T14:23:47.208419-04:00",
       "source": "app"
     }
   ]
