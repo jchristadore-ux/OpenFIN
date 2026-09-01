@@ -64,6 +64,21 @@
       "note": "Edited in the app 31 Aug 2026: deactivated. Previous note: Added in the app 13 Aug 2026: once, first on 13 Aug 2026. Not yet seen on a statement.",
       "last_updated": "2026-08-31T14:23:47.208419-04:00",
       "source": "app"
+    },
+    {
+      "id": "leslie-first-pay",
+      "name": "Leslie first pay",
+      "amount": 2000.0,
+      "frequency": "once",
+      "due_day": null,
+      "due_date": "2026-09-11",
+      "anchor_date": null,
+      "match_keywords": [],
+      "active": true,
+      "needs_review": true,
+      "note": "Added in the app 31 Aug 2026: once, first on 11 Sep 2026. Not yet seen on a statement.",
+      "last_updated": "2026-08-31T21:47:06.638727-04:00",
+      "source": "app"
     }
   ]
 }
