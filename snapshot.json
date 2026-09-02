@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-01T18:53:47.312246-04:00",
-  "today": "2026-09-01",
+  "generated_at": "2026-09-02T10:53:58.246204-04:00",
+  "today": "2026-09-02",
   "balance": "1077.77",
   "balance_is_fresh": false,
   "balance_entered_at": null,
@@ -28,7 +28,7 @@
         "-10928.61"
       ],
       [
-        "Where that ends up, 30 Sep",
+        "Where that ends up, 1 Oct",
         "-7850.84"
       ],
       [
@@ -42,34 +42,18 @@
     ],
     "headroom": "-7850.84",
     "headroom_day": "2026-09-29",
-    "per_day": "-299.76",
+    "per_day": "-312.80",
     "per_day_day": "2026-09-24",
     "window_days": 30,
-    "window_end": "2026-09-30",
+    "window_end": "2026-10-01",
     "components": {
       "balance": "1077.77",
-      "window_end": "2026-09-30"
+      "window_end": "2026-10-01"
     }
   },
-  "today_bills": [
-    {
-      "name": "Sewer",
-      "amount": "304.50",
-      "tier": 2,
-      "autopay": false,
-      "deferred": true
-    }
-  ],
+  "today_bills": [],
   "today_income": [],
   "this_week": [
-    {
-      "date": "2026-09-01",
-      "name": "Sewer",
-      "amount": "304.50",
-      "direction": "out",
-      "tier": 2,
-      "deferred": true
-    },
     {
       "date": "2026-09-03",
       "name": "JCP&L / FirstEnergy",
@@ -192,10 +176,6 @@
     }
   ],
   "curve": [
-    {
-      "date": "2026-09-01",
-      "closing": "1077.77"
-    },
     {
       "date": "2026-09-02",
       "closing": "1077.77"
@@ -431,6 +411,10 @@
     {
       "date": "2026-10-30",
       "closing": "-18905.70"
+    },
+    {
+      "date": "2026-10-31",
+      "closing": "-18905.70"
     }
   ],
   "risks": [
@@ -519,17 +503,6 @@
     "covered": false
   },
   "deferral_window": [
-    {
-      "id": "sewer",
-      "name": "Sewer",
-      "date": "2026-09-01",
-      "amount": "304.50",
-      "tier": 2,
-      "deferrable": false,
-      "secured": false,
-      "deferred": true,
-      "in_week": true
-    },
     {
       "id": "electric",
       "name": "JCP&L / FirstEnergy",
@@ -839,23 +812,9 @@
       "in_week": false
     }
   ],
-  "deferred_total": "678.72",
+  "deferred_total": "374.22",
   "lookahead_days": 14,
   "bills": [
-    {
-      "id": "sewer",
-      "name": "Sewer",
-      "amount": "304.50",
-      "due_day": 1,
-      "frequency": "annual",
-      "next_date": "2026-09-01",
-      "tier": 2,
-      "active": true,
-      "variable": false,
-      "needs_review": true,
-      "source": "household",
-      "note": "POSSIBLY ANNUAL, UNCONFIRMED - the household does not yet know. No matching payment appears in 19 months of statements, including the September window. Left active at $304.50 on 1 Sep so it is budgeted for rather than forgotten."
-    },
     {
       "id": "electric",
       "name": "JCP&L / FirstEnergy",
@@ -1373,6 +1332,20 @@
       "needs_review": false,
       "source": "club-portal",
       "note": "ACTUAL from the club portal (household, 11 Aug 2026): $500.00 due 2027-05-18. Modelled at $517.50 because every card payment in 19 months of statements carried the club's 3.5% convenience fee ($475.00 became $491.63). Paying by Venmo or check costs $500.00 - the one Venmo payment on 11/01/2024 was c"
+    },
+    {
+      "id": "sewer",
+      "name": "Sewer",
+      "amount": "304.50",
+      "due_day": 1,
+      "frequency": "annual",
+      "next_date": "2027-09-01",
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "household",
+      "note": "POSSIBLY ANNUAL, UNCONFIRMED - the household does not yet know. No matching payment appears in 19 months of statements, including the September window. Left active at $304.50 on 1 Sep so it is budgeted for rather than forgotten."
     },
     {
       "id": "upstart-past-bills",
