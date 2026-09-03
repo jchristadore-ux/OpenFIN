@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-02T18:54:19.406666-04:00",
-  "today": "2026-09-02",
+  "generated_at": "2026-09-03T10:51:02.280648-04:00",
+  "today": "2026-09-03",
   "balance": "1077.77",
   "balance_is_fresh": false,
   "balance_entered_at": null,
@@ -8,9 +8,9 @@
   "end_of_week": "-64.03",
   "end_of_month": "-7850.84",
   "week_end": "2026-09-06",
-  "minimum_balance": "-18905.70",
-  "minimum_date": "2026-10-29",
-  "shortfall": "18905.70",
+  "minimum_balance": "-19315.56",
+  "minimum_date": "2026-11-01",
+  "shortfall": "19315.56",
   "allowance": "0.00",
   "discretionary": {
     "safe": "-7850.84",
@@ -28,7 +28,7 @@
         "-10928.61"
       ],
       [
-        "Where that ends up, 1 Oct",
+        "Where that ends up, 2 Oct",
         "-7850.84"
       ],
       [
@@ -42,16 +42,24 @@
     ],
     "headroom": "-7850.84",
     "headroom_day": "2026-09-29",
-    "per_day": "-312.80",
-    "per_day_day": "2026-09-24",
+    "per_day": "-373.13",
+    "per_day_day": "2026-09-07",
     "window_days": 30,
-    "window_end": "2026-10-01",
+    "window_end": "2026-10-02",
     "components": {
       "balance": "1077.77",
-      "window_end": "2026-10-01"
+      "window_end": "2026-10-02"
     }
   },
-  "today_bills": [],
+  "today_bills": [
+    {
+      "name": "JCP&L / FirstEnergy",
+      "amount": "374.22",
+      "tier": 2,
+      "autopay": false,
+      "deferred": true
+    }
+  ],
   "today_income": [],
   "this_week": [
     {
@@ -176,10 +184,6 @@
     }
   ],
   "curve": [
-    {
-      "date": "2026-09-02",
-      "closing": "1077.77"
-    },
     {
       "date": "2026-09-03",
       "closing": "1077.77"
@@ -415,6 +419,10 @@
     {
       "date": "2026-10-31",
       "closing": "-18905.70"
+    },
+    {
+      "date": "2026-11-01",
+      "closing": "-19315.56"
     }
   ],
   "risks": [
@@ -423,8 +431,8 @@
       "type": "negative_balance",
       "severity": "critical",
       "title": "Balance goes negative Sun 6 Sep",
-      "detail": "Projected -$64.03 on Sun 6 Sep. Lowest point is -$18,905.70 on Thu 29 Oct.",
-      "amount": "18905.70",
+      "detail": "Projected -$64.03 on Sun 6 Sep. Lowest point is -$19,315.56 on Sun 1 Nov.",
+      "amount": "19315.56",
       "when": "2026-09-06"
     },
     {
@@ -483,8 +491,8 @@
     }
   ],
   "plan": {
-    "summary": "Deferring Culligan $307.70, TJX Rewards $36.00 frees $343.70, which is short of the $18,905.70 needed by 6 Sep.",
-    "shortfall": "18905.70",
+    "summary": "Deferring Culligan $307.70, TJX Rewards $36.00 frees $343.70, which is short of the $19,315.56 needed by 6 Sep.",
+    "shortfall": "19315.56",
     "problem_day": "2026-09-06",
     "candidates": [
       {
