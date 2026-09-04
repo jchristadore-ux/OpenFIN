@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-09-03T18:53:28.422503-04:00",
-  "today": "2026-09-03",
+  "generated_at": "2026-09-04T10:42:33.774614-04:00",
+  "today": "2026-09-04",
   "balance": "1077.77",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "1077.77",
+  "end_of_day": "734.07",
   "end_of_week": "-64.03",
   "end_of_month": "-7850.84",
   "week_end": "2026-09-06",
-  "minimum_balance": "-19315.56",
-  "minimum_date": "2026-11-01",
-  "shortfall": "19315.56",
+  "minimum_balance": "-21117.18",
+  "minimum_date": "2026-11-02",
+  "shortfall": "21117.18",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "-7850.84",
+    "safe": "-8146.67",
     "explain": [
       [
         "Balance now",
@@ -25,51 +25,50 @@
       ],
       [
         "Bills over the next 30 days",
-        "-10928.61"
+        "-11224.44"
       ],
       [
-        "Where that ends up, 2 Oct",
-        "-7850.84"
+        "Where that ends up, 3 Oct",
+        "-8146.67"
       ],
       [
-        "Lowest point along the way, 29 Sep",
-        "-7850.84"
+        "Lowest point along the way, 3 Oct",
+        "-8146.67"
       ],
       [
         "Available to spend",
-        "-7850.84"
+        "-8146.67"
       ]
     ],
-    "headroom": "-7850.84",
-    "headroom_day": "2026-09-29",
-    "per_day": "-373.13",
+    "headroom": "-8146.67",
+    "headroom_day": "2026-10-03",
+    "per_day": "-466.41",
     "per_day_day": "2026-09-07",
     "window_days": 30,
-    "window_end": "2026-10-02",
+    "window_end": "2026-10-03",
     "components": {
       "balance": "1077.77",
-      "window_end": "2026-10-02"
+      "window_end": "2026-10-03"
     }
   },
   "today_bills": [
     {
-      "name": "JCP&L / FirstEnergy",
-      "amount": "374.22",
-      "tier": 2,
+      "name": "Culligan",
+      "amount": "307.70",
+      "tier": 5,
       "autopay": false,
-      "deferred": true
+      "deferred": false
+    },
+    {
+      "name": "TJX Rewards",
+      "amount": "36.00",
+      "tier": 5,
+      "autopay": true,
+      "deferred": false
     }
   ],
   "today_income": [],
   "this_week": [
-    {
-      "date": "2026-09-03",
-      "name": "JCP&L / FirstEnergy",
-      "amount": "374.22",
-      "direction": "out",
-      "tier": 2,
-      "deferred": true
-    },
     {
       "date": "2026-09-04",
       "name": "Culligan",
@@ -184,10 +183,6 @@
     }
   ],
   "curve": [
-    {
-      "date": "2026-09-03",
-      "closing": "1077.77"
-    },
     {
       "date": "2026-09-04",
       "closing": "734.07"
@@ -423,6 +418,10 @@
     {
       "date": "2026-11-01",
       "closing": "-19315.56"
+    },
+    {
+      "date": "2026-11-02",
+      "closing": "-21117.18"
     }
   ],
   "risks": [
@@ -431,8 +430,8 @@
       "type": "negative_balance",
       "severity": "critical",
       "title": "Balance goes negative Sun 6 Sep",
-      "detail": "Projected -$64.03 on Sun 6 Sep. Lowest point is -$19,315.56 on Sun 1 Nov.",
-      "amount": "19315.56",
+      "detail": "Projected -$64.03 on Sun 6 Sep. Lowest point is -$21,117.18 on Mon 2 Nov.",
+      "amount": "21117.18",
       "when": "2026-09-06"
     },
     {
@@ -481,18 +480,18 @@
       "when": "2026-09-19"
     },
     {
-      "id": "discretionary:2026-09-29",
+      "id": "discretionary:2026-10-03",
       "type": "discretionary",
       "severity": "medium",
-      "title": "Nothing available to spend: -$7,850.84",
-      "detail": "Over the next 30 days the balance reaches -$7,850.84 on Tue 29 Sep. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
-      "amount": "7850.84",
-      "when": "2026-09-29"
+      "title": "Nothing available to spend: -$8,146.67",
+      "detail": "Over the next 30 days the balance reaches -$8,146.67 on Sat 3 Oct. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
+      "amount": "8146.67",
+      "when": "2026-10-03"
     }
   ],
   "plan": {
-    "summary": "Deferring Culligan $307.70, TJX Rewards $36.00 frees $343.70, which is short of the $19,315.56 needed by 6 Sep.",
-    "shortfall": "19315.56",
+    "summary": "Deferring Culligan $307.70, TJX Rewards $36.00 frees $343.70, which is short of the $21,117.18 needed by 6 Sep.",
+    "shortfall": "21117.18",
     "problem_day": "2026-09-06",
     "candidates": [
       {
@@ -511,17 +510,6 @@
     "covered": false
   },
   "deferral_window": [
-    {
-      "id": "electric",
-      "name": "JCP&L / FirstEnergy",
-      "date": "2026-09-03",
-      "amount": "374.22",
-      "tier": 2,
-      "deferrable": false,
-      "secured": false,
-      "deferred": true,
-      "in_week": true
-    },
     {
       "id": "culligan",
       "name": "Culligan",
@@ -820,23 +808,9 @@
       "in_week": false
     }
   ],
-  "deferred_total": "374.22",
+  "deferred_total": "0.00",
   "lookahead_days": 14,
   "bills": [
-    {
-      "id": "electric",
-      "name": "JCP&L / FirstEnergy",
-      "amount": "418.98",
-      "due_day": 3,
-      "frequency": "monthly",
-      "next_date": "2026-09-03",
-      "tier": 2,
-      "active": true,
-      "variable": true,
-      "needs_review": false,
-      "source": "statement",
-      "note": "Month-of-year profile blended from 34 JCP&L payments across Dec 2021-Dec 2024 and the 2025-26 statements. Electric is the one utility paid reliably every month, so a month-of-year mean is meaningful for it."
-    },
     {
       "id": "culligan",
       "name": "Culligan",
@@ -1256,6 +1230,20 @@
       "needs_review": false,
       "source": "statement",
       "note": ""
+    },
+    {
+      "id": "electric",
+      "name": "JCP&L / FirstEnergy",
+      "amount": "418.98",
+      "due_day": 3,
+      "frequency": "monthly",
+      "next_date": "2026-10-03",
+      "tier": 2,
+      "active": true,
+      "variable": true,
+      "needs_review": false,
+      "source": "statement",
+      "note": "Month-of-year profile blended from 34 JCP&L payments across Dec 2021-Dec 2024 and the 2025-26 statements. Electric is the one utility paid reliably every month, so a month-of-year mean is meaningful for it."
     },
     {
       "id": "lacrosse-2627-inst-1",
