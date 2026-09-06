@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-09-05T18:28:23.914964-04:00",
-  "today": "2026-09-05",
+  "generated_at": "2026-09-06T09:53:39.747741-04:00",
+  "today": "2026-09-06",
   "balance": "1077.77",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "1077.77",
+  "end_of_day": "279.67",
   "end_of_week": "279.67",
   "end_of_month": "-7507.14",
   "week_end": "2026-09-06",
-  "minimum_balance": "-20915.69",
-  "minimum_date": "2026-11-03",
-  "shortfall": "20915.69",
+  "minimum_balance": "-21259.39",
+  "minimum_date": "2026-11-04",
+  "shortfall": "21259.39",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "-8556.53",
+    "safe": "-10358.15",
     "explain": [
       [
         "Balance now",
@@ -25,33 +25,55 @@
       ],
       [
         "Bills over the next 30 days",
-        "-11634.30"
+        "-13435.92"
       ],
       [
-        "Where that ends up, 4 Oct",
-        "-8556.53"
+        "Where that ends up, 5 Oct",
+        "-10358.15"
       ],
       [
-        "Lowest point along the way, 4 Oct",
-        "-8556.53"
+        "Lowest point along the way, 5 Oct",
+        "-10358.15"
       ],
       [
         "Available to spend",
-        "-8556.53"
+        "-10358.15"
       ]
     ],
-    "headroom": "-8556.53",
-    "headroom_day": "2026-10-04",
-    "per_day": "-507.32",
+    "headroom": "-10358.15",
+    "headroom_day": "2026-10-05",
+    "per_day": "-760.98",
     "per_day_day": "2026-09-07",
     "window_days": 30,
-    "window_end": "2026-10-04",
+    "window_end": "2026-10-05",
     "components": {
       "balance": "1077.77",
-      "window_end": "2026-10-04"
+      "window_end": "2026-10-05"
     }
   },
-  "today_bills": [],
+  "today_bills": [
+    {
+      "name": "One Main loan",
+      "amount": "388.24",
+      "tier": 3,
+      "autopay": true,
+      "deferred": false
+    },
+    {
+      "name": "Groceries",
+      "amount": "319.09",
+      "tier": 2,
+      "autopay": false,
+      "deferred": false
+    },
+    {
+      "name": "Fuel",
+      "amount": "90.77",
+      "tier": 2,
+      "autopay": false,
+      "deferred": false
+    }
+  ],
   "today_income": [],
   "this_week": [
     {
@@ -152,10 +174,6 @@
     }
   ],
   "curve": [
-    {
-      "date": "2026-09-05",
-      "closing": "1077.77"
-    },
     {
       "date": "2026-09-06",
       "closing": "279.67"
@@ -391,6 +409,10 @@
     {
       "date": "2026-11-03",
       "closing": "-20915.69"
+    },
+    {
+      "date": "2026-11-04",
+      "closing": "-21259.39"
     }
   ],
   "risks": [
@@ -408,8 +430,8 @@
       "type": "negative_balance",
       "severity": "critical",
       "title": "Balance goes negative Mon 7 Sep",
-      "detail": "Projected -$1,521.95 on Mon 7 Sep. Lowest point is -$20,915.69 on Tue 3 Nov.",
-      "amount": "20915.69",
+      "detail": "Projected -$1,521.95 on Mon 7 Sep. Lowest point is -$21,259.39 on Wed 4 Nov.",
+      "amount": "21259.39",
       "when": "2026-09-07"
     },
     {
@@ -449,18 +471,18 @@
       "when": "2026-09-19"
     },
     {
-      "id": "discretionary:2026-10-04",
+      "id": "discretionary:2026-10-05",
       "type": "discretionary",
       "severity": "medium",
-      "title": "Nothing available to spend: -$8,556.53",
-      "detail": "Over the next 30 days the balance reaches -$8,556.53 on Sun 4 Oct. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
-      "amount": "8556.53",
-      "when": "2026-10-04"
+      "title": "Nothing available to spend: -$10,358.15",
+      "detail": "Over the next 30 days the balance reaches -$10,358.15 on Mon 5 Oct. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
+      "amount": "10358.15",
+      "when": "2026-10-05"
     }
   ],
   "plan": {
-    "summary": "Projected shortfall of $20,915.69 on 7 Sep, and nothing deferrable falls before it. This one needs income or an outside arrangement.",
-    "shortfall": "20915.69",
+    "summary": "Projected shortfall of $21,259.39 on 7 Sep, and nothing deferrable falls before it. This one needs income or an outside arrangement.",
+    "shortfall": "21259.39",
     "problem_day": "2026-09-07",
     "candidates": [],
     "covered": false
