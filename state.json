@@ -82,18 +82,18 @@
     "secured_payment:mortgage:2026-09-07": {
       "type": "secured_payment",
       "severity": "critical",
-      "amount": "1521.95",
+      "amount": "723.85",
       "when": "2026-09-07",
       "first_seen": "2026-08-31T14:19:49.288583-04:00",
-      "last_seen": "2026-09-06T18:32:58.525697-04:00"
+      "last_seen": "2026-09-07T12:14:51.188312-04:00"
     },
     "negative_balance:2026-09-07": {
       "type": "negative_balance",
       "severity": "critical",
-      "amount": "21259.39",
+      "amount": "20461.29",
       "when": "2026-09-07",
       "first_seen": "2026-09-05T09:38:42.920586-04:00",
-      "last_seen": "2026-09-06T18:32:58.525697-04:00"
+      "last_seen": "2026-09-07T12:14:51.188312-04:00"
     },
     "secured_payment:ccu-car-loan:2026-09-18": {
       "type": "secured_payment",
@@ -101,7 +101,7 @@
       "amount": "306.90",
       "when": "2026-09-18",
       "first_seen": "2026-08-31T14:32:05.988750-04:00",
-      "last_seen": "2026-09-06T18:32:58.525697-04:00"
+      "last_seen": "2026-09-07T12:14:51.188312-04:00"
     },
     "secured_payment:car-payment:2026-09-24": {
       "type": "secured_payment",
@@ -109,15 +109,15 @@
       "amount": "742.65",
       "when": "2026-09-24",
       "first_seen": "2026-08-31T14:19:49.288583-04:00",
-      "last_seen": "2026-09-06T18:32:58.525697-04:00"
+      "last_seen": "2026-09-07T12:14:51.188312-04:00"
     },
     "large_payment:mortgage:2026-09-07": {
       "type": "large_payment",
       "severity": "high",
-      "amount": "1521.95",
+      "amount": "723.85",
       "when": "2026-09-07",
       "first_seen": "2026-08-31T14:19:49.288583-04:00",
-      "last_seen": "2026-09-06T18:32:58.525697-04:00"
+      "last_seen": "2026-09-07T12:14:51.188312-04:00"
     },
     "large_payment:clinton-water:2026-09-19": {
       "type": "large_payment",
@@ -125,15 +125,15 @@
       "amount": "873.53",
       "when": "2026-09-19",
       "first_seen": "2026-08-31T14:19:49.288583-04:00",
-      "last_seen": "2026-09-06T18:32:58.525697-04:00"
+      "last_seen": "2026-09-07T12:14:51.188312-04:00"
     },
-    "discretionary:2026-10-05": {
+    "discretionary:2026-10-06": {
       "type": "discretionary",
       "severity": "medium",
-      "amount": "10358.15",
-      "when": "2026-10-05",
-      "first_seen": "2026-09-06T09:53:39.747741-04:00",
-      "last_seen": "2026-09-06T18:32:58.525697-04:00"
+      "amount": "10465.79",
+      "when": "2026-10-06",
+      "first_seen": "2026-09-07T12:14:51.188312-04:00",
+      "last_seen": "2026-09-07T12:14:51.188312-04:00"
     }
   },
   "last_daily_sent": "2026-08-31T14:19:49.288583-04:00",
