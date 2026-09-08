@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-09-07T19:09:35.467782-04:00",
-  "today": "2026-09-07",
+  "generated_at": "2026-09-08T10:51:13.854733-04:00",
+  "today": "2026-09-08",
   "balance": "1077.77",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "-723.85",
-  "end_of_week": "57.26",
-  "end_of_month": "-6709.04",
+  "end_of_day": "927.77",
+  "end_of_week": "1858.88",
+  "end_of_month": "-4907.42",
   "week_end": "2026-09-13",
-  "minimum_balance": "-20461.29",
-  "minimum_date": "2026-11-04",
-  "shortfall": "20461.29",
+  "minimum_balance": "-19047.91",
+  "minimum_date": "2026-11-06",
+  "shortfall": "19047.91",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "-10465.79",
+    "safe": "-8841.47",
     "explain": [
       [
         "Balance now",
@@ -25,51 +25,43 @@
       ],
       [
         "Bills over the next 30 days",
-        "-13543.56"
+        "-11919.24"
       ],
       [
-        "Where that ends up, 6 Oct",
-        "-10465.79"
+        "Where that ends up, 7 Oct",
+        "-8841.47"
       ],
       [
-        "Lowest point along the way, 6 Oct",
-        "-10465.79"
+        "Lowest point along the way, 7 Oct",
+        "-8841.47"
       ],
       [
         "Available to spend",
-        "-10465.79"
+        "-8841.47"
       ]
     ],
-    "headroom": "-10465.79",
-    "headroom_day": "2026-10-06",
-    "per_day": "-723.85",
-    "per_day_day": "2026-09-07",
+    "headroom": "-8841.47",
+    "headroom_day": "2026-10-07",
+    "per_day": "-298.76",
+    "per_day_day": "2026-10-06",
     "window_days": 30,
-    "window_end": "2026-10-06",
+    "window_end": "2026-10-07",
     "components": {
       "balance": "1077.77",
-      "window_end": "2026-10-06"
+      "window_end": "2026-10-07"
     }
   },
   "today_bills": [
     {
-      "name": "Mortgage",
-      "amount": "1801.62",
-      "tier": 1,
+      "name": "PNC",
+      "amount": "150.00",
+      "tier": 3,
       "autopay": false,
       "deferred": false
     }
   ],
   "today_income": [],
   "this_week": [
-    {
-      "date": "2026-09-07",
-      "name": "Mortgage",
-      "amount": "1801.62",
-      "direction": "out",
-      "tier": 1,
-      "deferred": false
-    },
     {
       "date": "2026-09-08",
       "name": "PNC",
@@ -209,330 +201,374 @@
   ],
   "curve": [
     {
-      "date": "2026-09-07",
-      "closing": "-723.85"
-    },
-    {
       "date": "2026-09-08",
-      "closing": "-873.85"
+      "closing": "927.77"
     },
     {
       "date": "2026-09-09",
-      "closing": "-873.85"
+      "closing": "927.77"
     },
     {
       "date": "2026-09-10",
-      "closing": "-873.85"
+      "closing": "927.77"
     },
     {
       "date": "2026-09-11",
-      "closing": "1045.39"
+      "closing": "2847.01"
     },
     {
       "date": "2026-09-12",
-      "closing": "467.12"
+      "closing": "2268.74"
     },
     {
       "date": "2026-09-13",
-      "closing": "57.26"
+      "closing": "1858.88"
     },
     {
       "date": "2026-09-14",
-      "closing": "-42.74"
+      "closing": "1758.88"
     },
     {
       "date": "2026-09-15",
-      "closing": "-603.74"
+      "closing": "1197.88"
     },
     {
       "date": "2026-09-16",
-      "closing": "-603.74"
+      "closing": "1197.88"
     },
     {
       "date": "2026-09-17",
-      "closing": "-902.74"
+      "closing": "898.88"
     },
     {
       "date": "2026-09-18",
-      "closing": "-1560.93"
+      "closing": "240.69"
     },
     {
       "date": "2026-09-19",
-      "closing": "-2651.46"
+      "closing": "-849.84"
     },
     {
       "date": "2026-09-20",
-      "closing": "-3061.32"
+      "closing": "-1259.70"
     },
     {
       "date": "2026-09-21",
-      "closing": "-4862.94"
+      "closing": "-3061.32"
     },
     {
       "date": "2026-09-22",
-      "closing": "-4950.94"
+      "closing": "-3149.32"
     },
     {
       "date": "2026-09-23",
-      "closing": "-4972.25"
+      "closing": "-3170.63"
     },
     {
       "date": "2026-09-24",
-      "closing": "-6052.51"
+      "closing": "-4250.89"
     },
     {
       "date": "2026-09-25",
-      "closing": "-6052.51"
+      "closing": "-4250.89"
     },
     {
       "date": "2026-09-26",
-      "closing": "-6052.51"
+      "closing": "-4250.89"
     },
     {
       "date": "2026-09-27",
-      "closing": "-6547.15"
+      "closing": "-4745.53"
     },
     {
       "date": "2026-09-28",
-      "closing": "-6547.15"
+      "closing": "-4745.53"
     },
     {
       "date": "2026-09-29",
-      "closing": "-6709.04"
+      "closing": "-4907.42"
     },
     {
       "date": "2026-09-30",
-      "closing": "-6709.04"
+      "closing": "-4907.42"
     },
     {
       "date": "2026-10-01",
-      "closing": "-6709.04"
+      "closing": "-4907.42"
     },
     {
       "date": "2026-10-02",
-      "closing": "-6709.04"
+      "closing": "-4907.42"
     },
     {
       "date": "2026-10-03",
-      "closing": "-7004.87"
+      "closing": "-5203.25"
     },
     {
       "date": "2026-10-04",
-      "closing": "-7758.43"
+      "closing": "-5956.81"
     },
     {
       "date": "2026-10-05",
-      "closing": "-9560.05"
+      "closing": "-7758.43"
     },
     {
       "date": "2026-10-06",
-      "closing": "-10465.79"
+      "closing": "-8664.17"
     },
     {
       "date": "2026-10-07",
-      "closing": "-10643.09"
+      "closing": "-8841.47"
     },
     {
       "date": "2026-10-08",
-      "closing": "-10793.09"
+      "closing": "-8991.47"
     },
     {
       "date": "2026-10-09",
-      "closing": "-10793.09"
+      "closing": "-8991.47"
     },
     {
       "date": "2026-10-10",
-      "closing": "-10793.09"
+      "closing": "-8991.47"
     },
     {
       "date": "2026-10-11",
-      "closing": "-11292.86"
+      "closing": "-9491.24"
     },
     {
       "date": "2026-10-12",
-      "closing": "-11871.13"
+      "closing": "-10069.51"
     },
     {
       "date": "2026-10-13",
-      "closing": "-11871.13"
+      "closing": "-10069.51"
     },
     {
       "date": "2026-10-14",
-      "closing": "-11971.13"
+      "closing": "-10169.51"
     },
     {
       "date": "2026-10-15",
-      "closing": "-12532.13"
+      "closing": "-10730.51"
     },
     {
       "date": "2026-10-16",
-      "closing": "-12532.13"
+      "closing": "-10730.51"
     },
     {
       "date": "2026-10-17",
-      "closing": "-12831.13"
+      "closing": "-11029.51"
     },
     {
       "date": "2026-10-18",
-      "closing": "-13899.18"
+      "closing": "-12097.56"
     },
     {
       "date": "2026-10-19",
-      "closing": "-15917.80"
+      "closing": "-14116.18"
     },
     {
       "date": "2026-10-20",
-      "closing": "-15917.80"
+      "closing": "-14116.18"
     },
     {
       "date": "2026-10-21",
-      "closing": "-15917.80"
+      "closing": "-14116.18"
     },
     {
       "date": "2026-10-22",
-      "closing": "-16005.80"
+      "closing": "-14204.18"
     },
     {
       "date": "2026-10-23",
-      "closing": "-16027.11"
+      "closing": "-14225.49"
     },
     {
       "date": "2026-10-24",
-      "closing": "-17107.37"
+      "closing": "-15305.75"
     },
     {
       "date": "2026-10-25",
-      "closing": "-17517.23"
+      "closing": "-15715.61"
     },
     {
       "date": "2026-10-26",
-      "closing": "-17517.23"
+      "closing": "-15715.61"
     },
     {
       "date": "2026-10-27",
-      "closing": "-17602.01"
+      "closing": "-15800.39"
     },
     {
       "date": "2026-10-28",
-      "closing": "-17602.01"
+      "closing": "-15800.39"
     },
     {
       "date": "2026-10-29",
-      "closing": "-17763.90"
+      "closing": "-15962.28"
     },
     {
       "date": "2026-10-30",
-      "closing": "-17763.90"
+      "closing": "-15962.28"
     },
     {
       "date": "2026-10-31",
-      "closing": "-17763.90"
+      "closing": "-15962.28"
     },
     {
       "date": "2026-11-01",
-      "closing": "-18173.76"
+      "closing": "-16372.14"
     },
     {
       "date": "2026-11-02",
-      "closing": "-19975.38"
+      "closing": "-18173.76"
     },
     {
       "date": "2026-11-03",
-      "closing": "-20117.59"
+      "closing": "-18315.97"
     },
     {
       "date": "2026-11-04",
-      "closing": "-20461.29"
+      "closing": "-18659.67"
     },
     {
       "date": "2026-11-05",
-      "closing": "-20461.29"
+      "closing": "-18659.67"
+    },
+    {
+      "date": "2026-11-06",
+      "closing": "-19047.91"
     }
   ],
   "risks": [
     {
-      "id": "secured_payment:mortgage:2026-09-07",
+      "id": "negative_balance:2026-09-19",
+      "type": "negative_balance",
+      "severity": "critical",
+      "title": "Balance goes negative Sat 19 Sep",
+      "detail": "Projected -$849.84 on Sat 19 Sep. Lowest point is -$19,047.91 on Fri 6 Nov.",
+      "amount": "19047.91",
+      "when": "2026-09-19"
+    },
+    {
+      "id": "secured_payment:mortgage:2026-09-21",
       "type": "secured_payment",
       "severity": "critical",
       "title": "Mortgage may not clear",
-      "detail": "Mortgage of $1,801.62 is due Mon 7 Sep with only $1,077.77 available that day.",
-      "amount": "723.85",
-      "when": "2026-09-07"
-    },
-    {
-      "id": "negative_balance:2026-09-07",
-      "type": "negative_balance",
-      "severity": "critical",
-      "title": "Balance goes negative Mon 7 Sep",
-      "detail": "Projected -$723.85 on Mon 7 Sep. Lowest point is -$20,461.29 on Wed 4 Nov.",
-      "amount": "20461.29",
-      "when": "2026-09-07"
-    },
-    {
-      "id": "secured_payment:ccu-car-loan:2026-09-18",
-      "type": "secured_payment",
-      "severity": "critical",
-      "title": "CCU car loan may not clear",
-      "detail": "CCU car loan of $306.90 is due Fri 18 Sep with only -$902.74 available that day.",
-      "amount": "306.90",
-      "when": "2026-09-18"
+      "detail": "Mortgage of $1,801.62 is due Mon 21 Sep with only -$1,259.70 available that day.",
+      "amount": "1801.62",
+      "when": "2026-09-21"
     },
     {
       "id": "secured_payment:car-payment:2026-09-24",
       "type": "secured_payment",
       "severity": "critical",
       "title": "Kia may not clear",
-      "detail": "Kia of $742.65 is due Thu 24 Sep with only -$4,972.25 available that day.",
+      "detail": "Kia of $742.65 is due Thu 24 Sep with only -$3,170.63 available that day.",
       "amount": "742.65",
       "when": "2026-09-24"
     },
     {
-      "id": "large_payment:mortgage:2026-09-07",
-      "type": "large_payment",
-      "severity": "high",
-      "title": "Mortgage $1,801.62 may be short",
-      "detail": "Mortgage of $1,801.62 is due Mon 7 Sep against a projected opening balance of $1,077.77.",
-      "amount": "723.85",
-      "when": "2026-09-07"
+      "id": "secured_payment:ccu-car-loan:2026-10-18",
+      "type": "secured_payment",
+      "severity": "critical",
+      "title": "CCU car loan may not clear",
+      "detail": "CCU car loan of $306.90 is due Sun 18 Oct with only -$11,029.51 available that day.",
+      "amount": "306.90",
+      "when": "2026-10-18"
     },
     {
       "id": "large_payment:clinton-water:2026-09-19",
       "type": "large_payment",
       "severity": "high",
       "title": "Town of Clinton water $873.53 may be short",
-      "detail": "Town of Clinton water of $873.53 is due Sat 19 Sep against a projected opening balance of -$1,560.93.",
-      "amount": "873.53",
+      "detail": "Town of Clinton water of $873.53 is due Sat 19 Sep against a projected opening balance of $240.69.",
+      "amount": "632.84",
       "when": "2026-09-19"
     },
     {
-      "id": "discretionary:2026-10-06",
+      "id": "large_payment:mortgage:2026-09-21",
+      "type": "large_payment",
+      "severity": "high",
+      "title": "Mortgage $1,801.62 may be short",
+      "detail": "Mortgage of $1,801.62 is due Mon 21 Sep against a projected opening balance of -$1,259.70.",
+      "amount": "1801.62",
+      "when": "2026-09-21"
+    },
+    {
+      "id": "discretionary:2026-10-07",
       "type": "discretionary",
       "severity": "medium",
-      "title": "Nothing available to spend: -$10,465.79",
-      "detail": "Over the next 30 days the balance reaches -$10,465.79 on Tue 6 Oct. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
-      "amount": "10465.79",
-      "when": "2026-10-06"
+      "title": "Nothing available to spend: -$8,841.47",
+      "detail": "Over the next 30 days the balance reaches -$8,841.47 on Wed 7 Oct. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
+      "amount": "8841.47",
+      "when": "2026-10-07"
     }
   ],
   "plan": {
-    "summary": "Projected shortfall of $20,461.29 on 7 Sep, and nothing deferrable falls before it. This one needs income or an outside arrangement.",
-    "shortfall": "20461.29",
-    "problem_day": "2026-09-07",
-    "candidates": [],
+    "summary": "Deferring Lowes $126.00, Home Depot $100.00, Loew & Patel braces $400.00, Capital One CC $163.00, PNC $150.00, Chase CC Amazon $136.00, Comenity $65.00, Comcast $138.93, T-Mobile Lia $20.75 frees $1,299.68, which is short of the $19,047.91 needed by 19 Sep.",
+    "shortfall": "19047.91",
+    "problem_day": "2026-09-19",
+    "candidates": [
+      {
+        "name": "Lowes",
+        "amount": "126.00",
+        "date": "2026-09-18",
+        "tier": 5
+      },
+      {
+        "name": "Home Depot",
+        "amount": "100.00",
+        "date": "2026-09-14",
+        "tier": 5
+      },
+      {
+        "name": "Loew & Patel braces",
+        "amount": "400.00",
+        "date": "2026-09-15",
+        "tier": 4
+      },
+      {
+        "name": "Capital One CC",
+        "amount": "163.00",
+        "date": "2026-09-17",
+        "tier": 3
+      },
+      {
+        "name": "PNC",
+        "amount": "150.00",
+        "date": "2026-09-08",
+        "tier": 3
+      },
+      {
+        "name": "Chase CC Amazon",
+        "amount": "136.00",
+        "date": "2026-09-17",
+        "tier": 3
+      },
+      {
+        "name": "Comenity",
+        "amount": "65.00",
+        "date": "2026-09-12",
+        "tier": 3
+      },
+      {
+        "name": "Comcast",
+        "amount": "138.93",
+        "date": "2026-09-18",
+        "tier": 2
+      },
+      {
+        "name": "T-Mobile Lia",
+        "amount": "20.75",
+        "date": "2026-09-11",
+        "tier": 2
+      }
+    ],
     "covered": false
   },
   "deferral_window": [
-    {
-      "id": "mortgage",
-      "name": "Mortgage",
-      "date": "2026-09-07",
-      "amount": "1801.62",
-      "tier": 1,
-      "deferrable": false,
-      "secured": true,
-      "deferred": false,
-      "in_week": true
-    },
     {
       "id": "pnc",
       "name": "PNC",
@@ -857,20 +893,6 @@
   "lookahead_days": 14,
   "bills": [
     {
-      "id": "mortgage",
-      "name": "Mortgage",
-      "amount": "1801.62",
-      "due_day": null,
-      "frequency": "biweekly",
-      "next_date": "2026-09-07",
-      "tier": 1,
-      "active": true,
-      "variable": false,
-      "needs_review": true,
-      "source": "statement",
-      "note": "CORRECTED from semimonthly to biweekly. 15 consecutive payments 12/15/2025-06/29/2026 are exactly 14 days apart. Semimonthly modelled 24/yr; biweekly is 26/yr, a $3,603.24/yr difference. Extra same-week entries in the statements are failed-payment retries, not additional payments."
-    },
-    {
       "id": "pnc",
       "name": "PNC",
       "amount": "70.00",
@@ -1135,6 +1157,20 @@
       "needs_review": true,
       "source": "household",
       "note": "Actual annual spend: 2022 $1,088.42, 2023 $1,121.76, 2024 $1,318.11 (mean $1,176.10). Billed irregularly - between two and five payments a year, not on a fixed date - so this is the annual mean spread over four quarters rather than a real due date."
+    },
+    {
+      "id": "mortgage",
+      "name": "Mortgage",
+      "amount": "1801.62",
+      "due_day": null,
+      "frequency": "biweekly",
+      "next_date": "2026-09-21",
+      "tier": 1,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "statement",
+      "note": "CORRECTED from semimonthly to biweekly. 15 consecutive payments 12/15/2025-06/29/2026 are exactly 14 days apart. Semimonthly modelled 24/yr; biweekly is 26/yr, a $3,603.24/yr difference. Extra same-week entries in the statements are failed-payment retries, not additional payments."
     },
     {
       "id": "chase-united",
