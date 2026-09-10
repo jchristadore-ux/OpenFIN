@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-09T18:50:08.673597-04:00",
-  "today": "2026-09-09",
+  "generated_at": "2026-09-10T10:43:39.034087-04:00",
+  "today": "2026-09-10",
   "balance": "1077.77",
   "balance_is_fresh": false,
   "balance_entered_at": null,
@@ -8,9 +8,9 @@
   "end_of_week": "2008.88",
   "end_of_month": "-4757.42",
   "week_end": "2026-09-13",
-  "minimum_balance": "-18897.91",
-  "minimum_date": "2026-11-06",
-  "shortfall": "18897.91",
+  "minimum_balance": "-19457.77",
+  "minimum_date": "2026-11-08",
+  "shortfall": "19457.77",
   "allowance": "0.00",
   "discretionary": {
     "safe": "-8841.47",
@@ -28,7 +28,7 @@
         "-11919.24"
       ],
       [
-        "Where that ends up, 8 Oct",
+        "Where that ends up, 9 Oct",
         "-8841.47"
       ],
       [
@@ -42,13 +42,13 @@
     ],
     "headroom": "-8841.47",
     "headroom_day": "2026-10-08",
-    "per_day": "-304.08",
+    "per_day": "-315.34",
     "per_day_day": "2026-10-06",
     "window_days": 30,
-    "window_end": "2026-10-08",
+    "window_end": "2026-10-09",
     "components": {
       "balance": "1077.77",
-      "window_end": "2026-10-08"
+      "window_end": "2026-10-09"
     }
   },
   "today_bills": [],
@@ -184,10 +184,6 @@
     }
   ],
   "curve": [
-    {
-      "date": "2026-09-09",
-      "closing": "1077.77"
-    },
     {
       "date": "2026-09-10",
       "closing": "1077.77"
@@ -423,6 +419,10 @@
     {
       "date": "2026-11-07",
       "closing": "-18897.91"
+    },
+    {
+      "date": "2026-11-08",
+      "closing": "-19457.77"
     }
   ],
   "risks": [
@@ -431,8 +431,8 @@
       "type": "negative_balance",
       "severity": "critical",
       "title": "Balance goes negative Sat 19 Sep",
-      "detail": "Projected -$699.84 on Sat 19 Sep. Lowest point is -$18,897.91 on Fri 6 Nov.",
-      "amount": "18897.91",
+      "detail": "Projected -$699.84 on Sat 19 Sep. Lowest point is -$19,457.77 on Sun 8 Nov.",
+      "amount": "19457.77",
       "when": "2026-09-19"
     },
     {
@@ -491,8 +491,8 @@
     }
   ],
   "plan": {
-    "summary": "Deferring Lowes $126.00, Home Depot $100.00, Loew & Patel braces $400.00, Capital One CC $163.00, Chase CC Amazon $136.00, Comenity $65.00, Comcast $138.93, T-Mobile Lia $20.75 frees $1,149.68, which is short of the $18,897.91 needed by 19 Sep.",
-    "shortfall": "18897.91",
+    "summary": "Deferring Lowes $126.00, Home Depot $100.00, Loew & Patel braces $400.00, Capital One CC $163.00, Chase CC Amazon $136.00, Comenity $65.00, Comcast $138.93, T-Mobile Lia $20.75 frees $1,149.68, which is short of the $19,457.77 needed by 19 Sep.",
+    "shortfall": "19457.77",
     "problem_day": "2026-09-19",
     "candidates": [
       {
