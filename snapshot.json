@@ -1,53 +1,53 @@
 {
-  "generated_at": "2026-09-11T10:48:01.381297-04:00",
+  "generated_at": "2026-09-11T14:24:13.414281-04:00",
   "today": "2026-09-11",
-  "balance": "1077.77",
-  "balance_is_fresh": false,
-  "balance_entered_at": null,
-  "end_of_day": "2997.01",
-  "end_of_week": "2008.88",
-  "end_of_month": "-4757.42",
+  "balance": "3598.18",
+  "balance_is_fresh": true,
+  "balance_entered_at": "2026-09-11T14:24:13.414281-04:00",
+  "end_of_day": "3517.42",
+  "end_of_week": "2529.29",
+  "end_of_month": "-220.34",
   "week_end": "2026-09-13",
-  "minimum_balance": "-19457.77",
-  "minimum_date": "2026-11-08",
-  "shortfall": "19457.77",
+  "minimum_balance": "-3952.71",
+  "minimum_date": "2026-10-22",
+  "shortfall": "3952.71",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "-8841.47",
+    "safe": "-3435.39",
     "explain": [
       [
         "Balance now",
-        "1077.77"
+        "3598.18"
       ],
       [
         "Income over the next 30 days",
-        "2000.00"
+        "9390.78"
       ],
       [
         "Bills over the next 30 days",
-        "-11919.24"
+        "-12597.96"
       ],
       [
         "Where that ends up, 10 Oct",
-        "-8841.47"
+        "391.00"
       ],
       [
         "Lowest point along the way, 8 Oct",
-        "-8841.47"
+        "-3435.39"
       ],
       [
         "Available to spend",
-        "-8841.47"
+        "-3435.39"
       ]
     ],
-    "headroom": "-8841.47",
+    "headroom": "-3435.39",
     "headroom_day": "2026-10-08",
-    "per_day": "-327.47",
-    "per_day_day": "2026-10-06",
+    "per_day": "-242.16",
+    "per_day_day": "2026-09-24",
     "window_days": 30,
     "window_end": "2026-10-10",
     "components": {
-      "balance": "1077.77",
+      "balance": "3598.18",
       "window_end": "2026-10-10"
     }
   },
@@ -67,21 +67,8 @@
       "deferred": false
     }
   ],
-  "today_income": [
-    {
-      "name": "Leslie first pay",
-      "amount": "2000.00"
-    }
-  ],
+  "today_income": [],
   "this_week": [
-    {
-      "date": "2026-09-11",
-      "name": "Leslie first pay",
-      "amount": "2000.00",
-      "direction": "in",
-      "tier": 0,
-      "deferred": false
-    },
     {
       "date": "2026-09-11",
       "name": "Elizabethtown Gas",
@@ -141,6 +128,20 @@
     },
     {
       "date": "2026-09-15",
+      "name": "JCP&L past due (deferred 3 Sep)",
+      "amount": "374.22",
+      "tier": 2,
+      "deferred": false
+    },
+    {
+      "date": "2026-09-15",
+      "name": "Sewer past due (deferred 1 Sep)",
+      "amount": "304.50",
+      "tier": 2,
+      "deferred": false
+    },
+    {
+      "date": "2026-09-15",
       "name": "Upstart debt consol",
       "amount": "161.00",
       "tier": 3,
@@ -187,280 +188,266 @@
       "amount": "114.00",
       "tier": 2,
       "deferred": false
-    },
-    {
-      "date": "2026-09-19",
-      "name": "IRS federal",
-      "amount": "103.00",
-      "tier": 2,
-      "deferred": false
-    },
-    {
-      "date": "2026-09-20",
-      "name": "Groceries",
-      "amount": "319.09",
-      "tier": 2,
-      "deferred": false
     }
   ],
   "curve": [
     {
       "date": "2026-09-11",
-      "closing": "2997.01"
+      "closing": "3517.42"
     },
     {
       "date": "2026-09-12",
-      "closing": "2418.74"
+      "closing": "2939.15"
     },
     {
       "date": "2026-09-13",
-      "closing": "2008.88"
+      "closing": "2529.29"
     },
     {
       "date": "2026-09-14",
-      "closing": "1908.88"
+      "closing": "2429.29"
     },
     {
       "date": "2026-09-15",
-      "closing": "1347.88"
+      "closing": "1189.57"
     },
     {
       "date": "2026-09-16",
-      "closing": "1347.88"
+      "closing": "1189.57"
     },
     {
       "date": "2026-09-17",
-      "closing": "1048.88"
+      "closing": "890.57"
     },
     {
       "date": "2026-09-18",
-      "closing": "390.69"
+      "closing": "1101.38"
     },
     {
       "date": "2026-09-19",
-      "closing": "-699.84"
+      "closing": "10.85"
     },
     {
       "date": "2026-09-20",
-      "closing": "-1109.70"
+      "closing": "-399.01"
     },
     {
       "date": "2026-09-21",
-      "closing": "-2911.32"
+      "closing": "-2200.63"
     },
     {
       "date": "2026-09-22",
-      "closing": "-2999.32"
+      "closing": "-2288.63"
     },
     {
       "date": "2026-09-23",
-      "closing": "-3020.63"
+      "closing": "-2309.94"
     },
     {
       "date": "2026-09-24",
-      "closing": "-4100.89"
+      "closing": "-3390.20"
     },
     {
       "date": "2026-09-25",
-      "closing": "-4100.89"
+      "closing": "436.19"
     },
     {
       "date": "2026-09-26",
-      "closing": "-4100.89"
+      "closing": "436.19"
     },
     {
       "date": "2026-09-27",
-      "closing": "-4595.53"
+      "closing": "-58.45"
     },
     {
       "date": "2026-09-28",
-      "closing": "-4595.53"
+      "closing": "-58.45"
     },
     {
       "date": "2026-09-29",
-      "closing": "-4757.42"
+      "closing": "-220.34"
     },
     {
       "date": "2026-09-30",
-      "closing": "-4757.42"
+      "closing": "-220.34"
     },
     {
       "date": "2026-10-01",
-      "closing": "-4757.42"
+      "closing": "-220.34"
     },
     {
       "date": "2026-10-02",
-      "closing": "-4757.42"
+      "closing": "648.66"
     },
     {
       "date": "2026-10-03",
-      "closing": "-5053.25"
+      "closing": "352.83"
     },
     {
       "date": "2026-10-04",
-      "closing": "-5806.81"
+      "closing": "-400.73"
     },
     {
       "date": "2026-10-05",
-      "closing": "-7608.43"
+      "closing": "-2202.35"
     },
     {
       "date": "2026-10-06",
-      "closing": "-8514.17"
+      "closing": "-3108.09"
     },
     {
       "date": "2026-10-07",
-      "closing": "-8691.47"
+      "closing": "-3285.39"
     },
     {
       "date": "2026-10-08",
-      "closing": "-8841.47"
+      "closing": "-3435.39"
     },
     {
       "date": "2026-10-09",
-      "closing": "-8841.47"
+      "closing": "391.00"
     },
     {
       "date": "2026-10-10",
-      "closing": "-8841.47"
+      "closing": "391.00"
     },
     {
       "date": "2026-10-11",
-      "closing": "-9341.24"
+      "closing": "-108.77"
     },
     {
       "date": "2026-10-12",
-      "closing": "-9919.51"
+      "closing": "-687.04"
     },
     {
       "date": "2026-10-13",
-      "closing": "-9919.51"
+      "closing": "-687.04"
     },
     {
       "date": "2026-10-14",
-      "closing": "-10019.51"
+      "closing": "-787.04"
     },
     {
       "date": "2026-10-15",
-      "closing": "-10580.51"
+      "closing": "-1348.04"
     },
     {
       "date": "2026-10-16",
-      "closing": "-10580.51"
+      "closing": "-479.04"
     },
     {
       "date": "2026-10-17",
-      "closing": "-10879.51"
+      "closing": "-778.04"
     },
     {
       "date": "2026-10-18",
-      "closing": "-11947.56"
+      "closing": "-1846.09"
     },
     {
       "date": "2026-10-19",
-      "closing": "-13966.18"
+      "closing": "-3864.71"
     },
     {
       "date": "2026-10-20",
-      "closing": "-13966.18"
+      "closing": "-3864.71"
     },
     {
       "date": "2026-10-21",
-      "closing": "-13966.18"
+      "closing": "-3864.71"
     },
     {
       "date": "2026-10-22",
-      "closing": "-14054.18"
+      "closing": "-3952.71"
     },
     {
       "date": "2026-10-23",
-      "closing": "-14075.49"
+      "closing": "-147.63"
     },
     {
       "date": "2026-10-24",
-      "closing": "-15155.75"
+      "closing": "-1227.89"
     },
     {
       "date": "2026-10-25",
-      "closing": "-15565.61"
+      "closing": "-1637.75"
     },
     {
       "date": "2026-10-26",
-      "closing": "-15565.61"
+      "closing": "-1637.75"
     },
     {
       "date": "2026-10-27",
-      "closing": "-15650.39"
+      "closing": "-1722.53"
     },
     {
       "date": "2026-10-28",
-      "closing": "-15650.39"
+      "closing": "-1722.53"
     },
     {
       "date": "2026-10-29",
-      "closing": "-15812.28"
+      "closing": "-1884.42"
     },
     {
       "date": "2026-10-30",
-      "closing": "-15812.28"
+      "closing": "-1015.42"
     },
     {
       "date": "2026-10-31",
-      "closing": "-15812.28"
+      "closing": "-1015.42"
     },
     {
       "date": "2026-11-01",
-      "closing": "-16222.14"
+      "closing": "-1425.28"
     },
     {
       "date": "2026-11-02",
-      "closing": "-18023.76"
+      "closing": "-3226.90"
     },
     {
       "date": "2026-11-03",
-      "closing": "-18165.97"
+      "closing": "-3369.11"
     },
     {
       "date": "2026-11-04",
-      "closing": "-18509.67"
+      "closing": "-3712.81"
     },
     {
       "date": "2026-11-05",
-      "closing": "-18509.67"
+      "closing": "-3712.81"
     },
     {
       "date": "2026-11-06",
-      "closing": "-18897.91"
+      "closing": "-274.66"
     },
     {
       "date": "2026-11-07",
-      "closing": "-18897.91"
+      "closing": "-274.66"
     },
     {
       "date": "2026-11-08",
-      "closing": "-19457.77"
+      "closing": "-834.52"
     },
     {
       "date": "2026-11-09",
-      "closing": "-19457.77"
+      "closing": "-834.52"
     }
   ],
   "risks": [
     {
-      "id": "negative_balance:2026-09-19",
+      "id": "negative_balance:2026-09-20",
       "type": "negative_balance",
       "severity": "critical",
-      "title": "Balance goes negative Sat 19 Sep",
-      "detail": "Projected -$699.84 on Sat 19 Sep. Lowest point is -$19,457.77 on Sun 8 Nov.",
-      "amount": "19457.77",
-      "when": "2026-09-19"
+      "title": "Balance goes negative Sun 20 Sep",
+      "detail": "Projected -$399.01 on Sun 20 Sep. Lowest point is -$3,952.71 on Thu 22 Oct.",
+      "amount": "3952.71",
+      "when": "2026-09-20"
     },
     {
       "id": "secured_payment:mortgage:2026-09-21",
       "type": "secured_payment",
       "severity": "critical",
       "title": "Mortgage may not clear",
-      "detail": "Mortgage of $1,801.62 is due Mon 21 Sep with only -$1,109.70 available that day.",
+      "detail": "Mortgage of $1,801.62 is due Mon 21 Sep with only -$399.01 available that day.",
       "amount": "1801.62",
       "when": "2026-09-21"
     },
@@ -469,7 +456,7 @@
       "type": "secured_payment",
       "severity": "critical",
       "title": "Kia may not clear",
-      "detail": "Kia of $742.65 is due Thu 24 Sep with only -$3,020.63 available that day.",
+      "detail": "Kia of $742.65 is due Thu 24 Sep with only -$2,309.94 available that day.",
       "amount": "742.65",
       "when": "2026-09-24"
     },
@@ -478,25 +465,16 @@
       "type": "secured_payment",
       "severity": "critical",
       "title": "CCU car loan may not clear",
-      "detail": "CCU car loan of $306.90 is due Sun 18 Oct with only -$10,879.51 available that day.",
+      "detail": "CCU car loan of $306.90 is due Sun 18 Oct with only -$778.04 available that day.",
       "amount": "306.90",
       "when": "2026-10-18"
-    },
-    {
-      "id": "large_payment:clinton-water:2026-09-19",
-      "type": "large_payment",
-      "severity": "high",
-      "title": "Town of Clinton water $873.53 may be short",
-      "detail": "Town of Clinton water of $873.53 is due Sat 19 Sep against a projected opening balance of $390.69.",
-      "amount": "482.84",
-      "when": "2026-09-19"
     },
     {
       "id": "large_payment:mortgage:2026-09-21",
       "type": "large_payment",
       "severity": "high",
       "title": "Mortgage $1,801.62 may be short",
-      "detail": "Mortgage of $1,801.62 is due Mon 21 Sep against a projected opening balance of -$1,109.70.",
+      "detail": "Mortgage of $1,801.62 is due Mon 21 Sep against a projected opening balance of -$399.01.",
       "amount": "1801.62",
       "when": "2026-09-21"
     },
@@ -504,16 +482,16 @@
       "id": "discretionary:2026-10-08",
       "type": "discretionary",
       "severity": "medium",
-      "title": "Nothing available to spend: -$8,841.47",
-      "detail": "Over the next 30 days the balance reaches -$8,841.47 on Thu 8 Oct. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
-      "amount": "8841.47",
+      "title": "Nothing available to spend: -$3,435.39",
+      "detail": "Over the next 30 days the balance reaches -$3,435.39 on Thu 8 Oct. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
+      "amount": "3435.39",
       "when": "2026-10-08"
     }
   ],
   "plan": {
-    "summary": "Deferring Lowes $126.00, Home Depot $100.00, Loew & Patel braces $400.00, Capital One CC $163.00, Chase CC Amazon $136.00, Comenity $65.00, Comcast $138.93, T-Mobile Lia $20.75 frees $1,149.68, which is short of the $19,457.77 needed by 19 Sep.",
-    "shortfall": "19457.77",
-    "problem_day": "2026-09-19",
+    "summary": "Deferring Lowes $126.00, Home Depot $100.00, Loew & Patel braces $400.00, Capital One CC $163.00, Chase CC Amazon $136.00, Comenity $65.00, Comcast $138.93, T-Mobile Lia $20.75 frees $1,149.68, which is short of the $3,952.71 needed by 20 Sep.",
+    "shortfall": "3952.71",
+    "problem_day": "2026-09-20",
     "candidates": [
       {
         "name": "Lowes",
@@ -651,6 +629,28 @@
       "amount": "400.00",
       "tier": 4,
       "deferrable": true,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "electric-deferred-2026-09",
+      "name": "JCP&L past due (deferred 3 Sep)",
+      "date": "2026-09-15",
+      "amount": "374.22",
+      "tier": 2,
+      "deferrable": false,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "sewer-deferred-2026-09",
+      "name": "Sewer past due (deferred 1 Sep)",
+      "date": "2026-09-15",
+      "amount": "304.50",
+      "tier": 2,
+      "deferrable": false,
       "secured": false,
       "deferred": false,
       "in_week": false
@@ -978,6 +978,20 @@
       "note": ""
     },
     {
+      "id": "electric-deferred-2026-09",
+      "name": "JCP&L past due (deferred 3 Sep)",
+      "amount": "374.22",
+      "due_day": null,
+      "frequency": "once",
+      "next_date": "2026-09-15",
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "household",
+      "note": "Added 11 Sep 2026. The 3 Sep electric payment was deferred, so it dropped out of the forecast once the date passed - the money is still owed. Carried back in as a one-off dated 15 Sep. AMOUNT IS THE MODELLED SEPTEMBER FIGURE ($374.22 from the month-of-year profile), not a figure read off a bill: the"
+    },
+    {
       "id": "loew-patel-braces",
       "name": "Loew & Patel braces",
       "amount": "400.00",
@@ -990,6 +1004,20 @@
       "needs_review": true,
       "source": "household",
       "note": "SCHEDULE UNKNOWN - flagged, not guessed. The statements show $1,000.00 on 06/10/2026, $129.47 on 04/29 and 06/24, and smaller amounts through the spring. No pattern is derivable. Held at the household's $400.00/month placeholder. observed_max is deliberately NOT set: with it, the engine forecast the"
+    },
+    {
+      "id": "sewer-deferred-2026-09",
+      "name": "Sewer past due (deferred 1 Sep)",
+      "amount": "304.50",
+      "due_day": null,
+      "frequency": "once",
+      "next_date": "2026-09-15",
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "household",
+      "note": "Added 11 Sep 2026. The 1 Sep sewer payment was deferred and the date has since passed, so it left the forecast while still being owed. Carried back in as a one-off dated 15 Sep at the configured $304.50. That figure is itself unconfirmed - the only sewer payment in 36 months of statements is $135.00"
     },
     {
       "id": "upstart-debt-consolidation",
@@ -1456,18 +1484,32 @@
   ],
   "income": [
     {
-      "id": "leslie-first-pay",
-      "name": "Leslie first pay",
-      "amount": "2000.00",
+      "id": "unemployment",
+      "name": "NJ unemployment",
+      "amount": "869.00",
       "due_day": null,
-      "frequency": "once",
-      "next_date": "2026-09-11",
+      "frequency": "weekly",
+      "next_date": "2026-09-18",
       "tier": 5,
       "active": true,
       "variable": false,
       "needs_review": true,
-      "source": "app",
-      "note": "Added in the app 31 Aug 2026: once, first on 11 Sep 2026. Not yet seen on a statement."
+      "source": "household",
+      "note": "Added 11 Sep 2026. Replaces the weekly Insight Global payroll, which ended. $869/week as stated by the household. ANCHOR IS AN ASSUMPTION: set to 18 Sep 2026 so the first modelled payment falls after today's entered balance rather than on top of it. Correct the anchor to the real payment weekday onc"
+    },
+    {
+      "id": "leslie-payroll",
+      "name": "Leslie payroll",
+      "amount": "2957.39",
+      "due_day": null,
+      "frequency": "biweekly",
+      "next_date": "2026-09-25",
+      "tier": 5,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "household",
+      "note": "Added 11 Sep 2026: Leslie has returned to work, $2,957.39 every two weeks. ANCHOR IS AN ASSUMPTION: the placeholder first cheque was dated 11 Sep 2026, so the first full modelled pay is set two weeks later, 25 Sep 2026. That also keeps it off today, whose deposit is already inside the entered balanc"
     },
     {
       "id": "boe-payroll",
@@ -1510,6 +1552,20 @@
       "needs_review": true,
       "source": "app",
       "note": "Edited in the app 31 Aug 2026: deactivated. Previous note: CORRECTED. Was $2,853.17/week; the actual employer is Insight Global and the modal weekly deposit is $2,016.06. That is $837.11/week overstated, roughly $3,627/month of income the projection was counting and never receiving. Deposits range $"
+    },
+    {
+      "id": "leslie-first-pay",
+      "name": "Leslie first pay",
+      "amount": "2000.00",
+      "due_day": null,
+      "frequency": "once",
+      "next_date": null,
+      "tier": 5,
+      "active": false,
+      "variable": false,
+      "needs_review": false,
+      "source": "household",
+      "note": "Superseded 11 Sep 2026 by leslie-payroll. The $2,000 placeholder was a guess at a first cheque dated today; the household has since given the real figure ($2,957.39 biweekly) and today's entered balance already reflects whatever landed. Left inactive so it is not counted twice."
     }
   ],
   "settings": {
