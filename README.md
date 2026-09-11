@@ -129,6 +129,7 @@ One authoritative engine. Business logic never lives in the dashboard.
 | `src/schedule.py` | Payment-date optimisation — moves a bill, never drops it |
 | `src/report.py` | The cash-flow audit PDF |
 | `src/pdfwrite.py` | Minimal PDF writer, standard library only |
+| `src/make_workbook.py` | 12-tab monthly bill workbook (the only file needing `openpyxl`) |
 | `src/notify.py` | Email composition, daily and alert |
 | `src/messaging.py` | SMTP delivery |
 | `src/engine.py` | The orchestrator and the only entry point |
@@ -169,7 +170,17 @@ python src/engine.py daily --balance 4382.17 --dry-run
 python src/engine.py watch --dry-run
 python src/engine.py defer --items '[{"bill_id":"netflix","date":"2026-08-23"}]'
 python src/engine.py audit --out cashflow-audit.pdf
+
+pip install openpyxl                          # this script only
+python src/make_workbook.py --out monthly-bills.xlsx
 ```
+
+`make_workbook.py` is a standalone utility and nothing in the engine imports it,
+so the runtime stays dependency-free. It writes one tab per month for the next
+twelve, reading dates and amounts through `fincal` — the same authority the
+forecast uses — so the workbook cannot drift from the engine. Seasonal bills
+carry their month-of-year profile, so electric peaks in August and gas in March
+rather than sitting at one wrong figure all year.
 
 ## When should each bill actually be paid?
 
