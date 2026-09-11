@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-10T18:51:00.543349-04:00",
-  "today": "2026-09-10",
+  "generated_at": "2026-09-11T10:48:01.381297-04:00",
+  "today": "2026-09-11",
   "balance": "1077.77",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "1077.77",
+  "end_of_day": "2997.01",
   "end_of_week": "2008.88",
   "end_of_month": "-4757.42",
   "week_end": "2026-09-13",
@@ -28,7 +28,7 @@
         "-11919.24"
       ],
       [
-        "Where that ends up, 9 Oct",
+        "Where that ends up, 10 Oct",
         "-8841.47"
       ],
       [
@@ -42,17 +42,37 @@
     ],
     "headroom": "-8841.47",
     "headroom_day": "2026-10-08",
-    "per_day": "-315.34",
+    "per_day": "-327.47",
     "per_day_day": "2026-10-06",
     "window_days": 30,
-    "window_end": "2026-10-09",
+    "window_end": "2026-10-10",
     "components": {
       "balance": "1077.77",
-      "window_end": "2026-10-09"
+      "window_end": "2026-10-10"
     }
   },
-  "today_bills": [],
-  "today_income": [],
+  "today_bills": [
+    {
+      "name": "Elizabethtown Gas",
+      "amount": "60.01",
+      "tier": 2,
+      "autopay": false,
+      "deferred": false
+    },
+    {
+      "name": "T-Mobile Lia",
+      "amount": "20.75",
+      "tier": 2,
+      "autopay": true,
+      "deferred": false
+    }
+  ],
+  "today_income": [
+    {
+      "name": "Leslie first pay",
+      "amount": "2000.00"
+    }
+  ],
   "this_week": [
     {
       "date": "2026-09-11",
@@ -184,10 +204,6 @@
     }
   ],
   "curve": [
-    {
-      "date": "2026-09-10",
-      "closing": "1077.77"
-    },
     {
       "date": "2026-09-11",
       "closing": "2997.01"
@@ -422,6 +438,10 @@
     },
     {
       "date": "2026-11-08",
+      "closing": "-19457.77"
+    },
+    {
+      "date": "2026-11-09",
       "closing": "-19457.77"
     }
   ],
