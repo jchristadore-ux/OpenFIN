@@ -74,11 +74,53 @@
       "due_date": "2026-09-11",
       "anchor_date": null,
       "match_keywords": [],
+      "active": false,
+      "needs_review": false,
+      "note": "Superseded 11 Sep 2026 by leslie-payroll. The $2,000 placeholder was a guess at a first cheque dated today; the household has since given the real figure ($2,957.39 biweekly) and today's entered balance already reflects whatever landed. Left inactive so it is not counted twice.",
+      "last_updated": "2026-09-11T12:00:00-04:00",
+      "source": "household"
+    },
+    {
+      "id": "unemployment",
+      "name": "NJ unemployment",
+      "amount": 869.0,
+      "due_day": null,
+      "frequency": "weekly",
+      "due_date": null,
+      "anchor_date": "2026-09-18",
+      "starts_on": "2026-09-12",
+      "match_keywords": [
+        "unemployment",
+        "nj dept of labor",
+        "dept of labor",
+        "njdol",
+        "state of nj"
+      ],
       "active": true,
       "needs_review": true,
-      "note": "Added in the app 31 Aug 2026: once, first on 11 Sep 2026. Not yet seen on a statement.",
-      "last_updated": "2026-08-31T21:47:06.638727-04:00",
-      "source": "app"
+      "note": "Added 11 Sep 2026. Replaces the weekly Insight Global payroll, which ended. $869/week as stated by the household. ANCHOR IS AN ASSUMPTION: set to 18 Sep 2026 so the first modelled payment falls after today's entered balance rather than on top of it. Correct the anchor to the real payment weekday once one is seen on a statement, and clear needs_review. Benefits are time-limited - record the exhaustion date here when it is known, as ends_on, or the forecast will run this income forever. starts_on is set to 12 Sep 2026 because a weekly/biweekly anchor is a phase marker, not a start date - the engine walks backwards from it, and without the bound this would also fire on 11 Sep, on top of a balance that already contains it.",
+      "last_updated": "2026-09-11T12:00:00-04:00",
+      "source": "household"
+    },
+    {
+      "id": "leslie-payroll",
+      "name": "Leslie payroll",
+      "amount": 2957.39,
+      "due_day": null,
+      "frequency": "biweekly",
+      "due_date": null,
+      "anchor_date": "2026-09-25",
+      "starts_on": "2026-09-12",
+      "match_keywords": [
+        "payroll",
+        "direct dep",
+        "dir dep"
+      ],
+      "active": true,
+      "needs_review": true,
+      "note": "Added 11 Sep 2026: Leslie has returned to work, $2,957.39 every two weeks. ANCHOR IS AN ASSUMPTION: the placeholder first cheque was dated 11 Sep 2026, so the first full modelled pay is set two weeks later, 25 Sep 2026. That also keeps it off today, whose deposit is already inside the entered balance. Confirm the real pay date and amount on the first statement, then clear needs_review. starts_on is set to 12 Sep 2026 because a weekly/biweekly anchor is a phase marker, not a start date - the engine walks backwards from it, and without the bound this would also fire on 11 Sep, on top of a balance that already contains it.",
+      "last_updated": "2026-09-11T12:00:00-04:00",
+      "source": "household"
     }
   ]
 }

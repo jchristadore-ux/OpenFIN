@@ -5,7 +5,7 @@
     "Keys beginning with an underscore are ignored.",
     "",
     "Each entry:",
-    "  id .............. Stable slug. Never reuse or renumber \u2014 the diff on an uploaded",
+    "  id .............. Stable slug. Never reuse or renumber — the diff on an uploaded",
     "                    screenshot matches on this, and history is keyed to it.",
     "  name ............ Human-readable name. Shows up in the text message.",
     "  amount .......... Dollars, positive number.",
@@ -15,7 +15,7 @@
     "  frequency ....... monthly | weekly | biweekly | semimonthly | quarterly | annual | once",
     "  due_date ........ ISO date (YYYY-MM-DD). Required for 'once' and 'annual'. For",
     "                    'annual' only the month and day are used.",
-    "  anchor_date ..... ISO date. Required for 'weekly' and 'biweekly' \u2014 every occurrence",
+    "  anchor_date ..... ISO date. Required for 'weekly' and 'biweekly' — every occurrence",
     "                    is counted forward from this date in 7- or 14-day steps.",
     "  autopay ......... true if it comes out on its own. A bill on a weekend is still",
     "                    counted on its due date; nothing is shifted to the next weekday.",
@@ -1082,6 +1082,56 @@
       "secured": false,
       "variable": false,
       "confidence": "high"
+    },
+    {
+      "id": "electric-deferred-2026-09",
+      "name": "JCP&L past due (deferred 3 Sep)",
+      "amount": 374.22,
+      "due_day": null,
+      "frequency": "once",
+      "due_date": "2026-09-15",
+      "anchor_date": null,
+      "autopay": false,
+      "match_keywords": [
+        "jcp",
+        "jersey central",
+        "first energy",
+        "firstenergy"
+      ],
+      "active": true,
+      "needs_review": true,
+      "note": "Added 11 Sep 2026. The 3 Sep electric payment was deferred, so it dropped out of the forecast once the date passed - the money is still owed. Carried back in as a one-off dated 15 Sep. AMOUNT IS THE MODELLED SEPTEMBER FIGURE ($374.22 from the month-of-year profile), not a figure read off a bill: the real past-due balance may be higher and may carry a late fee. Replace it with the amount on the JCP&L statement and clear needs_review. This is in ADDITION to the recurring 3 Oct occurrence.",
+      "last_updated": "2026-09-11T12:00:00-04:00",
+      "source": "household",
+      "priority_tier": 2,
+      "deferrable": false,
+      "secured": false,
+      "variable": false,
+      "confidence": "medium"
+    },
+    {
+      "id": "sewer-deferred-2026-09",
+      "name": "Sewer past due (deferred 1 Sep)",
+      "amount": 304.5,
+      "due_day": null,
+      "frequency": "once",
+      "due_date": "2026-09-15",
+      "anchor_date": null,
+      "autopay": false,
+      "match_keywords": [
+        "sewer",
+        "utility auth"
+      ],
+      "active": true,
+      "needs_review": true,
+      "note": "Added 11 Sep 2026. The 1 Sep sewer payment was deferred and the date has since passed, so it left the forecast while still being owed. Carried back in as a one-off dated 15 Sep at the configured $304.50. That figure is itself unconfirmed - the only sewer payment in 36 months of statements is $135.00 in Sep 2023 - so check the bill before paying and clear needs_review. The annual 'sewer' entry still stands for 1 Sep 2027.",
+      "last_updated": "2026-09-11T12:00:00-04:00",
+      "source": "household",
+      "priority_tier": 2,
+      "deferrable": false,
+      "secured": false,
+      "variable": false,
+      "confidence": "medium"
     }
   ]
 }

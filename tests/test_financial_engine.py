@@ -529,8 +529,14 @@ class TestRiskEmailsCanBeSwitchedOff(unittest.TestCase):
         import engine
         tmp = Path(tempfile.mkdtemp())
         self.addCleanup(shutil.rmtree, tmp, True)
+        # Relative to the real today, not the pinned TODAY the rest of the file
+        # uses: run_watch reads datetime.now(). A hardcoded date here is a time
+        # bomb - it was nine days out when written, and the day it passed the
+        # bill stopped landing in the window, no risk was raised, and this test
+        # began failing on every branch for a reason no diff could explain.
+        due = (date.today() + timedelta(days=9)).isoformat()
         (tmp / "bills.json").write_text(json.dumps(
-            [bill("big", "Big", 4000, freq="once", due="2026-08-20", tier=1,
+            [bill("big", "Big", 4000, freq="once", due=due, tier=1,
                   deferrable=False, secured=True)]), encoding="utf-8")
         (tmp / "income.json").write_text(json.dumps([]), encoding="utf-8")
 
