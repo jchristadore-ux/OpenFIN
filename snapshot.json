@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-09-11T18:53:08.695112-04:00",
-  "today": "2026-09-11",
+  "generated_at": "2026-09-12T09:49:37.035861-04:00",
+  "today": "2026-09-12",
   "balance": "3598.18",
-  "balance_is_fresh": true,
-  "balance_entered_at": "2026-09-11T18:53:08.695112-04:00",
-  "end_of_day": "3517.42",
-  "end_of_week": "2529.29",
-  "end_of_month": "-220.34",
+  "balance_is_fresh": false,
+  "balance_entered_at": null,
+  "end_of_day": "3019.91",
+  "end_of_week": "2610.05",
+  "end_of_month": "-139.58",
   "week_end": "2026-09-13",
-  "minimum_balance": "-3952.71",
+  "minimum_balance": "-3871.95",
   "minimum_date": "2026-10-22",
-  "shortfall": "3952.71",
+  "shortfall": "3871.95",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "-3435.39",
+    "safe": "-3354.63",
     "explain": [
       [
         "Balance now",
@@ -25,66 +25,50 @@
       ],
       [
         "Bills over the next 30 days",
-        "-12597.96"
+        "-13016.97"
       ],
       [
-        "Where that ends up, 10 Oct",
-        "391.00"
+        "Where that ends up, 11 Oct",
+        "-28.01"
       ],
       [
         "Lowest point along the way, 8 Oct",
-        "-3435.39"
+        "-3354.63"
       ],
       [
         "Available to spend",
-        "-3435.39"
+        "-3354.63"
       ]
     ],
-    "headroom": "-3435.39",
+    "headroom": "-3354.63",
     "headroom_day": "2026-10-08",
-    "per_day": "-242.16",
+    "per_day": "-254.57",
     "per_day_day": "2026-09-24",
     "window_days": 30,
-    "window_end": "2026-10-10",
+    "window_end": "2026-10-11",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-10-10"
+      "window_end": "2026-10-11"
     }
   },
   "today_bills": [
     {
-      "name": "Elizabethtown Gas",
-      "amount": "60.01",
+      "name": "Hanover Auto",
+      "amount": "513.27",
       "tier": 2,
       "autopay": false,
       "deferred": false
     },
     {
-      "name": "T-Mobile Lia",
-      "amount": "20.75",
-      "tier": 2,
-      "autopay": true,
+      "name": "Comenity",
+      "amount": "65.00",
+      "tier": 3,
+      "autopay": false,
       "deferred": false
     }
   ],
   "today_income": [],
   "this_week": [
-    {
-      "date": "2026-09-11",
-      "name": "Elizabethtown Gas",
-      "amount": "60.01",
-      "direction": "out",
-      "tier": 2,
-      "deferred": false
-    },
-    {
-      "date": "2026-09-11",
-      "name": "T-Mobile Lia",
-      "amount": "20.75",
-      "direction": "out",
-      "tier": 2,
-      "deferred": false
-    },
     {
       "date": "2026-09-12",
       "name": "Hanover Auto",
@@ -192,244 +176,244 @@
   ],
   "curve": [
     {
-      "date": "2026-09-11",
-      "closing": "3517.42"
-    },
-    {
       "date": "2026-09-12",
-      "closing": "2939.15"
+      "closing": "3019.91"
     },
     {
       "date": "2026-09-13",
-      "closing": "2529.29"
+      "closing": "2610.05"
     },
     {
       "date": "2026-09-14",
-      "closing": "2429.29"
+      "closing": "2510.05"
     },
     {
       "date": "2026-09-15",
-      "closing": "1189.57"
+      "closing": "1270.33"
     },
     {
       "date": "2026-09-16",
-      "closing": "1189.57"
+      "closing": "1270.33"
     },
     {
       "date": "2026-09-17",
-      "closing": "890.57"
+      "closing": "971.33"
     },
     {
       "date": "2026-09-18",
-      "closing": "1101.38"
+      "closing": "1182.14"
     },
     {
       "date": "2026-09-19",
-      "closing": "10.85"
+      "closing": "91.61"
     },
     {
       "date": "2026-09-20",
-      "closing": "-399.01"
+      "closing": "-318.25"
     },
     {
       "date": "2026-09-21",
-      "closing": "-2200.63"
+      "closing": "-2119.87"
     },
     {
       "date": "2026-09-22",
-      "closing": "-2288.63"
+      "closing": "-2207.87"
     },
     {
       "date": "2026-09-23",
-      "closing": "-2309.94"
+      "closing": "-2229.18"
     },
     {
       "date": "2026-09-24",
-      "closing": "-3390.20"
+      "closing": "-3309.44"
     },
     {
       "date": "2026-09-25",
-      "closing": "436.19"
+      "closing": "516.95"
     },
     {
       "date": "2026-09-26",
-      "closing": "436.19"
+      "closing": "516.95"
     },
     {
       "date": "2026-09-27",
-      "closing": "-58.45"
+      "closing": "22.31"
     },
     {
       "date": "2026-09-28",
-      "closing": "-58.45"
+      "closing": "22.31"
     },
     {
       "date": "2026-09-29",
-      "closing": "-220.34"
+      "closing": "-139.58"
     },
     {
       "date": "2026-09-30",
-      "closing": "-220.34"
+      "closing": "-139.58"
     },
     {
       "date": "2026-10-01",
-      "closing": "-220.34"
+      "closing": "-139.58"
     },
     {
       "date": "2026-10-02",
-      "closing": "648.66"
+      "closing": "729.42"
     },
     {
       "date": "2026-10-03",
-      "closing": "352.83"
+      "closing": "433.59"
     },
     {
       "date": "2026-10-04",
-      "closing": "-400.73"
+      "closing": "-319.97"
     },
     {
       "date": "2026-10-05",
-      "closing": "-2202.35"
+      "closing": "-2121.59"
     },
     {
       "date": "2026-10-06",
-      "closing": "-3108.09"
+      "closing": "-3027.33"
     },
     {
       "date": "2026-10-07",
-      "closing": "-3285.39"
+      "closing": "-3204.63"
     },
     {
       "date": "2026-10-08",
-      "closing": "-3435.39"
+      "closing": "-3354.63"
     },
     {
       "date": "2026-10-09",
-      "closing": "391.00"
+      "closing": "471.76"
     },
     {
       "date": "2026-10-10",
-      "closing": "391.00"
+      "closing": "471.76"
     },
     {
       "date": "2026-10-11",
-      "closing": "-108.77"
+      "closing": "-28.01"
     },
     {
       "date": "2026-10-12",
-      "closing": "-687.04"
+      "closing": "-606.28"
     },
     {
       "date": "2026-10-13",
-      "closing": "-687.04"
+      "closing": "-606.28"
     },
     {
       "date": "2026-10-14",
-      "closing": "-787.04"
+      "closing": "-706.28"
     },
     {
       "date": "2026-10-15",
-      "closing": "-1348.04"
+      "closing": "-1267.28"
     },
     {
       "date": "2026-10-16",
-      "closing": "-479.04"
+      "closing": "-398.28"
     },
     {
       "date": "2026-10-17",
-      "closing": "-778.04"
+      "closing": "-697.28"
     },
     {
       "date": "2026-10-18",
-      "closing": "-1846.09"
+      "closing": "-1765.33"
     },
     {
       "date": "2026-10-19",
-      "closing": "-3864.71"
+      "closing": "-3783.95"
     },
     {
       "date": "2026-10-20",
-      "closing": "-3864.71"
+      "closing": "-3783.95"
     },
     {
       "date": "2026-10-21",
-      "closing": "-3864.71"
+      "closing": "-3783.95"
     },
     {
       "date": "2026-10-22",
-      "closing": "-3952.71"
+      "closing": "-3871.95"
     },
     {
       "date": "2026-10-23",
-      "closing": "-147.63"
+      "closing": "-66.87"
     },
     {
       "date": "2026-10-24",
-      "closing": "-1227.89"
+      "closing": "-1147.13"
     },
     {
       "date": "2026-10-25",
-      "closing": "-1637.75"
+      "closing": "-1556.99"
     },
     {
       "date": "2026-10-26",
-      "closing": "-1637.75"
+      "closing": "-1556.99"
     },
     {
       "date": "2026-10-27",
-      "closing": "-1722.53"
+      "closing": "-1641.77"
     },
     {
       "date": "2026-10-28",
-      "closing": "-1722.53"
+      "closing": "-1641.77"
     },
     {
       "date": "2026-10-29",
-      "closing": "-1884.42"
+      "closing": "-1803.66"
     },
     {
       "date": "2026-10-30",
-      "closing": "-1015.42"
+      "closing": "-934.66"
     },
     {
       "date": "2026-10-31",
-      "closing": "-1015.42"
+      "closing": "-934.66"
     },
     {
       "date": "2026-11-01",
-      "closing": "-1425.28"
+      "closing": "-1344.52"
     },
     {
       "date": "2026-11-02",
-      "closing": "-3226.90"
+      "closing": "-3146.14"
     },
     {
       "date": "2026-11-03",
-      "closing": "-3369.11"
+      "closing": "-3288.35"
     },
     {
       "date": "2026-11-04",
-      "closing": "-3712.81"
+      "closing": "-3632.05"
     },
     {
       "date": "2026-11-05",
-      "closing": "-3712.81"
+      "closing": "-3632.05"
     },
     {
       "date": "2026-11-06",
-      "closing": "-274.66"
+      "closing": "-193.90"
     },
     {
       "date": "2026-11-07",
-      "closing": "-274.66"
+      "closing": "-193.90"
     },
     {
       "date": "2026-11-08",
-      "closing": "-834.52"
+      "closing": "-753.76"
     },
     {
       "date": "2026-11-09",
-      "closing": "-834.52"
+      "closing": "-753.76"
+    },
+    {
+      "date": "2026-11-10",
+      "closing": "-753.76"
     }
   ],
   "risks": [
@@ -438,8 +422,8 @@
       "type": "negative_balance",
       "severity": "critical",
       "title": "Balance goes negative Sun 20 Sep",
-      "detail": "Projected -$399.01 on Sun 20 Sep. Lowest point is -$3,952.71 on Thu 22 Oct.",
-      "amount": "3952.71",
+      "detail": "Projected -$318.25 on Sun 20 Sep. Lowest point is -$3,871.95 on Thu 22 Oct.",
+      "amount": "3871.95",
       "when": "2026-09-20"
     },
     {
@@ -447,7 +431,7 @@
       "type": "secured_payment",
       "severity": "critical",
       "title": "Mortgage may not clear",
-      "detail": "Mortgage of $1,801.62 is due Mon 21 Sep with only -$399.01 available that day.",
+      "detail": "Mortgage of $1,801.62 is due Mon 21 Sep with only -$318.25 available that day.",
       "amount": "1801.62",
       "when": "2026-09-21"
     },
@@ -456,7 +440,7 @@
       "type": "secured_payment",
       "severity": "critical",
       "title": "Kia may not clear",
-      "detail": "Kia of $742.65 is due Thu 24 Sep with only -$2,309.94 available that day.",
+      "detail": "Kia of $742.65 is due Thu 24 Sep with only -$2,229.18 available that day.",
       "amount": "742.65",
       "when": "2026-09-24"
     },
@@ -465,7 +449,7 @@
       "type": "secured_payment",
       "severity": "critical",
       "title": "CCU car loan may not clear",
-      "detail": "CCU car loan of $306.90 is due Sun 18 Oct with only -$778.04 available that day.",
+      "detail": "CCU car loan of $306.90 is due Sun 18 Oct with only -$697.28 available that day.",
       "amount": "306.90",
       "when": "2026-10-18"
     },
@@ -474,7 +458,7 @@
       "type": "large_payment",
       "severity": "high",
       "title": "Mortgage $1,801.62 may be short",
-      "detail": "Mortgage of $1,801.62 is due Mon 21 Sep against a projected opening balance of -$399.01.",
+      "detail": "Mortgage of $1,801.62 is due Mon 21 Sep against a projected opening balance of -$318.25.",
       "amount": "1801.62",
       "when": "2026-09-21"
     },
@@ -482,15 +466,15 @@
       "id": "discretionary:2026-10-08",
       "type": "discretionary",
       "severity": "medium",
-      "title": "Nothing available to spend: -$3,435.39",
-      "detail": "Over the next 30 days the balance reaches -$3,435.39 on Thu 8 Oct. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
-      "amount": "3435.39",
+      "title": "Nothing available to spend: -$3,354.63",
+      "detail": "Over the next 30 days the balance reaches -$3,354.63 on Thu 8 Oct. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
+      "amount": "3354.63",
       "when": "2026-10-08"
     }
   ],
   "plan": {
-    "summary": "Deferring Lowes $126.00, Home Depot $100.00, Loew & Patel braces $400.00, Capital One CC $163.00, Chase CC Amazon $136.00, Comenity $65.00, Comcast $138.93, T-Mobile Lia $20.75 frees $1,149.68, which is short of the $3,952.71 needed by 20 Sep.",
-    "shortfall": "3952.71",
+    "summary": "Deferring Lowes $126.00, Home Depot $100.00, Loew & Patel braces $400.00, Capital One CC $163.00, Chase CC Amazon $136.00, Comenity $65.00, Comcast $138.93 frees $1,128.93, which is short of the $3,871.95 needed by 20 Sep.",
+    "shortfall": "3871.95",
     "problem_day": "2026-09-20",
     "candidates": [
       {
@@ -534,39 +518,11 @@
         "amount": "138.93",
         "date": "2026-09-18",
         "tier": 2
-      },
-      {
-        "name": "T-Mobile Lia",
-        "amount": "20.75",
-        "date": "2026-09-11",
-        "tier": 2
       }
     ],
     "covered": false
   },
   "deferral_window": [
-    {
-      "id": "gas-utility",
-      "name": "Elizabethtown Gas",
-      "date": "2026-09-11",
-      "amount": "60.01",
-      "tier": 2,
-      "deferrable": false,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
-    {
-      "id": "tmobile-lia",
-      "name": "T-Mobile Lia",
-      "date": "2026-09-11",
-      "amount": "20.75",
-      "tier": 2,
-      "deferrable": true,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
     {
       "id": "auto-insurance",
       "name": "Hanover Auto",
@@ -879,34 +835,6 @@
   "deferred_total": "0.00",
   "lookahead_days": 14,
   "bills": [
-    {
-      "id": "gas-utility",
-      "name": "Elizabethtown Gas",
-      "amount": "54.03",
-      "due_day": 11,
-      "frequency": "monthly",
-      "next_date": "2026-09-11",
-      "tier": 2,
-      "active": true,
-      "variable": true,
-      "needs_review": false,
-      "source": "statement",
-      "note": "Seasonal profile from 19 statements, month-of-year maximum. Ranges $54.03 in August to $550.83 in March - a single figure was wrong eleven months a year. A flat $180.61 over-forecast summer by roughly $125/month."
-    },
-    {
-      "id": "tmobile-lia",
-      "name": "T-Mobile Lia",
-      "amount": "20.75",
-      "due_day": 11,
-      "frequency": "monthly",
-      "next_date": "2026-09-11",
-      "tier": 2,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "source": "statement",
-      "note": ""
-    },
     {
       "id": "comenity",
       "name": "Comenity",
@@ -1368,6 +1296,34 @@
       "needs_review": true,
       "source": "statement",
       "note": "Varies $70.00-$150.00 and the date moves. $70.00 is the recent floor."
+    },
+    {
+      "id": "gas-utility",
+      "name": "Elizabethtown Gas",
+      "amount": "54.03",
+      "due_day": 11,
+      "frequency": "monthly",
+      "next_date": "2026-10-11",
+      "tier": 2,
+      "active": true,
+      "variable": true,
+      "needs_review": false,
+      "source": "statement",
+      "note": "Seasonal profile from 19 statements, month-of-year maximum. Ranges $54.03 in August to $550.83 in March - a single figure was wrong eleven months a year. A flat $180.61 over-forecast summer by roughly $125/month."
+    },
+    {
+      "id": "tmobile-lia",
+      "name": "T-Mobile Lia",
+      "amount": "20.75",
+      "due_day": 11,
+      "frequency": "monthly",
+      "next_date": "2026-10-11",
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "statement",
+      "note": ""
     },
     {
       "id": "trash-2027-q1",
