@@ -87,18 +87,18 @@
     "secured_payment:mortgage:2026-09-21": {
       "type": "secured_payment",
       "severity": "critical",
-      "amount": "1131.74",
+      "amount": "1031.74",
       "when": "2026-09-21",
       "first_seen": "2026-09-08T10:51:13.854733-04:00",
-      "last_seen": "2026-09-14T19:34:53.428530-04:00"
+      "last_seen": "2026-09-15T11:24:05.066527-04:00"
     },
     "negative_balance:2026-09-21": {
       "type": "negative_balance",
       "severity": "critical",
-      "amount": "2883.82",
+      "amount": "2783.82",
       "when": "2026-09-21",
       "first_seen": "2026-09-13T10:46:16.245559-04:00",
-      "last_seen": "2026-09-14T19:34:53.428530-04:00"
+      "last_seen": "2026-09-15T11:24:05.066527-04:00"
     },
     "secured_payment:car-payment:2026-09-24": {
       "type": "secured_payment",
@@ -106,31 +106,23 @@
       "amount": "742.65",
       "when": "2026-09-24",
       "first_seen": "2026-08-31T14:19:49.288583-04:00",
-      "last_seen": "2026-09-14T19:34:53.428530-04:00"
-    },
-    "secured_payment:ccu-car-loan:2026-10-18": {
-      "type": "secured_payment",
-      "severity": "critical",
-      "amount": "16.05",
-      "when": "2026-10-18",
-      "first_seen": "2026-09-08T10:51:13.854733-04:00",
-      "last_seen": "2026-09-14T19:34:53.428530-04:00"
+      "last_seen": "2026-09-15T11:24:05.066527-04:00"
     },
     "large_payment:mortgage:2026-09-21": {
       "type": "large_payment",
       "severity": "high",
-      "amount": "1131.74",
+      "amount": "1031.74",
       "when": "2026-09-21",
       "first_seen": "2026-09-08T10:51:13.854733-04:00",
-      "last_seen": "2026-09-14T19:34:53.428530-04:00"
+      "last_seen": "2026-09-15T11:24:05.066527-04:00"
     },
     "discretionary:2026-10-08": {
       "type": "discretionary",
       "severity": "medium",
-      "amount": "2366.50",
+      "amount": "2266.50",
       "when": "2026-10-08",
       "first_seen": "2026-09-09T10:58:45.508599-04:00",
-      "last_seen": "2026-09-14T19:34:53.428530-04:00"
+      "last_seen": "2026-09-15T11:24:05.066527-04:00"
     }
   },
   "last_daily_sent": "2026-08-31T14:19:49.288583-04:00",

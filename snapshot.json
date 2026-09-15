@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-09-14T19:34:53.428530-04:00",
-  "today": "2026-09-14",
+  "generated_at": "2026-09-15T11:24:05.066527-04:00",
+  "today": "2026-09-15",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "3498.18",
-  "end_of_week": "669.88",
-  "end_of_month": "848.55",
+  "end_of_day": "2358.46",
+  "end_of_week": "769.88",
+  "end_of_month": "948.55",
   "week_end": "2026-09-20",
-  "minimum_balance": "-2883.82",
+  "minimum_balance": "-2783.82",
   "minimum_date": "2026-10-22",
-  "shortfall": "2883.82",
+  "shortfall": "2783.82",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "-2366.50",
+    "safe": "-2266.50",
     "explain": [
       [
         "Balance now",
@@ -28,48 +28,61 @@
         "-12607.11"
       ],
       [
-        "Where that ends up, 13 Oct",
+        "Where that ends up, 14 Oct",
         "381.85"
       ],
       [
         "Lowest point along the way, 8 Oct",
-        "-2366.50"
+        "-2266.50"
       ],
       [
         "Available to spend",
-        "-2366.50"
+        "-2266.50"
       ]
     ],
-    "headroom": "-2366.50",
+    "headroom": "-2266.50",
     "headroom_day": "2026-10-08",
-    "per_day": "-211.03",
+    "per_day": "-222.13",
     "per_day_day": "2026-09-24",
     "window_days": 30,
-    "window_end": "2026-10-13",
+    "window_end": "2026-10-14",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-10-13"
+      "window_end": "2026-10-14"
     }
   },
   "today_bills": [
     {
-      "name": "Home Depot",
-      "amount": "100.00",
-      "tier": 5,
+      "name": "Loew & Patel braces",
+      "amount": "400.00",
+      "tier": 4,
+      "autopay": false,
+      "deferred": false
+    },
+    {
+      "name": "JCP&L past due (deferred 3 Sep)",
+      "amount": "374.22",
+      "tier": 2,
+      "autopay": false,
+      "deferred": false
+    },
+    {
+      "name": "Sewer past due (deferred 1 Sep)",
+      "amount": "304.50",
+      "tier": 2,
+      "autopay": false,
+      "deferred": false
+    },
+    {
+      "name": "Upstart debt consol",
+      "amount": "161.00",
+      "tier": 3,
       "autopay": true,
       "deferred": false
     }
   ],
   "today_income": [],
   "this_week": [
-    {
-      "date": "2026-09-14",
-      "name": "Home Depot",
-      "amount": "100.00",
-      "direction": "out",
-      "tier": 5,
-      "deferred": false
-    },
     {
       "date": "2026-09-15",
       "name": "Loew & Patel braces",
@@ -273,244 +286,244 @@
   ],
   "curve": [
     {
-      "date": "2026-09-14",
-      "closing": "3498.18"
-    },
-    {
       "date": "2026-09-15",
-      "closing": "2258.46"
+      "closing": "2358.46"
     },
     {
       "date": "2026-09-16",
-      "closing": "2258.46"
+      "closing": "2358.46"
     },
     {
       "date": "2026-09-17",
-      "closing": "1959.46"
+      "closing": "2059.46"
     },
     {
       "date": "2026-09-18",
-      "closing": "2170.27"
+      "closing": "2270.27"
     },
     {
       "date": "2026-09-19",
-      "closing": "1079.74"
+      "closing": "1179.74"
     },
     {
       "date": "2026-09-20",
-      "closing": "669.88"
+      "closing": "769.88"
     },
     {
       "date": "2026-09-21",
-      "closing": "-1131.74"
+      "closing": "-1031.74"
     },
     {
       "date": "2026-09-22",
-      "closing": "-1219.74"
+      "closing": "-1119.74"
     },
     {
       "date": "2026-09-23",
-      "closing": "-1241.05"
+      "closing": "-1141.05"
     },
     {
       "date": "2026-09-24",
-      "closing": "-2321.31"
+      "closing": "-2221.31"
     },
     {
       "date": "2026-09-25",
-      "closing": "1505.08"
+      "closing": "1605.08"
     },
     {
       "date": "2026-09-26",
-      "closing": "1505.08"
+      "closing": "1605.08"
     },
     {
       "date": "2026-09-27",
-      "closing": "1010.44"
+      "closing": "1110.44"
     },
     {
       "date": "2026-09-28",
-      "closing": "1010.44"
+      "closing": "1110.44"
     },
     {
       "date": "2026-09-29",
-      "closing": "848.55"
+      "closing": "948.55"
     },
     {
       "date": "2026-09-30",
-      "closing": "848.55"
+      "closing": "948.55"
     },
     {
       "date": "2026-10-01",
-      "closing": "848.55"
+      "closing": "948.55"
     },
     {
       "date": "2026-10-02",
-      "closing": "1717.55"
+      "closing": "1817.55"
     },
     {
       "date": "2026-10-03",
-      "closing": "1421.72"
+      "closing": "1521.72"
     },
     {
       "date": "2026-10-04",
-      "closing": "668.16"
+      "closing": "768.16"
     },
     {
       "date": "2026-10-05",
-      "closing": "-1133.46"
+      "closing": "-1033.46"
     },
     {
       "date": "2026-10-06",
-      "closing": "-2039.20"
+      "closing": "-1939.20"
     },
     {
       "date": "2026-10-07",
-      "closing": "-2216.50"
+      "closing": "-2116.50"
     },
     {
       "date": "2026-10-08",
-      "closing": "-2366.50"
+      "closing": "-2266.50"
     },
     {
       "date": "2026-10-09",
-      "closing": "1459.89"
+      "closing": "1559.89"
     },
     {
       "date": "2026-10-10",
-      "closing": "1459.89"
+      "closing": "1559.89"
     },
     {
       "date": "2026-10-11",
-      "closing": "960.12"
+      "closing": "1060.12"
     },
     {
       "date": "2026-10-12",
-      "closing": "381.85"
+      "closing": "481.85"
     },
     {
       "date": "2026-10-13",
-      "closing": "381.85"
+      "closing": "481.85"
     },
     {
       "date": "2026-10-14",
-      "closing": "281.85"
+      "closing": "381.85"
     },
     {
       "date": "2026-10-15",
-      "closing": "-279.15"
+      "closing": "-179.15"
     },
     {
       "date": "2026-10-16",
-      "closing": "589.85"
+      "closing": "689.85"
     },
     {
       "date": "2026-10-17",
-      "closing": "290.85"
+      "closing": "390.85"
     },
     {
       "date": "2026-10-18",
-      "closing": "-777.20"
+      "closing": "-677.20"
     },
     {
       "date": "2026-10-19",
-      "closing": "-2795.82"
+      "closing": "-2695.82"
     },
     {
       "date": "2026-10-20",
-      "closing": "-2795.82"
+      "closing": "-2695.82"
     },
     {
       "date": "2026-10-21",
-      "closing": "-2795.82"
+      "closing": "-2695.82"
     },
     {
       "date": "2026-10-22",
-      "closing": "-2883.82"
+      "closing": "-2783.82"
     },
     {
       "date": "2026-10-23",
-      "closing": "921.26"
+      "closing": "1021.26"
     },
     {
       "date": "2026-10-24",
-      "closing": "-159.00"
+      "closing": "-59.00"
     },
     {
       "date": "2026-10-25",
-      "closing": "-568.86"
+      "closing": "-468.86"
     },
     {
       "date": "2026-10-26",
-      "closing": "-568.86"
+      "closing": "-468.86"
     },
     {
       "date": "2026-10-27",
-      "closing": "-653.64"
+      "closing": "-553.64"
     },
     {
       "date": "2026-10-28",
-      "closing": "-653.64"
+      "closing": "-553.64"
     },
     {
       "date": "2026-10-29",
-      "closing": "-815.53"
+      "closing": "-715.53"
     },
     {
       "date": "2026-10-30",
-      "closing": "53.47"
+      "closing": "153.47"
     },
     {
       "date": "2026-10-31",
-      "closing": "53.47"
+      "closing": "153.47"
     },
     {
       "date": "2026-11-01",
-      "closing": "-356.39"
+      "closing": "-256.39"
     },
     {
       "date": "2026-11-02",
-      "closing": "-2158.01"
+      "closing": "-2058.01"
     },
     {
       "date": "2026-11-03",
-      "closing": "-2300.22"
+      "closing": "-2200.22"
     },
     {
       "date": "2026-11-04",
-      "closing": "-2643.92"
+      "closing": "-2543.92"
     },
     {
       "date": "2026-11-05",
-      "closing": "-2643.92"
+      "closing": "-2543.92"
     },
     {
       "date": "2026-11-06",
-      "closing": "794.23"
+      "closing": "894.23"
     },
     {
       "date": "2026-11-07",
-      "closing": "794.23"
+      "closing": "894.23"
     },
     {
       "date": "2026-11-08",
-      "closing": "234.37"
+      "closing": "334.37"
     },
     {
       "date": "2026-11-09",
-      "closing": "234.37"
+      "closing": "334.37"
     },
     {
       "date": "2026-11-10",
-      "closing": "234.37"
+      "closing": "334.37"
     },
     {
       "date": "2026-11-11",
-      "closing": "129.27"
+      "closing": "229.27"
     },
     {
       "date": "2026-11-12",
-      "closing": "-449.00"
+      "closing": "-349.00"
+    },
+    {
+      "date": "2026-11-13",
+      "closing": "520.00"
     }
   ],
   "risks": [
@@ -519,8 +532,8 @@
       "type": "secured_payment",
       "severity": "critical",
       "title": "Mortgage may not clear",
-      "detail": "Mortgage of $1,801.62 is due Mon 21 Sep with only $669.88 available that day.",
-      "amount": "1131.74",
+      "detail": "Mortgage of $1,801.62 is due Mon 21 Sep with only $769.88 available that day.",
+      "amount": "1031.74",
       "when": "2026-09-21"
     },
     {
@@ -528,8 +541,8 @@
       "type": "negative_balance",
       "severity": "critical",
       "title": "Balance goes negative Mon 21 Sep",
-      "detail": "Projected -$1,131.74 on Mon 21 Sep. Lowest point is -$2,883.82 on Thu 22 Oct.",
-      "amount": "2883.82",
+      "detail": "Projected -$1,031.74 on Mon 21 Sep. Lowest point is -$2,783.82 on Thu 22 Oct.",
+      "amount": "2783.82",
       "when": "2026-09-21"
     },
     {
@@ -537,53 +550,38 @@
       "type": "secured_payment",
       "severity": "critical",
       "title": "Kia may not clear",
-      "detail": "Kia of $742.65 is due Thu 24 Sep with only -$1,241.05 available that day.",
+      "detail": "Kia of $742.65 is due Thu 24 Sep with only -$1,141.05 available that day.",
       "amount": "742.65",
       "when": "2026-09-24"
-    },
-    {
-      "id": "secured_payment:ccu-car-loan:2026-10-18",
-      "type": "secured_payment",
-      "severity": "critical",
-      "title": "CCU car loan may not clear",
-      "detail": "CCU car loan of $306.90 is due Sun 18 Oct with only $290.85 available that day.",
-      "amount": "16.05",
-      "when": "2026-10-18"
     },
     {
       "id": "large_payment:mortgage:2026-09-21",
       "type": "large_payment",
       "severity": "high",
       "title": "Mortgage $1,801.62 may be short",
-      "detail": "Mortgage of $1,801.62 is due Mon 21 Sep against a projected opening balance of $669.88.",
-      "amount": "1131.74",
+      "detail": "Mortgage of $1,801.62 is due Mon 21 Sep against a projected opening balance of $769.88.",
+      "amount": "1031.74",
       "when": "2026-09-21"
     },
     {
       "id": "discretionary:2026-10-08",
       "type": "discretionary",
       "severity": "medium",
-      "title": "Nothing available to spend: -$2,366.50",
-      "detail": "Over the next 30 days the balance reaches -$2,366.50 on Thu 8 Oct. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
-      "amount": "2366.50",
+      "title": "Nothing available to spend: -$2,266.50",
+      "detail": "Over the next 30 days the balance reaches -$2,266.50 on Thu 8 Oct. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
+      "amount": "2266.50",
       "when": "2026-10-08"
     }
   ],
   "plan": {
-    "summary": "Deferring Lowes $126.00, Home Depot $100.00, Loew & Patel braces $400.00, Capital One CC $163.00, Chase CC Amazon $136.00, Comcast $138.93 frees $1,063.93, which is short of the $2,883.82 needed by 21 Sep.",
-    "shortfall": "2883.82",
+    "summary": "Deferring Lowes $126.00, Loew & Patel braces $400.00, Capital One CC $163.00, Chase CC Amazon $136.00, Comcast $138.93 frees $963.93, which is short of the $2,783.82 needed by 21 Sep.",
+    "shortfall": "2783.82",
     "problem_day": "2026-09-21",
     "candidates": [
       {
         "name": "Lowes",
         "amount": "126.00",
         "date": "2026-09-18",
-        "tier": 5
-      },
-      {
-        "name": "Home Depot",
-        "amount": "100.00",
-        "date": "2026-09-14",
         "tier": 5
       },
       {
@@ -614,17 +612,6 @@
     "covered": false
   },
   "deferral_window": [
-    {
-      "id": "home-depot",
-      "name": "Home Depot",
-      "date": "2026-09-14",
-      "amount": "100.00",
-      "tier": 5,
-      "deferrable": true,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
     {
       "id": "loew-patel-braces",
       "name": "Loew & Patel braces",
@@ -959,20 +946,6 @@
   "deferred_total": "0.00",
   "lookahead_days": 14,
   "bills": [
-    {
-      "id": "home-depot",
-      "name": "Home Depot",
-      "amount": "100.00",
-      "due_day": 14,
-      "frequency": "monthly",
-      "next_date": "2026-09-14",
-      "tier": 5,
-      "active": true,
-      "variable": true,
-      "needs_review": false,
-      "source": "statement",
-      "note": ""
-    },
     {
       "id": "electric-deferred-2026-09",
       "name": "JCP&L past due (deferred 3 Sep)",
@@ -1448,6 +1421,20 @@
       "needs_review": false,
       "source": "statement",
       "note": "Amount corrected from $750.00, due day from 9 to 12."
+    },
+    {
+      "id": "home-depot",
+      "name": "Home Depot",
+      "amount": "100.00",
+      "due_day": 14,
+      "frequency": "monthly",
+      "next_date": "2026-10-14",
+      "tier": 5,
+      "active": true,
+      "variable": true,
+      "needs_review": false,
+      "source": "statement",
+      "note": ""
     },
     {
       "id": "trash-2027-q1",
