@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-09-15T19:18:09.480402-04:00",
-  "today": "2026-09-15",
+  "generated_at": "2026-09-16T11:17:18.255047-04:00",
+  "today": "2026-09-16",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "2358.46",
-  "end_of_week": "769.88",
-  "end_of_month": "948.55",
+  "end_of_day": "3598.18",
+  "end_of_week": "2009.60",
+  "end_of_month": "2188.27",
   "week_end": "2026-09-20",
-  "minimum_balance": "-2783.82",
+  "minimum_balance": "-1544.10",
   "minimum_date": "2026-10-22",
-  "shortfall": "2783.82",
+  "shortfall": "1544.10",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "-2266.50",
+    "safe": "-1026.78",
     "explain": [
       [
         "Balance now",
@@ -25,96 +25,35 @@
       ],
       [
         "Bills over the next 30 days",
-        "-12607.11"
+        "-11928.39"
       ],
       [
-        "Where that ends up, 14 Oct",
-        "381.85"
+        "Where that ends up, 15 Oct",
+        "1060.57"
       ],
       [
         "Lowest point along the way, 8 Oct",
-        "-2266.50"
+        "-1026.78"
       ],
       [
         "Available to spend",
-        "-2266.50"
+        "-1026.78"
       ]
     ],
-    "headroom": "-2266.50",
+    "headroom": "-1026.78",
     "headroom_day": "2026-10-08",
-    "per_day": "-222.13",
+    "per_day": "-109.07",
     "per_day_day": "2026-09-24",
     "window_days": 30,
-    "window_end": "2026-10-14",
+    "window_end": "2026-10-15",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-10-14"
+      "window_end": "2026-10-15"
     }
   },
-  "today_bills": [
-    {
-      "name": "Loew & Patel braces",
-      "amount": "400.00",
-      "tier": 4,
-      "autopay": false,
-      "deferred": false
-    },
-    {
-      "name": "JCP&L past due (deferred 3 Sep)",
-      "amount": "374.22",
-      "tier": 2,
-      "autopay": false,
-      "deferred": false
-    },
-    {
-      "name": "Sewer past due (deferred 1 Sep)",
-      "amount": "304.50",
-      "tier": 2,
-      "autopay": false,
-      "deferred": false
-    },
-    {
-      "name": "Upstart debt consol",
-      "amount": "161.00",
-      "tier": 3,
-      "autopay": true,
-      "deferred": false
-    }
-  ],
+  "today_bills": [],
   "today_income": [],
   "this_week": [
-    {
-      "date": "2026-09-15",
-      "name": "Loew & Patel braces",
-      "amount": "400.00",
-      "direction": "out",
-      "tier": 4,
-      "deferred": false
-    },
-    {
-      "date": "2026-09-15",
-      "name": "JCP&L past due (deferred 3 Sep)",
-      "amount": "374.22",
-      "direction": "out",
-      "tier": 2,
-      "deferred": false
-    },
-    {
-      "date": "2026-09-15",
-      "name": "Sewer past due (deferred 1 Sep)",
-      "amount": "304.50",
-      "direction": "out",
-      "tier": 2,
-      "deferred": false
-    },
-    {
-      "date": "2026-09-15",
-      "name": "Upstart debt consol",
-      "amount": "161.00",
-      "direction": "out",
-      "tier": 3,
-      "deferred": false
-    },
     {
       "date": "2026-09-17",
       "name": "Capital One CC",
@@ -286,297 +225,297 @@
   ],
   "curve": [
     {
-      "date": "2026-09-15",
-      "closing": "2358.46"
-    },
-    {
       "date": "2026-09-16",
-      "closing": "2358.46"
+      "closing": "3598.18"
     },
     {
       "date": "2026-09-17",
-      "closing": "2059.46"
+      "closing": "3299.18"
     },
     {
       "date": "2026-09-18",
-      "closing": "2270.27"
+      "closing": "3509.99"
     },
     {
       "date": "2026-09-19",
-      "closing": "1179.74"
+      "closing": "2419.46"
     },
     {
       "date": "2026-09-20",
-      "closing": "769.88"
+      "closing": "2009.60"
     },
     {
       "date": "2026-09-21",
-      "closing": "-1031.74"
+      "closing": "207.98"
     },
     {
       "date": "2026-09-22",
-      "closing": "-1119.74"
+      "closing": "119.98"
     },
     {
       "date": "2026-09-23",
-      "closing": "-1141.05"
+      "closing": "98.67"
     },
     {
       "date": "2026-09-24",
-      "closing": "-2221.31"
+      "closing": "-981.59"
     },
     {
       "date": "2026-09-25",
-      "closing": "1605.08"
+      "closing": "2844.80"
     },
     {
       "date": "2026-09-26",
-      "closing": "1605.08"
+      "closing": "2844.80"
     },
     {
       "date": "2026-09-27",
-      "closing": "1110.44"
+      "closing": "2350.16"
     },
     {
       "date": "2026-09-28",
-      "closing": "1110.44"
+      "closing": "2350.16"
     },
     {
       "date": "2026-09-29",
-      "closing": "948.55"
+      "closing": "2188.27"
     },
     {
       "date": "2026-09-30",
-      "closing": "948.55"
+      "closing": "2188.27"
     },
     {
       "date": "2026-10-01",
-      "closing": "948.55"
+      "closing": "2188.27"
     },
     {
       "date": "2026-10-02",
-      "closing": "1817.55"
+      "closing": "3057.27"
     },
     {
       "date": "2026-10-03",
-      "closing": "1521.72"
+      "closing": "2761.44"
     },
     {
       "date": "2026-10-04",
-      "closing": "768.16"
+      "closing": "2007.88"
     },
     {
       "date": "2026-10-05",
-      "closing": "-1033.46"
+      "closing": "206.26"
     },
     {
       "date": "2026-10-06",
-      "closing": "-1939.20"
+      "closing": "-699.48"
     },
     {
       "date": "2026-10-07",
-      "closing": "-2116.50"
+      "closing": "-876.78"
     },
     {
       "date": "2026-10-08",
-      "closing": "-2266.50"
+      "closing": "-1026.78"
     },
     {
       "date": "2026-10-09",
-      "closing": "1559.89"
+      "closing": "2799.61"
     },
     {
       "date": "2026-10-10",
-      "closing": "1559.89"
+      "closing": "2799.61"
     },
     {
       "date": "2026-10-11",
-      "closing": "1060.12"
+      "closing": "2299.84"
     },
     {
       "date": "2026-10-12",
-      "closing": "481.85"
+      "closing": "1721.57"
     },
     {
       "date": "2026-10-13",
-      "closing": "481.85"
+      "closing": "1721.57"
     },
     {
       "date": "2026-10-14",
-      "closing": "381.85"
+      "closing": "1621.57"
     },
     {
       "date": "2026-10-15",
-      "closing": "-179.15"
+      "closing": "1060.57"
     },
     {
       "date": "2026-10-16",
-      "closing": "689.85"
+      "closing": "1929.57"
     },
     {
       "date": "2026-10-17",
-      "closing": "390.85"
+      "closing": "1630.57"
     },
     {
       "date": "2026-10-18",
-      "closing": "-677.20"
+      "closing": "562.52"
     },
     {
       "date": "2026-10-19",
-      "closing": "-2695.82"
+      "closing": "-1456.10"
     },
     {
       "date": "2026-10-20",
-      "closing": "-2695.82"
+      "closing": "-1456.10"
     },
     {
       "date": "2026-10-21",
-      "closing": "-2695.82"
+      "closing": "-1456.10"
     },
     {
       "date": "2026-10-22",
-      "closing": "-2783.82"
+      "closing": "-1544.10"
     },
     {
       "date": "2026-10-23",
-      "closing": "1021.26"
+      "closing": "2260.98"
     },
     {
       "date": "2026-10-24",
-      "closing": "-59.00"
+      "closing": "1180.72"
     },
     {
       "date": "2026-10-25",
-      "closing": "-468.86"
+      "closing": "770.86"
     },
     {
       "date": "2026-10-26",
-      "closing": "-468.86"
+      "closing": "770.86"
     },
     {
       "date": "2026-10-27",
-      "closing": "-553.64"
+      "closing": "686.08"
     },
     {
       "date": "2026-10-28",
-      "closing": "-553.64"
+      "closing": "686.08"
     },
     {
       "date": "2026-10-29",
-      "closing": "-715.53"
+      "closing": "524.19"
     },
     {
       "date": "2026-10-30",
-      "closing": "153.47"
+      "closing": "1393.19"
     },
     {
       "date": "2026-10-31",
-      "closing": "153.47"
+      "closing": "1393.19"
     },
     {
       "date": "2026-11-01",
-      "closing": "-256.39"
+      "closing": "983.33"
     },
     {
       "date": "2026-11-02",
-      "closing": "-2058.01"
+      "closing": "-818.29"
     },
     {
       "date": "2026-11-03",
-      "closing": "-2200.22"
+      "closing": "-960.50"
     },
     {
       "date": "2026-11-04",
-      "closing": "-2543.92"
+      "closing": "-1304.20"
     },
     {
       "date": "2026-11-05",
-      "closing": "-2543.92"
+      "closing": "-1304.20"
     },
     {
       "date": "2026-11-06",
-      "closing": "894.23"
+      "closing": "2133.95"
     },
     {
       "date": "2026-11-07",
-      "closing": "894.23"
+      "closing": "2133.95"
     },
     {
       "date": "2026-11-08",
-      "closing": "334.37"
+      "closing": "1574.09"
     },
     {
       "date": "2026-11-09",
-      "closing": "334.37"
+      "closing": "1574.09"
     },
     {
       "date": "2026-11-10",
-      "closing": "334.37"
+      "closing": "1574.09"
     },
     {
       "date": "2026-11-11",
-      "closing": "229.27"
+      "closing": "1468.99"
     },
     {
       "date": "2026-11-12",
-      "closing": "-349.00"
+      "closing": "890.72"
     },
     {
       "date": "2026-11-13",
-      "closing": "520.00"
+      "closing": "1759.72"
+    },
+    {
+      "date": "2026-11-14",
+      "closing": "1659.72"
     }
   ],
   "risks": [
-    {
-      "id": "secured_payment:mortgage:2026-09-21",
-      "type": "secured_payment",
-      "severity": "critical",
-      "title": "Mortgage may not clear",
-      "detail": "Mortgage of $1,801.62 is due Mon 21 Sep with only $769.88 available that day.",
-      "amount": "1031.74",
-      "when": "2026-09-21"
-    },
-    {
-      "id": "negative_balance:2026-09-21",
-      "type": "negative_balance",
-      "severity": "critical",
-      "title": "Balance goes negative Mon 21 Sep",
-      "detail": "Projected -$1,031.74 on Mon 21 Sep. Lowest point is -$2,783.82 on Thu 22 Oct.",
-      "amount": "2783.82",
-      "when": "2026-09-21"
-    },
     {
       "id": "secured_payment:car-payment:2026-09-24",
       "type": "secured_payment",
       "severity": "critical",
       "title": "Kia may not clear",
-      "detail": "Kia of $742.65 is due Thu 24 Sep with only -$1,141.05 available that day.",
-      "amount": "742.65",
+      "detail": "Kia of $742.65 is due Thu 24 Sep with only $98.67 available that day.",
+      "amount": "643.98",
       "when": "2026-09-24"
     },
     {
-      "id": "large_payment:mortgage:2026-09-21",
+      "id": "negative_balance:2026-09-24",
+      "type": "negative_balance",
+      "severity": "critical",
+      "title": "Balance goes negative Thu 24 Sep",
+      "detail": "Projected -$981.59 on Thu 24 Sep. Lowest point is -$1,544.10 on Thu 22 Oct.",
+      "amount": "1544.10",
+      "when": "2026-09-24"
+    },
+    {
+      "id": "secured_payment:mortgage:2026-10-19",
+      "type": "secured_payment",
+      "severity": "critical",
+      "title": "Mortgage may not clear",
+      "detail": "Mortgage of $1,801.62 is due Mon 19 Oct with only $562.52 available that day.",
+      "amount": "1239.10",
+      "when": "2026-10-19"
+    },
+    {
+      "id": "large_payment:mortgage:2026-10-19",
       "type": "large_payment",
       "severity": "high",
       "title": "Mortgage $1,801.62 may be short",
-      "detail": "Mortgage of $1,801.62 is due Mon 21 Sep against a projected opening balance of $769.88.",
-      "amount": "1031.74",
-      "when": "2026-09-21"
+      "detail": "Mortgage of $1,801.62 is due Mon 19 Oct against a projected opening balance of $562.52.",
+      "amount": "1239.10",
+      "when": "2026-10-19"
     },
     {
       "id": "discretionary:2026-10-08",
       "type": "discretionary",
       "severity": "medium",
-      "title": "Nothing available to spend: -$2,266.50",
-      "detail": "Over the next 30 days the balance reaches -$2,266.50 on Thu 8 Oct. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
-      "amount": "2266.50",
+      "title": "Nothing available to spend: -$1,026.78",
+      "detail": "Over the next 30 days the balance reaches -$1,026.78 on Thu 8 Oct. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
+      "amount": "1026.78",
       "when": "2026-10-08"
     }
   ],
   "plan": {
-    "summary": "Deferring Lowes $126.00, Loew & Patel braces $400.00, Capital One CC $163.00, Chase CC Amazon $136.00, Comcast $138.93 frees $963.93, which is short of the $2,783.82 needed by 21 Sep.",
-    "shortfall": "2783.82",
-    "problem_day": "2026-09-21",
+    "summary": "Deferring Lowes $126.00, Netflix $21.31, Capital One CC $163.00, Chase CC Amazon $136.00, Chase CC United $88.00, Comcast $138.93 frees $673.24, which is short of the $1,544.10 needed by 24 Sep.",
+    "shortfall": "1544.10",
+    "problem_day": "2026-09-24",
     "candidates": [
       {
         "name": "Lowes",
@@ -585,10 +524,10 @@
         "tier": 5
       },
       {
-        "name": "Loew & Patel braces",
-        "amount": "400.00",
-        "date": "2026-09-15",
-        "tier": 4
+        "name": "Netflix",
+        "amount": "21.31",
+        "date": "2026-09-23",
+        "tier": 5
       },
       {
         "name": "Capital One CC",
@@ -603,6 +542,12 @@
         "tier": 3
       },
       {
+        "name": "Chase CC United",
+        "amount": "88.00",
+        "date": "2026-09-22",
+        "tier": 3
+      },
+      {
         "name": "Comcast",
         "amount": "138.93",
         "date": "2026-09-18",
@@ -612,50 +557,6 @@
     "covered": false
   },
   "deferral_window": [
-    {
-      "id": "loew-patel-braces",
-      "name": "Loew & Patel braces",
-      "date": "2026-09-15",
-      "amount": "400.00",
-      "tier": 4,
-      "deferrable": true,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
-    {
-      "id": "electric-deferred-2026-09",
-      "name": "JCP&L past due (deferred 3 Sep)",
-      "date": "2026-09-15",
-      "amount": "374.22",
-      "tier": 2,
-      "deferrable": false,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
-    {
-      "id": "sewer-deferred-2026-09",
-      "name": "Sewer past due (deferred 1 Sep)",
-      "date": "2026-09-15",
-      "amount": "304.50",
-      "tier": 2,
-      "deferrable": false,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
-    {
-      "id": "upstart-debt-consolidation",
-      "name": "Upstart debt consol",
-      "date": "2026-09-15",
-      "amount": "161.00",
-      "tier": 3,
-      "deferrable": false,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
     {
       "id": "capital-one",
       "name": "Capital One CC",
@@ -946,62 +847,6 @@
   "deferred_total": "0.00",
   "lookahead_days": 14,
   "bills": [
-    {
-      "id": "electric-deferred-2026-09",
-      "name": "JCP&L past due (deferred 3 Sep)",
-      "amount": "374.22",
-      "due_day": null,
-      "frequency": "once",
-      "next_date": "2026-09-15",
-      "tier": 2,
-      "active": true,
-      "variable": false,
-      "needs_review": true,
-      "source": "household",
-      "note": "Added 11 Sep 2026. The 3 Sep electric payment was deferred, so it dropped out of the forecast once the date passed - the money is still owed. Carried back in as a one-off dated 15 Sep. AMOUNT IS THE MODELLED SEPTEMBER FIGURE ($374.22 from the month-of-year profile), not a figure read off a bill: the"
-    },
-    {
-      "id": "loew-patel-braces",
-      "name": "Loew & Patel braces",
-      "amount": "400.00",
-      "due_day": 15,
-      "frequency": "monthly",
-      "next_date": "2026-09-15",
-      "tier": 4,
-      "active": true,
-      "variable": true,
-      "needs_review": true,
-      "source": "household",
-      "note": "SCHEDULE UNKNOWN - flagged, not guessed. The statements show $1,000.00 on 06/10/2026, $129.47 on 04/29 and 06/24, and smaller amounts through the spring. No pattern is derivable. Held at the household's $400.00/month placeholder. observed_max is deliberately NOT set: with it, the engine forecast the"
-    },
-    {
-      "id": "sewer-deferred-2026-09",
-      "name": "Sewer past due (deferred 1 Sep)",
-      "amount": "304.50",
-      "due_day": null,
-      "frequency": "once",
-      "next_date": "2026-09-15",
-      "tier": 2,
-      "active": true,
-      "variable": false,
-      "needs_review": true,
-      "source": "household",
-      "note": "Added 11 Sep 2026. The 1 Sep sewer payment was deferred and the date has since passed, so it left the forecast while still being owed. Carried back in as a one-off dated 15 Sep at the configured $304.50. That figure is itself unconfirmed - the only sewer payment in 36 months of statements is $135.00"
-    },
-    {
-      "id": "upstart-debt-consolidation",
-      "name": "Upstart debt consol",
-      "amount": "161.00",
-      "due_day": 15,
-      "frequency": "monthly",
-      "next_date": "2026-09-15",
-      "tier": 3,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "source": "household",
-      "note": "Renegotiated to $161.00 (household, 11 Aug 2026). Was $1,244.29 for 12 months - a $1,083.29/month reduction, the single largest change in this ledger."
-    },
     {
       "id": "capital-one",
       "name": "Capital One CC",
@@ -1437,6 +1282,34 @@
       "note": ""
     },
     {
+      "id": "loew-patel-braces",
+      "name": "Loew & Patel braces",
+      "amount": "400.00",
+      "due_day": 15,
+      "frequency": "monthly",
+      "next_date": "2026-10-15",
+      "tier": 4,
+      "active": true,
+      "variable": true,
+      "needs_review": true,
+      "source": "household",
+      "note": "SCHEDULE UNKNOWN - flagged, not guessed. The statements show $1,000.00 on 06/10/2026, $129.47 on 04/29 and 06/24, and smaller amounts through the spring. No pattern is derivable. Held at the household's $400.00/month placeholder. observed_max is deliberately NOT set: with it, the engine forecast the"
+    },
+    {
+      "id": "upstart-debt-consolidation",
+      "name": "Upstart debt consol",
+      "amount": "161.00",
+      "due_day": 15,
+      "frequency": "monthly",
+      "next_date": "2026-10-15",
+      "tier": 3,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "household",
+      "note": "Renegotiated to $161.00 (household, 11 Aug 2026). Was $1,244.29 for 12 months - a $1,083.29/month reduction, the single largest change in this ledger."
+    },
+    {
       "id": "trash-2027-q1",
       "name": "Republic trash Q1",
       "amount": "177.30",
@@ -1505,6 +1378,34 @@
       "needs_review": true,
       "source": "household",
       "note": "POSSIBLY ANNUAL, UNCONFIRMED - the household does not yet know. No matching payment appears in 19 months of statements, including the September window. Left active at $304.50 on 1 Sep so it is budgeted for rather than forgotten."
+    },
+    {
+      "id": "electric-deferred-2026-09",
+      "name": "JCP&L past due (deferred 3 Sep)",
+      "amount": "374.22",
+      "due_day": null,
+      "frequency": "once",
+      "next_date": null,
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "household",
+      "note": "Added 11 Sep 2026. The 3 Sep electric payment was deferred, so it dropped out of the forecast once the date passed - the money is still owed. Carried back in as a one-off dated 15 Sep. AMOUNT IS THE MODELLED SEPTEMBER FIGURE ($374.22 from the month-of-year profile), not a figure read off a bill: the"
+    },
+    {
+      "id": "sewer-deferred-2026-09",
+      "name": "Sewer past due (deferred 1 Sep)",
+      "amount": "304.50",
+      "due_day": null,
+      "frequency": "once",
+      "next_date": null,
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "household",
+      "note": "Added 11 Sep 2026. The 1 Sep sewer payment was deferred and the date has since passed, so it left the forecast while still being owed. Carried back in as a one-off dated 15 Sep at the configured $304.50. That figure is itself unconfirmed - the only sewer payment in 36 months of statements is $135.00"
     },
     {
       "id": "upstart-past-bills",

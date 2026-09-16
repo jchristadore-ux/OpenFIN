@@ -84,45 +84,45 @@
     }
   ],
   "risks": {
-    "secured_payment:mortgage:2026-09-21": {
-      "type": "secured_payment",
-      "severity": "critical",
-      "amount": "1031.74",
-      "when": "2026-09-21",
-      "first_seen": "2026-09-08T10:51:13.854733-04:00",
-      "last_seen": "2026-09-15T19:18:09.480402-04:00"
-    },
-    "negative_balance:2026-09-21": {
-      "type": "negative_balance",
-      "severity": "critical",
-      "amount": "2783.82",
-      "when": "2026-09-21",
-      "first_seen": "2026-09-13T10:46:16.245559-04:00",
-      "last_seen": "2026-09-15T19:18:09.480402-04:00"
-    },
     "secured_payment:car-payment:2026-09-24": {
       "type": "secured_payment",
       "severity": "critical",
-      "amount": "742.65",
+      "amount": "643.98",
       "when": "2026-09-24",
       "first_seen": "2026-08-31T14:19:49.288583-04:00",
-      "last_seen": "2026-09-15T19:18:09.480402-04:00"
+      "last_seen": "2026-09-16T11:17:18.255047-04:00"
     },
-    "large_payment:mortgage:2026-09-21": {
+    "negative_balance:2026-09-24": {
+      "type": "negative_balance",
+      "severity": "critical",
+      "amount": "1544.10",
+      "when": "2026-09-24",
+      "first_seen": "2026-09-16T11:17:18.255047-04:00",
+      "last_seen": "2026-09-16T11:17:18.255047-04:00"
+    },
+    "secured_payment:mortgage:2026-10-19": {
+      "type": "secured_payment",
+      "severity": "critical",
+      "amount": "1239.10",
+      "when": "2026-10-19",
+      "first_seen": "2026-09-16T11:17:18.255047-04:00",
+      "last_seen": "2026-09-16T11:17:18.255047-04:00"
+    },
+    "large_payment:mortgage:2026-10-19": {
       "type": "large_payment",
       "severity": "high",
-      "amount": "1031.74",
-      "when": "2026-09-21",
-      "first_seen": "2026-09-08T10:51:13.854733-04:00",
-      "last_seen": "2026-09-15T19:18:09.480402-04:00"
+      "amount": "1239.10",
+      "when": "2026-10-19",
+      "first_seen": "2026-09-16T11:17:18.255047-04:00",
+      "last_seen": "2026-09-16T11:17:18.255047-04:00"
     },
     "discretionary:2026-10-08": {
       "type": "discretionary",
       "severity": "medium",
-      "amount": "2266.50",
+      "amount": "1026.78",
       "when": "2026-10-08",
       "first_seen": "2026-09-09T10:58:45.508599-04:00",
-      "last_seen": "2026-09-15T19:18:09.480402-04:00"
+      "last_seen": "2026-09-16T11:17:18.255047-04:00"
     }
   },
   "last_daily_sent": "2026-08-31T14:19:49.288583-04:00",
