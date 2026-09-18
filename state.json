@@ -87,42 +87,42 @@
     "secured_payment:car-payment:2026-09-24": {
       "type": "secured_payment",
       "severity": "critical",
-      "amount": "643.98",
+      "amount": "344.98",
       "when": "2026-09-24",
       "first_seen": "2026-08-31T14:19:49.288583-04:00",
-      "last_seen": "2026-09-17T19:14:57.961635-04:00"
+      "last_seen": "2026-09-18T10:44:32.515730-04:00"
     },
     "negative_balance:2026-09-24": {
       "type": "negative_balance",
       "severity": "critical",
-      "amount": "1544.10",
+      "amount": "1245.10",
       "when": "2026-09-24",
       "first_seen": "2026-09-16T11:17:18.255047-04:00",
-      "last_seen": "2026-09-17T19:14:57.961635-04:00"
+      "last_seen": "2026-09-18T10:44:32.515730-04:00"
     },
     "secured_payment:mortgage:2026-10-19": {
       "type": "secured_payment",
       "severity": "critical",
-      "amount": "1239.10",
+      "amount": "940.10",
       "when": "2026-10-19",
       "first_seen": "2026-09-16T11:17:18.255047-04:00",
-      "last_seen": "2026-09-17T19:14:57.961635-04:00"
+      "last_seen": "2026-09-18T10:44:32.515730-04:00"
     },
     "large_payment:mortgage:2026-10-19": {
       "type": "large_payment",
       "severity": "high",
-      "amount": "1239.10",
+      "amount": "940.10",
       "when": "2026-10-19",
       "first_seen": "2026-09-16T11:17:18.255047-04:00",
-      "last_seen": "2026-09-17T19:14:57.961635-04:00"
+      "last_seen": "2026-09-18T10:44:32.515730-04:00"
     },
     "discretionary:2026-10-08": {
       "type": "discretionary",
       "severity": "medium",
-      "amount": "1026.78",
+      "amount": "727.78",
       "when": "2026-10-08",
       "first_seen": "2026-09-09T10:58:45.508599-04:00",
-      "last_seen": "2026-09-17T19:14:57.961635-04:00"
+      "last_seen": "2026-09-18T10:44:32.515730-04:00"
     }
   },
   "last_daily_sent": "2026-08-31T14:19:49.288583-04:00",
