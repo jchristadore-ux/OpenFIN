@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-09-19T18:33:48.825943-04:00",
-  "today": "2026-09-19",
+  "generated_at": "2026-09-20T10:25:54.939134-04:00",
+  "today": "2026-09-20",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "2507.65",
-  "end_of_week": "2097.79",
-  "end_of_month": "2276.46",
+  "end_of_day": "3188.32",
+  "end_of_week": "3188.32",
+  "end_of_month": "3366.99",
   "week_end": "2026-09-20",
-  "minimum_balance": "-1455.91",
-  "minimum_date": "2026-10-22",
-  "shortfall": "1455.91",
+  "minimum_balance": "-891.23",
+  "minimum_date": "2026-11-18",
+  "shortfall": "891.23",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "-938.59",
+    "safe": "-277.38",
     "explain": [
       [
         "Balance now",
@@ -25,50 +25,43 @@
       ],
       [
         "Bills over the next 30 days",
-        "-12338.25"
+        "-13266.34"
       ],
       [
-        "Where that ends up, 18 Oct",
-        "650.71"
+        "Where that ends up, 19 Oct",
+        "-277.38"
       ],
       [
-        "Lowest point along the way, 8 Oct",
-        "-938.59"
+        "Lowest point along the way, 19 Oct",
+        "-277.38"
       ],
       [
         "Available to spend",
-        "-938.59"
+        "-277.38"
       ]
     ],
-    "headroom": "-938.59",
-    "headroom_day": "2026-10-08",
-    "per_day": "-148.90",
-    "per_day_day": "2026-09-24",
+    "headroom": "-277.38",
+    "headroom_day": "2026-10-19",
+    "per_day": "-9.25",
+    "per_day_day": "2026-10-19",
     "window_days": 30,
-    "window_end": "2026-10-18",
+    "window_end": "2026-10-19",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-10-18"
+      "window_end": "2026-10-19"
     }
   },
   "today_bills": [
     {
-      "name": "Town of Clinton water",
-      "amount": "873.53",
+      "name": "Groceries",
+      "amount": "319.09",
       "tier": 2,
       "autopay": false,
       "deferred": false
     },
     {
-      "name": "IRS state",
-      "amount": "114.00",
-      "tier": 2,
-      "autopay": false,
-      "deferred": false
-    },
-    {
-      "name": "IRS federal",
-      "amount": "103.00",
+      "name": "Fuel",
+      "amount": "90.77",
       "tier": 2,
       "autopay": false,
       "deferred": false
@@ -76,30 +69,6 @@
   ],
   "today_income": [],
   "this_week": [
-    {
-      "date": "2026-09-19",
-      "name": "Town of Clinton water",
-      "amount": "873.53",
-      "direction": "out",
-      "tier": 2,
-      "deferred": false
-    },
-    {
-      "date": "2026-09-19",
-      "name": "IRS state",
-      "amount": "114.00",
-      "direction": "out",
-      "tier": 2,
-      "deferred": false
-    },
-    {
-      "date": "2026-09-19",
-      "name": "IRS federal",
-      "amount": "103.00",
-      "direction": "out",
-      "tier": 2,
-      "deferred": false
-    },
     {
       "date": "2026-09-20",
       "name": "Groceries",
@@ -191,298 +160,322 @@
   ],
   "curve": [
     {
-      "date": "2026-09-19",
-      "closing": "2507.65"
-    },
-    {
       "date": "2026-09-20",
-      "closing": "2097.79"
+      "closing": "3188.32"
     },
     {
       "date": "2026-09-21",
-      "closing": "296.17"
+      "closing": "1386.70"
     },
     {
       "date": "2026-09-22",
-      "closing": "208.17"
+      "closing": "1298.70"
     },
     {
       "date": "2026-09-23",
-      "closing": "186.86"
+      "closing": "1277.39"
     },
     {
       "date": "2026-09-24",
-      "closing": "-893.40"
+      "closing": "197.13"
     },
     {
       "date": "2026-09-25",
-      "closing": "2932.99"
+      "closing": "4023.52"
     },
     {
       "date": "2026-09-26",
-      "closing": "2932.99"
+      "closing": "4023.52"
     },
     {
       "date": "2026-09-27",
-      "closing": "2438.35"
+      "closing": "3528.88"
     },
     {
       "date": "2026-09-28",
-      "closing": "2438.35"
+      "closing": "3528.88"
     },
     {
       "date": "2026-09-29",
-      "closing": "2276.46"
+      "closing": "3366.99"
     },
     {
       "date": "2026-09-30",
-      "closing": "2276.46"
+      "closing": "3366.99"
     },
     {
       "date": "2026-10-01",
-      "closing": "2276.46"
+      "closing": "3366.99"
     },
     {
       "date": "2026-10-02",
-      "closing": "3145.46"
+      "closing": "4235.99"
     },
     {
       "date": "2026-10-03",
-      "closing": "2849.63"
+      "closing": "3940.16"
     },
     {
       "date": "2026-10-04",
-      "closing": "2096.07"
+      "closing": "3186.60"
     },
     {
       "date": "2026-10-05",
-      "closing": "294.45"
+      "closing": "1384.98"
     },
     {
       "date": "2026-10-06",
-      "closing": "-611.29"
+      "closing": "479.24"
     },
     {
       "date": "2026-10-07",
-      "closing": "-788.59"
+      "closing": "301.94"
     },
     {
       "date": "2026-10-08",
-      "closing": "-938.59"
+      "closing": "151.94"
     },
     {
       "date": "2026-10-09",
-      "closing": "2887.80"
+      "closing": "3978.33"
     },
     {
       "date": "2026-10-10",
-      "closing": "2887.80"
+      "closing": "3978.33"
     },
     {
       "date": "2026-10-11",
-      "closing": "2388.03"
+      "closing": "3478.56"
     },
     {
       "date": "2026-10-12",
-      "closing": "1809.76"
+      "closing": "2900.29"
     },
     {
       "date": "2026-10-13",
-      "closing": "1809.76"
+      "closing": "2900.29"
     },
     {
       "date": "2026-10-14",
-      "closing": "1709.76"
+      "closing": "2800.29"
     },
     {
       "date": "2026-10-15",
-      "closing": "1148.76"
+      "closing": "2239.29"
     },
     {
       "date": "2026-10-16",
-      "closing": "2017.76"
+      "closing": "3108.29"
     },
     {
       "date": "2026-10-17",
-      "closing": "1718.76"
+      "closing": "2809.29"
     },
     {
       "date": "2026-10-18",
-      "closing": "650.71"
+      "closing": "1741.24"
     },
     {
       "date": "2026-10-19",
-      "closing": "-1367.91"
+      "closing": "-277.38"
     },
     {
       "date": "2026-10-20",
-      "closing": "-1367.91"
+      "closing": "-277.38"
     },
     {
       "date": "2026-10-21",
-      "closing": "-1367.91"
+      "closing": "-277.38"
     },
     {
       "date": "2026-10-22",
-      "closing": "-1455.91"
+      "closing": "-365.38"
     },
     {
       "date": "2026-10-23",
-      "closing": "2349.17"
+      "closing": "3439.70"
     },
     {
       "date": "2026-10-24",
-      "closing": "1268.91"
+      "closing": "2359.44"
     },
     {
       "date": "2026-10-25",
-      "closing": "859.05"
+      "closing": "1949.58"
     },
     {
       "date": "2026-10-26",
-      "closing": "859.05"
+      "closing": "1949.58"
     },
     {
       "date": "2026-10-27",
-      "closing": "774.27"
+      "closing": "1864.80"
     },
     {
       "date": "2026-10-28",
-      "closing": "774.27"
+      "closing": "1864.80"
     },
     {
       "date": "2026-10-29",
-      "closing": "612.38"
+      "closing": "1702.91"
     },
     {
       "date": "2026-10-30",
-      "closing": "1481.38"
+      "closing": "2571.91"
     },
     {
       "date": "2026-10-31",
-      "closing": "1481.38"
+      "closing": "2571.91"
     },
     {
       "date": "2026-11-01",
-      "closing": "1071.52"
+      "closing": "2162.05"
     },
     {
       "date": "2026-11-02",
-      "closing": "-730.10"
+      "closing": "360.43"
     },
     {
       "date": "2026-11-03",
-      "closing": "-872.31"
+      "closing": "218.22"
     },
     {
       "date": "2026-11-04",
-      "closing": "-1216.01"
+      "closing": "-125.48"
     },
     {
       "date": "2026-11-05",
-      "closing": "-1216.01"
+      "closing": "-125.48"
     },
     {
       "date": "2026-11-06",
-      "closing": "2222.14"
+      "closing": "3312.67"
     },
     {
       "date": "2026-11-07",
-      "closing": "2222.14"
+      "closing": "3312.67"
     },
     {
       "date": "2026-11-08",
-      "closing": "1662.28"
+      "closing": "2752.81"
     },
     {
       "date": "2026-11-09",
-      "closing": "1662.28"
+      "closing": "2752.81"
     },
     {
       "date": "2026-11-10",
-      "closing": "1662.28"
+      "closing": "2752.81"
     },
     {
       "date": "2026-11-11",
-      "closing": "1557.18"
+      "closing": "2647.71"
     },
     {
       "date": "2026-11-12",
-      "closing": "978.91"
+      "closing": "2069.44"
     },
     {
       "date": "2026-11-13",
-      "closing": "1847.91"
+      "closing": "2938.44"
     },
     {
       "date": "2026-11-14",
-      "closing": "1747.91"
+      "closing": "2838.44"
     },
     {
       "date": "2026-11-15",
-      "closing": "777.05"
+      "closing": "1867.58"
     },
     {
       "date": "2026-11-16",
-      "closing": "-1024.57"
+      "closing": "65.96"
     },
     {
       "date": "2026-11-17",
-      "closing": "-1323.57"
+      "closing": "-233.04"
+    },
+    {
+      "date": "2026-11-18",
+      "closing": "-891.23"
     }
   ],
   "risks": [
-    {
-      "id": "secured_payment:car-payment:2026-09-24",
-      "type": "secured_payment",
-      "severity": "critical",
-      "title": "Kia may not clear",
-      "detail": "Kia of $742.65 is due Thu 24 Sep with only $186.86 available that day.",
-      "amount": "555.79",
-      "when": "2026-09-24"
-    },
-    {
-      "id": "negative_balance:2026-09-24",
-      "type": "negative_balance",
-      "severity": "critical",
-      "title": "Balance goes negative Thu 24 Sep",
-      "detail": "Projected -$893.40 on Thu 24 Sep. Lowest point is -$1,455.91 on Thu 22 Oct.",
-      "amount": "1455.91",
-      "when": "2026-09-24"
-    },
     {
       "id": "secured_payment:mortgage:2026-10-19",
       "type": "secured_payment",
       "severity": "critical",
       "title": "Mortgage may not clear",
-      "detail": "Mortgage of $1,801.62 is due Mon 19 Oct with only $650.71 available that day.",
-      "amount": "1150.91",
+      "detail": "Mortgage of $1,801.62 is due Mon 19 Oct with only $1,741.24 available that day.",
+      "amount": "60.38",
       "when": "2026-10-19"
+    },
+    {
+      "id": "negative_balance:2026-10-19",
+      "type": "negative_balance",
+      "severity": "critical",
+      "title": "Balance goes negative Mon 19 Oct",
+      "detail": "Projected -$277.38 on Mon 19 Oct. Lowest point is -$891.23 on Wed 18 Nov.",
+      "amount": "891.23",
+      "when": "2026-10-19"
+    },
+    {
+      "id": "secured_payment:ccu-car-loan:2026-11-18",
+      "type": "secured_payment",
+      "severity": "critical",
+      "title": "CCU car loan may not clear",
+      "detail": "CCU car loan of $306.90 is due Wed 18 Nov with only -$233.04 available that day.",
+      "amount": "306.90",
+      "when": "2026-11-18"
     },
     {
       "id": "large_payment:mortgage:2026-10-19",
       "type": "large_payment",
       "severity": "high",
       "title": "Mortgage $1,801.62 may be short",
-      "detail": "Mortgage of $1,801.62 is due Mon 19 Oct against a projected opening balance of $650.71.",
-      "amount": "1150.91",
+      "detail": "Mortgage of $1,801.62 is due Mon 19 Oct against a projected opening balance of $1,741.24.",
+      "amount": "60.38",
       "when": "2026-10-19"
     },
     {
-      "id": "discretionary:2026-10-08",
+      "id": "discretionary:2026-10-19",
       "type": "discretionary",
       "severity": "medium",
-      "title": "Nothing available to spend: -$938.59",
-      "detail": "Over the next 30 days the balance reaches -$938.59 on Thu 8 Oct. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
-      "amount": "938.59",
-      "when": "2026-10-08"
+      "title": "Nothing available to spend: -$277.38",
+      "detail": "Over the next 30 days the balance reaches -$277.38 on Mon 19 Oct. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
+      "amount": "277.38",
+      "when": "2026-10-19"
     }
   ],
   "plan": {
-    "summary": "Deferring Netflix $21.31, Chase CC United $88.00 frees $109.31, which is short of the $1,455.91 needed by 24 Sep.",
-    "shortfall": "1455.91",
-    "problem_day": "2026-09-24",
+    "summary": "Deferring Culligan $307.70, Lowes $126.00, Home Depot $100.00, TJX Rewards $36.00, Netflix $21.31, NJ Total Select 1of4 $517.50 before 19 Oct frees $1,108.51 and covers the $891.23 shortfall.",
+    "shortfall": "891.23",
+    "problem_day": "2026-10-19",
     "candidates": [
+      {
+        "name": "Culligan",
+        "amount": "307.70",
+        "date": "2026-10-04",
+        "tier": 5
+      },
+      {
+        "name": "Lowes",
+        "amount": "126.00",
+        "date": "2026-10-18",
+        "tier": 5
+      },
+      {
+        "name": "Home Depot",
+        "amount": "100.00",
+        "date": "2026-10-14",
+        "tier": 5
+      },
+      {
+        "name": "TJX Rewards",
+        "amount": "36.00",
+        "date": "2026-10-04",
+        "tier": 5
+      },
       {
         "name": "Netflix",
         "amount": "21.31",
@@ -490,48 +483,15 @@
         "tier": 5
       },
       {
-        "name": "Chase CC United",
-        "amount": "88.00",
-        "date": "2026-09-22",
-        "tier": 3
+        "name": "NJ Total Select 1of4",
+        "amount": "517.50",
+        "date": "2026-10-06",
+        "tier": 4
       }
     ],
-    "covered": false
+    "covered": true
   },
   "deferral_window": [
-    {
-      "id": "clinton-water",
-      "name": "Town of Clinton water",
-      "date": "2026-09-19",
-      "amount": "873.53",
-      "tier": 2,
-      "deferrable": false,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
-    {
-      "id": "irs-state",
-      "name": "IRS state",
-      "date": "2026-09-19",
-      "amount": "114.00",
-      "tier": 2,
-      "deferrable": false,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
-    {
-      "id": "irs-federal",
-      "name": "IRS federal",
-      "date": "2026-09-19",
-      "amount": "103.00",
-      "tier": 2,
-      "deferrable": false,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
     {
       "id": "groceries",
       "name": "Groceries",
@@ -723,48 +683,6 @@
   "deferred_total": "0.00",
   "lookahead_days": 14,
   "bills": [
-    {
-      "id": "irs-federal",
-      "name": "IRS federal",
-      "amount": "103.00",
-      "due_day": 19,
-      "frequency": "monthly",
-      "next_date": "2026-09-19",
-      "tier": 2,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "source": "household",
-      "note": "New instalment plan, $103.00/month, per the household. Not yet visible in any statement. Non-deferrable: missing an IRS instalment can void the agreement."
-    },
-    {
-      "id": "irs-state",
-      "name": "IRS state",
-      "amount": "114.00",
-      "due_day": 19,
-      "frequency": "monthly",
-      "next_date": "2026-09-19",
-      "tier": 2,
-      "active": true,
-      "variable": false,
-      "needs_review": true,
-      "source": "household",
-      "note": "New, $114.00/month, per the household. Due day assumed the same as the federal instalment; confirm. Not yet visible in any statement."
-    },
-    {
-      "id": "clinton-water",
-      "name": "Town of Clinton water",
-      "amount": "294.03",
-      "due_day": null,
-      "frequency": "quarterly",
-      "next_date": "2026-09-19",
-      "tier": 2,
-      "active": true,
-      "variable": true,
-      "needs_review": true,
-      "source": "household",
-      "note": "Actual annual spend: 2022 $1,088.42, 2023 $1,121.76, 2024 $1,318.11 (mean $1,176.10). Billed irregularly - between two and five payments a year, not on a fixed date - so this is the annual mean spread over four quarters rather than a real due date."
-    },
     {
       "id": "fuel",
       "name": "Fuel",
@@ -1184,6 +1102,48 @@
       "needs_review": false,
       "source": "household",
       "note": "Renegotiated to $86.36 (household, 11 Aug 2026). Was $287.85."
+    },
+    {
+      "id": "irs-federal",
+      "name": "IRS federal",
+      "amount": "103.00",
+      "due_day": 19,
+      "frequency": "monthly",
+      "next_date": "2026-10-19",
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "household",
+      "note": "New instalment plan, $103.00/month, per the household. Not yet visible in any statement. Non-deferrable: missing an IRS instalment can void the agreement."
+    },
+    {
+      "id": "irs-state",
+      "name": "IRS state",
+      "amount": "114.00",
+      "due_day": 19,
+      "frequency": "monthly",
+      "next_date": "2026-10-19",
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "household",
+      "note": "New, $114.00/month, per the household. Due day assumed the same as the federal instalment; confirm. Not yet visible in any statement."
+    },
+    {
+      "id": "clinton-water",
+      "name": "Town of Clinton water",
+      "amount": "294.03",
+      "due_day": null,
+      "frequency": "quarterly",
+      "next_date": "2026-12-19",
+      "tier": 2,
+      "active": true,
+      "variable": true,
+      "needs_review": true,
+      "source": "household",
+      "note": "Actual annual spend: 2022 $1,088.42, 2023 $1,121.76, 2024 $1,318.11 (mean $1,176.10). Billed irregularly - between two and five payments a year, not on a fixed date - so this is the annual mean spread over four quarters rather than a real due date."
     },
     {
       "id": "trash-2027-q1",
