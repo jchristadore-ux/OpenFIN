@@ -6,3 +6,5 @@ state.json    linguist-generated=true
 logs/**       linguist-generated=true
 monthly-bills.pdf  linguist-generated=true
 monthly-bills.xlsx linguist-generated=true
+bills-by-date.pdf  linguist-generated=true
+bills-by-date.xlsx linguist-generated=true

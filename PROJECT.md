@@ -87,9 +87,10 @@ lets anyone who finds the URL read and write the household's finances.
 | `src/schedule.py` | Payment-date optimisation. Moves bills, never drops them. |
 | `src/report.py` | The cash-flow audit PDF |
 | `src/billsheet.py` | The monthly bill statement: PDF and XLSX, by category |
+| `src/billcalendar.py` | The bill calendar: PDF and XLSX, by date, totalled per month |
 | `src/pdfwrite.py` | Minimal PDF writer, stdlib only |
 | `src/xlsxwrite.py` | Minimal XLSX writer, stdlib only |
-| `src/engine.py` | Orchestrator. Modes: `daily`, `watch`, `defer`, `audit`, `bills` |
+| `src/engine.py` | Orchestrator. Modes: `daily`, `watch`, `defer`, `audit`, `bills`, `calendar` |
 | `src/notify.py` | Daily email; alert email kept for if alerts are re-enabled |
 | `src/apply_edits.py` | Server-side re-validation of in-app bill and income edits |
 | `src/add_income.py` | Adding an income source from the app, recurring or one-off |

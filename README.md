@@ -129,6 +129,7 @@ One authoritative engine. Business logic never lives in the dashboard.
 | `src/schedule.py` | Payment-date optimisation — moves a bill, never drops it |
 | `src/report.py` | The cash-flow audit PDF |
 | `src/billsheet.py` | The monthly bill statement — PDF and Excel workbook |
+| `src/billcalendar.py` | Bills by date, month by month — PDF and Excel |
 | `src/pdfwrite.py` | Minimal PDF writer, standard library only |
 | `src/xlsxwrite.py` | Minimal XLSX writer, standard library only |
 | `src/notify.py` | Email composition, daily and alert |
@@ -172,6 +173,7 @@ python src/engine.py watch --dry-run
 python src/engine.py defer --items '[{"bill_id":"netflix","date":"2026-08-23"}]'
 python src/engine.py audit --out cashflow-audit.pdf
 python src/engine.py bills                   # monthly-bills.pdf + .xlsx
+python src/engine.py calendar                # bills-by-date.pdf + .xlsx
 ```
 
 ## When should each bill actually be paid?
@@ -206,6 +208,14 @@ by month, and what is excluded or flagged — with live totals, filters and froz
 headers. Both files name the one thing a bill sheet usually hides: how much of
 the monthly figure is the engine's worst-case rule on variable bills rather than
 an amount anyone actually bills.
+
+## What is due, and when?
+
+`calendar` writes `bills-by-date.pdf` and `bills-by-date.xlsx`: every payment
+in date order, month by month, with each month totalled. The plain list, for
+working off — no categories and no analysis. It reads the same occurrence maths
+as everything else, so a line here always agrees with the same bill in the
+statement and the audit.
 
 ## Configuration
 
