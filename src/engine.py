@@ -639,9 +639,41 @@ def run_audit(out: str, *, days: int | None, assume_days: int) -> int:
     return 0
 
 
+def run_billsheet(out_pdf: str, out_xlsx: str, *, start: str | None,
+                  months: int) -> int:
+    """Write the monthly bill statement, as PDF and as a workbook.
+
+    A statement of obligations, not a forecast: no balance, no income, nothing
+    that depends on when a report is run. Like `audit` it is kept off the
+    scheduled runs, because it changes only when bills.json changes.
+    """
+    import billsheet
+
+    if start:
+        year, month = (int(x) for x in start.split("-")[:2])
+        first = date(year, month, 1)
+    else:
+        today = date.today()
+        first = date(today.year, today.month, 1)
+
+    model = billsheet.build(ROOT / "bills.json", first, months)
+    pages = billsheet.write_pdf(model, Path(out_pdf))
+    billsheet.write_xlsx(model, Path(out_xlsx))
+    print(
+        f"{out_pdf} written - {pages} pages.\n"
+        f"{out_xlsx} written - 5 sheets.\n"
+        f"  {len(model.rows)} active bills over {months} months from "
+        f"{first.isoformat()}\n"
+        f"  {notify.m(model.per_month)} a month on average, "
+        f"{notify.m(model.total)} in total"
+    )
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(description="OpenFIN financial engine")
-    p.add_argument("mode", choices=["daily", "watch", "defer", "audit"])
+    p.add_argument("mode",
+                   choices=["daily", "watch", "defer", "audit", "bills"])
     p.add_argument("--balance", help="today's actual bank balance")
     p.add_argument("--items", help="JSON list of {bill_id, date} deferrals")
     p.add_argument("--out", default="cashflow-audit.pdf",
@@ -649,6 +681,13 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--days", type=int, help="audit mode: projection length")
     p.add_argument("--assume-days", type=int, default=7,
                    help="audit mode: conditional window for UNKNOWN bills")
+    p.add_argument("--out-pdf", default="monthly-bills.pdf",
+                   help="bills mode: where to write the PDF")
+    p.add_argument("--out-xlsx", default="monthly-bills.xlsx",
+                   help="bills mode: where to write the workbook")
+    p.add_argument("--start", help="bills mode: first month, YYYY-MM")
+    p.add_argument("--months", type=int, default=12,
+                   help="bills mode: how many months to cover")
     p.add_argument("--dry-run", action="store_true")
     args = p.parse_args(argv)
 
@@ -669,6 +708,9 @@ def main(argv: list[str] | None = None) -> int:
         if args.mode == "audit":
             return run_audit(args.out, days=args.days,
                              assume_days=args.assume_days)
+        if args.mode == "bills":
+            return run_billsheet(args.out_pdf, args.out_xlsx,
+                                 start=args.start, months=args.months)
         return run_watch(dry_run=args.dry_run)
     except EngineError as exc:
         # Financial software does not fail silently and does not invent numbers.
