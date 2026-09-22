@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-09-21T19:43:28.864601-04:00",
-  "today": "2026-09-21",
+  "generated_at": "2026-09-22T11:21:09.024006-04:00",
+  "today": "2026-09-22",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "1796.56",
-  "end_of_week": "3938.74",
-  "end_of_month": "3776.85",
+  "end_of_day": "3510.18",
+  "end_of_week": "5740.36",
+  "end_of_month": "5578.47",
   "week_end": "2026-09-27",
-  "minimum_balance": "-698.37",
+  "minimum_balance": "1103.25",
   "minimum_date": "2026-11-19",
-  "shortfall": "698.37",
+  "shortfall": "0.00",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "132.48",
+    "safe": "1934.10",
     "explain": [
       [
         "Balance now",
@@ -25,51 +25,43 @@
       ],
       [
         "Bills over the next 30 days",
-        "-12856.48"
+        "-11054.86"
       ],
       [
-        "Where that ends up, 20 Oct",
-        "132.48"
+        "Where that ends up, 21 Oct",
+        "1934.10"
       ],
       [
         "Lowest point along the way, 19 Oct",
-        "132.48"
+        "1934.10"
       ],
       [
         "Available to spend",
-        "132.48"
+        "1934.10"
       ]
     ],
-    "headroom": "132.48",
+    "headroom": "1934.10",
     "headroom_day": "2026-10-19",
-    "per_day": "4.42",
-    "per_day_day": "2026-10-20",
+    "per_day": "64.47",
+    "per_day_day": "2026-10-21",
     "window_days": 30,
-    "window_end": "2026-10-20",
+    "window_end": "2026-10-21",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-10-20"
+      "window_end": "2026-10-21"
     }
   },
   "today_bills": [
     {
-      "name": "Mortgage",
-      "amount": "1801.62",
-      "tier": 1,
-      "autopay": false,
+      "name": "Chase CC United",
+      "amount": "88.00",
+      "tier": 3,
+      "autopay": true,
       "deferred": false
     }
   ],
   "today_income": [],
   "this_week": [
-    {
-      "date": "2026-09-21",
-      "name": "Mortgage",
-      "amount": "1801.62",
-      "direction": "out",
-      "tier": 1,
-      "deferred": false
-    },
     {
       "date": "2026-09-22",
       "name": "Chase CC United",
@@ -217,304 +209,255 @@
   ],
   "curve": [
     {
-      "date": "2026-09-21",
-      "closing": "1796.56"
-    },
-    {
       "date": "2026-09-22",
-      "closing": "1708.56"
+      "closing": "3510.18"
     },
     {
       "date": "2026-09-23",
-      "closing": "1687.25"
+      "closing": "3488.87"
     },
     {
       "date": "2026-09-24",
-      "closing": "606.99"
+      "closing": "2408.61"
     },
     {
       "date": "2026-09-25",
-      "closing": "4433.38"
+      "closing": "6235.00"
     },
     {
       "date": "2026-09-26",
-      "closing": "4433.38"
+      "closing": "6235.00"
     },
     {
       "date": "2026-09-27",
-      "closing": "3938.74"
+      "closing": "5740.36"
     },
     {
       "date": "2026-09-28",
-      "closing": "3938.74"
+      "closing": "5740.36"
     },
     {
       "date": "2026-09-29",
-      "closing": "3776.85"
+      "closing": "5578.47"
     },
     {
       "date": "2026-09-30",
-      "closing": "3776.85"
+      "closing": "5578.47"
     },
     {
       "date": "2026-10-01",
-      "closing": "3776.85"
+      "closing": "5578.47"
     },
     {
       "date": "2026-10-02",
-      "closing": "4645.85"
+      "closing": "6447.47"
     },
     {
       "date": "2026-10-03",
-      "closing": "4350.02"
+      "closing": "6151.64"
     },
     {
       "date": "2026-10-04",
-      "closing": "3596.46"
+      "closing": "5398.08"
     },
     {
       "date": "2026-10-05",
-      "closing": "1794.84"
+      "closing": "3596.46"
     },
     {
       "date": "2026-10-06",
-      "closing": "889.10"
+      "closing": "2690.72"
     },
     {
       "date": "2026-10-07",
-      "closing": "711.80"
+      "closing": "2513.42"
     },
     {
       "date": "2026-10-08",
-      "closing": "561.80"
+      "closing": "2363.42"
     },
     {
       "date": "2026-10-09",
-      "closing": "4388.19"
+      "closing": "6189.81"
     },
     {
       "date": "2026-10-10",
-      "closing": "4388.19"
+      "closing": "6189.81"
     },
     {
       "date": "2026-10-11",
-      "closing": "3888.42"
+      "closing": "5690.04"
     },
     {
       "date": "2026-10-12",
-      "closing": "3310.15"
+      "closing": "5111.77"
     },
     {
       "date": "2026-10-13",
-      "closing": "3310.15"
+      "closing": "5111.77"
     },
     {
       "date": "2026-10-14",
-      "closing": "3210.15"
+      "closing": "5011.77"
     },
     {
       "date": "2026-10-15",
-      "closing": "2649.15"
+      "closing": "4450.77"
     },
     {
       "date": "2026-10-16",
-      "closing": "3518.15"
+      "closing": "5319.77"
     },
     {
       "date": "2026-10-17",
-      "closing": "3219.15"
+      "closing": "5020.77"
     },
     {
       "date": "2026-10-18",
-      "closing": "2151.10"
+      "closing": "3952.72"
     },
     {
       "date": "2026-10-19",
-      "closing": "132.48"
+      "closing": "1934.10"
     },
     {
       "date": "2026-10-20",
-      "closing": "132.48"
+      "closing": "1934.10"
     },
     {
       "date": "2026-10-21",
-      "closing": "132.48"
+      "closing": "1934.10"
     },
     {
       "date": "2026-10-22",
-      "closing": "44.48"
+      "closing": "1846.10"
     },
     {
       "date": "2026-10-23",
-      "closing": "3849.56"
+      "closing": "5651.18"
     },
     {
       "date": "2026-10-24",
-      "closing": "2769.30"
+      "closing": "4570.92"
     },
     {
       "date": "2026-10-25",
-      "closing": "2359.44"
+      "closing": "4161.06"
     },
     {
       "date": "2026-10-26",
-      "closing": "2359.44"
+      "closing": "4161.06"
     },
     {
       "date": "2026-10-27",
-      "closing": "2274.66"
+      "closing": "4076.28"
     },
     {
       "date": "2026-10-28",
-      "closing": "2274.66"
+      "closing": "4076.28"
     },
     {
       "date": "2026-10-29",
-      "closing": "2112.77"
+      "closing": "3914.39"
     },
     {
       "date": "2026-10-30",
-      "closing": "2981.77"
+      "closing": "4783.39"
     },
     {
       "date": "2026-10-31",
-      "closing": "2981.77"
+      "closing": "4783.39"
     },
     {
       "date": "2026-11-01",
-      "closing": "2571.91"
+      "closing": "4373.53"
     },
     {
       "date": "2026-11-02",
-      "closing": "770.29"
+      "closing": "2571.91"
     },
     {
       "date": "2026-11-03",
-      "closing": "628.08"
+      "closing": "2429.70"
     },
     {
       "date": "2026-11-04",
-      "closing": "284.38"
+      "closing": "2086.00"
     },
     {
       "date": "2026-11-05",
-      "closing": "284.38"
+      "closing": "2086.00"
     },
     {
       "date": "2026-11-06",
-      "closing": "3722.53"
+      "closing": "5524.15"
     },
     {
       "date": "2026-11-07",
-      "closing": "3722.53"
+      "closing": "5524.15"
     },
     {
       "date": "2026-11-08",
-      "closing": "3162.67"
+      "closing": "4964.29"
     },
     {
       "date": "2026-11-09",
-      "closing": "3162.67"
+      "closing": "4964.29"
     },
     {
       "date": "2026-11-10",
-      "closing": "3162.67"
+      "closing": "4964.29"
     },
     {
       "date": "2026-11-11",
-      "closing": "3057.57"
+      "closing": "4859.19"
     },
     {
       "date": "2026-11-12",
-      "closing": "2479.30"
+      "closing": "4280.92"
     },
     {
       "date": "2026-11-13",
-      "closing": "3348.30"
+      "closing": "5149.92"
     },
     {
       "date": "2026-11-14",
-      "closing": "3248.30"
+      "closing": "5049.92"
     },
     {
       "date": "2026-11-15",
-      "closing": "2277.44"
+      "closing": "4079.06"
     },
     {
       "date": "2026-11-16",
-      "closing": "475.82"
+      "closing": "2277.44"
     },
     {
       "date": "2026-11-17",
-      "closing": "176.82"
+      "closing": "1978.44"
     },
     {
       "date": "2026-11-18",
-      "closing": "-481.37"
+      "closing": "1320.25"
     },
     {
       "date": "2026-11-19",
-      "closing": "-698.37"
-    }
-  ],
-  "risks": [
-    {
-      "id": "secured_payment:ccu-car-loan:2026-11-18",
-      "type": "secured_payment",
-      "severity": "critical",
-      "title": "CCU car loan may not clear",
-      "detail": "CCU car loan of $306.90 is due Wed 18 Nov with only $176.82 available that day.",
-      "amount": "130.08",
-      "when": "2026-11-18"
+      "closing": "1103.25"
     },
     {
-      "id": "negative_balance:2026-11-18",
-      "type": "negative_balance",
-      "severity": "critical",
-      "title": "Balance goes negative Wed 18 Nov",
-      "detail": "Projected -$481.37 on Wed 18 Nov. Lowest point is -$698.37 on Thu 19 Nov.",
-      "amount": "698.37",
-      "when": "2026-11-18"
+      "date": "2026-11-20",
+      "closing": "4929.64"
     }
   ],
+  "risks": [],
   "plan": {
-    "summary": "Deferring Culligan $307.70, Culligan $307.70, Lowes $126.00 before 18 Nov frees $741.40 and covers the $698.37 shortfall.",
-    "shortfall": "698.37",
-    "problem_day": "2026-11-18",
-    "candidates": [
-      {
-        "name": "Culligan",
-        "amount": "307.70",
-        "date": "2026-10-04",
-        "tier": 5
-      },
-      {
-        "name": "Culligan",
-        "amount": "307.70",
-        "date": "2026-11-04",
-        "tier": 5
-      },
-      {
-        "name": "Lowes",
-        "amount": "126.00",
-        "date": "2026-10-18",
-        "tier": 5
-      }
-    ],
+    "summary": "No shortfall to solve.",
+    "shortfall": "0.00",
+    "problem_day": null,
+    "candidates": [],
     "covered": true
   },
   "deferral_window": [
-    {
-      "id": "mortgage",
-      "name": "Mortgage",
-      "date": "2026-09-21",
-      "amount": "1801.62",
-      "tier": 1,
-      "deferrable": false,
-      "secured": true,
-      "deferred": false,
-      "in_week": true
-    },
     {
       "id": "chase-united",
       "name": "Chase CC United",
@@ -773,20 +716,6 @@
   "lookahead_days": 14,
   "bills": [
     {
-      "id": "mortgage",
-      "name": "Mortgage",
-      "amount": "1801.62",
-      "due_day": null,
-      "frequency": "biweekly",
-      "next_date": "2026-09-21",
-      "tier": 1,
-      "active": true,
-      "variable": false,
-      "needs_review": true,
-      "source": "statement",
-      "note": "CORRECTED from semimonthly to biweekly. 15 consecutive payments 12/15/2025-06/29/2026 are exactly 14 days apart. Semimonthly modelled 24/yr; biweekly is 26/yr, a $3,603.24/yr difference. Extra same-week entries in the statements are failed-payment retries, not additional payments."
-    },
-    {
       "id": "chase-united",
       "name": "Chase CC United",
       "amount": "46.00",
@@ -953,6 +882,20 @@
       "needs_review": false,
       "source": "statement",
       "note": ""
+    },
+    {
+      "id": "mortgage",
+      "name": "Mortgage",
+      "amount": "1801.62",
+      "due_day": null,
+      "frequency": "biweekly",
+      "next_date": "2026-10-05",
+      "tier": 1,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "statement",
+      "note": "CORRECTED from semimonthly to biweekly. 15 consecutive payments 12/15/2025-06/29/2026 are exactly 14 days apart. Semimonthly modelled 24/yr; biweekly is 26/yr, a $3,603.24/yr difference. Extra same-week entries in the statements are failed-payment retries, not additional payments."
     },
     {
       "id": "lacrosse-2627-inst-1",
