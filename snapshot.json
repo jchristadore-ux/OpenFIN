@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-09-22T19:22:21.243044-04:00",
-  "today": "2026-09-22",
+  "generated_at": "2026-09-23T11:15:27.222309-04:00",
+  "today": "2026-09-23",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "3510.18",
-  "end_of_week": "5740.36",
-  "end_of_month": "5578.47",
+  "end_of_day": "3576.87",
+  "end_of_week": "5828.36",
+  "end_of_month": "5666.47",
   "week_end": "2026-09-27",
-  "minimum_balance": "1103.25",
+  "minimum_balance": "1191.25",
   "minimum_date": "2026-11-19",
   "shortfall": "0.00",
   "allowance": "0.00",
@@ -28,11 +28,11 @@
         "-11054.86"
       ],
       [
-        "Where that ends up, 21 Oct",
+        "Where that ends up, 22 Oct",
         "1934.10"
       ],
       [
-        "Lowest point along the way, 19 Oct",
+        "Lowest point along the way, 22 Oct",
         "1934.10"
       ],
       [
@@ -41,35 +41,27 @@
       ]
     ],
     "headroom": "1934.10",
-    "headroom_day": "2026-10-19",
+    "headroom_day": "2026-10-22",
     "per_day": "64.47",
-    "per_day_day": "2026-10-21",
+    "per_day_day": "2026-10-22",
     "window_days": 30,
-    "window_end": "2026-10-21",
+    "window_end": "2026-10-22",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-10-21"
+      "window_end": "2026-10-22"
     }
   },
   "today_bills": [
     {
-      "name": "Chase CC United",
-      "amount": "88.00",
-      "tier": 3,
+      "name": "Netflix",
+      "amount": "21.31",
+      "tier": 5,
       "autopay": true,
       "deferred": false
     }
   ],
   "today_income": [],
   "this_week": [
-    {
-      "date": "2026-09-22",
-      "name": "Chase CC United",
-      "amount": "88.00",
-      "direction": "out",
-      "tier": 3,
-      "deferred": false
-    },
     {
       "date": "2026-09-23",
       "name": "Netflix",
@@ -209,244 +201,244 @@
   ],
   "curve": [
     {
-      "date": "2026-09-22",
-      "closing": "3510.18"
-    },
-    {
       "date": "2026-09-23",
-      "closing": "3488.87"
+      "closing": "3576.87"
     },
     {
       "date": "2026-09-24",
-      "closing": "2408.61"
+      "closing": "2496.61"
     },
     {
       "date": "2026-09-25",
-      "closing": "6235.00"
+      "closing": "6323.00"
     },
     {
       "date": "2026-09-26",
-      "closing": "6235.00"
+      "closing": "6323.00"
     },
     {
       "date": "2026-09-27",
-      "closing": "5740.36"
+      "closing": "5828.36"
     },
     {
       "date": "2026-09-28",
-      "closing": "5740.36"
+      "closing": "5828.36"
     },
     {
       "date": "2026-09-29",
-      "closing": "5578.47"
+      "closing": "5666.47"
     },
     {
       "date": "2026-09-30",
-      "closing": "5578.47"
+      "closing": "5666.47"
     },
     {
       "date": "2026-10-01",
-      "closing": "5578.47"
+      "closing": "5666.47"
     },
     {
       "date": "2026-10-02",
-      "closing": "6447.47"
+      "closing": "6535.47"
     },
     {
       "date": "2026-10-03",
-      "closing": "6151.64"
+      "closing": "6239.64"
     },
     {
       "date": "2026-10-04",
-      "closing": "5398.08"
+      "closing": "5486.08"
     },
     {
       "date": "2026-10-05",
-      "closing": "3596.46"
+      "closing": "3684.46"
     },
     {
       "date": "2026-10-06",
-      "closing": "2690.72"
+      "closing": "2778.72"
     },
     {
       "date": "2026-10-07",
-      "closing": "2513.42"
+      "closing": "2601.42"
     },
     {
       "date": "2026-10-08",
-      "closing": "2363.42"
+      "closing": "2451.42"
     },
     {
       "date": "2026-10-09",
-      "closing": "6189.81"
+      "closing": "6277.81"
     },
     {
       "date": "2026-10-10",
-      "closing": "6189.81"
+      "closing": "6277.81"
     },
     {
       "date": "2026-10-11",
-      "closing": "5690.04"
+      "closing": "5778.04"
     },
     {
       "date": "2026-10-12",
-      "closing": "5111.77"
+      "closing": "5199.77"
     },
     {
       "date": "2026-10-13",
-      "closing": "5111.77"
+      "closing": "5199.77"
     },
     {
       "date": "2026-10-14",
-      "closing": "5011.77"
+      "closing": "5099.77"
     },
     {
       "date": "2026-10-15",
-      "closing": "4450.77"
+      "closing": "4538.77"
     },
     {
       "date": "2026-10-16",
-      "closing": "5319.77"
+      "closing": "5407.77"
     },
     {
       "date": "2026-10-17",
-      "closing": "5020.77"
+      "closing": "5108.77"
     },
     {
       "date": "2026-10-18",
-      "closing": "3952.72"
+      "closing": "4040.72"
     },
     {
       "date": "2026-10-19",
-      "closing": "1934.10"
+      "closing": "2022.10"
     },
     {
       "date": "2026-10-20",
-      "closing": "1934.10"
+      "closing": "2022.10"
     },
     {
       "date": "2026-10-21",
-      "closing": "1934.10"
+      "closing": "2022.10"
     },
     {
       "date": "2026-10-22",
-      "closing": "1846.10"
+      "closing": "1934.10"
     },
     {
       "date": "2026-10-23",
-      "closing": "5651.18"
+      "closing": "5739.18"
     },
     {
       "date": "2026-10-24",
-      "closing": "4570.92"
+      "closing": "4658.92"
     },
     {
       "date": "2026-10-25",
-      "closing": "4161.06"
+      "closing": "4249.06"
     },
     {
       "date": "2026-10-26",
-      "closing": "4161.06"
+      "closing": "4249.06"
     },
     {
       "date": "2026-10-27",
-      "closing": "4076.28"
+      "closing": "4164.28"
     },
     {
       "date": "2026-10-28",
-      "closing": "4076.28"
+      "closing": "4164.28"
     },
     {
       "date": "2026-10-29",
-      "closing": "3914.39"
+      "closing": "4002.39"
     },
     {
       "date": "2026-10-30",
-      "closing": "4783.39"
+      "closing": "4871.39"
     },
     {
       "date": "2026-10-31",
-      "closing": "4783.39"
+      "closing": "4871.39"
     },
     {
       "date": "2026-11-01",
-      "closing": "4373.53"
+      "closing": "4461.53"
     },
     {
       "date": "2026-11-02",
-      "closing": "2571.91"
+      "closing": "2659.91"
     },
     {
       "date": "2026-11-03",
-      "closing": "2429.70"
+      "closing": "2517.70"
     },
     {
       "date": "2026-11-04",
-      "closing": "2086.00"
+      "closing": "2174.00"
     },
     {
       "date": "2026-11-05",
-      "closing": "2086.00"
+      "closing": "2174.00"
     },
     {
       "date": "2026-11-06",
-      "closing": "5524.15"
+      "closing": "5612.15"
     },
     {
       "date": "2026-11-07",
-      "closing": "5524.15"
+      "closing": "5612.15"
     },
     {
       "date": "2026-11-08",
-      "closing": "4964.29"
+      "closing": "5052.29"
     },
     {
       "date": "2026-11-09",
-      "closing": "4964.29"
+      "closing": "5052.29"
     },
     {
       "date": "2026-11-10",
-      "closing": "4964.29"
+      "closing": "5052.29"
     },
     {
       "date": "2026-11-11",
-      "closing": "4859.19"
+      "closing": "4947.19"
     },
     {
       "date": "2026-11-12",
-      "closing": "4280.92"
+      "closing": "4368.92"
     },
     {
       "date": "2026-11-13",
-      "closing": "5149.92"
+      "closing": "5237.92"
     },
     {
       "date": "2026-11-14",
-      "closing": "5049.92"
+      "closing": "5137.92"
     },
     {
       "date": "2026-11-15",
-      "closing": "4079.06"
+      "closing": "4167.06"
     },
     {
       "date": "2026-11-16",
-      "closing": "2277.44"
+      "closing": "2365.44"
     },
     {
       "date": "2026-11-17",
-      "closing": "1978.44"
+      "closing": "2066.44"
     },
     {
       "date": "2026-11-18",
-      "closing": "1320.25"
+      "closing": "1408.25"
     },
     {
       "date": "2026-11-19",
-      "closing": "1103.25"
+      "closing": "1191.25"
     },
     {
       "date": "2026-11-20",
-      "closing": "4929.64"
+      "closing": "5017.64"
+    },
+    {
+      "date": "2026-11-21",
+      "closing": "5017.64"
     }
   ],
   "risks": [],
@@ -458,17 +450,6 @@
     "covered": true
   },
   "deferral_window": [
-    {
-      "id": "chase-united",
-      "name": "Chase CC United",
-      "date": "2026-09-22",
-      "amount": "88.00",
-      "tier": 3,
-      "deferrable": true,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
     {
       "id": "netflix",
       "name": "Netflix",
@@ -715,20 +696,6 @@
   "deferred_total": "0.00",
   "lookahead_days": 14,
   "bills": [
-    {
-      "id": "chase-united",
-      "name": "Chase CC United",
-      "amount": "46.00",
-      "due_day": 22,
-      "frequency": "monthly",
-      "next_date": "2026-09-22",
-      "tier": 3,
-      "active": true,
-      "variable": true,
-      "needs_review": false,
-      "source": "household",
-      "note": "Renegotiated to $46.00 (household, 11 Aug 2026). Card ending 6319. Autopay 21st-23rd."
-    },
     {
       "id": "netflix",
       "name": "Netflix",
@@ -1162,6 +1129,20 @@
       "needs_review": true,
       "source": "household",
       "note": "New, $114.00/month, per the household. Due day assumed the same as the federal instalment; confirm. Not yet visible in any statement."
+    },
+    {
+      "id": "chase-united",
+      "name": "Chase CC United",
+      "amount": "46.00",
+      "due_day": 22,
+      "frequency": "monthly",
+      "next_date": "2026-10-22",
+      "tier": 3,
+      "active": true,
+      "variable": true,
+      "needs_review": false,
+      "source": "household",
+      "note": "Renegotiated to $46.00 (household, 11 Aug 2026). Card ending 6319. Autopay 21st-23rd."
     },
     {
       "id": "clinton-water",
