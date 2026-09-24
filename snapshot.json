@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-09-23T19:19:20.808500-04:00",
-  "today": "2026-09-23",
+  "generated_at": "2026-09-24T11:40:26.138348-04:00",
+  "today": "2026-09-24",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "3576.87",
-  "end_of_week": "5828.36",
-  "end_of_month": "5666.47",
+  "end_of_day": "2517.92",
+  "end_of_week": "5849.67",
+  "end_of_month": "5687.78",
   "week_end": "2026-09-27",
-  "minimum_balance": "1191.25",
+  "minimum_balance": "1212.56",
   "minimum_date": "2026-11-19",
   "shortfall": "0.00",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "1934.10",
+    "safe": "1955.41",
     "explain": [
       [
         "Balance now",
@@ -21,55 +21,54 @@
       ],
       [
         "Income over the next 30 days",
-        "9390.78"
+        "13217.17"
       ],
       [
         "Bills over the next 30 days",
         "-11054.86"
       ],
       [
-        "Where that ends up, 22 Oct",
-        "1934.10"
+        "Where that ends up, 23 Oct",
+        "5760.49"
       ],
       [
         "Lowest point along the way, 22 Oct",
-        "1934.10"
+        "1955.41"
       ],
       [
         "Available to spend",
-        "1934.10"
+        "1955.41"
       ]
     ],
-    "headroom": "1934.10",
+    "headroom": "1955.41",
     "headroom_day": "2026-10-22",
-    "per_day": "64.47",
+    "per_day": "67.43",
     "per_day_day": "2026-10-22",
     "window_days": 30,
-    "window_end": "2026-10-22",
+    "window_end": "2026-10-23",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-10-22"
+      "window_end": "2026-10-23"
     }
   },
   "today_bills": [
     {
-      "name": "Netflix",
-      "amount": "21.31",
-      "tier": 5,
+      "name": "Kia",
+      "amount": "742.65",
+      "tier": 1,
+      "autopay": true,
+      "deferred": false
+    },
+    {
+      "name": "Upstart past bills (from Sep)",
+      "amount": "337.61",
+      "tier": 3,
       "autopay": true,
       "deferred": false
     }
   ],
   "today_income": [],
   "this_week": [
-    {
-      "date": "2026-09-23",
-      "name": "Netflix",
-      "amount": "21.31",
-      "direction": "out",
-      "tier": 5,
-      "deferred": false
-    },
     {
       "date": "2026-09-24",
       "name": "Kia",
@@ -201,244 +200,244 @@
   ],
   "curve": [
     {
-      "date": "2026-09-23",
-      "closing": "3576.87"
-    },
-    {
       "date": "2026-09-24",
-      "closing": "2496.61"
+      "closing": "2517.92"
     },
     {
       "date": "2026-09-25",
-      "closing": "6323.00"
+      "closing": "6344.31"
     },
     {
       "date": "2026-09-26",
-      "closing": "6323.00"
+      "closing": "6344.31"
     },
     {
       "date": "2026-09-27",
-      "closing": "5828.36"
+      "closing": "5849.67"
     },
     {
       "date": "2026-09-28",
-      "closing": "5828.36"
+      "closing": "5849.67"
     },
     {
       "date": "2026-09-29",
-      "closing": "5666.47"
+      "closing": "5687.78"
     },
     {
       "date": "2026-09-30",
-      "closing": "5666.47"
+      "closing": "5687.78"
     },
     {
       "date": "2026-10-01",
-      "closing": "5666.47"
+      "closing": "5687.78"
     },
     {
       "date": "2026-10-02",
-      "closing": "6535.47"
+      "closing": "6556.78"
     },
     {
       "date": "2026-10-03",
-      "closing": "6239.64"
+      "closing": "6260.95"
     },
     {
       "date": "2026-10-04",
-      "closing": "5486.08"
+      "closing": "5507.39"
     },
     {
       "date": "2026-10-05",
-      "closing": "3684.46"
+      "closing": "3705.77"
     },
     {
       "date": "2026-10-06",
-      "closing": "2778.72"
+      "closing": "2800.03"
     },
     {
       "date": "2026-10-07",
-      "closing": "2601.42"
+      "closing": "2622.73"
     },
     {
       "date": "2026-10-08",
-      "closing": "2451.42"
+      "closing": "2472.73"
     },
     {
       "date": "2026-10-09",
-      "closing": "6277.81"
+      "closing": "6299.12"
     },
     {
       "date": "2026-10-10",
-      "closing": "6277.81"
+      "closing": "6299.12"
     },
     {
       "date": "2026-10-11",
-      "closing": "5778.04"
+      "closing": "5799.35"
     },
     {
       "date": "2026-10-12",
-      "closing": "5199.77"
+      "closing": "5221.08"
     },
     {
       "date": "2026-10-13",
-      "closing": "5199.77"
+      "closing": "5221.08"
     },
     {
       "date": "2026-10-14",
-      "closing": "5099.77"
+      "closing": "5121.08"
     },
     {
       "date": "2026-10-15",
-      "closing": "4538.77"
+      "closing": "4560.08"
     },
     {
       "date": "2026-10-16",
-      "closing": "5407.77"
+      "closing": "5429.08"
     },
     {
       "date": "2026-10-17",
-      "closing": "5108.77"
+      "closing": "5130.08"
     },
     {
       "date": "2026-10-18",
-      "closing": "4040.72"
+      "closing": "4062.03"
     },
     {
       "date": "2026-10-19",
-      "closing": "2022.10"
+      "closing": "2043.41"
     },
     {
       "date": "2026-10-20",
-      "closing": "2022.10"
+      "closing": "2043.41"
     },
     {
       "date": "2026-10-21",
-      "closing": "2022.10"
+      "closing": "2043.41"
     },
     {
       "date": "2026-10-22",
-      "closing": "1934.10"
+      "closing": "1955.41"
     },
     {
       "date": "2026-10-23",
-      "closing": "5739.18"
+      "closing": "5760.49"
     },
     {
       "date": "2026-10-24",
-      "closing": "4658.92"
+      "closing": "4680.23"
     },
     {
       "date": "2026-10-25",
-      "closing": "4249.06"
+      "closing": "4270.37"
     },
     {
       "date": "2026-10-26",
-      "closing": "4249.06"
+      "closing": "4270.37"
     },
     {
       "date": "2026-10-27",
-      "closing": "4164.28"
+      "closing": "4185.59"
     },
     {
       "date": "2026-10-28",
-      "closing": "4164.28"
+      "closing": "4185.59"
     },
     {
       "date": "2026-10-29",
-      "closing": "4002.39"
+      "closing": "4023.70"
     },
     {
       "date": "2026-10-30",
-      "closing": "4871.39"
+      "closing": "4892.70"
     },
     {
       "date": "2026-10-31",
-      "closing": "4871.39"
+      "closing": "4892.70"
     },
     {
       "date": "2026-11-01",
-      "closing": "4461.53"
+      "closing": "4482.84"
     },
     {
       "date": "2026-11-02",
-      "closing": "2659.91"
+      "closing": "2681.22"
     },
     {
       "date": "2026-11-03",
-      "closing": "2517.70"
+      "closing": "2539.01"
     },
     {
       "date": "2026-11-04",
-      "closing": "2174.00"
+      "closing": "2195.31"
     },
     {
       "date": "2026-11-05",
-      "closing": "2174.00"
+      "closing": "2195.31"
     },
     {
       "date": "2026-11-06",
-      "closing": "5612.15"
+      "closing": "5633.46"
     },
     {
       "date": "2026-11-07",
-      "closing": "5612.15"
+      "closing": "5633.46"
     },
     {
       "date": "2026-11-08",
-      "closing": "5052.29"
+      "closing": "5073.60"
     },
     {
       "date": "2026-11-09",
-      "closing": "5052.29"
+      "closing": "5073.60"
     },
     {
       "date": "2026-11-10",
-      "closing": "5052.29"
+      "closing": "5073.60"
     },
     {
       "date": "2026-11-11",
-      "closing": "4947.19"
+      "closing": "4968.50"
     },
     {
       "date": "2026-11-12",
-      "closing": "4368.92"
+      "closing": "4390.23"
     },
     {
       "date": "2026-11-13",
-      "closing": "5237.92"
+      "closing": "5259.23"
     },
     {
       "date": "2026-11-14",
-      "closing": "5137.92"
+      "closing": "5159.23"
     },
     {
       "date": "2026-11-15",
-      "closing": "4167.06"
+      "closing": "4188.37"
     },
     {
       "date": "2026-11-16",
-      "closing": "2365.44"
+      "closing": "2386.75"
     },
     {
       "date": "2026-11-17",
-      "closing": "2066.44"
+      "closing": "2087.75"
     },
     {
       "date": "2026-11-18",
-      "closing": "1408.25"
+      "closing": "1429.56"
     },
     {
       "date": "2026-11-19",
-      "closing": "1191.25"
+      "closing": "1212.56"
     },
     {
       "date": "2026-11-20",
-      "closing": "5017.64"
+      "closing": "5038.95"
     },
     {
       "date": "2026-11-21",
-      "closing": "5017.64"
+      "closing": "5038.95"
+    },
+    {
+      "date": "2026-11-22",
+      "closing": "4541.09"
     }
   ],
   "risks": [],
@@ -450,17 +449,6 @@
     "covered": true
   },
   "deferral_window": [
-    {
-      "id": "netflix",
-      "name": "Netflix",
-      "date": "2026-09-23",
-      "amount": "21.31",
-      "tier": 5,
-      "deferrable": true,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
     {
       "id": "car-payment",
       "name": "Kia",
@@ -696,20 +684,6 @@
   "deferred_total": "0.00",
   "lookahead_days": 14,
   "bills": [
-    {
-      "id": "netflix",
-      "name": "Netflix",
-      "amount": "21.31",
-      "due_day": 23,
-      "frequency": "monthly",
-      "next_date": "2026-09-23",
-      "tier": 5,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "source": "statement",
-      "note": ""
-    },
     {
       "id": "car-payment",
       "name": "Kia",
@@ -1143,6 +1117,20 @@
       "needs_review": false,
       "source": "household",
       "note": "Renegotiated to $46.00 (household, 11 Aug 2026). Card ending 6319. Autopay 21st-23rd."
+    },
+    {
+      "id": "netflix",
+      "name": "Netflix",
+      "amount": "21.31",
+      "due_day": 23,
+      "frequency": "monthly",
+      "next_date": "2026-10-23",
+      "tier": 5,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "statement",
+      "note": ""
     },
     {
       "id": "clinton-water",
