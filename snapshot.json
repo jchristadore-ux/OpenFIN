@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-26T19:14:20.071795-04:00",
-  "today": "2026-09-26",
+  "generated_at": "2026-09-27T11:29:19.869248-04:00",
+  "today": "2026-09-27",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "3598.18",
+  "end_of_day": "3103.54",
   "end_of_week": "3103.54",
   "end_of_month": "2941.65",
   "week_end": "2026-09-27",
@@ -28,7 +28,7 @@
         "-11464.72"
       ],
       [
-        "Where that ends up, 25 Oct",
+        "Where that ends up, 26 Oct",
         "1524.24"
       ],
       [
@@ -42,16 +42,38 @@
     ],
     "headroom": "-790.72",
     "headroom_day": "2026-10-22",
-    "per_day": "-29.29",
-    "per_day_day": "2026-10-22",
+    "per_day": "-30.55",
+    "per_day_day": "2026-10-19",
     "window_days": 30,
-    "window_end": "2026-10-25",
+    "window_end": "2026-10-26",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-10-25"
+      "window_end": "2026-10-26"
     }
   },
-  "today_bills": [],
+  "today_bills": [
+    {
+      "name": "Groceries",
+      "amount": "319.09",
+      "tier": 2,
+      "autopay": false,
+      "deferred": false
+    },
+    {
+      "name": "Fuel",
+      "amount": "90.77",
+      "tier": 2,
+      "autopay": false,
+      "deferred": false
+    },
+    {
+      "name": "Barclay Old Navy",
+      "amount": "84.78",
+      "tier": 3,
+      "autopay": true,
+      "deferred": false
+    }
+  ],
   "today_income": [],
   "this_week": [
     {
@@ -152,10 +174,6 @@
     }
   ],
   "curve": [
-    {
-      "date": "2026-09-26",
-      "closing": "3598.18"
-    },
     {
       "date": "2026-09-27",
       "closing": "3103.54"
@@ -390,6 +408,10 @@
     },
     {
       "date": "2026-11-24",
+      "closing": "693.39"
+    },
+    {
+      "date": "2026-11-25",
       "closing": "693.39"
     }
   ],
