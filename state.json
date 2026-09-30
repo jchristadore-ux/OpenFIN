@@ -87,10 +87,10 @@
     "negative_balance:2026-10-19": {
       "type": "negative_balance",
       "severity": "critical",
-      "amount": "1038.93",
+      "amount": "877.04",
       "when": "2026-10-19",
       "first_seen": "2026-09-28T14:20:57.285101-04:00",
-      "last_seen": "2026-09-29T19:59:55.248914-04:00"
+      "last_seen": "2026-09-30T12:37:35.461380-04:00"
     },
     "secured_payment:ccu-car-loan:2026-11-18": {
       "type": "secured_payment",
@@ -98,15 +98,15 @@
       "amount": "306.90",
       "when": "2026-11-18",
       "first_seen": "2026-09-26T10:50:04.261003-04:00",
-      "last_seen": "2026-09-29T19:59:55.248914-04:00"
+      "last_seen": "2026-09-30T12:37:35.461380-04:00"
     },
     "discretionary:2026-10-22": {
       "type": "discretionary",
       "severity": "medium",
-      "amount": "296.08",
+      "amount": "134.19",
       "when": "2026-10-22",
       "first_seen": "2026-09-26T10:50:04.261003-04:00",
-      "last_seen": "2026-09-29T19:59:55.248914-04:00"
+      "last_seen": "2026-09-30T12:37:35.461380-04:00"
     }
   },
   "last_daily_sent": "2026-08-31T14:19:49.288583-04:00",

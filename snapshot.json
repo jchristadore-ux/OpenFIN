@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-09-29T19:59:55.248914-04:00",
-  "today": "2026-09-29",
+  "generated_at": "2026-09-30T12:37:35.461380-04:00",
+  "today": "2026-09-30",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "3436.29",
-  "end_of_week": "3255.90",
-  "end_of_month": "3436.29",
+  "end_of_day": "3598.18",
+  "end_of_week": "3417.79",
+  "end_of_month": "3598.18",
   "week_end": "2026-10-04",
-  "minimum_balance": "-1038.93",
+  "minimum_balance": "-877.04",
   "minimum_date": "2026-11-19",
-  "shortfall": "1038.93",
+  "shortfall": "877.04",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "-296.08",
+    "safe": "-134.19",
     "explain": [
       [
         "Balance now",
@@ -28,63 +28,32 @@
         "-11054.86"
       ],
       [
-        "Where that ends up, 28 Oct",
+        "Where that ends up, 29 Oct",
         "1934.10"
       ],
       [
         "Lowest point along the way, 22 Oct",
-        "-296.08"
+        "-134.19"
       ],
       [
         "Available to spend",
-        "-296.08"
+        "-134.19"
       ]
     ],
-    "headroom": "-296.08",
+    "headroom": "-134.19",
     "headroom_day": "2026-10-22",
-    "per_day": "-12.34",
+    "per_day": "-5.83",
     "per_day_day": "2026-10-22",
     "window_days": 30,
-    "window_end": "2026-10-28",
+    "window_end": "2026-10-29",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-10-28"
+      "window_end": "2026-10-29"
     }
   },
-  "today_bills": [
-    {
-      "name": "Xfinity Mobile",
-      "amount": "88.82",
-      "tier": 2,
-      "autopay": true,
-      "deferred": false
-    },
-    {
-      "name": "Affirm",
-      "amount": "73.07",
-      "tier": 3,
-      "autopay": true,
-      "deferred": false
-    }
-  ],
+  "today_bills": [],
   "today_income": [],
   "this_week": [
-    {
-      "date": "2026-09-29",
-      "name": "Xfinity Mobile",
-      "amount": "88.82",
-      "direction": "out",
-      "tier": 2,
-      "deferred": false
-    },
-    {
-      "date": "2026-09-29",
-      "name": "Affirm",
-      "amount": "73.07",
-      "direction": "out",
-      "tier": 3,
-      "deferred": false
-    },
     {
       "date": "2026-10-02",
       "name": "NJ unemployment",
@@ -208,244 +177,244 @@
   ],
   "curve": [
     {
-      "date": "2026-09-29",
-      "closing": "3436.29"
-    },
-    {
       "date": "2026-09-30",
-      "closing": "3436.29"
+      "closing": "3598.18"
     },
     {
       "date": "2026-10-01",
-      "closing": "3436.29"
+      "closing": "3598.18"
     },
     {
       "date": "2026-10-02",
-      "closing": "4305.29"
+      "closing": "4467.18"
     },
     {
       "date": "2026-10-03",
-      "closing": "4009.46"
+      "closing": "4171.35"
     },
     {
       "date": "2026-10-04",
-      "closing": "3255.90"
+      "closing": "3417.79"
     },
     {
       "date": "2026-10-05",
-      "closing": "1454.28"
+      "closing": "1616.17"
     },
     {
       "date": "2026-10-06",
-      "closing": "548.54"
+      "closing": "710.43"
     },
     {
       "date": "2026-10-07",
-      "closing": "371.24"
+      "closing": "533.13"
     },
     {
       "date": "2026-10-08",
-      "closing": "221.24"
+      "closing": "383.13"
     },
     {
       "date": "2026-10-09",
-      "closing": "4047.63"
+      "closing": "4209.52"
     },
     {
       "date": "2026-10-10",
-      "closing": "4047.63"
+      "closing": "4209.52"
     },
     {
       "date": "2026-10-11",
-      "closing": "3547.86"
+      "closing": "3709.75"
     },
     {
       "date": "2026-10-12",
-      "closing": "2969.59"
+      "closing": "3131.48"
     },
     {
       "date": "2026-10-13",
-      "closing": "2969.59"
+      "closing": "3131.48"
     },
     {
       "date": "2026-10-14",
-      "closing": "2869.59"
+      "closing": "3031.48"
     },
     {
       "date": "2026-10-15",
-      "closing": "2308.59"
+      "closing": "2470.48"
     },
     {
       "date": "2026-10-16",
-      "closing": "3177.59"
+      "closing": "3339.48"
     },
     {
       "date": "2026-10-17",
-      "closing": "2878.59"
+      "closing": "3040.48"
     },
     {
       "date": "2026-10-18",
-      "closing": "1810.54"
+      "closing": "1972.43"
     },
     {
       "date": "2026-10-19",
-      "closing": "-208.08"
+      "closing": "-46.19"
     },
     {
       "date": "2026-10-20",
-      "closing": "-208.08"
+      "closing": "-46.19"
     },
     {
       "date": "2026-10-21",
-      "closing": "-208.08"
+      "closing": "-46.19"
     },
     {
       "date": "2026-10-22",
-      "closing": "-296.08"
+      "closing": "-134.19"
     },
     {
       "date": "2026-10-23",
-      "closing": "3509.00"
+      "closing": "3670.89"
     },
     {
       "date": "2026-10-24",
-      "closing": "2428.74"
+      "closing": "2590.63"
     },
     {
       "date": "2026-10-25",
-      "closing": "2018.88"
+      "closing": "2180.77"
     },
     {
       "date": "2026-10-26",
-      "closing": "2018.88"
+      "closing": "2180.77"
     },
     {
       "date": "2026-10-27",
-      "closing": "1934.10"
+      "closing": "2095.99"
     },
     {
       "date": "2026-10-28",
-      "closing": "1934.10"
+      "closing": "2095.99"
     },
     {
       "date": "2026-10-29",
-      "closing": "1772.21"
+      "closing": "1934.10"
     },
     {
       "date": "2026-10-30",
-      "closing": "2641.21"
+      "closing": "2803.10"
     },
     {
       "date": "2026-10-31",
-      "closing": "2641.21"
+      "closing": "2803.10"
     },
     {
       "date": "2026-11-01",
-      "closing": "2231.35"
+      "closing": "2393.24"
     },
     {
       "date": "2026-11-02",
-      "closing": "429.73"
+      "closing": "591.62"
     },
     {
       "date": "2026-11-03",
-      "closing": "287.52"
+      "closing": "449.41"
     },
     {
       "date": "2026-11-04",
-      "closing": "-56.18"
+      "closing": "105.71"
     },
     {
       "date": "2026-11-05",
-      "closing": "-56.18"
+      "closing": "105.71"
     },
     {
       "date": "2026-11-06",
-      "closing": "3381.97"
+      "closing": "3543.86"
     },
     {
       "date": "2026-11-07",
-      "closing": "3381.97"
+      "closing": "3543.86"
     },
     {
       "date": "2026-11-08",
-      "closing": "2822.11"
+      "closing": "2984.00"
     },
     {
       "date": "2026-11-09",
-      "closing": "2822.11"
+      "closing": "2984.00"
     },
     {
       "date": "2026-11-10",
-      "closing": "2822.11"
+      "closing": "2984.00"
     },
     {
       "date": "2026-11-11",
-      "closing": "2717.01"
+      "closing": "2878.90"
     },
     {
       "date": "2026-11-12",
-      "closing": "2138.74"
+      "closing": "2300.63"
     },
     {
       "date": "2026-11-13",
-      "closing": "3007.74"
+      "closing": "3169.63"
     },
     {
       "date": "2026-11-14",
-      "closing": "2907.74"
+      "closing": "3069.63"
     },
     {
       "date": "2026-11-15",
-      "closing": "1936.88"
+      "closing": "2098.77"
     },
     {
       "date": "2026-11-16",
-      "closing": "135.26"
+      "closing": "297.15"
     },
     {
       "date": "2026-11-17",
-      "closing": "-163.74"
+      "closing": "-1.85"
     },
     {
       "date": "2026-11-18",
-      "closing": "-821.93"
+      "closing": "-660.04"
     },
     {
       "date": "2026-11-19",
-      "closing": "-1038.93"
+      "closing": "-877.04"
     },
     {
       "date": "2026-11-20",
-      "closing": "2787.46"
+      "closing": "2949.35"
     },
     {
       "date": "2026-11-21",
-      "closing": "2787.46"
+      "closing": "2949.35"
     },
     {
       "date": "2026-11-22",
-      "closing": "2289.60"
+      "closing": "2451.49"
     },
     {
       "date": "2026-11-23",
-      "closing": "2268.29"
+      "closing": "2430.18"
     },
     {
       "date": "2026-11-24",
-      "closing": "1188.03"
+      "closing": "1349.92"
     },
     {
       "date": "2026-11-25",
-      "closing": "1188.03"
+      "closing": "1349.92"
     },
     {
       "date": "2026-11-26",
-      "closing": "1188.03"
+      "closing": "1349.92"
     },
     {
       "date": "2026-11-27",
-      "closing": "1972.25"
+      "closing": "2134.14"
+    },
+    {
+      "date": "2026-11-28",
+      "closing": "2134.14"
     }
   ],
   "risks": [
@@ -454,8 +423,8 @@
       "type": "negative_balance",
       "severity": "critical",
       "title": "Balance goes negative Mon 19 Oct",
-      "detail": "Projected -$208.08 on Mon 19 Oct. Lowest point is -$1,038.93 on Thu 19 Nov.",
-      "amount": "1038.93",
+      "detail": "Projected -$46.19 on Mon 19 Oct. Lowest point is -$877.04 on Thu 19 Nov.",
+      "amount": "877.04",
       "when": "2026-10-19"
     },
     {
@@ -463,7 +432,7 @@
       "type": "secured_payment",
       "severity": "critical",
       "title": "CCU car loan may not clear",
-      "detail": "CCU car loan of $306.90 is due Wed 18 Nov with only -$163.74 available that day.",
+      "detail": "CCU car loan of $306.90 is due Wed 18 Nov with only -$1.85 available that day.",
       "amount": "306.90",
       "when": "2026-11-18"
     },
@@ -471,15 +440,15 @@
       "id": "discretionary:2026-10-22",
       "type": "discretionary",
       "severity": "medium",
-      "title": "Nothing available to spend: -$296.08",
-      "detail": "Over the next 30 days the balance reaches -$296.08 on Thu 22 Oct. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
-      "amount": "296.08",
+      "title": "Nothing available to spend: -$134.19",
+      "detail": "Over the next 30 days the balance reaches -$134.19 on Thu 22 Oct. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
+      "amount": "134.19",
       "when": "2026-10-22"
     }
   ],
   "plan": {
-    "summary": "Deferring Culligan $307.70, Lowes $126.00, Home Depot $100.00, TJX Rewards $36.00, NJ Total Select 1of4 $517.50 before 19 Oct frees $1,087.20 and covers the $1,038.93 shortfall.",
-    "shortfall": "1038.93",
+    "summary": "Deferring Culligan $307.70, Lowes $126.00, Home Depot $100.00, TJX Rewards $36.00, NJ Total Select 1of4 $517.50 before 19 Oct frees $1,087.20 and covers the $877.04 shortfall.",
+    "shortfall": "877.04",
     "problem_day": "2026-10-19",
     "candidates": [
       {
@@ -516,28 +485,6 @@
     "covered": true
   },
   "deferral_window": [
-    {
-      "id": "xfinity-mobile",
-      "name": "Xfinity Mobile",
-      "date": "2026-09-29",
-      "amount": "88.82",
-      "tier": 2,
-      "deferrable": true,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
-    {
-      "id": "affirm",
-      "name": "Affirm",
-      "date": "2026-09-29",
-      "amount": "73.07",
-      "tier": 3,
-      "deferrable": true,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
     {
       "id": "electric",
       "name": "JCP&L / FirstEnergy",
@@ -839,34 +786,6 @@
   "deferred_total": "0.00",
   "lookahead_days": 14,
   "bills": [
-    {
-      "id": "affirm",
-      "name": "Affirm",
-      "amount": "73.07",
-      "due_day": 29,
-      "frequency": "monthly",
-      "next_date": "2026-09-29",
-      "tier": 3,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "source": "statement",
-      "note": "Stable monthly stream since 01/30/2026. Household sheet had day 18; actual is 29-30."
-    },
-    {
-      "id": "xfinity-mobile",
-      "name": "Xfinity Mobile",
-      "amount": "88.82",
-      "due_day": 29,
-      "frequency": "monthly",
-      "next_date": "2026-09-29",
-      "tier": 2,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "source": "statement",
-      "note": ""
-    },
     {
       "id": "electric",
       "name": "JCP&L / FirstEnergy",
@@ -1283,6 +1202,34 @@
       "tier": 3,
       "active": true,
       "variable": true,
+      "needs_review": false,
+      "source": "statement",
+      "note": ""
+    },
+    {
+      "id": "affirm",
+      "name": "Affirm",
+      "amount": "73.07",
+      "due_day": 29,
+      "frequency": "monthly",
+      "next_date": "2026-10-29",
+      "tier": 3,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "statement",
+      "note": "Stable monthly stream since 01/30/2026. Household sheet had day 18; actual is 29-30."
+    },
+    {
+      "id": "xfinity-mobile",
+      "name": "Xfinity Mobile",
+      "amount": "88.82",
+      "due_day": 29,
+      "frequency": "monthly",
+      "next_date": "2026-10-29",
+      "tier": 2,
+      "active": true,
+      "variable": false,
       "needs_review": false,
       "source": "statement",
       "note": ""
