@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-09-30T20:15:02.418306-04:00",
-  "today": "2026-09-30",
+  "generated_at": "2026-10-01T13:13:51.247513-04:00",
+  "today": "2026-10-01",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
   "end_of_day": "3598.18",
   "end_of_week": "3417.79",
-  "end_of_month": "3598.18",
+  "end_of_month": "2803.10",
   "week_end": "2026-10-04",
   "minimum_balance": "-877.04",
   "minimum_date": "2026-11-19",
@@ -21,15 +21,15 @@
       ],
       [
         "Income over the next 30 days",
-        "9390.78"
+        "10259.78"
       ],
       [
         "Bills over the next 30 days",
         "-11054.86"
       ],
       [
-        "Where that ends up, 29 Oct",
-        "1934.10"
+        "Where that ends up, 30 Oct",
+        "2803.10"
       ],
       [
         "Lowest point along the way, 22 Oct",
@@ -42,13 +42,13 @@
     ],
     "headroom": "-134.19",
     "headroom_day": "2026-10-22",
-    "per_day": "-5.83",
+    "per_day": "-6.10",
     "per_day_day": "2026-10-22",
     "window_days": 30,
-    "window_end": "2026-10-29",
+    "window_end": "2026-10-30",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-10-29"
+      "window_end": "2026-10-30"
     }
   },
   "today_bills": [],
@@ -176,10 +176,6 @@
     }
   ],
   "curve": [
-    {
-      "date": "2026-09-30",
-      "closing": "3598.18"
-    },
     {
       "date": "2026-10-01",
       "closing": "3598.18"
@@ -415,6 +411,10 @@
     {
       "date": "2026-11-28",
       "closing": "2134.14"
+    },
+    {
+      "date": "2026-11-29",
+      "closing": "1562.39"
     }
   ],
   "risks": [
