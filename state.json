@@ -84,21 +84,21 @@
     }
   ],
   "risks": {
-    "negative_balance:2026-10-06": {
+    "negative_balance:2026-10-07": {
       "type": "negative_balance",
       "severity": "critical",
-      "amount": "1746.04",
-      "when": "2026-10-06",
-      "first_seen": "2026-10-03T11:01:17.987825-04:00",
-      "last_seen": "2026-10-03T19:25:50.460420-04:00"
+      "amount": "1450.21",
+      "when": "2026-10-07",
+      "first_seen": "2026-10-04T11:36:15.561129-04:00",
+      "last_seen": "2026-10-04T11:36:15.561129-04:00"
     },
     "secured_payment:mortgage:2026-10-19": {
       "type": "secured_payment",
       "severity": "critical",
-      "amount": "698.19",
+      "amount": "402.36",
       "when": "2026-10-19",
       "first_seen": "2026-10-03T11:01:17.987825-04:00",
-      "last_seen": "2026-10-03T19:25:50.460420-04:00"
+      "last_seen": "2026-10-04T11:36:15.561129-04:00"
     },
     "secured_payment:ccu-car-loan:2026-11-18": {
       "type": "secured_payment",
@@ -106,23 +106,23 @@
       "amount": "306.90",
       "when": "2026-11-18",
       "first_seen": "2026-09-26T10:50:04.261003-04:00",
-      "last_seen": "2026-10-03T19:25:50.460420-04:00"
+      "last_seen": "2026-10-04T11:36:15.561129-04:00"
     },
     "large_payment:mortgage:2026-10-19": {
       "type": "large_payment",
       "severity": "high",
-      "amount": "698.19",
+      "amount": "402.36",
       "when": "2026-10-19",
       "first_seen": "2026-10-03T11:01:17.987825-04:00",
-      "last_seen": "2026-10-03T19:25:50.460420-04:00"
+      "last_seen": "2026-10-04T11:36:15.561129-04:00"
     },
     "discretionary:2026-10-22": {
       "type": "discretionary",
       "severity": "medium",
-      "amount": "1003.19",
+      "amount": "707.36",
       "when": "2026-10-22",
       "first_seen": "2026-09-26T10:50:04.261003-04:00",
-      "last_seen": "2026-10-03T19:25:50.460420-04:00"
+      "last_seen": "2026-10-04T11:36:15.561129-04:00"
     }
   },
   "last_daily_sent": "2026-08-31T14:19:49.288583-04:00",

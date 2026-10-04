@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-10-03T19:25:50.460420-04:00",
-  "today": "2026-10-03",
+  "generated_at": "2026-10-04T11:36:15.561129-04:00",
+  "today": "2026-10-04",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "3302.35",
-  "end_of_week": "2548.79",
-  "end_of_month": "1934.10",
+  "end_of_day": "2844.62",
+  "end_of_week": "2844.62",
+  "end_of_month": "2229.93",
   "week_end": "2026-10-04",
-  "minimum_balance": "-1746.04",
+  "minimum_balance": "-1450.21",
   "minimum_date": "2026-11-19",
-  "shortfall": "1746.04",
+  "shortfall": "1450.21",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "-1003.19",
+    "safe": "-707.36",
     "explain": [
       [
         "Balance now",
@@ -25,51 +25,64 @@
       ],
       [
         "Bills over the next 30 days",
-        "-11464.72"
+        "-12970.51"
       ],
       [
-        "Where that ends up, 1 Nov",
-        "1524.24"
+        "Where that ends up, 2 Nov",
+        "18.45"
       ],
       [
         "Lowest point along the way, 22 Oct",
-        "-1003.19"
+        "-707.36"
       ],
       [
         "Available to spend",
-        "-1003.19"
+        "-707.36"
       ]
     ],
-    "headroom": "-1003.19",
+    "headroom": "-707.36",
     "headroom_day": "2026-10-22",
-    "per_day": "-80.98",
-    "per_day_day": "2026-10-08",
+    "per_day": "-38.71",
+    "per_day_day": "2026-10-19",
     "window_days": 30,
-    "window_end": "2026-11-01",
+    "window_end": "2026-11-02",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-11-01"
+      "window_end": "2026-11-02"
     }
   },
   "today_bills": [
     {
-      "name": "JCP&L / FirstEnergy",
-      "amount": "295.83",
+      "name": "Groceries",
+      "amount": "319.09",
       "tier": 2,
       "autopay": false,
+      "deferred": false
+    },
+    {
+      "name": "Culligan",
+      "amount": "307.70",
+      "tier": 5,
+      "autopay": false,
+      "deferred": false
+    },
+    {
+      "name": "Fuel",
+      "amount": "90.77",
+      "tier": 2,
+      "autopay": false,
+      "deferred": false
+    },
+    {
+      "name": "TJX Rewards",
+      "amount": "36.00",
+      "tier": 5,
+      "autopay": true,
       "deferred": false
     }
   ],
   "today_income": [],
   "this_week": [
-    {
-      "date": "2026-10-03",
-      "name": "JCP&L / FirstEnergy",
-      "amount": "295.83",
-      "direction": "out",
-      "tier": 2,
-      "deferred": false
-    },
     {
       "date": "2026-10-04",
       "name": "Groceries",
@@ -177,263 +190,263 @@
   ],
   "curve": [
     {
-      "date": "2026-10-03",
-      "closing": "3302.35"
-    },
-    {
       "date": "2026-10-04",
-      "closing": "2548.79"
+      "closing": "2844.62"
     },
     {
       "date": "2026-10-05",
-      "closing": "747.17"
+      "closing": "1043.00"
     },
     {
       "date": "2026-10-06",
-      "closing": "-158.57"
+      "closing": "137.26"
     },
     {
       "date": "2026-10-07",
-      "closing": "-335.87"
+      "closing": "-40.04"
     },
     {
       "date": "2026-10-08",
-      "closing": "-485.87"
+      "closing": "-190.04"
     },
     {
       "date": "2026-10-09",
-      "closing": "3340.52"
+      "closing": "3636.35"
     },
     {
       "date": "2026-10-10",
-      "closing": "3340.52"
+      "closing": "3636.35"
     },
     {
       "date": "2026-10-11",
-      "closing": "2840.75"
+      "closing": "3136.58"
     },
     {
       "date": "2026-10-12",
-      "closing": "2262.48"
+      "closing": "2558.31"
     },
     {
       "date": "2026-10-13",
-      "closing": "2262.48"
+      "closing": "2558.31"
     },
     {
       "date": "2026-10-14",
-      "closing": "2162.48"
+      "closing": "2458.31"
     },
     {
       "date": "2026-10-15",
-      "closing": "1601.48"
+      "closing": "1897.31"
     },
     {
       "date": "2026-10-16",
-      "closing": "2470.48"
+      "closing": "2766.31"
     },
     {
       "date": "2026-10-17",
-      "closing": "2171.48"
+      "closing": "2467.31"
     },
     {
       "date": "2026-10-18",
-      "closing": "1103.43"
+      "closing": "1399.26"
     },
     {
       "date": "2026-10-19",
-      "closing": "-915.19"
+      "closing": "-619.36"
     },
     {
       "date": "2026-10-20",
-      "closing": "-915.19"
+      "closing": "-619.36"
     },
     {
       "date": "2026-10-21",
-      "closing": "-915.19"
+      "closing": "-619.36"
     },
     {
       "date": "2026-10-22",
-      "closing": "-1003.19"
+      "closing": "-707.36"
     },
     {
       "date": "2026-10-23",
-      "closing": "2801.89"
+      "closing": "3097.72"
     },
     {
       "date": "2026-10-24",
-      "closing": "1721.63"
+      "closing": "2017.46"
     },
     {
       "date": "2026-10-25",
-      "closing": "1311.77"
+      "closing": "1607.60"
     },
     {
       "date": "2026-10-26",
-      "closing": "1311.77"
+      "closing": "1607.60"
     },
     {
       "date": "2026-10-27",
-      "closing": "1226.99"
+      "closing": "1522.82"
     },
     {
       "date": "2026-10-28",
-      "closing": "1226.99"
+      "closing": "1522.82"
     },
     {
       "date": "2026-10-29",
-      "closing": "1065.10"
+      "closing": "1360.93"
     },
     {
       "date": "2026-10-30",
-      "closing": "1934.10"
+      "closing": "2229.93"
     },
     {
       "date": "2026-10-31",
-      "closing": "1934.10"
+      "closing": "2229.93"
     },
     {
       "date": "2026-11-01",
-      "closing": "1524.24"
+      "closing": "1820.07"
     },
     {
       "date": "2026-11-02",
-      "closing": "-277.38"
+      "closing": "18.45"
     },
     {
       "date": "2026-11-03",
-      "closing": "-419.59"
+      "closing": "-123.76"
     },
     {
       "date": "2026-11-04",
-      "closing": "-763.29"
+      "closing": "-467.46"
     },
     {
       "date": "2026-11-05",
-      "closing": "-763.29"
+      "closing": "-467.46"
     },
     {
       "date": "2026-11-06",
-      "closing": "2674.86"
+      "closing": "2970.69"
     },
     {
       "date": "2026-11-07",
-      "closing": "2674.86"
+      "closing": "2970.69"
     },
     {
       "date": "2026-11-08",
-      "closing": "2115.00"
+      "closing": "2410.83"
     },
     {
       "date": "2026-11-09",
-      "closing": "2115.00"
+      "closing": "2410.83"
     },
     {
       "date": "2026-11-10",
-      "closing": "2115.00"
+      "closing": "2410.83"
     },
     {
       "date": "2026-11-11",
-      "closing": "2009.90"
+      "closing": "2305.73"
     },
     {
       "date": "2026-11-12",
-      "closing": "1431.63"
+      "closing": "1727.46"
     },
     {
       "date": "2026-11-13",
-      "closing": "2300.63"
+      "closing": "2596.46"
     },
     {
       "date": "2026-11-14",
-      "closing": "2200.63"
+      "closing": "2496.46"
     },
     {
       "date": "2026-11-15",
-      "closing": "1229.77"
+      "closing": "1525.60"
     },
     {
       "date": "2026-11-16",
-      "closing": "-571.85"
+      "closing": "-276.02"
     },
     {
       "date": "2026-11-17",
-      "closing": "-870.85"
+      "closing": "-575.02"
     },
     {
       "date": "2026-11-18",
-      "closing": "-1529.04"
+      "closing": "-1233.21"
     },
     {
       "date": "2026-11-19",
-      "closing": "-1746.04"
+      "closing": "-1450.21"
     },
     {
       "date": "2026-11-20",
-      "closing": "2080.35"
+      "closing": "2376.18"
     },
     {
       "date": "2026-11-21",
-      "closing": "2080.35"
+      "closing": "2376.18"
     },
     {
       "date": "2026-11-22",
-      "closing": "1582.49"
+      "closing": "1878.32"
     },
     {
       "date": "2026-11-23",
-      "closing": "1561.18"
+      "closing": "1857.01"
     },
     {
       "date": "2026-11-24",
-      "closing": "480.92"
+      "closing": "776.75"
     },
     {
       "date": "2026-11-25",
-      "closing": "480.92"
+      "closing": "776.75"
     },
     {
       "date": "2026-11-26",
-      "closing": "480.92"
+      "closing": "776.75"
     },
     {
       "date": "2026-11-27",
-      "closing": "1265.14"
+      "closing": "1560.97"
     },
     {
       "date": "2026-11-28",
-      "closing": "1265.14"
+      "closing": "1560.97"
     },
     {
       "date": "2026-11-29",
-      "closing": "693.39"
+      "closing": "989.22"
     },
     {
       "date": "2026-11-30",
-      "closing": "-1108.23"
+      "closing": "-812.40"
     },
     {
       "date": "2026-12-01",
-      "closing": "-1108.23"
+      "closing": "-812.40"
+    },
+    {
+      "date": "2026-12-02",
+      "closing": "-812.40"
     }
   ],
   "risks": [
     {
-      "id": "negative_balance:2026-10-06",
+      "id": "negative_balance:2026-10-07",
       "type": "negative_balance",
       "severity": "critical",
-      "title": "Balance goes negative Tue 6 Oct",
-      "detail": "Projected -$158.57 on Tue 6 Oct. Lowest point is -$1,746.04 on Thu 19 Nov.",
-      "amount": "1746.04",
-      "when": "2026-10-06"
+      "title": "Balance goes negative Wed 7 Oct",
+      "detail": "Projected -$40.04 on Wed 7 Oct. Lowest point is -$1,450.21 on Thu 19 Nov.",
+      "amount": "1450.21",
+      "when": "2026-10-07"
     },
     {
       "id": "secured_payment:mortgage:2026-10-19",
       "type": "secured_payment",
       "severity": "critical",
       "title": "Mortgage may not clear",
-      "detail": "Mortgage of $1,801.62 is due Mon 19 Oct with only $1,103.43 available that day.",
-      "amount": "698.19",
+      "detail": "Mortgage of $1,801.62 is due Mon 19 Oct with only $1,399.26 available that day.",
+      "amount": "402.36",
       "when": "2026-10-19"
     },
     {
@@ -441,7 +454,7 @@
       "type": "secured_payment",
       "severity": "critical",
       "title": "CCU car loan may not clear",
-      "detail": "CCU car loan of $306.90 is due Wed 18 Nov with only -$870.85 available that day.",
+      "detail": "CCU car loan of $306.90 is due Wed 18 Nov with only -$575.02 available that day.",
       "amount": "306.90",
       "when": "2026-11-18"
     },
@@ -450,24 +463,24 @@
       "type": "large_payment",
       "severity": "high",
       "title": "Mortgage $1,801.62 may be short",
-      "detail": "Mortgage of $1,801.62 is due Mon 19 Oct against a projected opening balance of $1,103.43.",
-      "amount": "698.19",
+      "detail": "Mortgage of $1,801.62 is due Mon 19 Oct against a projected opening balance of $1,399.26.",
+      "amount": "402.36",
       "when": "2026-10-19"
     },
     {
       "id": "discretionary:2026-10-22",
       "type": "discretionary",
       "severity": "medium",
-      "title": "Nothing available to spend: -$1,003.19",
-      "detail": "Over the next 30 days the balance reaches -$1,003.19 on Thu 22 Oct. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
-      "amount": "1003.19",
+      "title": "Nothing available to spend: -$707.36",
+      "detail": "Over the next 30 days the balance reaches -$707.36 on Thu 22 Oct. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
+      "amount": "707.36",
       "when": "2026-10-22"
     }
   ],
   "plan": {
-    "summary": "Deferring Culligan $307.70, TJX Rewards $36.00, NJ Total Select 1of4 $517.50 frees $861.20, which is short of the $1,746.04 needed by 6 Oct.",
-    "shortfall": "1746.04",
-    "problem_day": "2026-10-06",
+    "summary": "Deferring Culligan $307.70, TJX Rewards $36.00, NJ Total Select 1of4 $517.50, Republic trash Q4 $177.30 frees $1,038.50, which is short of the $1,450.21 needed by 7 Oct.",
+    "shortfall": "1450.21",
+    "problem_day": "2026-10-07",
     "candidates": [
       {
         "name": "Culligan",
@@ -486,22 +499,17 @@
         "amount": "517.50",
         "date": "2026-10-06",
         "tier": 4
+      },
+      {
+        "name": "Republic trash Q4",
+        "amount": "177.30",
+        "date": "2026-10-07",
+        "tier": 4
       }
     ],
     "covered": false
   },
   "deferral_window": [
-    {
-      "id": "electric",
-      "name": "JCP&L / FirstEnergy",
-      "date": "2026-10-03",
-      "amount": "295.83",
-      "tier": 2,
-      "deferrable": false,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
     {
       "id": "groceries",
       "name": "Groceries",
@@ -792,20 +800,6 @@
   "deferred_total": "0.00",
   "lookahead_days": 14,
   "bills": [
-    {
-      "id": "electric",
-      "name": "JCP&L / FirstEnergy",
-      "amount": "418.98",
-      "due_day": 3,
-      "frequency": "monthly",
-      "next_date": "2026-10-03",
-      "tier": 2,
-      "active": true,
-      "variable": true,
-      "needs_review": false,
-      "source": "statement",
-      "note": "Month-of-year profile blended from 34 JCP&L payments across Dec 2021-Dec 2024 and the 2025-26 statements. Electric is the one utility paid reliably every month, so a month-of-year mean is meaningful for it."
-    },
     {
       "id": "culligan",
       "name": "Culligan",
@@ -1239,6 +1233,20 @@
       "needs_review": false,
       "source": "statement",
       "note": ""
+    },
+    {
+      "id": "electric",
+      "name": "JCP&L / FirstEnergy",
+      "amount": "418.98",
+      "due_day": 3,
+      "frequency": "monthly",
+      "next_date": "2026-11-03",
+      "tier": 2,
+      "active": true,
+      "variable": true,
+      "needs_review": false,
+      "source": "statement",
+      "note": "Month-of-year profile blended from 34 JCP&L payments across Dec 2021-Dec 2024 and the 2025-26 statements. Electric is the one utility paid reliably every month, so a month-of-year mean is meaningful for it."
     },
     {
       "id": "clinton-water",
