@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-10-05T21:35:46.853163-04:00",
-  "today": "2026-10-05",
+  "generated_at": "2026-10-06T13:01:03.283608-04:00",
+  "today": "2026-10-06",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "1796.56",
-  "end_of_week": "3890.14",
-  "end_of_month": "2983.49",
+  "end_of_day": "2692.44",
+  "end_of_week": "5691.76",
+  "end_of_month": "4785.11",
   "week_end": "2026-10-11",
-  "minimum_balance": "-696.65",
+  "minimum_balance": "1104.97",
   "minimum_date": "2026-11-19",
-  "shortfall": "696.65",
+  "shortfall": "0.00",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "46.20",
+    "safe": "1847.82",
     "explain": [
       [
         "Balance now",
@@ -25,51 +25,50 @@
       ],
       [
         "Bills over the next 30 days",
-        "-12359.16"
+        "-10901.24"
       ],
       [
-        "Where that ends up, 3 Nov",
-        "629.80"
+        "Where that ends up, 4 Nov",
+        "2087.72"
       ],
       [
         "Lowest point along the way, 22 Oct",
-        "46.20"
+        "1847.82"
       ],
       [
         "Available to spend",
-        "46.20"
+        "1847.82"
       ]
     ],
-    "headroom": "46.20",
+    "headroom": "1847.82",
     "headroom_day": "2026-10-22",
-    "per_day": "2.57",
-    "per_day_day": "2026-10-22",
+    "per_day": "69.59",
+    "per_day_day": "2026-11-04",
     "window_days": 30,
-    "window_end": "2026-11-03",
+    "window_end": "2026-11-04",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-11-03"
+      "window_end": "2026-11-04"
     }
   },
   "today_bills": [
     {
-      "name": "Mortgage",
-      "amount": "1801.62",
-      "tier": 1,
+      "name": "NJ Total Select 1of4",
+      "amount": "517.50",
+      "tier": 4,
       "autopay": false,
+      "deferred": false
+    },
+    {
+      "name": "One Main loan",
+      "amount": "388.24",
+      "tier": 3,
+      "autopay": true,
       "deferred": false
     }
   ],
   "today_income": [],
   "this_week": [
-    {
-      "date": "2026-10-05",
-      "name": "Mortgage",
-      "amount": "1801.62",
-      "direction": "out",
-      "tier": 1,
-      "deferred": false
-    },
     {
       "date": "2026-10-06",
       "name": "NJ Total Select 1of4",
@@ -225,334 +224,255 @@
   ],
   "curve": [
     {
-      "date": "2026-10-05",
-      "closing": "1796.56"
-    },
-    {
       "date": "2026-10-06",
-      "closing": "890.82"
+      "closing": "2692.44"
     },
     {
       "date": "2026-10-07",
-      "closing": "713.52"
+      "closing": "2515.14"
     },
     {
       "date": "2026-10-08",
-      "closing": "563.52"
+      "closing": "2365.14"
     },
     {
       "date": "2026-10-09",
-      "closing": "4389.91"
+      "closing": "6191.53"
     },
     {
       "date": "2026-10-10",
-      "closing": "4389.91"
+      "closing": "6191.53"
     },
     {
       "date": "2026-10-11",
-      "closing": "3890.14"
+      "closing": "5691.76"
     },
     {
       "date": "2026-10-12",
-      "closing": "3311.87"
+      "closing": "5113.49"
     },
     {
       "date": "2026-10-13",
-      "closing": "3311.87"
+      "closing": "5113.49"
     },
     {
       "date": "2026-10-14",
-      "closing": "3211.87"
+      "closing": "5013.49"
     },
     {
       "date": "2026-10-15",
-      "closing": "2650.87"
+      "closing": "4452.49"
     },
     {
       "date": "2026-10-16",
-      "closing": "3519.87"
+      "closing": "5321.49"
     },
     {
       "date": "2026-10-17",
-      "closing": "3220.87"
+      "closing": "5022.49"
     },
     {
       "date": "2026-10-18",
-      "closing": "2152.82"
+      "closing": "3954.44"
     },
     {
       "date": "2026-10-19",
-      "closing": "134.20"
+      "closing": "1935.82"
     },
     {
       "date": "2026-10-20",
-      "closing": "134.20"
+      "closing": "1935.82"
     },
     {
       "date": "2026-10-21",
-      "closing": "134.20"
+      "closing": "1935.82"
     },
     {
       "date": "2026-10-22",
-      "closing": "46.20"
+      "closing": "1847.82"
     },
     {
       "date": "2026-10-23",
-      "closing": "3851.28"
+      "closing": "5652.90"
     },
     {
       "date": "2026-10-24",
-      "closing": "2771.02"
+      "closing": "4572.64"
     },
     {
       "date": "2026-10-25",
-      "closing": "2361.16"
+      "closing": "4162.78"
     },
     {
       "date": "2026-10-26",
-      "closing": "2361.16"
+      "closing": "4162.78"
     },
     {
       "date": "2026-10-27",
-      "closing": "2276.38"
+      "closing": "4078.00"
     },
     {
       "date": "2026-10-28",
-      "closing": "2276.38"
+      "closing": "4078.00"
     },
     {
       "date": "2026-10-29",
-      "closing": "2114.49"
+      "closing": "3916.11"
     },
     {
       "date": "2026-10-30",
-      "closing": "2983.49"
+      "closing": "4785.11"
     },
     {
       "date": "2026-10-31",
-      "closing": "2983.49"
+      "closing": "4785.11"
     },
     {
       "date": "2026-11-01",
-      "closing": "2573.63"
+      "closing": "4375.25"
     },
     {
       "date": "2026-11-02",
-      "closing": "772.01"
+      "closing": "2573.63"
     },
     {
       "date": "2026-11-03",
-      "closing": "629.80"
+      "closing": "2431.42"
     },
     {
       "date": "2026-11-04",
-      "closing": "286.10"
+      "closing": "2087.72"
     },
     {
       "date": "2026-11-05",
-      "closing": "286.10"
+      "closing": "2087.72"
     },
     {
       "date": "2026-11-06",
-      "closing": "3724.25"
+      "closing": "5525.87"
     },
     {
       "date": "2026-11-07",
-      "closing": "3724.25"
+      "closing": "5525.87"
     },
     {
       "date": "2026-11-08",
-      "closing": "3164.39"
+      "closing": "4966.01"
     },
     {
       "date": "2026-11-09",
-      "closing": "3164.39"
+      "closing": "4966.01"
     },
     {
       "date": "2026-11-10",
-      "closing": "3164.39"
+      "closing": "4966.01"
     },
     {
       "date": "2026-11-11",
-      "closing": "3059.29"
+      "closing": "4860.91"
     },
     {
       "date": "2026-11-12",
-      "closing": "2481.02"
+      "closing": "4282.64"
     },
     {
       "date": "2026-11-13",
-      "closing": "3350.02"
+      "closing": "5151.64"
     },
     {
       "date": "2026-11-14",
-      "closing": "3250.02"
+      "closing": "5051.64"
     },
     {
       "date": "2026-11-15",
-      "closing": "2279.16"
+      "closing": "4080.78"
     },
     {
       "date": "2026-11-16",
-      "closing": "477.54"
+      "closing": "2279.16"
     },
     {
       "date": "2026-11-17",
-      "closing": "178.54"
+      "closing": "1980.16"
     },
     {
       "date": "2026-11-18",
-      "closing": "-479.65"
+      "closing": "1321.97"
     },
     {
       "date": "2026-11-19",
-      "closing": "-696.65"
+      "closing": "1104.97"
     },
     {
       "date": "2026-11-20",
-      "closing": "3129.74"
+      "closing": "4931.36"
     },
     {
       "date": "2026-11-21",
-      "closing": "3129.74"
+      "closing": "4931.36"
     },
     {
       "date": "2026-11-22",
-      "closing": "2631.88"
+      "closing": "4433.50"
     },
     {
       "date": "2026-11-23",
-      "closing": "2610.57"
+      "closing": "4412.19"
     },
     {
       "date": "2026-11-24",
-      "closing": "1530.31"
+      "closing": "3331.93"
     },
     {
       "date": "2026-11-25",
-      "closing": "1530.31"
+      "closing": "3331.93"
     },
     {
       "date": "2026-11-26",
-      "closing": "1530.31"
+      "closing": "3331.93"
     },
     {
       "date": "2026-11-27",
-      "closing": "2314.53"
+      "closing": "4116.15"
     },
     {
       "date": "2026-11-28",
-      "closing": "2314.53"
+      "closing": "4116.15"
     },
     {
       "date": "2026-11-29",
-      "closing": "1742.78"
+      "closing": "3544.40"
     },
     {
       "date": "2026-11-30",
-      "closing": "-58.84"
+      "closing": "1742.78"
     },
     {
       "date": "2026-12-01",
-      "closing": "-58.84"
+      "closing": "1742.78"
     },
     {
       "date": "2026-12-02",
-      "closing": "-58.84"
+      "closing": "1742.78"
     },
     {
       "date": "2026-12-03",
-      "closing": "-219.94"
+      "closing": "1581.68"
+    },
+    {
+      "date": "2026-12-04",
+      "closing": "5064.37"
     }
   ],
-  "risks": [
-    {
-      "id": "secured_payment:ccu-car-loan:2026-11-18",
-      "type": "secured_payment",
-      "severity": "critical",
-      "title": "CCU car loan may not clear",
-      "detail": "CCU car loan of $306.90 is due Wed 18 Nov with only $178.54 available that day.",
-      "amount": "128.36",
-      "when": "2026-11-18"
-    },
-    {
-      "id": "negative_balance:2026-11-18",
-      "type": "negative_balance",
-      "severity": "critical",
-      "title": "Balance goes negative Wed 18 Nov",
-      "detail": "Projected -$479.65 on Wed 18 Nov. Lowest point is -$696.65 on Thu 19 Nov.",
-      "amount": "696.65",
-      "when": "2026-11-18"
-    },
-    {
-      "id": "secured_payment:mortgage:2026-11-30",
-      "type": "secured_payment",
-      "severity": "critical",
-      "title": "Mortgage may not clear",
-      "detail": "Mortgage of $1,801.62 is due Mon 30 Nov with only $1,742.78 available that day.",
-      "amount": "58.84",
-      "when": "2026-11-30"
-    },
-    {
-      "id": "large_payment:mortgage:2026-11-30",
-      "type": "large_payment",
-      "severity": "high",
-      "title": "Mortgage $1,801.62 may be short",
-      "detail": "Mortgage of $1,801.62 is due Mon 30 Nov against a projected opening balance of $1,742.78.",
-      "amount": "58.84",
-      "when": "2026-11-30"
-    }
-  ],
+  "risks": [],
   "plan": {
-    "summary": "Deferring Culligan $307.70, Lowes $126.00, Lowes $126.00, Home Depot $100.00, Home Depot $100.00 before 18 Nov frees $759.70 and covers the $696.65 shortfall.",
-    "shortfall": "696.65",
-    "problem_day": "2026-11-18",
-    "candidates": [
-      {
-        "name": "Culligan",
-        "amount": "307.70",
-        "date": "2026-11-04",
-        "tier": 5
-      },
-      {
-        "name": "Lowes",
-        "amount": "126.00",
-        "date": "2026-10-18",
-        "tier": 5
-      },
-      {
-        "name": "Lowes",
-        "amount": "126.00",
-        "date": "2026-11-18",
-        "tier": 5
-      },
-      {
-        "name": "Home Depot",
-        "amount": "100.00",
-        "date": "2026-10-14",
-        "tier": 5
-      },
-      {
-        "name": "Home Depot",
-        "amount": "100.00",
-        "date": "2026-11-14",
-        "tier": 5
-      }
-    ],
+    "summary": "No shortfall to solve.",
+    "shortfall": "0.00",
+    "problem_day": null,
+    "candidates": [],
     "covered": true
   },
   "deferral_window": [
-    {
-      "id": "mortgage",
-      "name": "Mortgage",
-      "date": "2026-10-05",
-      "amount": "1801.62",
-      "tier": 1,
-      "deferrable": false,
-      "secured": true,
-      "deferred": false,
-      "in_week": true
-    },
     {
       "id": "lacrosse-2627-inst-1",
       "name": "NJ Total Select 1of4",
@@ -888,20 +808,6 @@
   "lookahead_days": 14,
   "bills": [
     {
-      "id": "mortgage",
-      "name": "Mortgage",
-      "amount": "1801.62",
-      "due_day": null,
-      "frequency": "biweekly",
-      "next_date": "2026-10-05",
-      "tier": 1,
-      "active": true,
-      "variable": false,
-      "needs_review": true,
-      "source": "statement",
-      "note": "CORRECTED from semimonthly to biweekly. 15 consecutive payments 12/15/2025-06/29/2026 are exactly 14 days apart. Semimonthly modelled 24/yr; biweekly is 26/yr, a $3,603.24/yr difference. Extra same-week entries in the statements are failed-payment retries, not additional payments."
-    },
-    {
       "id": "lacrosse-2627-inst-1",
       "name": "NJ Total Select 1of4",
       "amount": "517.50",
@@ -1194,6 +1100,20 @@
       "needs_review": true,
       "source": "household",
       "note": "New, $114.00/month, per the household. Due day assumed the same as the federal instalment; confirm. Not yet visible in any statement."
+    },
+    {
+      "id": "mortgage",
+      "name": "Mortgage",
+      "amount": "1801.62",
+      "due_day": null,
+      "frequency": "biweekly",
+      "next_date": "2026-10-19",
+      "tier": 1,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "statement",
+      "note": "CORRECTED from semimonthly to biweekly. 15 consecutive payments 12/15/2025-06/29/2026 are exactly 14 days apart. Semimonthly modelled 24/yr; biweekly is 26/yr, a $3,603.24/yr difference. Extra same-week entries in the statements are failed-payment retries, not additional payments."
     },
     {
       "id": "chase-united",

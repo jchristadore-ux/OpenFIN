@@ -83,40 +83,7 @@
       "date": "2026-09-11"
     }
   ],
-  "risks": {
-    "secured_payment:ccu-car-loan:2026-11-18": {
-      "type": "secured_payment",
-      "severity": "critical",
-      "amount": "128.36",
-      "when": "2026-11-18",
-      "first_seen": "2026-09-26T10:50:04.261003-04:00",
-      "last_seen": "2026-10-05T21:35:46.853163-04:00"
-    },
-    "negative_balance:2026-11-18": {
-      "type": "negative_balance",
-      "severity": "critical",
-      "amount": "696.65",
-      "when": "2026-11-18",
-      "first_seen": "2026-10-05T15:28:12.826414-04:00",
-      "last_seen": "2026-10-05T21:35:46.853163-04:00"
-    },
-    "secured_payment:mortgage:2026-11-30": {
-      "type": "secured_payment",
-      "severity": "critical",
-      "amount": "58.84",
-      "when": "2026-11-30",
-      "first_seen": "2026-10-05T15:28:12.826414-04:00",
-      "last_seen": "2026-10-05T21:35:46.853163-04:00"
-    },
-    "large_payment:mortgage:2026-11-30": {
-      "type": "large_payment",
-      "severity": "high",
-      "amount": "58.84",
-      "when": "2026-11-30",
-      "first_seen": "2026-10-05T15:28:12.826414-04:00",
-      "last_seen": "2026-10-05T21:35:46.853163-04:00"
-    }
-  },
+  "risks": {},
   "last_daily_sent": "2026-08-31T14:19:49.288583-04:00",
   "_migrated_from": {
     "last_run_iso": "2026-08-10T14:34:07.133815-04:00",
