@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-10-06T20:13:40.480574-04:00",
-  "today": "2026-10-06",
+  "generated_at": "2026-10-07T13:38:08.612464-04:00",
+  "today": "2026-10-07",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "2692.44",
-  "end_of_week": "5691.76",
-  "end_of_month": "4785.11",
+  "end_of_day": "3420.88",
+  "end_of_week": "6597.50",
+  "end_of_month": "5690.85",
   "week_end": "2026-10-11",
-  "minimum_balance": "1104.97",
+  "minimum_balance": "2010.71",
   "minimum_date": "2026-11-19",
   "shortfall": "0.00",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "1847.82",
+    "safe": "2753.56",
     "explain": [
       [
         "Balance now",
@@ -25,66 +25,43 @@
       ],
       [
         "Bills over the next 30 days",
-        "-10901.24"
+        "-9995.50"
       ],
       [
-        "Where that ends up, 4 Nov",
-        "2087.72"
+        "Where that ends up, 5 Nov",
+        "2993.46"
       ],
       [
         "Lowest point along the way, 22 Oct",
-        "1847.82"
+        "2753.56"
       ],
       [
         "Available to spend",
-        "1847.82"
+        "2753.56"
       ]
     ],
-    "headroom": "1847.82",
+    "headroom": "2753.56",
     "headroom_day": "2026-10-22",
-    "per_day": "69.59",
-    "per_day_day": "2026-11-04",
+    "per_day": "99.78",
+    "per_day_day": "2026-11-05",
     "window_days": 30,
-    "window_end": "2026-11-04",
+    "window_end": "2026-11-05",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-11-04"
+      "window_end": "2026-11-05"
     }
   },
   "today_bills": [
     {
-      "name": "NJ Total Select 1of4",
-      "amount": "517.50",
+      "name": "Republic trash Q4",
+      "amount": "177.30",
       "tier": 4,
       "autopay": false,
-      "deferred": false
-    },
-    {
-      "name": "One Main loan",
-      "amount": "388.24",
-      "tier": 3,
-      "autopay": true,
       "deferred": false
     }
   ],
   "today_income": [],
   "this_week": [
-    {
-      "date": "2026-10-06",
-      "name": "NJ Total Select 1of4",
-      "amount": "517.50",
-      "direction": "out",
-      "tier": 4,
-      "deferred": false
-    },
-    {
-      "date": "2026-10-06",
-      "name": "One Main loan",
-      "amount": "388.24",
-      "direction": "out",
-      "tier": 3,
-      "deferred": false
-    },
     {
       "date": "2026-10-07",
       "name": "Republic trash Q4",
@@ -224,244 +201,244 @@
   ],
   "curve": [
     {
-      "date": "2026-10-06",
-      "closing": "2692.44"
-    },
-    {
       "date": "2026-10-07",
-      "closing": "2515.14"
+      "closing": "3420.88"
     },
     {
       "date": "2026-10-08",
-      "closing": "2365.14"
+      "closing": "3270.88"
     },
     {
       "date": "2026-10-09",
-      "closing": "6191.53"
+      "closing": "7097.27"
     },
     {
       "date": "2026-10-10",
-      "closing": "6191.53"
+      "closing": "7097.27"
     },
     {
       "date": "2026-10-11",
-      "closing": "5691.76"
+      "closing": "6597.50"
     },
     {
       "date": "2026-10-12",
-      "closing": "5113.49"
+      "closing": "6019.23"
     },
     {
       "date": "2026-10-13",
-      "closing": "5113.49"
+      "closing": "6019.23"
     },
     {
       "date": "2026-10-14",
-      "closing": "5013.49"
+      "closing": "5919.23"
     },
     {
       "date": "2026-10-15",
-      "closing": "4452.49"
+      "closing": "5358.23"
     },
     {
       "date": "2026-10-16",
-      "closing": "5321.49"
+      "closing": "6227.23"
     },
     {
       "date": "2026-10-17",
-      "closing": "5022.49"
+      "closing": "5928.23"
     },
     {
       "date": "2026-10-18",
-      "closing": "3954.44"
+      "closing": "4860.18"
     },
     {
       "date": "2026-10-19",
-      "closing": "1935.82"
+      "closing": "2841.56"
     },
     {
       "date": "2026-10-20",
-      "closing": "1935.82"
+      "closing": "2841.56"
     },
     {
       "date": "2026-10-21",
-      "closing": "1935.82"
+      "closing": "2841.56"
     },
     {
       "date": "2026-10-22",
-      "closing": "1847.82"
+      "closing": "2753.56"
     },
     {
       "date": "2026-10-23",
-      "closing": "5652.90"
+      "closing": "6558.64"
     },
     {
       "date": "2026-10-24",
-      "closing": "4572.64"
+      "closing": "5478.38"
     },
     {
       "date": "2026-10-25",
-      "closing": "4162.78"
+      "closing": "5068.52"
     },
     {
       "date": "2026-10-26",
-      "closing": "4162.78"
+      "closing": "5068.52"
     },
     {
       "date": "2026-10-27",
-      "closing": "4078.00"
+      "closing": "4983.74"
     },
     {
       "date": "2026-10-28",
-      "closing": "4078.00"
+      "closing": "4983.74"
     },
     {
       "date": "2026-10-29",
-      "closing": "3916.11"
+      "closing": "4821.85"
     },
     {
       "date": "2026-10-30",
-      "closing": "4785.11"
+      "closing": "5690.85"
     },
     {
       "date": "2026-10-31",
-      "closing": "4785.11"
+      "closing": "5690.85"
     },
     {
       "date": "2026-11-01",
-      "closing": "4375.25"
+      "closing": "5280.99"
     },
     {
       "date": "2026-11-02",
-      "closing": "2573.63"
+      "closing": "3479.37"
     },
     {
       "date": "2026-11-03",
-      "closing": "2431.42"
+      "closing": "3337.16"
     },
     {
       "date": "2026-11-04",
-      "closing": "2087.72"
+      "closing": "2993.46"
     },
     {
       "date": "2026-11-05",
-      "closing": "2087.72"
+      "closing": "2993.46"
     },
     {
       "date": "2026-11-06",
-      "closing": "5525.87"
+      "closing": "6431.61"
     },
     {
       "date": "2026-11-07",
-      "closing": "5525.87"
+      "closing": "6431.61"
     },
     {
       "date": "2026-11-08",
-      "closing": "4966.01"
+      "closing": "5871.75"
     },
     {
       "date": "2026-11-09",
-      "closing": "4966.01"
+      "closing": "5871.75"
     },
     {
       "date": "2026-11-10",
-      "closing": "4966.01"
+      "closing": "5871.75"
     },
     {
       "date": "2026-11-11",
-      "closing": "4860.91"
+      "closing": "5766.65"
     },
     {
       "date": "2026-11-12",
-      "closing": "4282.64"
+      "closing": "5188.38"
     },
     {
       "date": "2026-11-13",
-      "closing": "5151.64"
+      "closing": "6057.38"
     },
     {
       "date": "2026-11-14",
-      "closing": "5051.64"
+      "closing": "5957.38"
     },
     {
       "date": "2026-11-15",
-      "closing": "4080.78"
+      "closing": "4986.52"
     },
     {
       "date": "2026-11-16",
-      "closing": "2279.16"
+      "closing": "3184.90"
     },
     {
       "date": "2026-11-17",
-      "closing": "1980.16"
+      "closing": "2885.90"
     },
     {
       "date": "2026-11-18",
-      "closing": "1321.97"
+      "closing": "2227.71"
     },
     {
       "date": "2026-11-19",
-      "closing": "1104.97"
+      "closing": "2010.71"
     },
     {
       "date": "2026-11-20",
-      "closing": "4931.36"
+      "closing": "5837.10"
     },
     {
       "date": "2026-11-21",
-      "closing": "4931.36"
+      "closing": "5837.10"
     },
     {
       "date": "2026-11-22",
-      "closing": "4433.50"
+      "closing": "5339.24"
     },
     {
       "date": "2026-11-23",
-      "closing": "4412.19"
+      "closing": "5317.93"
     },
     {
       "date": "2026-11-24",
-      "closing": "3331.93"
+      "closing": "4237.67"
     },
     {
       "date": "2026-11-25",
-      "closing": "3331.93"
+      "closing": "4237.67"
     },
     {
       "date": "2026-11-26",
-      "closing": "3331.93"
+      "closing": "4237.67"
     },
     {
       "date": "2026-11-27",
-      "closing": "4116.15"
+      "closing": "5021.89"
     },
     {
       "date": "2026-11-28",
-      "closing": "4116.15"
+      "closing": "5021.89"
     },
     {
       "date": "2026-11-29",
-      "closing": "3544.40"
+      "closing": "4450.14"
     },
     {
       "date": "2026-11-30",
-      "closing": "1742.78"
+      "closing": "2648.52"
     },
     {
       "date": "2026-12-01",
-      "closing": "1742.78"
+      "closing": "2648.52"
     },
     {
       "date": "2026-12-02",
-      "closing": "1742.78"
+      "closing": "2648.52"
     },
     {
       "date": "2026-12-03",
-      "closing": "1581.68"
+      "closing": "2487.42"
     },
     {
       "date": "2026-12-04",
-      "closing": "5064.37"
+      "closing": "5970.11"
+    },
+    {
+      "date": "2026-12-05",
+      "closing": "5970.11"
     }
   ],
   "risks": [],
@@ -473,28 +450,6 @@
     "covered": true
   },
   "deferral_window": [
-    {
-      "id": "lacrosse-2627-inst-1",
-      "name": "NJ Total Select 1of4",
-      "date": "2026-10-06",
-      "amount": "517.50",
-      "tier": 4,
-      "deferrable": true,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
-    {
-      "id": "onemain-loan",
-      "name": "One Main loan",
-      "date": "2026-10-06",
-      "amount": "388.24",
-      "tier": 3,
-      "deferrable": false,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
     {
       "id": "trash",
       "name": "Republic trash Q4",
@@ -807,34 +762,6 @@
   "deferred_total": "0.00",
   "lookahead_days": 14,
   "bills": [
-    {
-      "id": "lacrosse-2627-inst-1",
-      "name": "NJ Total Select 1of4",
-      "amount": "517.50",
-      "due_day": null,
-      "frequency": "once",
-      "next_date": "2026-10-06",
-      "tier": 4,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "source": "club-portal",
-      "note": "ACTUAL from the club portal (household, 11 Aug 2026): $500.00 due 2026-10-06. Modelled at $517.50 because every card payment in 19 months of statements carried the club's 3.5% convenience fee ($475.00 became $491.63). Paying by Venmo or check costs $500.00 - the one Venmo payment on 11/01/2024 was c"
-    },
-    {
-      "id": "onemain-loan",
-      "name": "One Main loan",
-      "amount": "388.24",
-      "due_day": 6,
-      "frequency": "monthly",
-      "next_date": "2026-10-06",
-      "tier": 3,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "source": "statement",
-      "note": ""
-    },
     {
       "id": "trash",
       "name": "Republic trash Q4",
@@ -1256,6 +1183,20 @@
       "note": ""
     },
     {
+      "id": "onemain-loan",
+      "name": "One Main loan",
+      "amount": "388.24",
+      "due_day": 6,
+      "frequency": "monthly",
+      "next_date": "2026-11-06",
+      "tier": 3,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "statement",
+      "note": ""
+    },
+    {
       "id": "clinton-water",
       "name": "Town of Clinton water",
       "amount": "294.03",
@@ -1352,6 +1293,20 @@
       "needs_review": true,
       "source": "household",
       "note": "Added 11 Sep 2026. The 3 Sep electric payment was deferred, so it dropped out of the forecast once the date passed - the money is still owed. Carried back in as a one-off dated 15 Sep. AMOUNT IS THE MODELLED SEPTEMBER FIGURE ($374.22 from the month-of-year profile), not a figure read off a bill: the"
+    },
+    {
+      "id": "lacrosse-2627-inst-1",
+      "name": "NJ Total Select 1of4",
+      "amount": "517.50",
+      "due_day": null,
+      "frequency": "once",
+      "next_date": null,
+      "tier": 4,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "club-portal",
+      "note": "ACTUAL from the club portal (household, 11 Aug 2026): $500.00 due 2026-10-06. Modelled at $517.50 because every card payment in 19 months of statements carried the club's 3.5% convenience fee ($475.00 became $491.63). Paying by Venmo or check costs $500.00 - the one Venmo payment on 11/01/2024 was c"
     },
     {
       "id": "sewer-deferred-2026-09",
