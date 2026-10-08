@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-10-07T20:33:43.211068-04:00",
-  "today": "2026-10-07",
+  "generated_at": "2026-10-08T13:40:58.568950-04:00",
+  "today": "2026-10-08",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "3420.88",
-  "end_of_week": "6597.50",
-  "end_of_month": "5690.85",
+  "end_of_day": "3448.18",
+  "end_of_week": "6774.80",
+  "end_of_month": "5868.15",
   "week_end": "2026-10-11",
-  "minimum_balance": "2010.71",
+  "minimum_balance": "2188.01",
   "minimum_date": "2026-11-19",
   "shortfall": "0.00",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "2753.56",
+    "safe": "2930.86",
     "explain": [
       [
         "Balance now",
@@ -21,55 +21,47 @@
       ],
       [
         "Income over the next 30 days",
-        "9390.78"
+        "13217.17"
       ],
       [
         "Bills over the next 30 days",
-        "-9995.50"
+        "-10206.44"
       ],
       [
-        "Where that ends up, 5 Nov",
-        "2993.46"
+        "Where that ends up, 6 Nov",
+        "6608.91"
       ],
       [
         "Lowest point along the way, 22 Oct",
-        "2753.56"
+        "2930.86"
       ],
       [
         "Available to spend",
-        "2753.56"
+        "2930.86"
       ]
     ],
-    "headroom": "2753.56",
+    "headroom": "2930.86",
     "headroom_day": "2026-10-22",
-    "per_day": "99.78",
+    "per_day": "109.34",
     "per_day_day": "2026-11-05",
     "window_days": 30,
-    "window_end": "2026-11-05",
+    "window_end": "2026-11-06",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-11-05"
+      "window_end": "2026-11-06"
     }
   },
   "today_bills": [
     {
-      "name": "Republic trash Q4",
-      "amount": "177.30",
-      "tier": 4,
+      "name": "PNC",
+      "amount": "150.00",
+      "tier": 3,
       "autopay": false,
       "deferred": false
     }
   ],
   "today_income": [],
   "this_week": [
-    {
-      "date": "2026-10-07",
-      "name": "Republic trash Q4",
-      "amount": "177.30",
-      "direction": "out",
-      "tier": 4,
-      "deferred": false
-    },
     {
       "date": "2026-10-08",
       "name": "PNC",
@@ -201,244 +193,244 @@
   ],
   "curve": [
     {
-      "date": "2026-10-07",
-      "closing": "3420.88"
-    },
-    {
       "date": "2026-10-08",
-      "closing": "3270.88"
+      "closing": "3448.18"
     },
     {
       "date": "2026-10-09",
-      "closing": "7097.27"
+      "closing": "7274.57"
     },
     {
       "date": "2026-10-10",
-      "closing": "7097.27"
+      "closing": "7274.57"
     },
     {
       "date": "2026-10-11",
-      "closing": "6597.50"
+      "closing": "6774.80"
     },
     {
       "date": "2026-10-12",
-      "closing": "6019.23"
+      "closing": "6196.53"
     },
     {
       "date": "2026-10-13",
-      "closing": "6019.23"
+      "closing": "6196.53"
     },
     {
       "date": "2026-10-14",
-      "closing": "5919.23"
+      "closing": "6096.53"
     },
     {
       "date": "2026-10-15",
-      "closing": "5358.23"
+      "closing": "5535.53"
     },
     {
       "date": "2026-10-16",
-      "closing": "6227.23"
+      "closing": "6404.53"
     },
     {
       "date": "2026-10-17",
-      "closing": "5928.23"
+      "closing": "6105.53"
     },
     {
       "date": "2026-10-18",
-      "closing": "4860.18"
+      "closing": "5037.48"
     },
     {
       "date": "2026-10-19",
-      "closing": "2841.56"
+      "closing": "3018.86"
     },
     {
       "date": "2026-10-20",
-      "closing": "2841.56"
+      "closing": "3018.86"
     },
     {
       "date": "2026-10-21",
-      "closing": "2841.56"
+      "closing": "3018.86"
     },
     {
       "date": "2026-10-22",
-      "closing": "2753.56"
+      "closing": "2930.86"
     },
     {
       "date": "2026-10-23",
-      "closing": "6558.64"
+      "closing": "6735.94"
     },
     {
       "date": "2026-10-24",
-      "closing": "5478.38"
+      "closing": "5655.68"
     },
     {
       "date": "2026-10-25",
-      "closing": "5068.52"
+      "closing": "5245.82"
     },
     {
       "date": "2026-10-26",
-      "closing": "5068.52"
+      "closing": "5245.82"
     },
     {
       "date": "2026-10-27",
-      "closing": "4983.74"
+      "closing": "5161.04"
     },
     {
       "date": "2026-10-28",
-      "closing": "4983.74"
+      "closing": "5161.04"
     },
     {
       "date": "2026-10-29",
-      "closing": "4821.85"
+      "closing": "4999.15"
     },
     {
       "date": "2026-10-30",
-      "closing": "5690.85"
+      "closing": "5868.15"
     },
     {
       "date": "2026-10-31",
-      "closing": "5690.85"
+      "closing": "5868.15"
     },
     {
       "date": "2026-11-01",
-      "closing": "5280.99"
+      "closing": "5458.29"
     },
     {
       "date": "2026-11-02",
-      "closing": "3479.37"
+      "closing": "3656.67"
     },
     {
       "date": "2026-11-03",
-      "closing": "3337.16"
+      "closing": "3514.46"
     },
     {
       "date": "2026-11-04",
-      "closing": "2993.46"
+      "closing": "3170.76"
     },
     {
       "date": "2026-11-05",
-      "closing": "2993.46"
+      "closing": "3170.76"
     },
     {
       "date": "2026-11-06",
-      "closing": "6431.61"
+      "closing": "6608.91"
     },
     {
       "date": "2026-11-07",
-      "closing": "6431.61"
+      "closing": "6608.91"
     },
     {
       "date": "2026-11-08",
-      "closing": "5871.75"
+      "closing": "6049.05"
     },
     {
       "date": "2026-11-09",
-      "closing": "5871.75"
+      "closing": "6049.05"
     },
     {
       "date": "2026-11-10",
-      "closing": "5871.75"
+      "closing": "6049.05"
     },
     {
       "date": "2026-11-11",
-      "closing": "5766.65"
+      "closing": "5943.95"
     },
     {
       "date": "2026-11-12",
-      "closing": "5188.38"
+      "closing": "5365.68"
     },
     {
       "date": "2026-11-13",
-      "closing": "6057.38"
+      "closing": "6234.68"
     },
     {
       "date": "2026-11-14",
-      "closing": "5957.38"
+      "closing": "6134.68"
     },
     {
       "date": "2026-11-15",
-      "closing": "4986.52"
+      "closing": "5163.82"
     },
     {
       "date": "2026-11-16",
-      "closing": "3184.90"
+      "closing": "3362.20"
     },
     {
       "date": "2026-11-17",
-      "closing": "2885.90"
+      "closing": "3063.20"
     },
     {
       "date": "2026-11-18",
-      "closing": "2227.71"
+      "closing": "2405.01"
     },
     {
       "date": "2026-11-19",
-      "closing": "2010.71"
+      "closing": "2188.01"
     },
     {
       "date": "2026-11-20",
-      "closing": "5837.10"
+      "closing": "6014.40"
     },
     {
       "date": "2026-11-21",
-      "closing": "5837.10"
+      "closing": "6014.40"
     },
     {
       "date": "2026-11-22",
-      "closing": "5339.24"
+      "closing": "5516.54"
     },
     {
       "date": "2026-11-23",
-      "closing": "5317.93"
+      "closing": "5495.23"
     },
     {
       "date": "2026-11-24",
-      "closing": "4237.67"
+      "closing": "4414.97"
     },
     {
       "date": "2026-11-25",
-      "closing": "4237.67"
+      "closing": "4414.97"
     },
     {
       "date": "2026-11-26",
-      "closing": "4237.67"
+      "closing": "4414.97"
     },
     {
       "date": "2026-11-27",
-      "closing": "5021.89"
+      "closing": "5199.19"
     },
     {
       "date": "2026-11-28",
-      "closing": "5021.89"
+      "closing": "5199.19"
     },
     {
       "date": "2026-11-29",
-      "closing": "4450.14"
+      "closing": "4627.44"
     },
     {
       "date": "2026-11-30",
-      "closing": "2648.52"
+      "closing": "2825.82"
     },
     {
       "date": "2026-12-01",
-      "closing": "2648.52"
+      "closing": "2825.82"
     },
     {
       "date": "2026-12-02",
-      "closing": "2648.52"
+      "closing": "2825.82"
     },
     {
       "date": "2026-12-03",
-      "closing": "2487.42"
+      "closing": "2664.72"
     },
     {
       "date": "2026-12-04",
-      "closing": "5970.11"
+      "closing": "6147.41"
     },
     {
       "date": "2026-12-05",
-      "closing": "5970.11"
+      "closing": "6147.41"
+    },
+    {
+      "date": "2026-12-06",
+      "closing": "5349.31"
     }
   ],
   "risks": [],
@@ -450,17 +442,6 @@
     "covered": true
   },
   "deferral_window": [
-    {
-      "id": "trash",
-      "name": "Republic trash Q4",
-      "date": "2026-10-07",
-      "amount": "177.30",
-      "tier": 4,
-      "deferrable": true,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
     {
       "id": "pnc",
       "name": "PNC",
@@ -762,20 +743,6 @@
   "deferred_total": "0.00",
   "lookahead_days": 14,
   "bills": [
-    {
-      "id": "trash",
-      "name": "Republic trash Q4",
-      "amount": "177.30",
-      "due_day": null,
-      "frequency": "once",
-      "next_date": "2026-10-07",
-      "tier": 4,
-      "active": true,
-      "variable": true,
-      "needs_review": true,
-      "source": "statement",
-      "note": "CORRECTED from biweekly $92.00 to QUARTERLY $177.30. Observed 01/07 $168.12 and 04/07 $177.30, exactly 90 days apart. Modelled as dated one-offs because the schema has no quarterly frequency."
-    },
     {
       "id": "pnc",
       "name": "PNC",
@@ -1307,6 +1274,20 @@
       "needs_review": false,
       "source": "club-portal",
       "note": "ACTUAL from the club portal (household, 11 Aug 2026): $500.00 due 2026-10-06. Modelled at $517.50 because every card payment in 19 months of statements carried the club's 3.5% convenience fee ($475.00 became $491.63). Paying by Venmo or check costs $500.00 - the one Venmo payment on 11/01/2024 was c"
+    },
+    {
+      "id": "trash",
+      "name": "Republic trash Q4",
+      "amount": "177.30",
+      "due_day": null,
+      "frequency": "once",
+      "next_date": null,
+      "tier": 4,
+      "active": true,
+      "variable": true,
+      "needs_review": true,
+      "source": "statement",
+      "note": "CORRECTED from biweekly $92.00 to QUARTERLY $177.30. Observed 01/07 $168.12 and 04/07 $177.30, exactly 90 days apart. Modelled as dated one-offs because the schema has no quarterly frequency."
     },
     {
       "id": "sewer-deferred-2026-09",
