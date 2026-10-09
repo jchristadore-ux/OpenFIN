@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-10-08T20:49:06.751252-04:00",
-  "today": "2026-10-08",
+  "generated_at": "2026-10-09T13:16:25.455159-04:00",
+  "today": "2026-10-09",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "3448.18",
-  "end_of_week": "6774.80",
-  "end_of_month": "5868.15",
+  "end_of_day": "7424.57",
+  "end_of_week": "6924.80",
+  "end_of_month": "6018.15",
   "week_end": "2026-10-11",
-  "minimum_balance": "2188.01",
+  "minimum_balance": "2338.01",
   "minimum_date": "2026-11-19",
   "shortfall": "0.00",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "2930.86",
+    "safe": "3080.86",
     "explain": [
       [
         "Balance now",
@@ -25,51 +25,44 @@
       ],
       [
         "Bills over the next 30 days",
-        "-10206.44"
+        "-10056.44"
       ],
       [
-        "Where that ends up, 6 Nov",
-        "6608.91"
+        "Where that ends up, 7 Nov",
+        "6758.91"
       ],
       [
         "Lowest point along the way, 22 Oct",
-        "2930.86"
+        "3080.86"
       ],
       [
         "Available to spend",
-        "2930.86"
+        "3080.86"
       ]
     ],
-    "headroom": "2930.86",
+    "headroom": "3080.86",
     "headroom_day": "2026-10-22",
-    "per_day": "109.34",
+    "per_day": "118.60",
     "per_day_day": "2026-11-05",
     "window_days": 30,
-    "window_end": "2026-11-06",
+    "window_end": "2026-11-07",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-11-06"
+      "window_end": "2026-11-07"
     }
   },
-  "today_bills": [
+  "today_bills": [],
+  "today_income": [
     {
-      "name": "PNC",
-      "amount": "150.00",
-      "tier": 3,
-      "autopay": false,
-      "deferred": false
+      "name": "Leslie payroll",
+      "amount": "2957.39"
+    },
+    {
+      "name": "NJ unemployment",
+      "amount": "869.00"
     }
   ],
-  "today_income": [],
   "this_week": [
-    {
-      "date": "2026-10-08",
-      "name": "PNC",
-      "amount": "150.00",
-      "direction": "out",
-      "tier": 3,
-      "deferred": false
-    },
     {
       "date": "2026-10-09",
       "name": "Leslie payroll",
@@ -193,244 +186,244 @@
   ],
   "curve": [
     {
-      "date": "2026-10-08",
-      "closing": "3448.18"
-    },
-    {
       "date": "2026-10-09",
-      "closing": "7274.57"
+      "closing": "7424.57"
     },
     {
       "date": "2026-10-10",
-      "closing": "7274.57"
+      "closing": "7424.57"
     },
     {
       "date": "2026-10-11",
-      "closing": "6774.80"
+      "closing": "6924.80"
     },
     {
       "date": "2026-10-12",
-      "closing": "6196.53"
+      "closing": "6346.53"
     },
     {
       "date": "2026-10-13",
-      "closing": "6196.53"
+      "closing": "6346.53"
     },
     {
       "date": "2026-10-14",
-      "closing": "6096.53"
+      "closing": "6246.53"
     },
     {
       "date": "2026-10-15",
-      "closing": "5535.53"
+      "closing": "5685.53"
     },
     {
       "date": "2026-10-16",
-      "closing": "6404.53"
+      "closing": "6554.53"
     },
     {
       "date": "2026-10-17",
-      "closing": "6105.53"
+      "closing": "6255.53"
     },
     {
       "date": "2026-10-18",
-      "closing": "5037.48"
+      "closing": "5187.48"
     },
     {
       "date": "2026-10-19",
-      "closing": "3018.86"
+      "closing": "3168.86"
     },
     {
       "date": "2026-10-20",
-      "closing": "3018.86"
+      "closing": "3168.86"
     },
     {
       "date": "2026-10-21",
-      "closing": "3018.86"
+      "closing": "3168.86"
     },
     {
       "date": "2026-10-22",
-      "closing": "2930.86"
+      "closing": "3080.86"
     },
     {
       "date": "2026-10-23",
-      "closing": "6735.94"
+      "closing": "6885.94"
     },
     {
       "date": "2026-10-24",
-      "closing": "5655.68"
+      "closing": "5805.68"
     },
     {
       "date": "2026-10-25",
-      "closing": "5245.82"
+      "closing": "5395.82"
     },
     {
       "date": "2026-10-26",
-      "closing": "5245.82"
+      "closing": "5395.82"
     },
     {
       "date": "2026-10-27",
-      "closing": "5161.04"
+      "closing": "5311.04"
     },
     {
       "date": "2026-10-28",
-      "closing": "5161.04"
+      "closing": "5311.04"
     },
     {
       "date": "2026-10-29",
-      "closing": "4999.15"
+      "closing": "5149.15"
     },
     {
       "date": "2026-10-30",
-      "closing": "5868.15"
+      "closing": "6018.15"
     },
     {
       "date": "2026-10-31",
-      "closing": "5868.15"
+      "closing": "6018.15"
     },
     {
       "date": "2026-11-01",
-      "closing": "5458.29"
+      "closing": "5608.29"
     },
     {
       "date": "2026-11-02",
-      "closing": "3656.67"
+      "closing": "3806.67"
     },
     {
       "date": "2026-11-03",
-      "closing": "3514.46"
+      "closing": "3664.46"
     },
     {
       "date": "2026-11-04",
-      "closing": "3170.76"
+      "closing": "3320.76"
     },
     {
       "date": "2026-11-05",
-      "closing": "3170.76"
+      "closing": "3320.76"
     },
     {
       "date": "2026-11-06",
-      "closing": "6608.91"
+      "closing": "6758.91"
     },
     {
       "date": "2026-11-07",
-      "closing": "6608.91"
+      "closing": "6758.91"
     },
     {
       "date": "2026-11-08",
-      "closing": "6049.05"
+      "closing": "6199.05"
     },
     {
       "date": "2026-11-09",
-      "closing": "6049.05"
+      "closing": "6199.05"
     },
     {
       "date": "2026-11-10",
-      "closing": "6049.05"
+      "closing": "6199.05"
     },
     {
       "date": "2026-11-11",
-      "closing": "5943.95"
+      "closing": "6093.95"
     },
     {
       "date": "2026-11-12",
-      "closing": "5365.68"
+      "closing": "5515.68"
     },
     {
       "date": "2026-11-13",
-      "closing": "6234.68"
+      "closing": "6384.68"
     },
     {
       "date": "2026-11-14",
-      "closing": "6134.68"
+      "closing": "6284.68"
     },
     {
       "date": "2026-11-15",
-      "closing": "5163.82"
+      "closing": "5313.82"
     },
     {
       "date": "2026-11-16",
-      "closing": "3362.20"
+      "closing": "3512.20"
     },
     {
       "date": "2026-11-17",
-      "closing": "3063.20"
+      "closing": "3213.20"
     },
     {
       "date": "2026-11-18",
-      "closing": "2405.01"
+      "closing": "2555.01"
     },
     {
       "date": "2026-11-19",
-      "closing": "2188.01"
+      "closing": "2338.01"
     },
     {
       "date": "2026-11-20",
-      "closing": "6014.40"
+      "closing": "6164.40"
     },
     {
       "date": "2026-11-21",
-      "closing": "6014.40"
+      "closing": "6164.40"
     },
     {
       "date": "2026-11-22",
-      "closing": "5516.54"
+      "closing": "5666.54"
     },
     {
       "date": "2026-11-23",
-      "closing": "5495.23"
+      "closing": "5645.23"
     },
     {
       "date": "2026-11-24",
-      "closing": "4414.97"
+      "closing": "4564.97"
     },
     {
       "date": "2026-11-25",
-      "closing": "4414.97"
+      "closing": "4564.97"
     },
     {
       "date": "2026-11-26",
-      "closing": "4414.97"
+      "closing": "4564.97"
     },
     {
       "date": "2026-11-27",
-      "closing": "5199.19"
+      "closing": "5349.19"
     },
     {
       "date": "2026-11-28",
-      "closing": "5199.19"
+      "closing": "5349.19"
     },
     {
       "date": "2026-11-29",
-      "closing": "4627.44"
+      "closing": "4777.44"
     },
     {
       "date": "2026-11-30",
-      "closing": "2825.82"
+      "closing": "2975.82"
     },
     {
       "date": "2026-12-01",
-      "closing": "2825.82"
+      "closing": "2975.82"
     },
     {
       "date": "2026-12-02",
-      "closing": "2825.82"
+      "closing": "2975.82"
     },
     {
       "date": "2026-12-03",
-      "closing": "2664.72"
+      "closing": "2814.72"
     },
     {
       "date": "2026-12-04",
-      "closing": "6147.41"
+      "closing": "6297.41"
     },
     {
       "date": "2026-12-05",
-      "closing": "6147.41"
+      "closing": "6297.41"
     },
     {
       "date": "2026-12-06",
-      "closing": "5349.31"
+      "closing": "5499.31"
+    },
+    {
+      "date": "2026-12-07",
+      "closing": "5499.31"
     }
   ],
   "risks": [],
@@ -442,17 +435,6 @@
     "covered": true
   },
   "deferral_window": [
-    {
-      "id": "pnc",
-      "name": "PNC",
-      "date": "2026-10-08",
-      "amount": "150.00",
-      "tier": 3,
-      "deferrable": true,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
     {
       "id": "groceries",
       "name": "Groceries",
@@ -743,20 +725,6 @@
   "deferred_total": "0.00",
   "lookahead_days": 14,
   "bills": [
-    {
-      "id": "pnc",
-      "name": "PNC",
-      "amount": "70.00",
-      "due_day": 8,
-      "frequency": "monthly",
-      "next_date": "2026-10-08",
-      "tier": 3,
-      "active": true,
-      "variable": true,
-      "needs_review": true,
-      "source": "statement",
-      "note": "Varies $70.00-$150.00 and the date moves. $70.00 is the recent floor."
-    },
     {
       "id": "gas-utility",
       "name": "Elizabethtown Gas",
@@ -1162,6 +1130,20 @@
       "needs_review": false,
       "source": "statement",
       "note": ""
+    },
+    {
+      "id": "pnc",
+      "name": "PNC",
+      "amount": "70.00",
+      "due_day": 8,
+      "frequency": "monthly",
+      "next_date": "2026-11-08",
+      "tier": 3,
+      "active": true,
+      "variable": true,
+      "needs_review": true,
+      "source": "statement",
+      "note": "Varies $70.00-$150.00 and the date moves. $70.00 is the recent floor."
     },
     {
       "id": "clinton-water",
