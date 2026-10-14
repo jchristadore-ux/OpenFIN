@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-10-13T20:01:17.693433-04:00",
-  "today": "2026-10-13",
+  "generated_at": "2026-10-14T11:40:05.966216-04:00",
+  "today": "2026-10-14",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "3598.18",
+  "end_of_day": "3498.18",
   "end_of_week": "2439.13",
   "end_of_month": "3269.80",
   "week_end": "2026-10-18",
@@ -25,11 +25,11 @@
       ],
       [
         "Bills over the next 30 days",
-        "-9643.36"
+        "-10221.63"
       ],
       [
-        "Where that ends up, 11 Nov",
-        "3345.60"
+        "Where that ends up, 12 Nov",
+        "2767.33"
       ],
       [
         "Lowest point along the way, 22 Oct",
@@ -42,16 +42,24 @@
     ],
     "headroom": "332.51",
     "headroom_day": "2026-10-22",
-    "per_day": "23.85",
+    "per_day": "24.89",
     "per_day_day": "2026-11-05",
     "window_days": 30,
-    "window_end": "2026-11-11",
+    "window_end": "2026-11-12",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-11-11"
+      "window_end": "2026-11-12"
     }
   },
-  "today_bills": [],
+  "today_bills": [
+    {
+      "name": "Home Depot",
+      "amount": "100.00",
+      "tier": 5,
+      "autopay": true,
+      "deferred": false
+    }
+  ],
   "today_income": [],
   "this_week": [
     {
@@ -224,10 +232,6 @@
     }
   ],
   "curve": [
-    {
-      "date": "2026-10-13",
-      "closing": "3598.18"
-    },
     {
       "date": "2026-10-14",
       "closing": "3498.18"
@@ -463,6 +467,10 @@
     {
       "date": "2026-12-11",
       "closing": "3263.21"
+    },
+    {
+      "date": "2026-12-12",
+      "closing": "2684.94"
     }
   ],
   "risks": [
