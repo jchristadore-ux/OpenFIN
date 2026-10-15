@@ -87,10 +87,10 @@
     "negative_balance:2026-11-18": {
       "type": "negative_balance",
       "severity": "critical",
-      "amount": "410.34",
+      "amount": "310.34",
       "when": "2026-11-18",
       "first_seen": "2026-10-13T13:53:44.183342-04:00",
-      "last_seen": "2026-10-14T19:32:25.800021-04:00"
+      "last_seen": "2026-10-15T11:27:43.307439-04:00"
     }
   },
   "last_daily_sent": "2026-08-31T14:19:49.288583-04:00",
