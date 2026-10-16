@@ -83,16 +83,7 @@
       "date": "2026-09-11"
     }
   ],
-  "risks": {
-    "negative_balance:2026-11-18": {
-      "type": "negative_balance",
-      "severity": "critical",
-      "amount": "310.34",
-      "when": "2026-11-18",
-      "first_seen": "2026-10-13T13:53:44.183342-04:00",
-      "last_seen": "2026-10-15T19:25:22.285287-04:00"
-    }
-  },
+  "risks": {},
   "last_daily_sent": "2026-08-31T14:19:49.288583-04:00",
   "_migrated_from": {
     "last_run_iso": "2026-08-10T14:34:07.133815-04:00",
