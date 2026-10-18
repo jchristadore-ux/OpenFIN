@@ -84,21 +84,13 @@
     }
   ],
   "risks": {
-    "secured_payment:ccu-car-loan:2026-11-18": {
-      "type": "secured_payment",
-      "severity": "critical",
-      "amount": "50.05",
-      "when": "2026-11-18",
-      "first_seen": "2026-10-17T10:01:04.053548-04:00",
-      "last_seen": "2026-10-17T18:45:42.327178-04:00"
-    },
     "negative_balance:2026-11-18": {
       "type": "negative_balance",
       "severity": "critical",
-      "amount": "618.34",
+      "amount": "319.34",
       "when": "2026-11-18",
       "first_seen": "2026-10-17T10:01:04.053548-04:00",
-      "last_seen": "2026-10-17T18:45:42.327178-04:00"
+      "last_seen": "2026-10-18T10:13:53.696228-04:00"
     }
   },
   "last_daily_sent": "2026-08-31T14:19:49.288583-04:00",
