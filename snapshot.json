@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-10-19T20:01:52.920403-04:00",
-  "today": "2026-10-19",
+  "generated_at": "2026-10-20T11:31:29.993695-04:00",
+  "today": "2026-10-20",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "1579.56",
-  "end_of_week": "3806.52",
-  "end_of_month": "4428.85",
+  "end_of_day": "3598.18",
+  "end_of_week": "5825.14",
+  "end_of_month": "6447.47",
   "week_end": "2026-10-25",
-  "minimum_balance": "672.51",
+  "minimum_balance": "2691.13",
   "minimum_date": "2026-12-17",
   "shortfall": "0.00",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "1491.56",
+    "safe": "2984.33",
     "explain": [
       [
         "Balance now",
@@ -25,81 +25,35 @@
       ],
       [
         "Bills over the next 30 days",
-        "-11365.06"
+        "-10004.63"
       ],
       [
-        "Where that ends up, 17 Nov",
-        "1623.90"
+        "Where that ends up, 18 Nov",
+        "2984.33"
       ],
       [
-        "Lowest point along the way, 22 Oct",
-        "1491.56"
+        "Lowest point along the way, 18 Nov",
+        "2984.33"
       ],
       [
         "Available to spend",
-        "1491.56"
+        "2984.33"
       ]
     ],
-    "headroom": "1491.56",
-    "headroom_day": "2026-10-22",
-    "per_day": "54.13",
-    "per_day_day": "2026-11-17",
+    "headroom": "2984.33",
+    "headroom_day": "2026-11-18",
+    "per_day": "99.48",
+    "per_day_day": "2026-11-18",
     "window_days": 30,
-    "window_end": "2026-11-17",
+    "window_end": "2026-11-18",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-11-17"
+      "window_end": "2026-11-18"
     }
   },
-  "today_bills": [
-    {
-      "name": "Mortgage",
-      "amount": "1801.62",
-      "tier": 1,
-      "autopay": false,
-      "deferred": false
-    },
-    {
-      "name": "IRS state",
-      "amount": "114.00",
-      "tier": 2,
-      "autopay": false,
-      "deferred": false
-    },
-    {
-      "name": "IRS federal",
-      "amount": "103.00",
-      "tier": 2,
-      "autopay": false,
-      "deferred": false
-    }
-  ],
+  "today_bills": [],
   "today_income": [],
   "this_week": [
-    {
-      "date": "2026-10-19",
-      "name": "Mortgage",
-      "amount": "1801.62",
-      "direction": "out",
-      "tier": 1,
-      "deferred": false
-    },
-    {
-      "date": "2026-10-19",
-      "name": "IRS state",
-      "amount": "114.00",
-      "direction": "out",
-      "tier": 2,
-      "deferred": false
-    },
-    {
-      "date": "2026-10-19",
-      "name": "IRS federal",
-      "amount": "103.00",
-      "direction": "out",
-      "tier": 2,
-      "deferred": false
-    },
     {
       "date": "2026-10-22",
       "name": "Chase CC United",
@@ -239,244 +193,244 @@
   ],
   "curve": [
     {
-      "date": "2026-10-19",
-      "closing": "1579.56"
-    },
-    {
       "date": "2026-10-20",
-      "closing": "1579.56"
+      "closing": "3598.18"
     },
     {
       "date": "2026-10-21",
-      "closing": "1579.56"
+      "closing": "3598.18"
     },
     {
       "date": "2026-10-22",
-      "closing": "1491.56"
+      "closing": "3510.18"
     },
     {
       "date": "2026-10-23",
-      "closing": "5296.64"
+      "closing": "7315.26"
     },
     {
       "date": "2026-10-24",
-      "closing": "4216.38"
+      "closing": "6235.00"
     },
     {
       "date": "2026-10-25",
-      "closing": "3806.52"
+      "closing": "5825.14"
     },
     {
       "date": "2026-10-26",
-      "closing": "3806.52"
+      "closing": "5825.14"
     },
     {
       "date": "2026-10-27",
-      "closing": "3721.74"
+      "closing": "5740.36"
     },
     {
       "date": "2026-10-28",
-      "closing": "3721.74"
+      "closing": "5740.36"
     },
     {
       "date": "2026-10-29",
-      "closing": "3559.85"
+      "closing": "5578.47"
     },
     {
       "date": "2026-10-30",
-      "closing": "4428.85"
+      "closing": "6447.47"
     },
     {
       "date": "2026-10-31",
-      "closing": "4428.85"
+      "closing": "6447.47"
     },
     {
       "date": "2026-11-01",
-      "closing": "4018.99"
+      "closing": "6037.61"
     },
     {
       "date": "2026-11-02",
-      "closing": "2217.37"
+      "closing": "4235.99"
     },
     {
       "date": "2026-11-03",
-      "closing": "2075.16"
+      "closing": "4093.78"
     },
     {
       "date": "2026-11-04",
-      "closing": "1731.46"
+      "closing": "3750.08"
     },
     {
       "date": "2026-11-05",
-      "closing": "1731.46"
+      "closing": "3750.08"
     },
     {
       "date": "2026-11-06",
-      "closing": "5169.61"
+      "closing": "7188.23"
     },
     {
       "date": "2026-11-07",
-      "closing": "5169.61"
+      "closing": "7188.23"
     },
     {
       "date": "2026-11-08",
-      "closing": "4609.75"
+      "closing": "6628.37"
     },
     {
       "date": "2026-11-09",
-      "closing": "4609.75"
+      "closing": "6628.37"
     },
     {
       "date": "2026-11-10",
-      "closing": "4609.75"
+      "closing": "6628.37"
     },
     {
       "date": "2026-11-11",
-      "closing": "4504.65"
+      "closing": "6523.27"
     },
     {
       "date": "2026-11-12",
-      "closing": "3926.38"
+      "closing": "5945.00"
     },
     {
       "date": "2026-11-13",
-      "closing": "4795.38"
+      "closing": "6814.00"
     },
     {
       "date": "2026-11-14",
-      "closing": "4695.38"
+      "closing": "6714.00"
     },
     {
       "date": "2026-11-15",
-      "closing": "3724.52"
+      "closing": "5743.14"
     },
     {
       "date": "2026-11-16",
-      "closing": "1922.90"
+      "closing": "3941.52"
     },
     {
       "date": "2026-11-17",
-      "closing": "1623.90"
+      "closing": "3642.52"
     },
     {
       "date": "2026-11-18",
-      "closing": "965.71"
+      "closing": "2984.33"
     },
     {
       "date": "2026-11-19",
-      "closing": "748.71"
+      "closing": "2767.33"
     },
     {
       "date": "2026-11-20",
-      "closing": "4575.10"
+      "closing": "6593.72"
     },
     {
       "date": "2026-11-21",
-      "closing": "4575.10"
+      "closing": "6593.72"
     },
     {
       "date": "2026-11-22",
-      "closing": "4077.24"
+      "closing": "6095.86"
     },
     {
       "date": "2026-11-23",
-      "closing": "4055.93"
+      "closing": "6074.55"
     },
     {
       "date": "2026-11-24",
-      "closing": "2975.67"
+      "closing": "4994.29"
     },
     {
       "date": "2026-11-25",
-      "closing": "2975.67"
+      "closing": "4994.29"
     },
     {
       "date": "2026-11-26",
-      "closing": "2975.67"
+      "closing": "4994.29"
     },
     {
       "date": "2026-11-27",
-      "closing": "3759.89"
+      "closing": "5778.51"
     },
     {
       "date": "2026-11-28",
-      "closing": "3759.89"
+      "closing": "5778.51"
     },
     {
       "date": "2026-11-29",
-      "closing": "3188.14"
+      "closing": "5206.76"
     },
     {
       "date": "2026-11-30",
-      "closing": "1386.52"
+      "closing": "3405.14"
     },
     {
       "date": "2026-12-01",
-      "closing": "1386.52"
+      "closing": "3405.14"
     },
     {
       "date": "2026-12-02",
-      "closing": "1386.52"
+      "closing": "3405.14"
     },
     {
       "date": "2026-12-03",
-      "closing": "1225.42"
+      "closing": "3244.04"
     },
     {
       "date": "2026-12-04",
-      "closing": "4708.11"
+      "closing": "6726.73"
     },
     {
       "date": "2026-12-05",
-      "closing": "4708.11"
+      "closing": "6726.73"
     },
     {
       "date": "2026-12-06",
-      "closing": "3910.01"
+      "closing": "5928.63"
     },
     {
       "date": "2026-12-07",
-      "closing": "3910.01"
+      "closing": "5928.63"
     },
     {
       "date": "2026-12-08",
-      "closing": "3760.01"
+      "closing": "5778.63"
     },
     {
       "date": "2026-12-09",
-      "closing": "3760.01"
+      "closing": "5778.63"
     },
     {
       "date": "2026-12-10",
-      "closing": "3760.01"
+      "closing": "5778.63"
     },
     {
       "date": "2026-12-11",
-      "closing": "4422.26"
+      "closing": "6440.88"
     },
     {
       "date": "2026-12-12",
-      "closing": "3843.99"
+      "closing": "5862.61"
     },
     {
       "date": "2026-12-13",
-      "closing": "3434.13"
+      "closing": "5452.75"
     },
     {
       "date": "2026-12-14",
-      "closing": "1532.51"
+      "closing": "3551.13"
     },
     {
       "date": "2026-12-15",
-      "closing": "971.51"
+      "closing": "2990.13"
     },
     {
       "date": "2026-12-16",
-      "closing": "971.51"
+      "closing": "2990.13"
     },
     {
       "date": "2026-12-17",
-      "closing": "672.51"
+      "closing": "2691.13"
+    },
+    {
+      "date": "2026-12-18",
+      "closing": "5859.33"
     }
   ],
   "risks": [],
@@ -488,39 +442,6 @@
     "covered": true
   },
   "deferral_window": [
-    {
-      "id": "mortgage",
-      "name": "Mortgage",
-      "date": "2026-10-19",
-      "amount": "1801.62",
-      "tier": 1,
-      "deferrable": false,
-      "secured": true,
-      "deferred": false,
-      "in_week": true
-    },
-    {
-      "id": "irs-state",
-      "name": "IRS state",
-      "date": "2026-10-19",
-      "amount": "114.00",
-      "tier": 2,
-      "deferrable": false,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
-    {
-      "id": "irs-federal",
-      "name": "IRS federal",
-      "date": "2026-10-19",
-      "amount": "103.00",
-      "tier": 2,
-      "deferrable": false,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
     {
       "id": "chase-united",
       "name": "Chase CC United",
@@ -735,48 +656,6 @@
   "lookahead_days": 14,
   "bills": [
     {
-      "id": "irs-federal",
-      "name": "IRS federal",
-      "amount": "103.00",
-      "due_day": 19,
-      "frequency": "monthly",
-      "next_date": "2026-10-19",
-      "tier": 2,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "source": "household",
-      "note": "New instalment plan, $103.00/month, per the household. Not yet visible in any statement. Non-deferrable: missing an IRS instalment can void the agreement."
-    },
-    {
-      "id": "irs-state",
-      "name": "IRS state",
-      "amount": "114.00",
-      "due_day": 19,
-      "frequency": "monthly",
-      "next_date": "2026-10-19",
-      "tier": 2,
-      "active": true,
-      "variable": false,
-      "needs_review": true,
-      "source": "household",
-      "note": "New, $114.00/month, per the household. Due day assumed the same as the federal instalment; confirm. Not yet visible in any statement."
-    },
-    {
-      "id": "mortgage",
-      "name": "Mortgage",
-      "amount": "1801.62",
-      "due_day": null,
-      "frequency": "biweekly",
-      "next_date": "2026-10-19",
-      "tier": 1,
-      "active": true,
-      "variable": false,
-      "needs_review": true,
-      "source": "statement",
-      "note": "CORRECTED from semimonthly to biweekly. 15 consecutive payments 12/15/2025-06/29/2026 are exactly 14 days apart. Semimonthly modelled 24/yr; biweekly is 26/yr, a $3,603.24/yr difference. Extra same-week entries in the statements are failed-payment retries, not additional payments."
-    },
-    {
       "id": "chase-united",
       "name": "Chase CC United",
       "amount": "46.00",
@@ -901,6 +780,20 @@
       "needs_review": false,
       "source": "statement",
       "note": ""
+    },
+    {
+      "id": "mortgage",
+      "name": "Mortgage",
+      "amount": "1801.62",
+      "due_day": null,
+      "frequency": "biweekly",
+      "next_date": "2026-11-02",
+      "tier": 1,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "statement",
+      "note": "CORRECTED from semimonthly to biweekly. 15 consecutive payments 12/15/2025-06/29/2026 are exactly 14 days apart. Semimonthly modelled 24/yr; biweekly is 26/yr, a $3,603.24/yr difference. Extra same-week entries in the statements are failed-payment retries, not additional payments."
     },
     {
       "id": "electric",
@@ -1153,6 +1046,34 @@
       "needs_review": false,
       "source": "household",
       "note": "Renegotiated to $86.36 (household, 11 Aug 2026). Was $287.85."
+    },
+    {
+      "id": "irs-federal",
+      "name": "IRS federal",
+      "amount": "103.00",
+      "due_day": 19,
+      "frequency": "monthly",
+      "next_date": "2026-11-19",
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "household",
+      "note": "New instalment plan, $103.00/month, per the household. Not yet visible in any statement. Non-deferrable: missing an IRS instalment can void the agreement."
+    },
+    {
+      "id": "irs-state",
+      "name": "IRS state",
+      "amount": "114.00",
+      "due_day": 19,
+      "frequency": "monthly",
+      "next_date": "2026-11-19",
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "household",
+      "note": "New, $114.00/month, per the household. Due day assumed the same as the federal instalment; confirm. Not yet visible in any statement."
     },
     {
       "id": "clinton-water",
