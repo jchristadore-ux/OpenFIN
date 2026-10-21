@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-20T19:31:52.111762-04:00",
-  "today": "2026-10-20",
+  "generated_at": "2026-10-21T11:47:52.406809-04:00",
+  "today": "2026-10-21",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
@@ -13,7 +13,7 @@
   "shortfall": "0.00",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "2984.33",
+    "safe": "2767.33",
     "explain": [
       [
         "Balance now",
@@ -25,30 +25,30 @@
       ],
       [
         "Bills over the next 30 days",
-        "-10004.63"
+        "-10221.63"
       ],
       [
-        "Where that ends up, 18 Nov",
-        "2984.33"
+        "Where that ends up, 19 Nov",
+        "2767.33"
       ],
       [
-        "Lowest point along the way, 18 Nov",
-        "2984.33"
+        "Lowest point along the way, 19 Nov",
+        "2767.33"
       ],
       [
         "Available to spend",
-        "2984.33"
+        "2767.33"
       ]
     ],
-    "headroom": "2984.33",
-    "headroom_day": "2026-11-18",
-    "per_day": "99.48",
-    "per_day_day": "2026-11-18",
+    "headroom": "2767.33",
+    "headroom_day": "2026-11-19",
+    "per_day": "92.24",
+    "per_day_day": "2026-11-19",
     "window_days": 30,
-    "window_end": "2026-11-18",
+    "window_end": "2026-11-19",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-11-18"
+      "window_end": "2026-11-19"
     }
   },
   "today_bills": [],
@@ -192,10 +192,6 @@
     }
   ],
   "curve": [
-    {
-      "date": "2026-10-20",
-      "closing": "3598.18"
-    },
     {
       "date": "2026-10-21",
       "closing": "3598.18"
@@ -431,6 +427,10 @@
     {
       "date": "2026-12-18",
       "closing": "5859.33"
+    },
+    {
+      "date": "2026-12-19",
+      "closing": "4768.80"
     }
   ],
   "risks": [],
