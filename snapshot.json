@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-10-21T19:47:38.472990-04:00",
-  "today": "2026-10-21",
+  "generated_at": "2026-10-22T11:45:49.289278-04:00",
+  "today": "2026-10-22",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "3598.18",
+  "end_of_day": "3510.18",
   "end_of_week": "5825.14",
   "end_of_month": "6447.47",
   "week_end": "2026-10-25",
@@ -21,15 +21,15 @@
       ],
       [
         "Income over the next 30 days",
-        "9390.78"
+        "13217.17"
       ],
       [
         "Bills over the next 30 days",
         "-10221.63"
       ],
       [
-        "Where that ends up, 19 Nov",
-        "2767.33"
+        "Where that ends up, 20 Nov",
+        "6593.72"
       ],
       [
         "Lowest point along the way, 19 Nov",
@@ -42,16 +42,24 @@
     ],
     "headroom": "2767.33",
     "headroom_day": "2026-11-19",
-    "per_day": "92.24",
+    "per_day": "95.43",
     "per_day_day": "2026-11-19",
     "window_days": 30,
-    "window_end": "2026-11-19",
+    "window_end": "2026-11-20",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-11-19"
+      "window_end": "2026-11-20"
     }
   },
-  "today_bills": [],
+  "today_bills": [
+    {
+      "name": "Chase CC United",
+      "amount": "88.00",
+      "tier": 3,
+      "autopay": true,
+      "deferred": false
+    }
+  ],
   "today_income": [],
   "this_week": [
     {
@@ -192,10 +200,6 @@
     }
   ],
   "curve": [
-    {
-      "date": "2026-10-21",
-      "closing": "3598.18"
-    },
     {
       "date": "2026-10-22",
       "closing": "3510.18"
@@ -431,6 +435,10 @@
     {
       "date": "2026-12-19",
       "closing": "4768.80"
+    },
+    {
+      "date": "2026-12-20",
+      "closing": "4358.94"
     }
   ],
   "risks": [],
