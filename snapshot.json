@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-10-23T19:39:29.558259-04:00",
-  "today": "2026-10-23",
+  "generated_at": "2026-10-24T10:11:34.748668-04:00",
+  "today": "2026-10-24",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "7403.26",
-  "end_of_week": "5913.14",
-  "end_of_month": "6535.47",
+  "end_of_day": "2517.92",
+  "end_of_week": "2108.06",
+  "end_of_month": "2730.39",
   "week_end": "2026-10-25",
-  "minimum_balance": "2779.13",
+  "minimum_balance": "-1025.95",
   "minimum_date": "2026-12-17",
-  "shortfall": "0.00",
+  "shortfall": "1025.95",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "2855.33",
+    "safe": "-949.75",
     "explain": [
       [
         "Balance now",
@@ -21,80 +21,54 @@
       ],
       [
         "Income over the next 30 days",
-        "13217.17"
+        "9390.78"
       ],
       [
         "Bills over the next 30 days",
-        "-10133.63"
+        "-10610.18"
       ],
       [
-        "Where that ends up, 21 Nov",
-        "6681.72"
+        "Where that ends up, 22 Nov",
+        "2378.78"
       ],
       [
         "Lowest point along the way, 19 Nov",
-        "2855.33"
+        "-949.75"
       ],
       [
         "Available to spend",
-        "2855.33"
+        "-949.75"
       ]
     ],
-    "headroom": "2855.33",
+    "headroom": "-949.75",
     "headroom_day": "2026-11-19",
-    "per_day": "101.98",
+    "per_day": "-35.18",
     "per_day_day": "2026-11-19",
     "window_days": 30,
-    "window_end": "2026-11-21",
+    "window_end": "2026-11-22",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-11-21"
+      "window_end": "2026-11-22"
     }
   },
   "today_bills": [
     {
-      "name": "Netflix",
-      "amount": "21.31",
-      "tier": 5,
+      "name": "Kia",
+      "amount": "742.65",
+      "tier": 1,
+      "autopay": true,
+      "deferred": false
+    },
+    {
+      "name": "Upstart past bills (from Sep)",
+      "amount": "337.61",
+      "tier": 3,
       "autopay": true,
       "deferred": false
     }
   ],
-  "today_income": [
-    {
-      "name": "Leslie payroll",
-      "amount": "2957.39"
-    },
-    {
-      "name": "NJ unemployment",
-      "amount": "869.00"
-    }
-  ],
+  "today_income": [],
   "this_week": [
-    {
-      "date": "2026-10-23",
-      "name": "Leslie payroll",
-      "amount": "2957.39",
-      "direction": "in",
-      "tier": 0,
-      "deferred": false
-    },
-    {
-      "date": "2026-10-23",
-      "name": "NJ unemployment",
-      "amount": "869.00",
-      "direction": "in",
-      "tier": 0,
-      "deferred": false
-    },
-    {
-      "date": "2026-10-23",
-      "name": "Netflix",
-      "amount": "21.31",
-      "direction": "out",
-      "tier": 5,
-      "deferred": false
-    },
     {
       "date": "2026-10-24",
       "name": "Kia",
@@ -202,266 +176,338 @@
   ],
   "curve": [
     {
-      "date": "2026-10-23",
-      "closing": "7403.26"
-    },
-    {
       "date": "2026-10-24",
-      "closing": "6323.00"
+      "closing": "2517.92"
     },
     {
       "date": "2026-10-25",
-      "closing": "5913.14"
+      "closing": "2108.06"
     },
     {
       "date": "2026-10-26",
-      "closing": "5913.14"
+      "closing": "2108.06"
     },
     {
       "date": "2026-10-27",
-      "closing": "5828.36"
+      "closing": "2023.28"
     },
     {
       "date": "2026-10-28",
-      "closing": "5828.36"
+      "closing": "2023.28"
     },
     {
       "date": "2026-10-29",
-      "closing": "5666.47"
+      "closing": "1861.39"
     },
     {
       "date": "2026-10-30",
-      "closing": "6535.47"
+      "closing": "2730.39"
     },
     {
       "date": "2026-10-31",
-      "closing": "6535.47"
+      "closing": "2730.39"
     },
     {
       "date": "2026-11-01",
-      "closing": "6125.61"
+      "closing": "2320.53"
     },
     {
       "date": "2026-11-02",
-      "closing": "4323.99"
+      "closing": "518.91"
     },
     {
       "date": "2026-11-03",
-      "closing": "4181.78"
+      "closing": "376.70"
     },
     {
       "date": "2026-11-04",
-      "closing": "3838.08"
+      "closing": "33.00"
     },
     {
       "date": "2026-11-05",
-      "closing": "3838.08"
+      "closing": "33.00"
     },
     {
       "date": "2026-11-06",
-      "closing": "7276.23"
+      "closing": "3471.15"
     },
     {
       "date": "2026-11-07",
-      "closing": "7276.23"
+      "closing": "3471.15"
     },
     {
       "date": "2026-11-08",
-      "closing": "6716.37"
+      "closing": "2911.29"
     },
     {
       "date": "2026-11-09",
-      "closing": "6716.37"
+      "closing": "2911.29"
     },
     {
       "date": "2026-11-10",
-      "closing": "6716.37"
+      "closing": "2911.29"
     },
     {
       "date": "2026-11-11",
-      "closing": "6611.27"
+      "closing": "2806.19"
     },
     {
       "date": "2026-11-12",
-      "closing": "6033.00"
+      "closing": "2227.92"
     },
     {
       "date": "2026-11-13",
-      "closing": "6902.00"
+      "closing": "3096.92"
     },
     {
       "date": "2026-11-14",
-      "closing": "6802.00"
+      "closing": "2996.92"
     },
     {
       "date": "2026-11-15",
-      "closing": "5831.14"
+      "closing": "2026.06"
     },
     {
       "date": "2026-11-16",
-      "closing": "4029.52"
+      "closing": "224.44"
     },
     {
       "date": "2026-11-17",
-      "closing": "3730.52"
+      "closing": "-74.56"
     },
     {
       "date": "2026-11-18",
-      "closing": "3072.33"
+      "closing": "-732.75"
     },
     {
       "date": "2026-11-19",
-      "closing": "2855.33"
+      "closing": "-949.75"
     },
     {
       "date": "2026-11-20",
-      "closing": "6681.72"
+      "closing": "2876.64"
     },
     {
       "date": "2026-11-21",
-      "closing": "6681.72"
+      "closing": "2876.64"
     },
     {
       "date": "2026-11-22",
-      "closing": "6183.86"
+      "closing": "2378.78"
     },
     {
       "date": "2026-11-23",
-      "closing": "6162.55"
+      "closing": "2357.47"
     },
     {
       "date": "2026-11-24",
-      "closing": "5082.29"
+      "closing": "1277.21"
     },
     {
       "date": "2026-11-25",
-      "closing": "5082.29"
+      "closing": "1277.21"
     },
     {
       "date": "2026-11-26",
-      "closing": "5082.29"
+      "closing": "1277.21"
     },
     {
       "date": "2026-11-27",
-      "closing": "5866.51"
+      "closing": "2061.43"
     },
     {
       "date": "2026-11-28",
-      "closing": "5866.51"
+      "closing": "2061.43"
     },
     {
       "date": "2026-11-29",
-      "closing": "5294.76"
+      "closing": "1489.68"
     },
     {
       "date": "2026-11-30",
-      "closing": "3493.14"
+      "closing": "-311.94"
     },
     {
       "date": "2026-12-01",
-      "closing": "3493.14"
+      "closing": "-311.94"
     },
     {
       "date": "2026-12-02",
-      "closing": "3493.14"
+      "closing": "-311.94"
     },
     {
       "date": "2026-12-03",
-      "closing": "3332.04"
+      "closing": "-473.04"
     },
     {
       "date": "2026-12-04",
-      "closing": "6814.73"
+      "closing": "3009.65"
     },
     {
       "date": "2026-12-05",
-      "closing": "6814.73"
+      "closing": "3009.65"
     },
     {
       "date": "2026-12-06",
-      "closing": "6016.63"
+      "closing": "2211.55"
     },
     {
       "date": "2026-12-07",
-      "closing": "6016.63"
+      "closing": "2211.55"
     },
     {
       "date": "2026-12-08",
-      "closing": "5866.63"
+      "closing": "2061.55"
     },
     {
       "date": "2026-12-09",
-      "closing": "5866.63"
+      "closing": "2061.55"
     },
     {
       "date": "2026-12-10",
-      "closing": "5866.63"
+      "closing": "2061.55"
     },
     {
       "date": "2026-12-11",
-      "closing": "6528.88"
+      "closing": "2723.80"
     },
     {
       "date": "2026-12-12",
-      "closing": "5950.61"
+      "closing": "2145.53"
     },
     {
       "date": "2026-12-13",
-      "closing": "5540.75"
+      "closing": "1735.67"
     },
     {
       "date": "2026-12-14",
-      "closing": "3639.13"
+      "closing": "-165.95"
     },
     {
       "date": "2026-12-15",
-      "closing": "3078.13"
+      "closing": "-726.95"
     },
     {
       "date": "2026-12-16",
-      "closing": "3078.13"
+      "closing": "-726.95"
     },
     {
       "date": "2026-12-17",
-      "closing": "2779.13"
+      "closing": "-1025.95"
     },
     {
       "date": "2026-12-18",
-      "closing": "5947.33"
+      "closing": "2142.25"
     },
     {
       "date": "2026-12-19",
-      "closing": "4856.80"
+      "closing": "1051.72"
     },
     {
       "date": "2026-12-20",
-      "closing": "4446.94"
+      "closing": "641.86"
     },
     {
       "date": "2026-12-21",
-      "closing": "4446.94"
+      "closing": "641.86"
+    },
+    {
+      "date": "2026-12-22",
+      "closing": "553.86"
     }
   ],
-  "risks": [],
+  "risks": [
+    {
+      "id": "negative_balance:2026-11-17",
+      "type": "negative_balance",
+      "severity": "critical",
+      "title": "Balance goes negative Tue 17 Nov",
+      "detail": "Projected -$74.56 on Tue 17 Nov. Lowest point is -$1,025.95 on Thu 17 Dec.",
+      "amount": "1025.95",
+      "when": "2026-11-17"
+    },
+    {
+      "id": "secured_payment:ccu-car-loan:2026-11-18",
+      "type": "secured_payment",
+      "severity": "critical",
+      "title": "CCU car loan may not clear",
+      "detail": "CCU car loan of $306.90 is due Wed 18 Nov with only -$74.56 available that day.",
+      "amount": "306.90",
+      "when": "2026-11-18"
+    },
+    {
+      "id": "secured_payment:mortgage:2026-11-30",
+      "type": "secured_payment",
+      "severity": "critical",
+      "title": "Mortgage may not clear",
+      "detail": "Mortgage of $1,801.62 is due Mon 30 Nov with only $1,489.68 available that day.",
+      "amount": "311.94",
+      "when": "2026-11-30"
+    },
+    {
+      "id": "large_payment:mortgage:2026-11-30",
+      "type": "large_payment",
+      "severity": "high",
+      "title": "Mortgage $1,801.62 may be short",
+      "detail": "Mortgage of $1,801.62 is due Mon 30 Nov against a projected opening balance of $1,489.68.",
+      "amount": "311.94",
+      "when": "2026-11-30"
+    },
+    {
+      "id": "discretionary:2026-11-19",
+      "type": "discretionary",
+      "severity": "medium",
+      "title": "Nothing available to spend: -$949.75",
+      "detail": "Over the next 30 days the balance reaches -$949.75 on Thu 19 Nov. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
+      "amount": "949.75",
+      "when": "2026-11-19"
+    }
+  ],
   "plan": {
-    "summary": "No shortfall to solve.",
-    "shortfall": "0.00",
-    "problem_day": null,
-    "candidates": [],
+    "summary": "Deferring Culligan $307.70, Home Depot $100.00, TJX Rewards $36.00, Loew & Patel braces $400.00, Capital One CC $163.00, PNC $150.00 before 17 Nov frees $1,156.70 and covers the $1,025.95 shortfall.",
+    "shortfall": "1025.95",
+    "problem_day": "2026-11-17",
+    "candidates": [
+      {
+        "name": "Culligan",
+        "amount": "307.70",
+        "date": "2026-11-04",
+        "tier": 5
+      },
+      {
+        "name": "Home Depot",
+        "amount": "100.00",
+        "date": "2026-11-14",
+        "tier": 5
+      },
+      {
+        "name": "TJX Rewards",
+        "amount": "36.00",
+        "date": "2026-11-04",
+        "tier": 5
+      },
+      {
+        "name": "Loew & Patel braces",
+        "amount": "400.00",
+        "date": "2026-11-15",
+        "tier": 4
+      },
+      {
+        "name": "Capital One CC",
+        "amount": "163.00",
+        "date": "2026-11-17",
+        "tier": 3
+      },
+      {
+        "name": "PNC",
+        "amount": "150.00",
+        "date": "2026-11-08",
+        "tier": 3
+      }
+    ],
     "covered": true
   },
   "deferral_window": [
-    {
-      "id": "netflix",
-      "name": "Netflix",
-      "date": "2026-10-23",
-      "amount": "21.31",
-      "tier": 5,
-      "deferrable": true,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
     {
       "id": "car-payment",
       "name": "Kia",
@@ -653,20 +699,6 @@
   "deferred_total": "0.00",
   "lookahead_days": 14,
   "bills": [
-    {
-      "id": "netflix",
-      "name": "Netflix",
-      "amount": "21.31",
-      "due_day": 23,
-      "frequency": "monthly",
-      "next_date": "2026-10-23",
-      "tier": 5,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "source": "statement",
-      "note": ""
-    },
     {
       "id": "car-payment",
       "name": "Kia",
@@ -1074,6 +1106,20 @@
       "note": "Renegotiated to $46.00 (household, 11 Aug 2026). Card ending 6319. Autopay 21st-23rd."
     },
     {
+      "id": "netflix",
+      "name": "Netflix",
+      "amount": "21.31",
+      "due_day": 23,
+      "frequency": "monthly",
+      "next_date": "2026-11-23",
+      "tier": 5,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "statement",
+      "note": ""
+    },
+    {
       "id": "clinton-water",
       "name": "Town of Clinton water",
       "amount": "294.03",
@@ -1258,32 +1304,32 @@
   ],
   "income": [
     {
-      "id": "leslie-payroll",
-      "name": "Leslie payroll",
-      "amount": "2957.39",
-      "due_day": null,
-      "frequency": "biweekly",
-      "next_date": "2026-10-23",
-      "tier": 5,
-      "active": true,
-      "variable": false,
-      "needs_review": true,
-      "source": "household",
-      "note": "Added 11 Sep 2026: Leslie has returned to work, $2,957.39 every two weeks. ANCHOR IS AN ASSUMPTION: the placeholder first cheque was dated 11 Sep 2026, so the first full modelled pay is set two weeks later, 25 Sep 2026. That also keeps it off today, whose deposit is already inside the entered balanc"
-    },
-    {
       "id": "unemployment",
       "name": "NJ unemployment",
       "amount": "869.00",
       "due_day": null,
       "frequency": "weekly",
-      "next_date": "2026-10-23",
+      "next_date": "2026-10-30",
       "tier": 5,
       "active": true,
       "variable": false,
       "needs_review": true,
       "source": "household",
       "note": "Added 11 Sep 2026. Replaces the weekly Insight Global payroll, which ended. $869/week as stated by the household. ANCHOR IS AN ASSUMPTION: set to 18 Sep 2026 so the first modelled payment falls after today's entered balance rather than on top of it. Correct the anchor to the real payment weekday onc"
+    },
+    {
+      "id": "leslie-payroll",
+      "name": "Leslie payroll",
+      "amount": "2957.39",
+      "due_day": null,
+      "frequency": "biweekly",
+      "next_date": "2026-11-06",
+      "tier": 5,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "household",
+      "note": "Added 11 Sep 2026: Leslie has returned to work, $2,957.39 every two weeks. ANCHOR IS AN ASSUMPTION: the placeholder first cheque was dated 11 Sep 2026, so the first full modelled pay is set two weeks later, 25 Sep 2026. That also keeps it off today, whose deposit is already inside the entered balanc"
     },
     {
       "id": "boe-payroll",
