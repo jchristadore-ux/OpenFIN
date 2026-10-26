@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-10-25T18:55:09.584906-04:00",
-  "today": "2026-10-25",
+  "generated_at": "2026-10-26T13:05:44.863508-04:00",
+  "today": "2026-10-26",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "3188.32",
-  "end_of_week": "3188.32",
-  "end_of_month": "3810.65",
-  "week_end": "2026-10-25",
-  "minimum_balance": "54.31",
+  "end_of_day": "3598.18",
+  "end_of_week": "3810.65",
+  "end_of_month": "4220.51",
+  "week_end": "2026-11-01",
+  "minimum_balance": "464.17",
   "minimum_date": "2026-12-17",
   "shortfall": "0.00",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "130.51",
+    "safe": "540.37",
     "explain": [
       [
         "Balance now",
@@ -25,52 +25,69 @@
       ],
       [
         "Bills over the next 30 days",
-        "-9551.23"
+        "-10221.63"
       ],
       [
-        "Where that ends up, 23 Nov",
-        "3437.73"
+        "Where that ends up, 24 Nov",
+        "2767.33"
       ],
       [
         "Lowest point along the way, 19 Nov",
-        "130.51"
+        "540.37"
       ],
       [
         "Available to spend",
-        "130.51"
+        "540.37"
       ]
     ],
-    "headroom": "130.51",
+    "headroom": "540.37",
     "headroom_day": "2026-11-19",
-    "per_day": "5.02",
+    "per_day": "21.61",
     "per_day_day": "2026-11-19",
     "window_days": 30,
-    "window_end": "2026-11-23",
+    "window_end": "2026-11-24",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-11-23"
+      "window_end": "2026-11-24"
     }
   },
-  "today_bills": [
-    {
-      "name": "Groceries",
-      "amount": "319.09",
-      "tier": 2,
-      "autopay": false,
-      "deferred": false
-    },
-    {
-      "name": "Fuel",
-      "amount": "90.77",
-      "tier": 2,
-      "autopay": false,
-      "deferred": false
-    }
-  ],
+  "today_bills": [],
   "today_income": [],
   "this_week": [
     {
-      "date": "2026-10-25",
+      "date": "2026-10-27",
+      "name": "Barclay Old Navy",
+      "amount": "84.78",
+      "direction": "out",
+      "tier": 3,
+      "deferred": false
+    },
+    {
+      "date": "2026-10-29",
+      "name": "Xfinity Mobile",
+      "amount": "88.82",
+      "direction": "out",
+      "tier": 2,
+      "deferred": false
+    },
+    {
+      "date": "2026-10-29",
+      "name": "Affirm",
+      "amount": "73.07",
+      "direction": "out",
+      "tier": 3,
+      "deferred": false
+    },
+    {
+      "date": "2026-10-30",
+      "name": "NJ unemployment",
+      "amount": "869.00",
+      "direction": "in",
+      "tier": 0,
+      "deferred": false
+    },
+    {
+      "date": "2026-11-01",
       "name": "Groceries",
       "amount": "319.09",
       "direction": "out",
@@ -78,7 +95,7 @@
       "deferred": false
     },
     {
-      "date": "2026-10-25",
+      "date": "2026-11-01",
       "name": "Fuel",
       "amount": "90.77",
       "direction": "out",
@@ -87,13 +104,6 @@
     }
   ],
   "upcoming": [
-    {
-      "date": "2026-11-01",
-      "name": "Groceries",
-      "amount": "319.09",
-      "tier": 2,
-      "deferred": false
-    },
     {
       "date": "2026-11-02",
       "name": "Mortgage",
@@ -156,248 +166,255 @@
       "amount": "161.00",
       "tier": 3,
       "deferred": false
+    },
+    {
+      "date": "2026-11-16",
+      "name": "Mortgage",
+      "amount": "1801.62",
+      "tier": 1,
+      "deferred": false
     }
   ],
   "curve": [
     {
-      "date": "2026-10-25",
-      "closing": "3188.32"
-    },
-    {
       "date": "2026-10-26",
-      "closing": "3188.32"
+      "closing": "3598.18"
     },
     {
       "date": "2026-10-27",
-      "closing": "3103.54"
+      "closing": "3513.40"
     },
     {
       "date": "2026-10-28",
-      "closing": "3103.54"
+      "closing": "3513.40"
     },
     {
       "date": "2026-10-29",
-      "closing": "2941.65"
+      "closing": "3351.51"
     },
     {
       "date": "2026-10-30",
-      "closing": "3810.65"
+      "closing": "4220.51"
     },
     {
       "date": "2026-10-31",
-      "closing": "3810.65"
+      "closing": "4220.51"
     },
     {
       "date": "2026-11-01",
-      "closing": "3400.79"
+      "closing": "3810.65"
     },
     {
       "date": "2026-11-02",
-      "closing": "1599.17"
+      "closing": "2009.03"
     },
     {
       "date": "2026-11-03",
-      "closing": "1456.96"
+      "closing": "1866.82"
     },
     {
       "date": "2026-11-04",
-      "closing": "1113.26"
+      "closing": "1523.12"
     },
     {
       "date": "2026-11-05",
-      "closing": "1113.26"
+      "closing": "1523.12"
     },
     {
       "date": "2026-11-06",
-      "closing": "4551.41"
+      "closing": "4961.27"
     },
     {
       "date": "2026-11-07",
-      "closing": "4551.41"
+      "closing": "4961.27"
     },
     {
       "date": "2026-11-08",
-      "closing": "3991.55"
+      "closing": "4401.41"
     },
     {
       "date": "2026-11-09",
-      "closing": "3991.55"
+      "closing": "4401.41"
     },
     {
       "date": "2026-11-10",
-      "closing": "3991.55"
+      "closing": "4401.41"
     },
     {
       "date": "2026-11-11",
-      "closing": "3886.45"
+      "closing": "4296.31"
     },
     {
       "date": "2026-11-12",
-      "closing": "3308.18"
+      "closing": "3718.04"
     },
     {
       "date": "2026-11-13",
-      "closing": "4177.18"
+      "closing": "4587.04"
     },
     {
       "date": "2026-11-14",
-      "closing": "4077.18"
+      "closing": "4487.04"
     },
     {
       "date": "2026-11-15",
-      "closing": "3106.32"
+      "closing": "3516.18"
     },
     {
       "date": "2026-11-16",
-      "closing": "1304.70"
+      "closing": "1714.56"
     },
     {
       "date": "2026-11-17",
-      "closing": "1005.70"
+      "closing": "1415.56"
     },
     {
       "date": "2026-11-18",
-      "closing": "347.51"
+      "closing": "757.37"
     },
     {
       "date": "2026-11-19",
-      "closing": "130.51"
+      "closing": "540.37"
     },
     {
       "date": "2026-11-20",
-      "closing": "3956.90"
+      "closing": "4366.76"
     },
     {
       "date": "2026-11-21",
-      "closing": "3956.90"
+      "closing": "4366.76"
     },
     {
       "date": "2026-11-22",
-      "closing": "3459.04"
+      "closing": "3868.90"
     },
     {
       "date": "2026-11-23",
-      "closing": "3437.73"
+      "closing": "3847.59"
     },
     {
       "date": "2026-11-24",
-      "closing": "2357.47"
+      "closing": "2767.33"
     },
     {
       "date": "2026-11-25",
-      "closing": "2357.47"
+      "closing": "2767.33"
     },
     {
       "date": "2026-11-26",
-      "closing": "2357.47"
+      "closing": "2767.33"
     },
     {
       "date": "2026-11-27",
-      "closing": "3141.69"
+      "closing": "3551.55"
     },
     {
       "date": "2026-11-28",
-      "closing": "3141.69"
+      "closing": "3551.55"
     },
     {
       "date": "2026-11-29",
-      "closing": "2569.94"
+      "closing": "2979.80"
     },
     {
       "date": "2026-11-30",
-      "closing": "768.32"
+      "closing": "1178.18"
     },
     {
       "date": "2026-12-01",
-      "closing": "768.32"
+      "closing": "1178.18"
     },
     {
       "date": "2026-12-02",
-      "closing": "768.32"
+      "closing": "1178.18"
     },
     {
       "date": "2026-12-03",
-      "closing": "607.22"
+      "closing": "1017.08"
     },
     {
       "date": "2026-12-04",
-      "closing": "4089.91"
+      "closing": "4499.77"
     },
     {
       "date": "2026-12-05",
-      "closing": "4089.91"
+      "closing": "4499.77"
     },
     {
       "date": "2026-12-06",
-      "closing": "3291.81"
+      "closing": "3701.67"
     },
     {
       "date": "2026-12-07",
-      "closing": "3291.81"
+      "closing": "3701.67"
     },
     {
       "date": "2026-12-08",
-      "closing": "3141.81"
+      "closing": "3551.67"
     },
     {
       "date": "2026-12-09",
-      "closing": "3141.81"
+      "closing": "3551.67"
     },
     {
       "date": "2026-12-10",
-      "closing": "3141.81"
+      "closing": "3551.67"
     },
     {
       "date": "2026-12-11",
-      "closing": "3804.06"
+      "closing": "4213.92"
     },
     {
       "date": "2026-12-12",
-      "closing": "3225.79"
+      "closing": "3635.65"
     },
     {
       "date": "2026-12-13",
-      "closing": "2815.93"
+      "closing": "3225.79"
     },
     {
       "date": "2026-12-14",
-      "closing": "914.31"
+      "closing": "1324.17"
     },
     {
       "date": "2026-12-15",
-      "closing": "353.31"
+      "closing": "763.17"
     },
     {
       "date": "2026-12-16",
-      "closing": "353.31"
+      "closing": "763.17"
     },
     {
       "date": "2026-12-17",
-      "closing": "54.31"
+      "closing": "464.17"
     },
     {
       "date": "2026-12-18",
-      "closing": "3222.51"
+      "closing": "3632.37"
     },
     {
       "date": "2026-12-19",
-      "closing": "2131.98"
+      "closing": "2541.84"
     },
     {
       "date": "2026-12-20",
-      "closing": "1722.12"
+      "closing": "2131.98"
     },
     {
       "date": "2026-12-21",
-      "closing": "1722.12"
+      "closing": "2131.98"
     },
     {
       "date": "2026-12-22",
-      "closing": "1634.12"
+      "closing": "2043.98"
     },
     {
       "date": "2026-12-23",
-      "closing": "1612.81"
+      "closing": "2022.67"
+    },
+    {
+      "date": "2026-12-24",
+      "closing": "942.41"
     }
   ],
   "risks": [],
@@ -410,28 +427,6 @@
   },
   "deferral_window": [
     {
-      "id": "groceries",
-      "name": "Groceries",
-      "date": "2026-10-25",
-      "amount": "319.09",
-      "tier": 2,
-      "deferrable": false,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
-    {
-      "id": "fuel",
-      "name": "Fuel",
-      "date": "2026-10-25",
-      "amount": "90.77",
-      "tier": 2,
-      "deferrable": false,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
-    {
       "id": "barclay-oldnavy",
       "name": "Barclay Old Navy",
       "date": "2026-10-27",
@@ -440,7 +435,7 @@
       "deferrable": true,
       "secured": false,
       "deferred": false,
-      "in_week": false
+      "in_week": true
     },
     {
       "id": "xfinity-mobile",
@@ -451,7 +446,7 @@
       "deferrable": true,
       "secured": false,
       "deferred": false,
-      "in_week": false
+      "in_week": true
     },
     {
       "id": "affirm",
@@ -462,7 +457,7 @@
       "deferrable": true,
       "secured": false,
       "deferred": false,
-      "in_week": false
+      "in_week": true
     },
     {
       "id": "groceries",
@@ -473,7 +468,7 @@
       "deferrable": false,
       "secured": false,
       "deferred": false,
-      "in_week": false
+      "in_week": true
     },
     {
       "id": "fuel",
@@ -484,7 +479,7 @@
       "deferrable": false,
       "secured": false,
       "deferred": false,
-      "in_week": false
+      "in_week": true
     },
     {
       "id": "mortgage",
@@ -573,39 +568,110 @@
       "secured": false,
       "deferred": false,
       "in_week": false
+    },
+    {
+      "id": "gas-utility",
+      "name": "Elizabethtown Gas",
+      "date": "2026-11-11",
+      "amount": "84.35",
+      "tier": 2,
+      "deferrable": false,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "tmobile-lia",
+      "name": "T-Mobile Lia",
+      "date": "2026-11-11",
+      "amount": "20.75",
+      "tier": 2,
+      "deferrable": true,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "auto-insurance",
+      "name": "Hanover Auto",
+      "date": "2026-11-12",
+      "amount": "513.27",
+      "tier": 2,
+      "deferrable": false,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "comenity",
+      "name": "Comenity",
+      "date": "2026-11-12",
+      "amount": "65.00",
+      "tier": 3,
+      "deferrable": true,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "home-depot",
+      "name": "Home Depot",
+      "date": "2026-11-14",
+      "amount": "100.00",
+      "tier": 5,
+      "deferrable": true,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "loew-patel-braces",
+      "name": "Loew & Patel braces",
+      "date": "2026-11-15",
+      "amount": "400.00",
+      "tier": 4,
+      "deferrable": true,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "groceries",
+      "name": "Groceries",
+      "date": "2026-11-15",
+      "amount": "319.09",
+      "tier": 2,
+      "deferrable": false,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "upstart-debt-consolidation",
+      "name": "Upstart debt consol",
+      "date": "2026-11-15",
+      "amount": "161.00",
+      "tier": 3,
+      "deferrable": false,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
+    },
+    {
+      "id": "fuel",
+      "name": "Fuel",
+      "date": "2026-11-15",
+      "amount": "90.77",
+      "tier": 2,
+      "deferrable": false,
+      "secured": false,
+      "deferred": false,
+      "in_week": false
     }
   ],
   "deferred_total": "0.00",
   "lookahead_days": 14,
   "bills": [
-    {
-      "id": "fuel",
-      "name": "Fuel",
-      "amount": "90.77",
-      "due_day": null,
-      "frequency": "weekly",
-      "next_date": "2026-10-25",
-      "tier": 2,
-      "active": true,
-      "variable": true,
-      "needs_review": false,
-      "source": "household",
-      "note": "ACTUAL, not budget. Mean of 69 full weeks is $90.77/wk (median $65.53). The household sheet said $95.48 - close, and slightly high."
-    },
-    {
-      "id": "groceries",
-      "name": "Groceries",
-      "amount": "319.09",
-      "due_day": null,
-      "frequency": "weekly",
-      "next_date": "2026-10-25",
-      "tier": 2,
-      "active": true,
-      "variable": true,
-      "needs_review": false,
-      "source": "household",
-      "note": "ACTUAL, not budget. Mean of 81 full weeks in the statements is $319.09/wk (median $302.15, range $12.78-$791.32). The household sheet said $282.35, under by $36.74/wk. The mean is used rather than the median because under-forecasting an outflow is the direction that causes overdrafts."
-    },
     {
       "id": "barclay-oldnavy",
       "name": "Barclay Old Navy",
@@ -647,6 +713,34 @@
       "needs_review": false,
       "source": "statement",
       "note": ""
+    },
+    {
+      "id": "fuel",
+      "name": "Fuel",
+      "amount": "90.77",
+      "due_day": null,
+      "frequency": "weekly",
+      "next_date": "2026-11-01",
+      "tier": 2,
+      "active": true,
+      "variable": true,
+      "needs_review": false,
+      "source": "household",
+      "note": "ACTUAL, not budget. Mean of 69 full weeks is $90.77/wk (median $65.53). The household sheet said $95.48 - close, and slightly high."
+    },
+    {
+      "id": "groceries",
+      "name": "Groceries",
+      "amount": "319.09",
+      "due_day": null,
+      "frequency": "weekly",
+      "next_date": "2026-11-01",
+      "tier": 2,
+      "active": true,
+      "variable": true,
+      "needs_review": false,
+      "source": "household",
+      "note": "ACTUAL, not budget. Mean of 81 full weeks in the statements is $319.09/wk (median $302.15, range $12.78-$791.32). The household sheet said $282.35, under by $36.74/wk. The mean is used rather than the median because under-forecasting an outflow is the direction that causes overdrafts."
     },
     {
       "id": "mortgage",
