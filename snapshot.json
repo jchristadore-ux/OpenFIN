@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-10-27T20:08:49.310955-04:00",
-  "today": "2026-10-27",
+  "generated_at": "2026-10-28T12:56:15.624203-04:00",
+  "today": "2026-10-28",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "3513.40",
-  "end_of_week": "3810.65",
-  "end_of_month": "4220.51",
+  "end_of_day": "3598.18",
+  "end_of_week": "3895.43",
+  "end_of_month": "4305.29",
   "week_end": "2026-11-01",
-  "minimum_balance": "464.17",
+  "minimum_balance": "548.95",
   "minimum_date": "2026-12-17",
   "shortfall": "0.00",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "540.37",
+    "safe": "625.15",
     "explain": [
       [
         "Balance now",
@@ -25,51 +25,35 @@
       ],
       [
         "Bills over the next 30 days",
-        "-10221.63"
+        "-10136.85"
       ],
       [
-        "Where that ends up, 25 Nov",
-        "2767.33"
+        "Where that ends up, 26 Nov",
+        "2852.11"
       ],
       [
         "Lowest point along the way, 19 Nov",
-        "540.37"
+        "625.15"
       ],
       [
         "Available to spend",
-        "540.37"
+        "625.15"
       ]
     ],
-    "headroom": "540.37",
+    "headroom": "625.15",
     "headroom_day": "2026-11-19",
-    "per_day": "22.52",
+    "per_day": "27.18",
     "per_day_day": "2026-11-19",
     "window_days": 30,
-    "window_end": "2026-11-25",
+    "window_end": "2026-11-26",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-11-25"
+      "window_end": "2026-11-26"
     }
   },
-  "today_bills": [
-    {
-      "name": "Barclay Old Navy",
-      "amount": "84.78",
-      "tier": 3,
-      "autopay": true,
-      "deferred": false
-    }
-  ],
+  "today_bills": [],
   "today_income": [],
   "this_week": [
-    {
-      "date": "2026-10-27",
-      "name": "Barclay Old Navy",
-      "amount": "84.78",
-      "direction": "out",
-      "tier": 3,
-      "deferred": false
-    },
     {
       "date": "2026-10-29",
       "name": "Xfinity Mobile",
@@ -185,244 +169,244 @@
   ],
   "curve": [
     {
-      "date": "2026-10-27",
-      "closing": "3513.40"
-    },
-    {
       "date": "2026-10-28",
-      "closing": "3513.40"
+      "closing": "3598.18"
     },
     {
       "date": "2026-10-29",
-      "closing": "3351.51"
+      "closing": "3436.29"
     },
     {
       "date": "2026-10-30",
-      "closing": "4220.51"
+      "closing": "4305.29"
     },
     {
       "date": "2026-10-31",
-      "closing": "4220.51"
+      "closing": "4305.29"
     },
     {
       "date": "2026-11-01",
-      "closing": "3810.65"
+      "closing": "3895.43"
     },
     {
       "date": "2026-11-02",
-      "closing": "2009.03"
+      "closing": "2093.81"
     },
     {
       "date": "2026-11-03",
-      "closing": "1866.82"
+      "closing": "1951.60"
     },
     {
       "date": "2026-11-04",
-      "closing": "1523.12"
+      "closing": "1607.90"
     },
     {
       "date": "2026-11-05",
-      "closing": "1523.12"
+      "closing": "1607.90"
     },
     {
       "date": "2026-11-06",
-      "closing": "4961.27"
+      "closing": "5046.05"
     },
     {
       "date": "2026-11-07",
-      "closing": "4961.27"
+      "closing": "5046.05"
     },
     {
       "date": "2026-11-08",
-      "closing": "4401.41"
+      "closing": "4486.19"
     },
     {
       "date": "2026-11-09",
-      "closing": "4401.41"
+      "closing": "4486.19"
     },
     {
       "date": "2026-11-10",
-      "closing": "4401.41"
+      "closing": "4486.19"
     },
     {
       "date": "2026-11-11",
-      "closing": "4296.31"
+      "closing": "4381.09"
     },
     {
       "date": "2026-11-12",
-      "closing": "3718.04"
+      "closing": "3802.82"
     },
     {
       "date": "2026-11-13",
-      "closing": "4587.04"
+      "closing": "4671.82"
     },
     {
       "date": "2026-11-14",
-      "closing": "4487.04"
+      "closing": "4571.82"
     },
     {
       "date": "2026-11-15",
-      "closing": "3516.18"
+      "closing": "3600.96"
     },
     {
       "date": "2026-11-16",
-      "closing": "1714.56"
+      "closing": "1799.34"
     },
     {
       "date": "2026-11-17",
-      "closing": "1415.56"
+      "closing": "1500.34"
     },
     {
       "date": "2026-11-18",
-      "closing": "757.37"
+      "closing": "842.15"
     },
     {
       "date": "2026-11-19",
-      "closing": "540.37"
+      "closing": "625.15"
     },
     {
       "date": "2026-11-20",
-      "closing": "4366.76"
+      "closing": "4451.54"
     },
     {
       "date": "2026-11-21",
-      "closing": "4366.76"
+      "closing": "4451.54"
     },
     {
       "date": "2026-11-22",
-      "closing": "3868.90"
+      "closing": "3953.68"
     },
     {
       "date": "2026-11-23",
-      "closing": "3847.59"
+      "closing": "3932.37"
     },
     {
       "date": "2026-11-24",
-      "closing": "2767.33"
+      "closing": "2852.11"
     },
     {
       "date": "2026-11-25",
-      "closing": "2767.33"
+      "closing": "2852.11"
     },
     {
       "date": "2026-11-26",
-      "closing": "2767.33"
+      "closing": "2852.11"
     },
     {
       "date": "2026-11-27",
-      "closing": "3551.55"
+      "closing": "3636.33"
     },
     {
       "date": "2026-11-28",
-      "closing": "3551.55"
+      "closing": "3636.33"
     },
     {
       "date": "2026-11-29",
-      "closing": "2979.80"
+      "closing": "3064.58"
     },
     {
       "date": "2026-11-30",
-      "closing": "1178.18"
+      "closing": "1262.96"
     },
     {
       "date": "2026-12-01",
-      "closing": "1178.18"
+      "closing": "1262.96"
     },
     {
       "date": "2026-12-02",
-      "closing": "1178.18"
+      "closing": "1262.96"
     },
     {
       "date": "2026-12-03",
-      "closing": "1017.08"
+      "closing": "1101.86"
     },
     {
       "date": "2026-12-04",
-      "closing": "4499.77"
+      "closing": "4584.55"
     },
     {
       "date": "2026-12-05",
-      "closing": "4499.77"
+      "closing": "4584.55"
     },
     {
       "date": "2026-12-06",
-      "closing": "3701.67"
+      "closing": "3786.45"
     },
     {
       "date": "2026-12-07",
-      "closing": "3701.67"
+      "closing": "3786.45"
     },
     {
       "date": "2026-12-08",
-      "closing": "3551.67"
+      "closing": "3636.45"
     },
     {
       "date": "2026-12-09",
-      "closing": "3551.67"
+      "closing": "3636.45"
     },
     {
       "date": "2026-12-10",
-      "closing": "3551.67"
+      "closing": "3636.45"
     },
     {
       "date": "2026-12-11",
-      "closing": "4213.92"
+      "closing": "4298.70"
     },
     {
       "date": "2026-12-12",
-      "closing": "3635.65"
+      "closing": "3720.43"
     },
     {
       "date": "2026-12-13",
-      "closing": "3225.79"
+      "closing": "3310.57"
     },
     {
       "date": "2026-12-14",
-      "closing": "1324.17"
+      "closing": "1408.95"
     },
     {
       "date": "2026-12-15",
-      "closing": "763.17"
+      "closing": "847.95"
     },
     {
       "date": "2026-12-16",
-      "closing": "763.17"
+      "closing": "847.95"
     },
     {
       "date": "2026-12-17",
-      "closing": "464.17"
+      "closing": "548.95"
     },
     {
       "date": "2026-12-18",
-      "closing": "3632.37"
+      "closing": "3717.15"
     },
     {
       "date": "2026-12-19",
-      "closing": "2541.84"
+      "closing": "2626.62"
     },
     {
       "date": "2026-12-20",
-      "closing": "2131.98"
+      "closing": "2216.76"
     },
     {
       "date": "2026-12-21",
-      "closing": "2131.98"
+      "closing": "2216.76"
     },
     {
       "date": "2026-12-22",
-      "closing": "2043.98"
+      "closing": "2128.76"
     },
     {
       "date": "2026-12-23",
-      "closing": "2022.67"
+      "closing": "2107.45"
     },
     {
       "date": "2026-12-24",
-      "closing": "942.41"
+      "closing": "1027.19"
     },
     {
       "date": "2026-12-25",
-      "closing": "1811.41"
+      "closing": "1896.19"
+    },
+    {
+      "date": "2026-12-26",
+      "closing": "1896.19"
     }
   ],
   "risks": [],
@@ -434,17 +418,6 @@
     "covered": true
   },
   "deferral_window": [
-    {
-      "id": "barclay-oldnavy",
-      "name": "Barclay Old Navy",
-      "date": "2026-10-27",
-      "amount": "84.78",
-      "tier": 3,
-      "deferrable": true,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
     {
       "id": "xfinity-mobile",
       "name": "Xfinity Mobile",
@@ -680,20 +653,6 @@
   "deferred_total": "0.00",
   "lookahead_days": 14,
   "bills": [
-    {
-      "id": "barclay-oldnavy",
-      "name": "Barclay Old Navy",
-      "amount": "60.74",
-      "due_day": 27,
-      "frequency": "monthly",
-      "next_date": "2026-10-27",
-      "tier": 3,
-      "active": true,
-      "variable": true,
-      "needs_review": false,
-      "source": "statement",
-      "note": ""
-    },
     {
       "id": "affirm",
       "name": "Affirm",
@@ -1099,6 +1058,20 @@
       "needs_review": true,
       "source": "household",
       "note": "Steps up from $86.46 on 24 Sep 2026 per the household. The household said the reduced rate ran 'two months'; if that means it ends after 24 Aug rather than 24 Sep, this start date is a month late and the forecast is optimistic by $251.15 for September. Confirm."
+    },
+    {
+      "id": "barclay-oldnavy",
+      "name": "Barclay Old Navy",
+      "amount": "60.74",
+      "due_day": 27,
+      "frequency": "monthly",
+      "next_date": "2026-11-27",
+      "tier": 3,
+      "active": true,
+      "variable": true,
+      "needs_review": false,
+      "source": "statement",
+      "note": ""
     },
     {
       "id": "clinton-water",
