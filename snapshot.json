@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-10-28T20:31:04.392061-04:00",
-  "today": "2026-10-28",
+  "generated_at": "2026-10-29T13:16:04.556997-04:00",
+  "today": "2026-10-29",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "3598.18",
+  "end_of_day": "3436.29",
   "end_of_week": "3895.43",
   "end_of_month": "4305.29",
   "week_end": "2026-11-01",
@@ -21,15 +21,15 @@
       ],
       [
         "Income over the next 30 days",
-        "9390.78"
+        "10259.78"
       ],
       [
         "Bills over the next 30 days",
-        "-10136.85"
+        "-10221.63"
       ],
       [
-        "Where that ends up, 26 Nov",
-        "2852.11"
+        "Where that ends up, 27 Nov",
+        "3636.33"
       ],
       [
         "Lowest point along the way, 19 Nov",
@@ -42,16 +42,31 @@
     ],
     "headroom": "625.15",
     "headroom_day": "2026-11-19",
-    "per_day": "27.18",
+    "per_day": "28.42",
     "per_day_day": "2026-11-19",
     "window_days": 30,
-    "window_end": "2026-11-26",
+    "window_end": "2026-11-27",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-11-26"
+      "window_end": "2026-11-27"
     }
   },
-  "today_bills": [],
+  "today_bills": [
+    {
+      "name": "Xfinity Mobile",
+      "amount": "88.82",
+      "tier": 2,
+      "autopay": true,
+      "deferred": false
+    },
+    {
+      "name": "Affirm",
+      "amount": "73.07",
+      "tier": 3,
+      "autopay": true,
+      "deferred": false
+    }
+  ],
   "today_income": [],
   "this_week": [
     {
@@ -168,10 +183,6 @@
     }
   ],
   "curve": [
-    {
-      "date": "2026-10-28",
-      "closing": "3598.18"
-    },
     {
       "date": "2026-10-29",
       "closing": "3436.29"
@@ -407,6 +418,10 @@
     {
       "date": "2026-12-26",
       "closing": "1896.19"
+    },
+    {
+      "date": "2026-12-27",
+      "closing": "1401.55"
     }
   ],
   "risks": [],
