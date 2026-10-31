@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-10-30T20:14:33.740868-04:00",
-  "today": "2026-10-30",
+  "generated_at": "2026-10-31T11:55:45.859677-04:00",
+  "today": "2026-10-31",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "4467.18",
-  "end_of_week": "4057.32",
-  "end_of_month": "4467.18",
+  "end_of_day": "3598.18",
+  "end_of_week": "3188.32",
+  "end_of_month": "3598.18",
   "week_end": "2026-11-01",
-  "minimum_balance": "-238.18",
-  "minimum_date": "2026-12-28",
-  "shortfall": "238.18",
+  "minimum_balance": "-1269.07",
+  "minimum_date": "2026-12-29",
+  "shortfall": "1269.07",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "787.04",
+    "safe": "-81.96",
     "explain": [
       [
         "Balance now",
@@ -21,52 +21,39 @@
       ],
       [
         "Income over the next 30 days",
-        "10259.78"
+        "9390.78"
       ],
       [
         "Bills over the next 30 days",
-        "-10059.74"
+        "-10631.49"
       ],
       [
-        "Where that ends up, 28 Nov",
-        "3798.22"
+        "Where that ends up, 29 Nov",
+        "2357.47"
       ],
       [
         "Lowest point along the way, 19 Nov",
-        "787.04"
+        "-81.96"
       ],
       [
         "Available to spend",
-        "787.04"
+        "-81.96"
       ]
     ],
-    "headroom": "787.04",
+    "headroom": "-81.96",
     "headroom_day": "2026-11-19",
-    "per_day": "37.48",
+    "per_day": "-4.10",
     "per_day_day": "2026-11-19",
     "window_days": 30,
-    "window_end": "2026-11-28",
+    "window_end": "2026-11-29",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-11-28"
+      "window_end": "2026-11-29"
     }
   },
   "today_bills": [],
-  "today_income": [
-    {
-      "name": "NJ unemployment",
-      "amount": "869.00"
-    }
-  ],
+  "today_income": [],
   "this_week": [
-    {
-      "date": "2026-10-30",
-      "name": "NJ unemployment",
-      "amount": "869.00",
-      "direction": "in",
-      "tier": 0,
-      "deferred": false
-    },
     {
       "date": "2026-11-01",
       "name": "Groceries",
@@ -158,263 +145,263 @@
   ],
   "curve": [
     {
-      "date": "2026-10-30",
-      "closing": "4467.18"
-    },
-    {
       "date": "2026-10-31",
-      "closing": "4467.18"
+      "closing": "3598.18"
     },
     {
       "date": "2026-11-01",
-      "closing": "4057.32"
+      "closing": "3188.32"
     },
     {
       "date": "2026-11-02",
-      "closing": "2255.70"
+      "closing": "1386.70"
     },
     {
       "date": "2026-11-03",
-      "closing": "2113.49"
+      "closing": "1244.49"
     },
     {
       "date": "2026-11-04",
-      "closing": "1769.79"
+      "closing": "900.79"
     },
     {
       "date": "2026-11-05",
-      "closing": "1769.79"
+      "closing": "900.79"
     },
     {
       "date": "2026-11-06",
-      "closing": "5207.94"
+      "closing": "4338.94"
     },
     {
       "date": "2026-11-07",
-      "closing": "5207.94"
+      "closing": "4338.94"
     },
     {
       "date": "2026-11-08",
-      "closing": "4648.08"
+      "closing": "3779.08"
     },
     {
       "date": "2026-11-09",
-      "closing": "4648.08"
+      "closing": "3779.08"
     },
     {
       "date": "2026-11-10",
-      "closing": "4648.08"
+      "closing": "3779.08"
     },
     {
       "date": "2026-11-11",
-      "closing": "4542.98"
+      "closing": "3673.98"
     },
     {
       "date": "2026-11-12",
-      "closing": "3964.71"
+      "closing": "3095.71"
     },
     {
       "date": "2026-11-13",
-      "closing": "4833.71"
+      "closing": "3964.71"
     },
     {
       "date": "2026-11-14",
-      "closing": "4733.71"
+      "closing": "3864.71"
     },
     {
       "date": "2026-11-15",
-      "closing": "3762.85"
+      "closing": "2893.85"
     },
     {
       "date": "2026-11-16",
-      "closing": "1961.23"
+      "closing": "1092.23"
     },
     {
       "date": "2026-11-17",
-      "closing": "1662.23"
+      "closing": "793.23"
     },
     {
       "date": "2026-11-18",
-      "closing": "1004.04"
+      "closing": "135.04"
     },
     {
       "date": "2026-11-19",
-      "closing": "787.04"
+      "closing": "-81.96"
     },
     {
       "date": "2026-11-20",
-      "closing": "4613.43"
+      "closing": "3744.43"
     },
     {
       "date": "2026-11-21",
-      "closing": "4613.43"
+      "closing": "3744.43"
     },
     {
       "date": "2026-11-22",
-      "closing": "4115.57"
+      "closing": "3246.57"
     },
     {
       "date": "2026-11-23",
-      "closing": "4094.26"
+      "closing": "3225.26"
     },
     {
       "date": "2026-11-24",
-      "closing": "3014.00"
+      "closing": "2145.00"
     },
     {
       "date": "2026-11-25",
-      "closing": "3014.00"
+      "closing": "2145.00"
     },
     {
       "date": "2026-11-26",
-      "closing": "3014.00"
+      "closing": "2145.00"
     },
     {
       "date": "2026-11-27",
-      "closing": "3798.22"
+      "closing": "2929.22"
     },
     {
       "date": "2026-11-28",
-      "closing": "3798.22"
+      "closing": "2929.22"
     },
     {
       "date": "2026-11-29",
-      "closing": "3226.47"
+      "closing": "2357.47"
     },
     {
       "date": "2026-11-30",
-      "closing": "1424.85"
+      "closing": "555.85"
     },
     {
       "date": "2026-12-01",
-      "closing": "1424.85"
+      "closing": "555.85"
     },
     {
       "date": "2026-12-02",
-      "closing": "1424.85"
+      "closing": "555.85"
     },
     {
       "date": "2026-12-03",
-      "closing": "1263.75"
+      "closing": "394.75"
     },
     {
       "date": "2026-12-04",
-      "closing": "4746.44"
+      "closing": "3877.44"
     },
     {
       "date": "2026-12-05",
-      "closing": "4746.44"
+      "closing": "3877.44"
     },
     {
       "date": "2026-12-06",
-      "closing": "3948.34"
+      "closing": "3079.34"
     },
     {
       "date": "2026-12-07",
-      "closing": "3948.34"
+      "closing": "3079.34"
     },
     {
       "date": "2026-12-08",
-      "closing": "3798.34"
+      "closing": "2929.34"
     },
     {
       "date": "2026-12-09",
-      "closing": "3798.34"
+      "closing": "2929.34"
     },
     {
       "date": "2026-12-10",
-      "closing": "3798.34"
+      "closing": "2929.34"
     },
     {
       "date": "2026-12-11",
-      "closing": "4460.59"
+      "closing": "3591.59"
     },
     {
       "date": "2026-12-12",
-      "closing": "3882.32"
+      "closing": "3013.32"
     },
     {
       "date": "2026-12-13",
-      "closing": "3472.46"
+      "closing": "2603.46"
     },
     {
       "date": "2026-12-14",
-      "closing": "1570.84"
+      "closing": "701.84"
     },
     {
       "date": "2026-12-15",
-      "closing": "1009.84"
+      "closing": "140.84"
     },
     {
       "date": "2026-12-16",
-      "closing": "1009.84"
+      "closing": "140.84"
     },
     {
       "date": "2026-12-17",
-      "closing": "710.84"
+      "closing": "-158.16"
     },
     {
       "date": "2026-12-18",
-      "closing": "3879.04"
+      "closing": "3010.04"
     },
     {
       "date": "2026-12-19",
-      "closing": "2788.51"
+      "closing": "1919.51"
     },
     {
       "date": "2026-12-20",
-      "closing": "2378.65"
+      "closing": "1509.65"
     },
     {
       "date": "2026-12-21",
-      "closing": "2378.65"
+      "closing": "1509.65"
     },
     {
       "date": "2026-12-22",
-      "closing": "2290.65"
+      "closing": "1421.65"
     },
     {
       "date": "2026-12-23",
-      "closing": "2269.34"
+      "closing": "1400.34"
     },
     {
       "date": "2026-12-24",
-      "closing": "1189.08"
+      "closing": "320.08"
     },
     {
       "date": "2026-12-25",
-      "closing": "2058.08"
+      "closing": "1189.08"
     },
     {
       "date": "2026-12-26",
-      "closing": "2058.08"
+      "closing": "1189.08"
     },
     {
       "date": "2026-12-27",
-      "closing": "1563.44"
+      "closing": "694.44"
     },
     {
       "date": "2026-12-28",
-      "closing": "-238.18"
+      "closing": "-1107.18"
+    },
+    {
+      "date": "2026-12-29",
+      "closing": "-1269.07"
     }
   ],
   "risks": [
+    {
+      "id": "negative_balance:2026-11-19",
+      "type": "negative_balance",
+      "severity": "critical",
+      "title": "Balance goes negative Thu 19 Nov",
+      "detail": "Projected -$81.96 on Thu 19 Nov. Lowest point is -$1,269.07 on Tue 29 Dec.",
+      "amount": "1269.07",
+      "when": "2026-11-19"
+    },
     {
       "id": "secured_payment:mortgage:2026-12-28",
       "type": "secured_payment",
       "severity": "critical",
       "title": "Mortgage may not clear",
-      "detail": "Mortgage of $1,801.62 is due Mon 28 Dec with only $1,563.44 available that day.",
-      "amount": "238.18",
-      "when": "2026-12-28"
-    },
-    {
-      "id": "negative_balance:2026-12-28",
-      "type": "negative_balance",
-      "severity": "critical",
-      "title": "Balance goes negative Mon 28 Dec",
-      "detail": "Projected -$238.18 on Mon 28 Dec. Lowest point is -$238.18 on Mon 28 Dec.",
-      "amount": "238.18",
+      "detail": "Mortgage of $1,801.62 is due Mon 28 Dec with only $694.44 available that day.",
+      "amount": "1107.18",
       "when": "2026-12-28"
     },
     {
@@ -422,21 +409,66 @@
       "type": "large_payment",
       "severity": "high",
       "title": "Mortgage $1,801.62 may be short",
-      "detail": "Mortgage of $1,801.62 is due Mon 28 Dec against a projected opening balance of $1,563.44.",
-      "amount": "238.18",
+      "detail": "Mortgage of $1,801.62 is due Mon 28 Dec against a projected opening balance of $694.44.",
+      "amount": "1107.18",
       "when": "2026-12-28"
+    },
+    {
+      "id": "discretionary:2026-11-19",
+      "type": "discretionary",
+      "severity": "medium",
+      "title": "Nothing available to spend: -$81.96",
+      "detail": "Over the next 30 days the balance reaches -$81.96 on Thu 19 Nov. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
+      "amount": "81.96",
+      "when": "2026-11-19"
     }
   ],
   "plan": {
-    "summary": "Deferring Culligan $307.70 before 28 Dec frees $307.70 and covers the $238.18 shortfall.",
-    "shortfall": "238.18",
-    "problem_day": "2026-12-28",
+    "summary": "Deferring Culligan $307.70, Lowes $126.00, Home Depot $100.00, TJX Rewards $36.00, Loew & Patel braces $400.00, Capital One CC $163.00, PNC $150.00 before 19 Nov frees $1,282.70 and covers the $1,269.07 shortfall.",
+    "shortfall": "1269.07",
+    "problem_day": "2026-11-19",
     "candidates": [
       {
         "name": "Culligan",
         "amount": "307.70",
         "date": "2026-11-04",
         "tier": 5
+      },
+      {
+        "name": "Lowes",
+        "amount": "126.00",
+        "date": "2026-11-18",
+        "tier": 5
+      },
+      {
+        "name": "Home Depot",
+        "amount": "100.00",
+        "date": "2026-11-14",
+        "tier": 5
+      },
+      {
+        "name": "TJX Rewards",
+        "amount": "36.00",
+        "date": "2026-11-04",
+        "tier": 5
+      },
+      {
+        "name": "Loew & Patel braces",
+        "amount": "400.00",
+        "date": "2026-11-15",
+        "tier": 4
+      },
+      {
+        "name": "Capital One CC",
+        "amount": "163.00",
+        "date": "2026-11-17",
+        "tier": 3
+      },
+      {
+        "name": "PNC",
+        "amount": "150.00",
+        "date": "2026-11-08",
+        "tier": 3
       }
     ],
     "covered": true
@@ -1260,20 +1292,6 @@
   ],
   "income": [
     {
-      "id": "unemployment",
-      "name": "NJ unemployment",
-      "amount": "869.00",
-      "due_day": null,
-      "frequency": "weekly",
-      "next_date": "2026-10-30",
-      "tier": 5,
-      "active": true,
-      "variable": false,
-      "needs_review": true,
-      "source": "household",
-      "note": "Added 11 Sep 2026. Replaces the weekly Insight Global payroll, which ended. $869/week as stated by the household. ANCHOR IS AN ASSUMPTION: set to 18 Sep 2026 so the first modelled payment falls after today's entered balance rather than on top of it. Correct the anchor to the real payment weekday onc"
-    },
-    {
       "id": "leslie-payroll",
       "name": "Leslie payroll",
       "amount": "2957.39",
@@ -1286,6 +1304,20 @@
       "needs_review": true,
       "source": "household",
       "note": "Added 11 Sep 2026: Leslie has returned to work, $2,957.39 every two weeks. ANCHOR IS AN ASSUMPTION: the placeholder first cheque was dated 11 Sep 2026, so the first full modelled pay is set two weeks later, 25 Sep 2026. That also keeps it off today, whose deposit is already inside the entered balanc"
+    },
+    {
+      "id": "unemployment",
+      "name": "NJ unemployment",
+      "amount": "869.00",
+      "due_day": null,
+      "frequency": "weekly",
+      "next_date": "2026-11-06",
+      "tier": 5,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "household",
+      "note": "Added 11 Sep 2026. Replaces the weekly Insight Global payroll, which ended. $869/week as stated by the household. ANCHOR IS AN ASSUMPTION: set to 18 Sep 2026 so the first modelled payment falls after today's entered balance rather than on top of it. Correct the anchor to the real payment weekday onc"
     },
     {
       "id": "boe-payroll",
