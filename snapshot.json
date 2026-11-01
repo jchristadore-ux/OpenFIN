@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-10-31T19:51:03.634070-04:00",
-  "today": "2026-10-31",
+  "generated_at": "2026-11-01T11:58:21.438577-05:00",
+  "today": "2026-11-01",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "3598.18",
+  "end_of_day": "3188.32",
   "end_of_week": "3188.32",
-  "end_of_month": "3598.18",
+  "end_of_month": "555.85",
   "week_end": "2026-11-01",
   "minimum_balance": "-1269.07",
   "minimum_date": "2026-12-29",
@@ -25,11 +25,11 @@
       ],
       [
         "Bills over the next 30 days",
-        "-10631.49"
+        "-12433.11"
       ],
       [
-        "Where that ends up, 29 Nov",
-        "2357.47"
+        "Where that ends up, 30 Nov",
+        "555.85"
       ],
       [
         "Lowest point along the way, 19 Nov",
@@ -42,16 +42,31 @@
     ],
     "headroom": "-81.96",
     "headroom_day": "2026-11-19",
-    "per_day": "-4.10",
+    "per_day": "-4.31",
     "per_day_day": "2026-11-19",
     "window_days": 30,
-    "window_end": "2026-11-29",
+    "window_end": "2026-11-30",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-11-29"
+      "window_end": "2026-11-30"
     }
   },
-  "today_bills": [],
+  "today_bills": [
+    {
+      "name": "Groceries",
+      "amount": "319.09",
+      "tier": 2,
+      "autopay": false,
+      "deferred": false
+    },
+    {
+      "name": "Fuel",
+      "amount": "90.77",
+      "tier": 2,
+      "autopay": false,
+      "deferred": false
+    }
+  ],
   "today_income": [],
   "this_week": [
     {
@@ -144,10 +159,6 @@
     }
   ],
   "curve": [
-    {
-      "date": "2026-10-31",
-      "closing": "3598.18"
-    },
     {
       "date": "2026-11-01",
       "closing": "3188.32"
@@ -382,6 +393,10 @@
     },
     {
       "date": "2026-12-29",
+      "closing": "-1269.07"
+    },
+    {
+      "date": "2026-12-30",
       "closing": "-1269.07"
     }
   ],
