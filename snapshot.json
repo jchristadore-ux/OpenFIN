@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-11-02T21:42:49.505116-05:00",
-  "today": "2026-11-02",
+  "generated_at": "2026-11-03T13:11:56.000401-05:00",
+  "today": "2026-11-03",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "1796.56",
-  "end_of_week": "4188.94",
-  "end_of_month": "965.71",
+  "end_of_day": "3455.97",
+  "end_of_week": "5990.56",
+  "end_of_month": "2767.33",
   "week_end": "2026-11-08",
-  "minimum_balance": "-859.21",
+  "minimum_balance": "942.41",
   "minimum_date": "2026-12-29",
-  "shortfall": "859.21",
+  "shortfall": "0.00",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "327.90",
+    "safe": "2129.52",
     "explain": [
       [
         "Balance now",
@@ -25,51 +25,43 @@
       ],
       [
         "Bills over the next 30 days",
-        "-12023.25"
+        "-10221.63"
       ],
       [
-        "Where that ends up, 1 Dec",
-        "965.71"
+        "Where that ends up, 2 Dec",
+        "2767.33"
       ],
       [
         "Lowest point along the way, 19 Nov",
-        "327.90"
+        "2129.52"
       ],
       [
         "Available to spend",
-        "327.90"
+        "2129.52"
       ]
     ],
-    "headroom": "327.90",
+    "headroom": "2129.52",
     "headroom_day": "2026-11-19",
-    "per_day": "18.22",
-    "per_day_day": "2026-11-19",
+    "per_day": "92.24",
+    "per_day_day": "2026-12-02",
     "window_days": 30,
-    "window_end": "2026-12-01",
+    "window_end": "2026-12-02",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-12-01"
+      "window_end": "2026-12-02"
     }
   },
   "today_bills": [
     {
-      "name": "Mortgage",
-      "amount": "1801.62",
-      "tier": 1,
+      "name": "JCP&L / FirstEnergy",
+      "amount": "142.21",
+      "tier": 2,
       "autopay": false,
       "deferred": false
     }
   ],
   "today_income": [],
   "this_week": [
-    {
-      "date": "2026-11-02",
-      "name": "Mortgage",
-      "amount": "1801.62",
-      "direction": "out",
-      "tier": 1,
-      "deferred": false
-    },
     {
       "date": "2026-11-03",
       "name": "JCP&L / FirstEnergy",
@@ -217,319 +209,255 @@
   ],
   "curve": [
     {
-      "date": "2026-11-02",
-      "closing": "1796.56"
-    },
-    {
       "date": "2026-11-03",
-      "closing": "1654.35"
+      "closing": "3455.97"
     },
     {
       "date": "2026-11-04",
-      "closing": "1310.65"
+      "closing": "3112.27"
     },
     {
       "date": "2026-11-05",
-      "closing": "1310.65"
+      "closing": "3112.27"
     },
     {
       "date": "2026-11-06",
-      "closing": "4748.80"
+      "closing": "6550.42"
     },
     {
       "date": "2026-11-07",
-      "closing": "4748.80"
+      "closing": "6550.42"
     },
     {
       "date": "2026-11-08",
-      "closing": "4188.94"
+      "closing": "5990.56"
     },
     {
       "date": "2026-11-09",
-      "closing": "4188.94"
+      "closing": "5990.56"
     },
     {
       "date": "2026-11-10",
-      "closing": "4188.94"
+      "closing": "5990.56"
     },
     {
       "date": "2026-11-11",
-      "closing": "4083.84"
+      "closing": "5885.46"
     },
     {
       "date": "2026-11-12",
-      "closing": "3505.57"
+      "closing": "5307.19"
     },
     {
       "date": "2026-11-13",
-      "closing": "4374.57"
+      "closing": "6176.19"
     },
     {
       "date": "2026-11-14",
-      "closing": "4274.57"
+      "closing": "6076.19"
     },
     {
       "date": "2026-11-15",
-      "closing": "3303.71"
+      "closing": "5105.33"
     },
     {
       "date": "2026-11-16",
-      "closing": "1502.09"
+      "closing": "3303.71"
     },
     {
       "date": "2026-11-17",
-      "closing": "1203.09"
+      "closing": "3004.71"
     },
     {
       "date": "2026-11-18",
-      "closing": "544.90"
+      "closing": "2346.52"
     },
     {
       "date": "2026-11-19",
-      "closing": "327.90"
+      "closing": "2129.52"
     },
     {
       "date": "2026-11-20",
-      "closing": "4154.29"
+      "closing": "5955.91"
     },
     {
       "date": "2026-11-21",
-      "closing": "4154.29"
+      "closing": "5955.91"
     },
     {
       "date": "2026-11-22",
-      "closing": "3656.43"
+      "closing": "5458.05"
     },
     {
       "date": "2026-11-23",
-      "closing": "3635.12"
+      "closing": "5436.74"
     },
     {
       "date": "2026-11-24",
-      "closing": "2554.86"
+      "closing": "4356.48"
     },
     {
       "date": "2026-11-25",
-      "closing": "2554.86"
+      "closing": "4356.48"
     },
     {
       "date": "2026-11-26",
-      "closing": "2554.86"
+      "closing": "4356.48"
     },
     {
       "date": "2026-11-27",
-      "closing": "3339.08"
+      "closing": "5140.70"
     },
     {
       "date": "2026-11-28",
-      "closing": "3339.08"
+      "closing": "5140.70"
     },
     {
       "date": "2026-11-29",
-      "closing": "2767.33"
+      "closing": "4568.95"
     },
     {
       "date": "2026-11-30",
-      "closing": "965.71"
+      "closing": "2767.33"
     },
     {
       "date": "2026-12-01",
-      "closing": "965.71"
+      "closing": "2767.33"
     },
     {
       "date": "2026-12-02",
-      "closing": "965.71"
+      "closing": "2767.33"
     },
     {
       "date": "2026-12-03",
-      "closing": "804.61"
+      "closing": "2606.23"
     },
     {
       "date": "2026-12-04",
-      "closing": "4287.30"
+      "closing": "6088.92"
     },
     {
       "date": "2026-12-05",
-      "closing": "4287.30"
+      "closing": "6088.92"
     },
     {
       "date": "2026-12-06",
-      "closing": "3489.20"
+      "closing": "5290.82"
     },
     {
       "date": "2026-12-07",
-      "closing": "3489.20"
+      "closing": "5290.82"
     },
     {
       "date": "2026-12-08",
-      "closing": "3339.20"
+      "closing": "5140.82"
     },
     {
       "date": "2026-12-09",
-      "closing": "3339.20"
+      "closing": "5140.82"
     },
     {
       "date": "2026-12-10",
-      "closing": "3339.20"
+      "closing": "5140.82"
     },
     {
       "date": "2026-12-11",
-      "closing": "4001.45"
+      "closing": "5803.07"
     },
     {
       "date": "2026-12-12",
-      "closing": "3423.18"
+      "closing": "5224.80"
     },
     {
       "date": "2026-12-13",
-      "closing": "3013.32"
+      "closing": "4814.94"
     },
     {
       "date": "2026-12-14",
-      "closing": "1111.70"
+      "closing": "2913.32"
     },
     {
       "date": "2026-12-15",
-      "closing": "550.70"
+      "closing": "2352.32"
     },
     {
       "date": "2026-12-16",
-      "closing": "550.70"
+      "closing": "2352.32"
     },
     {
       "date": "2026-12-17",
-      "closing": "251.70"
+      "closing": "2053.32"
     },
     {
       "date": "2026-12-18",
-      "closing": "3419.90"
+      "closing": "5221.52"
     },
     {
       "date": "2026-12-19",
-      "closing": "2329.37"
+      "closing": "4130.99"
     },
     {
       "date": "2026-12-20",
-      "closing": "1919.51"
+      "closing": "3721.13"
     },
     {
       "date": "2026-12-21",
-      "closing": "1919.51"
+      "closing": "3721.13"
     },
     {
       "date": "2026-12-22",
-      "closing": "1831.51"
+      "closing": "3633.13"
     },
     {
       "date": "2026-12-23",
-      "closing": "1810.20"
+      "closing": "3611.82"
     },
     {
       "date": "2026-12-24",
-      "closing": "729.94"
+      "closing": "2531.56"
     },
     {
       "date": "2026-12-25",
-      "closing": "1598.94"
+      "closing": "3400.56"
     },
     {
       "date": "2026-12-26",
-      "closing": "1598.94"
+      "closing": "3400.56"
     },
     {
       "date": "2026-12-27",
-      "closing": "1104.30"
+      "closing": "2905.92"
     },
     {
       "date": "2026-12-28",
-      "closing": "-697.32"
+      "closing": "1104.30"
     },
     {
       "date": "2026-12-29",
-      "closing": "-859.21"
+      "closing": "942.41"
     },
     {
       "date": "2026-12-30",
-      "closing": "-859.21"
+      "closing": "942.41"
     },
     {
       "date": "2026-12-31",
-      "closing": "-859.21"
-    }
-  ],
-  "risks": [
-    {
-      "id": "secured_payment:mortgage:2026-12-28",
-      "type": "secured_payment",
-      "severity": "critical",
-      "title": "Mortgage may not clear",
-      "detail": "Mortgage of $1,801.62 is due Mon 28 Dec with only $1,104.30 available that day.",
-      "amount": "697.32",
-      "when": "2026-12-28"
+      "closing": "942.41"
     },
     {
-      "id": "negative_balance:2026-12-28",
-      "type": "negative_balance",
-      "severity": "critical",
-      "title": "Balance goes negative Mon 28 Dec",
-      "detail": "Projected -$697.32 on Mon 28 Dec. Lowest point is -$859.21 on Tue 29 Dec.",
-      "amount": "859.21",
-      "when": "2026-12-28"
-    },
-    {
-      "id": "large_payment:mortgage:2026-12-28",
-      "type": "large_payment",
-      "severity": "high",
-      "title": "Mortgage $1,801.62 may be short",
-      "detail": "Mortgage of $1,801.62 is due Mon 28 Dec against a projected opening balance of $1,104.30.",
-      "amount": "697.32",
-      "when": "2026-12-28"
+      "date": "2027-01-01",
+      "closing": "4768.80"
     }
   ],
+  "risks": [],
   "plan": {
-    "summary": "Deferring Culligan $307.70, Culligan $307.70, Lowes $126.00, Lowes $126.00 before 28 Dec frees $867.40 and covers the $859.21 shortfall.",
-    "shortfall": "859.21",
-    "problem_day": "2026-12-28",
-    "candidates": [
-      {
-        "name": "Culligan",
-        "amount": "307.70",
-        "date": "2026-11-04",
-        "tier": 5
-      },
-      {
-        "name": "Culligan",
-        "amount": "307.70",
-        "date": "2026-12-04",
-        "tier": 5
-      },
-      {
-        "name": "Lowes",
-        "amount": "126.00",
-        "date": "2026-11-18",
-        "tier": 5
-      },
-      {
-        "name": "Lowes",
-        "amount": "126.00",
-        "date": "2026-12-18",
-        "tier": 5
-      }
-    ],
+    "summary": "No shortfall to solve.",
+    "shortfall": "0.00",
+    "problem_day": null,
+    "candidates": [],
     "covered": true
   },
   "deferral_window": [
-    {
-      "id": "mortgage",
-      "name": "Mortgage",
-      "date": "2026-11-02",
-      "amount": "1801.62",
-      "tier": 1,
-      "deferrable": false,
-      "secured": true,
-      "deferred": false,
-      "in_week": true
-    },
     {
       "id": "electric",
       "name": "JCP&L / FirstEnergy",
@@ -843,20 +771,6 @@
   "lookahead_days": 14,
   "bills": [
     {
-      "id": "mortgage",
-      "name": "Mortgage",
-      "amount": "1801.62",
-      "due_day": null,
-      "frequency": "biweekly",
-      "next_date": "2026-11-02",
-      "tier": 1,
-      "active": true,
-      "variable": false,
-      "needs_review": true,
-      "source": "statement",
-      "note": "CORRECTED from semimonthly to biweekly. 15 consecutive payments 12/15/2025-06/29/2026 are exactly 14 days apart. Semimonthly modelled 24/yr; biweekly is 26/yr, a $3,603.24/yr difference. Extra same-week entries in the statements are failed-payment retries, not additional payments."
-    },
-    {
       "id": "electric",
       "name": "JCP&L / FirstEnergy",
       "amount": "418.98",
@@ -1051,6 +965,20 @@
       "needs_review": false,
       "source": "household",
       "note": "Renegotiated to $161.00 (household, 11 Aug 2026). Was $1,244.29 for 12 months - a $1,083.29/month reduction, the single largest change in this ledger."
+    },
+    {
+      "id": "mortgage",
+      "name": "Mortgage",
+      "amount": "1801.62",
+      "due_day": null,
+      "frequency": "biweekly",
+      "next_date": "2026-11-16",
+      "tier": 1,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "statement",
+      "note": "CORRECTED from semimonthly to biweekly. 15 consecutive payments 12/15/2025-06/29/2026 are exactly 14 days apart. Semimonthly modelled 24/yr; biweekly is 26/yr, a $3,603.24/yr difference. Extra same-week entries in the statements are failed-payment retries, not additional payments."
     },
     {
       "id": "capital-one",
