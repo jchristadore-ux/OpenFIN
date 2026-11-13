@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-11-12T20:33:58.202694-05:00",
-  "today": "2026-11-12",
+  "generated_at": "2026-11-13T13:20:08.584487-05:00",
+  "today": "2026-11-13",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "3019.91",
-  "end_of_week": "2818.05",
-  "end_of_month": "480.05",
+  "end_of_day": "4467.18",
+  "end_of_week": "3396.32",
+  "end_of_month": "1058.32",
   "week_end": "2026-11-15",
-  "minimum_balance": "-1344.87",
+  "minimum_balance": "-766.60",
   "minimum_date": "2026-12-29",
-  "shortfall": "1344.87",
+  "shortfall": "766.60",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "-157.76",
+    "safe": "420.51",
     "explain": [
       [
         "Balance now",
@@ -28,63 +28,37 @@
         "-10342.17"
       ],
       [
-        "Where that ends up, 11 Dec",
+        "Where that ends up, 12 Dec",
         "3515.79"
       ],
       [
         "Lowest point along the way, 19 Nov",
-        "-157.76"
+        "420.51"
       ],
       [
         "Available to spend",
-        "-157.76"
+        "420.51"
       ]
     ],
-    "headroom": "-157.76",
+    "headroom": "420.51",
     "headroom_day": "2026-11-19",
-    "per_day": "-19.72",
-    "per_day_day": "2026-11-19",
+    "per_day": "42.72",
+    "per_day_day": "2026-12-03",
     "window_days": 30,
-    "window_end": "2026-12-11",
+    "window_end": "2026-12-12",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-12-11"
+      "window_end": "2026-12-12"
     }
   },
-  "today_bills": [
+  "today_bills": [],
+  "today_income": [
     {
-      "name": "Hanover Auto",
-      "amount": "513.27",
-      "tier": 2,
-      "autopay": false,
-      "deferred": false
-    },
-    {
-      "name": "Comenity",
-      "amount": "65.00",
-      "tier": 3,
-      "autopay": false,
-      "deferred": false
+      "name": "NJ unemployment",
+      "amount": "869.00"
     }
   ],
-  "today_income": [],
   "this_week": [
-    {
-      "date": "2026-11-12",
-      "name": "Hanover Auto",
-      "amount": "513.27",
-      "direction": "out",
-      "tier": 2,
-      "deferred": false
-    },
-    {
-      "date": "2026-11-12",
-      "name": "Comenity",
-      "amount": "65.00",
-      "direction": "out",
-      "tier": 3,
-      "deferred": false
-    },
     {
       "date": "2026-11-13",
       "name": "NJ unemployment",
@@ -208,263 +182,263 @@
   ],
   "curve": [
     {
-      "date": "2026-11-12",
-      "closing": "3019.91"
-    },
-    {
       "date": "2026-11-13",
-      "closing": "3888.91"
+      "closing": "4467.18"
     },
     {
       "date": "2026-11-14",
-      "closing": "3788.91"
+      "closing": "4367.18"
     },
     {
       "date": "2026-11-15",
-      "closing": "2818.05"
+      "closing": "3396.32"
     },
     {
       "date": "2026-11-16",
-      "closing": "1016.43"
+      "closing": "1594.70"
     },
     {
       "date": "2026-11-17",
-      "closing": "717.43"
+      "closing": "1295.70"
     },
     {
       "date": "2026-11-18",
-      "closing": "59.24"
+      "closing": "637.51"
     },
     {
       "date": "2026-11-19",
-      "closing": "-157.76"
+      "closing": "420.51"
     },
     {
       "date": "2026-11-20",
-      "closing": "3668.63"
+      "closing": "4246.90"
     },
     {
       "date": "2026-11-21",
-      "closing": "3668.63"
+      "closing": "4246.90"
     },
     {
       "date": "2026-11-22",
-      "closing": "3170.77"
+      "closing": "3749.04"
     },
     {
       "date": "2026-11-23",
-      "closing": "3149.46"
+      "closing": "3727.73"
     },
     {
       "date": "2026-11-24",
-      "closing": "2069.20"
+      "closing": "2647.47"
     },
     {
       "date": "2026-11-25",
-      "closing": "2069.20"
+      "closing": "2647.47"
     },
     {
       "date": "2026-11-26",
-      "closing": "2069.20"
+      "closing": "2647.47"
     },
     {
       "date": "2026-11-27",
-      "closing": "2853.42"
+      "closing": "3431.69"
     },
     {
       "date": "2026-11-28",
-      "closing": "2853.42"
+      "closing": "3431.69"
     },
     {
       "date": "2026-11-29",
-      "closing": "2281.67"
+      "closing": "2859.94"
     },
     {
       "date": "2026-11-30",
-      "closing": "480.05"
+      "closing": "1058.32"
     },
     {
       "date": "2026-12-01",
-      "closing": "480.05"
+      "closing": "1058.32"
     },
     {
       "date": "2026-12-02",
-      "closing": "480.05"
+      "closing": "1058.32"
     },
     {
       "date": "2026-12-03",
-      "closing": "318.95"
+      "closing": "897.22"
     },
     {
       "date": "2026-12-04",
-      "closing": "3801.64"
+      "closing": "4379.91"
     },
     {
       "date": "2026-12-05",
-      "closing": "3801.64"
+      "closing": "4379.91"
     },
     {
       "date": "2026-12-06",
-      "closing": "3003.54"
+      "closing": "3581.81"
     },
     {
       "date": "2026-12-07",
-      "closing": "3003.54"
+      "closing": "3581.81"
     },
     {
       "date": "2026-12-08",
-      "closing": "2853.54"
+      "closing": "3431.81"
     },
     {
       "date": "2026-12-09",
-      "closing": "2853.54"
+      "closing": "3431.81"
     },
     {
       "date": "2026-12-10",
-      "closing": "2853.54"
+      "closing": "3431.81"
     },
     {
       "date": "2026-12-11",
-      "closing": "3515.79"
+      "closing": "4094.06"
     },
     {
       "date": "2026-12-12",
-      "closing": "2937.52"
+      "closing": "3515.79"
     },
     {
       "date": "2026-12-13",
-      "closing": "2527.66"
+      "closing": "3105.93"
     },
     {
       "date": "2026-12-14",
-      "closing": "626.04"
+      "closing": "1204.31"
     },
     {
       "date": "2026-12-15",
-      "closing": "65.04"
+      "closing": "643.31"
     },
     {
       "date": "2026-12-16",
-      "closing": "65.04"
+      "closing": "643.31"
     },
     {
       "date": "2026-12-17",
-      "closing": "-233.96"
+      "closing": "344.31"
     },
     {
       "date": "2026-12-18",
-      "closing": "2934.24"
+      "closing": "3512.51"
     },
     {
       "date": "2026-12-19",
-      "closing": "1843.71"
+      "closing": "2421.98"
     },
     {
       "date": "2026-12-20",
-      "closing": "1433.85"
+      "closing": "2012.12"
     },
     {
       "date": "2026-12-21",
-      "closing": "1433.85"
+      "closing": "2012.12"
     },
     {
       "date": "2026-12-22",
-      "closing": "1345.85"
+      "closing": "1924.12"
     },
     {
       "date": "2026-12-23",
-      "closing": "1324.54"
+      "closing": "1902.81"
     },
     {
       "date": "2026-12-24",
-      "closing": "244.28"
+      "closing": "822.55"
     },
     {
       "date": "2026-12-25",
-      "closing": "1113.28"
+      "closing": "1691.55"
     },
     {
       "date": "2026-12-26",
-      "closing": "1113.28"
+      "closing": "1691.55"
     },
     {
       "date": "2026-12-27",
-      "closing": "618.64"
+      "closing": "1196.91"
     },
     {
       "date": "2026-12-28",
-      "closing": "-1182.98"
+      "closing": "-604.71"
     },
     {
       "date": "2026-12-29",
-      "closing": "-1344.87"
+      "closing": "-766.60"
     },
     {
       "date": "2026-12-30",
-      "closing": "-1344.87"
+      "closing": "-766.60"
     },
     {
       "date": "2026-12-31",
-      "closing": "-1344.87"
+      "closing": "-766.60"
     },
     {
       "date": "2027-01-01",
-      "closing": "2481.52"
+      "closing": "3059.79"
     },
     {
       "date": "2027-01-02",
-      "closing": "2481.52"
+      "closing": "3059.79"
     },
     {
       "date": "2027-01-03",
-      "closing": "1892.10"
+      "closing": "2470.37"
     },
     {
       "date": "2027-01-04",
-      "closing": "1548.40"
+      "closing": "2126.67"
     },
     {
       "date": "2027-01-05",
-      "closing": "1548.40"
+      "closing": "2126.67"
     },
     {
       "date": "2027-01-06",
-      "closing": "1160.16"
+      "closing": "1738.43"
     },
     {
       "date": "2027-01-07",
-      "closing": "982.86"
+      "closing": "1561.13"
     },
     {
       "date": "2027-01-08",
-      "closing": "1701.86"
+      "closing": "2280.13"
     },
     {
       "date": "2027-01-09",
-      "closing": "1701.86"
+      "closing": "2280.13"
     },
     {
       "date": "2027-01-10",
-      "closing": "1292.00"
+      "closing": "1870.27"
+    },
+    {
+      "date": "2027-01-11",
+      "closing": "-322.48"
     }
   ],
   "risks": [
-    {
-      "id": "negative_balance:2026-11-19",
-      "type": "negative_balance",
-      "severity": "critical",
-      "title": "Balance goes negative Thu 19 Nov",
-      "detail": "Projected -$157.76 on Thu 19 Nov. Lowest point is -$1,344.87 on Tue 29 Dec.",
-      "amount": "1344.87",
-      "when": "2026-11-19"
-    },
     {
       "id": "secured_payment:mortgage:2026-12-28",
       "type": "secured_payment",
       "severity": "critical",
       "title": "Mortgage may not clear",
-      "detail": "Mortgage of $1,801.62 is due Mon 28 Dec with only $618.64 available that day.",
-      "amount": "1182.98",
+      "detail": "Mortgage of $1,801.62 is due Mon 28 Dec with only $1,196.91 available that day.",
+      "amount": "604.71",
+      "when": "2026-12-28"
+    },
+    {
+      "id": "negative_balance:2026-12-28",
+      "type": "negative_balance",
+      "severity": "critical",
+      "title": "Balance goes negative Mon 28 Dec",
+      "detail": "Projected -$604.71 on Mon 28 Dec. Lowest point is -$766.60 on Tue 29 Dec.",
+      "amount": "766.60",
       "when": "2026-12-28"
     },
     {
@@ -472,29 +446,32 @@
       "type": "large_payment",
       "severity": "high",
       "title": "Mortgage $1,801.62 may be short",
-      "detail": "Mortgage of $1,801.62 is due Mon 28 Dec against a projected opening balance of $618.64.",
-      "amount": "1182.98",
+      "detail": "Mortgage of $1,801.62 is due Mon 28 Dec against a projected opening balance of $1,196.91.",
+      "amount": "604.71",
       "when": "2026-12-28"
-    },
-    {
-      "id": "discretionary:2026-11-19",
-      "type": "discretionary",
-      "severity": "medium",
-      "title": "Nothing available to spend: -$157.76",
-      "detail": "Over the next 30 days the balance reaches -$157.76 on Thu 19 Nov. That is bills and income only — no everyday spending is counted in it, so anything spent makes it worse by that much.",
-      "amount": "157.76",
-      "when": "2026-11-19"
     }
   ],
   "plan": {
-    "summary": "Deferring Lowes $126.00, Home Depot $100.00, Loew & Patel braces $400.00, Capital One CC $163.00, Chase CC Amazon $136.00, Comenity $65.00, Comcast $138.93 frees $1,128.93, which is short of the $1,344.87 needed by 19 Nov.",
-    "shortfall": "1344.87",
-    "problem_day": "2026-11-19",
+    "summary": "Deferring Culligan $307.70, Lowes $126.00, Lowes $126.00, Home Depot $100.00, Home Depot $100.00, TJX Rewards $36.00 before 28 Dec frees $795.70 and covers the $766.60 shortfall.",
+    "shortfall": "766.60",
+    "problem_day": "2026-12-28",
     "candidates": [
+      {
+        "name": "Culligan",
+        "amount": "307.70",
+        "date": "2026-12-04",
+        "tier": 5
+      },
       {
         "name": "Lowes",
         "amount": "126.00",
         "date": "2026-11-18",
+        "tier": 5
+      },
+      {
+        "name": "Lowes",
+        "amount": "126.00",
+        "date": "2026-12-18",
         "tier": 5
       },
       {
@@ -504,61 +481,21 @@
         "tier": 5
       },
       {
-        "name": "Loew & Patel braces",
-        "amount": "400.00",
-        "date": "2026-11-15",
-        "tier": 4
+        "name": "Home Depot",
+        "amount": "100.00",
+        "date": "2026-12-14",
+        "tier": 5
       },
       {
-        "name": "Capital One CC",
-        "amount": "163.00",
-        "date": "2026-11-17",
-        "tier": 3
-      },
-      {
-        "name": "Chase CC Amazon",
-        "amount": "136.00",
-        "date": "2026-11-17",
-        "tier": 3
-      },
-      {
-        "name": "Comenity",
-        "amount": "65.00",
-        "date": "2026-11-12",
-        "tier": 3
-      },
-      {
-        "name": "Comcast",
-        "amount": "138.93",
-        "date": "2026-11-18",
-        "tier": 2
+        "name": "TJX Rewards",
+        "amount": "36.00",
+        "date": "2026-12-04",
+        "tier": 5
       }
     ],
-    "covered": false
+    "covered": true
   },
   "deferral_window": [
-    {
-      "id": "auto-insurance",
-      "name": "Hanover Auto",
-      "date": "2026-11-12",
-      "amount": "513.27",
-      "tier": 2,
-      "deferrable": false,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
-    {
-      "id": "comenity",
-      "name": "Comenity",
-      "date": "2026-11-12",
-      "amount": "65.00",
-      "tier": 3,
-      "deferrable": true,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
     {
       "id": "home-depot",
       "name": "Home Depot",
@@ -838,34 +775,6 @@
   "deferred_total": "0.00",
   "lookahead_days": 14,
   "bills": [
-    {
-      "id": "comenity",
-      "name": "Comenity",
-      "amount": "50.00",
-      "due_day": 12,
-      "frequency": "monthly",
-      "next_date": "2026-11-12",
-      "tier": 3,
-      "active": true,
-      "variable": true,
-      "needs_review": true,
-      "source": "statement",
-      "note": "Irregular: 12/16, 02/03, 03/13, 05/05, 06/12, amounts $40.00-$65.00. Not on the household sheet."
-    },
-    {
-      "id": "auto-insurance",
-      "name": "Hanover Auto",
-      "amount": "513.27",
-      "due_day": 12,
-      "frequency": "monthly",
-      "next_date": "2026-11-12",
-      "tier": 2,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "source": "statement",
-      "note": "Amount corrected from $750.00, due day from 9 to 12."
-    },
     {
       "id": "home-depot",
       "name": "Home Depot",
@@ -1257,6 +1166,34 @@
       "needs_review": false,
       "source": "statement",
       "note": ""
+    },
+    {
+      "id": "comenity",
+      "name": "Comenity",
+      "amount": "50.00",
+      "due_day": 12,
+      "frequency": "monthly",
+      "next_date": "2026-12-12",
+      "tier": 3,
+      "active": true,
+      "variable": true,
+      "needs_review": true,
+      "source": "statement",
+      "note": "Irregular: 12/16, 02/03, 03/13, 05/05, 06/12, amounts $40.00-$65.00. Not on the household sheet."
+    },
+    {
+      "id": "auto-insurance",
+      "name": "Hanover Auto",
+      "amount": "513.27",
+      "due_day": 12,
+      "frequency": "monthly",
+      "next_date": "2026-12-12",
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "statement",
+      "note": "Amount corrected from $750.00, due day from 9 to 12."
     },
     {
       "id": "clinton-water",
