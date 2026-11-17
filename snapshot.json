@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-11-16T22:18:07.192436-05:00",
-  "today": "2026-11-16",
+  "generated_at": "2026-11-17T14:31:06.544254-05:00",
+  "today": "2026-11-17",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "1796.56",
-  "end_of_week": "3950.90",
-  "end_of_month": "1260.18",
+  "end_of_day": "3299.18",
+  "end_of_week": "5752.52",
+  "end_of_month": "3061.80",
   "week_end": "2026-11-22",
-  "minimum_balance": "-1316.39",
+  "minimum_balance": "485.23",
   "minimum_date": "2027-01-14",
-  "shortfall": "1316.39",
+  "shortfall": "0.00",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "622.37",
+    "safe": "2423.99",
     "explain": [
       [
         "Balance now",
@@ -25,51 +25,50 @@
       ],
       [
         "Bills over the next 30 days",
-        "-12143.79"
+        "-10342.17"
       ],
       [
-        "Where that ends up, 15 Dec",
-        "845.17"
+        "Where that ends up, 16 Dec",
+        "2646.79"
       ],
       [
         "Lowest point along the way, 19 Nov",
-        "622.37"
+        "2423.99"
       ],
       [
         "Available to spend",
-        "622.37"
+        "2423.99"
       ]
     ],
-    "headroom": "622.37",
+    "headroom": "2423.99",
     "headroom_day": "2026-11-19",
-    "per_day": "28.17",
-    "per_day_day": "2026-12-15",
+    "per_day": "88.23",
+    "per_day_day": "2026-12-16",
     "window_days": 30,
-    "window_end": "2026-12-15",
+    "window_end": "2026-12-16",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-12-15"
+      "window_end": "2026-12-16"
     }
   },
   "today_bills": [
     {
-      "name": "Mortgage",
-      "amount": "1801.62",
-      "tier": 1,
-      "autopay": false,
+      "name": "Capital One CC",
+      "amount": "163.00",
+      "tier": 3,
+      "autopay": true,
+      "deferred": false
+    },
+    {
+      "name": "Chase CC Amazon",
+      "amount": "136.00",
+      "tier": 3,
+      "autopay": true,
       "deferred": false
     }
   ],
   "today_income": [],
   "this_week": [
-    {
-      "date": "2026-11-16",
-      "name": "Mortgage",
-      "amount": "1801.62",
-      "direction": "out",
-      "tier": 1,
-      "deferred": false
-    },
     {
       "date": "2026-11-17",
       "name": "Capital One CC",
@@ -249,355 +248,255 @@
   ],
   "curve": [
     {
-      "date": "2026-11-16",
-      "closing": "1796.56"
-    },
-    {
       "date": "2026-11-17",
-      "closing": "1497.56"
+      "closing": "3299.18"
     },
     {
       "date": "2026-11-18",
-      "closing": "839.37"
+      "closing": "2640.99"
     },
     {
       "date": "2026-11-19",
-      "closing": "622.37"
+      "closing": "2423.99"
     },
     {
       "date": "2026-11-20",
-      "closing": "4448.76"
+      "closing": "6250.38"
     },
     {
       "date": "2026-11-21",
-      "closing": "4448.76"
+      "closing": "6250.38"
     },
     {
       "date": "2026-11-22",
-      "closing": "3950.90"
+      "closing": "5752.52"
     },
     {
       "date": "2026-11-23",
-      "closing": "3929.59"
+      "closing": "5731.21"
     },
     {
       "date": "2026-11-24",
-      "closing": "2849.33"
+      "closing": "4650.95"
     },
     {
       "date": "2026-11-25",
-      "closing": "2849.33"
+      "closing": "4650.95"
     },
     {
       "date": "2026-11-26",
-      "closing": "2849.33"
+      "closing": "4650.95"
     },
     {
       "date": "2026-11-27",
-      "closing": "3633.55"
+      "closing": "5435.17"
     },
     {
       "date": "2026-11-28",
-      "closing": "3633.55"
+      "closing": "5435.17"
     },
     {
       "date": "2026-11-29",
-      "closing": "3061.80"
+      "closing": "4863.42"
     },
     {
       "date": "2026-11-30",
-      "closing": "1260.18"
+      "closing": "3061.80"
     },
     {
       "date": "2026-12-01",
-      "closing": "1260.18"
+      "closing": "3061.80"
     },
     {
       "date": "2026-12-02",
-      "closing": "1260.18"
+      "closing": "3061.80"
     },
     {
       "date": "2026-12-03",
-      "closing": "1099.08"
+      "closing": "2900.70"
     },
     {
       "date": "2026-12-04",
-      "closing": "4581.77"
+      "closing": "6383.39"
     },
     {
       "date": "2026-12-05",
-      "closing": "4581.77"
+      "closing": "6383.39"
     },
     {
       "date": "2026-12-06",
-      "closing": "3783.67"
+      "closing": "5585.29"
     },
     {
       "date": "2026-12-07",
-      "closing": "3783.67"
+      "closing": "5585.29"
     },
     {
       "date": "2026-12-08",
-      "closing": "3633.67"
+      "closing": "5435.29"
     },
     {
       "date": "2026-12-09",
-      "closing": "3633.67"
+      "closing": "5435.29"
     },
     {
       "date": "2026-12-10",
-      "closing": "3633.67"
+      "closing": "5435.29"
     },
     {
       "date": "2026-12-11",
-      "closing": "4295.92"
+      "closing": "6097.54"
     },
     {
       "date": "2026-12-12",
-      "closing": "3717.65"
+      "closing": "5519.27"
     },
     {
       "date": "2026-12-13",
-      "closing": "3307.79"
+      "closing": "5109.41"
     },
     {
       "date": "2026-12-14",
-      "closing": "1406.17"
+      "closing": "3207.79"
     },
     {
       "date": "2026-12-15",
-      "closing": "845.17"
+      "closing": "2646.79"
     },
     {
       "date": "2026-12-16",
-      "closing": "845.17"
+      "closing": "2646.79"
     },
     {
       "date": "2026-12-17",
-      "closing": "546.17"
+      "closing": "2347.79"
     },
     {
       "date": "2026-12-18",
-      "closing": "3714.37"
+      "closing": "5515.99"
     },
     {
       "date": "2026-12-19",
-      "closing": "2623.84"
+      "closing": "4425.46"
     },
     {
       "date": "2026-12-20",
-      "closing": "2213.98"
+      "closing": "4015.60"
     },
     {
       "date": "2026-12-21",
-      "closing": "2213.98"
+      "closing": "4015.60"
     },
     {
       "date": "2026-12-22",
-      "closing": "2125.98"
+      "closing": "3927.60"
     },
     {
       "date": "2026-12-23",
-      "closing": "2104.67"
+      "closing": "3906.29"
     },
     {
       "date": "2026-12-24",
-      "closing": "1024.41"
+      "closing": "2826.03"
     },
     {
       "date": "2026-12-25",
-      "closing": "1893.41"
+      "closing": "3695.03"
     },
     {
       "date": "2026-12-26",
-      "closing": "1893.41"
+      "closing": "3695.03"
     },
     {
       "date": "2026-12-27",
-      "closing": "1398.77"
+      "closing": "3200.39"
     },
     {
       "date": "2026-12-28",
-      "closing": "-402.85"
+      "closing": "1398.77"
     },
     {
       "date": "2026-12-29",
-      "closing": "-564.74"
+      "closing": "1236.88"
     },
     {
       "date": "2026-12-30",
-      "closing": "-564.74"
+      "closing": "1236.88"
     },
     {
       "date": "2026-12-31",
-      "closing": "-564.74"
+      "closing": "1236.88"
     },
     {
       "date": "2027-01-01",
-      "closing": "3261.65"
+      "closing": "5063.27"
     },
     {
       "date": "2027-01-02",
-      "closing": "3261.65"
+      "closing": "5063.27"
     },
     {
       "date": "2027-01-03",
-      "closing": "2672.23"
+      "closing": "4473.85"
     },
     {
       "date": "2027-01-04",
-      "closing": "2328.53"
+      "closing": "4130.15"
     },
     {
       "date": "2027-01-05",
-      "closing": "2328.53"
+      "closing": "4130.15"
     },
     {
       "date": "2027-01-06",
-      "closing": "1940.29"
+      "closing": "3741.91"
     },
     {
       "date": "2027-01-07",
-      "closing": "1762.99"
+      "closing": "3564.61"
     },
     {
       "date": "2027-01-08",
-      "closing": "2481.99"
+      "closing": "4283.61"
     },
     {
       "date": "2027-01-09",
-      "closing": "2481.99"
+      "closing": "4283.61"
     },
     {
       "date": "2027-01-10",
-      "closing": "2072.13"
+      "closing": "3873.75"
     },
     {
       "date": "2027-01-11",
-      "closing": "-120.62"
+      "closing": "1681.00"
     },
     {
       "date": "2027-01-12",
-      "closing": "-1216.39"
+      "closing": "585.23"
     },
     {
       "date": "2027-01-13",
-      "closing": "-1216.39"
+      "closing": "585.23"
     },
     {
       "date": "2027-01-14",
-      "closing": "-1316.39"
-    }
-  ],
-  "risks": [
-    {
-      "id": "secured_payment:mortgage:2026-12-28",
-      "type": "secured_payment",
-      "severity": "critical",
-      "title": "Mortgage may not clear",
-      "detail": "Mortgage of $1,801.62 is due Mon 28 Dec with only $1,398.77 available that day.",
-      "amount": "402.85",
-      "when": "2026-12-28"
+      "closing": "485.23"
     },
     {
-      "id": "negative_balance:2026-12-28",
-      "type": "negative_balance",
-      "severity": "critical",
-      "title": "Balance goes negative Mon 28 Dec",
-      "detail": "Projected -$402.85 on Mon 28 Dec. Lowest point is -$1,316.39 on Thu 14 Jan.",
-      "amount": "1316.39",
-      "when": "2026-12-28"
-    },
-    {
-      "id": "large_payment:mortgage:2026-12-28",
-      "type": "large_payment",
-      "severity": "high",
-      "title": "Mortgage $1,801.62 may be short",
-      "detail": "Mortgage of $1,801.62 is due Mon 28 Dec against a projected opening balance of $1,398.77.",
-      "amount": "402.85",
-      "when": "2026-12-28"
+      "date": "2027-01-15",
+      "closing": "3750.62"
     }
   ],
+  "risks": [],
   "plan": {
-    "summary": "Deferring Culligan $307.70, Lowes $126.00, Lowes $126.00, Home Depot $100.00, TJX Rewards $36.00, Netflix $21.31, Netflix $21.31, Loew & Patel braces $400.00, Capital One CC $163.00, Capital One CC $163.00 before 28 Dec frees $1,464.32 and covers the $1,316.39 shortfall.",
-    "shortfall": "1316.39",
-    "problem_day": "2026-12-28",
-    "candidates": [
-      {
-        "name": "Culligan",
-        "amount": "307.70",
-        "date": "2026-12-04",
-        "tier": 5
-      },
-      {
-        "name": "Lowes",
-        "amount": "126.00",
-        "date": "2026-11-18",
-        "tier": 5
-      },
-      {
-        "name": "Lowes",
-        "amount": "126.00",
-        "date": "2026-12-18",
-        "tier": 5
-      },
-      {
-        "name": "Home Depot",
-        "amount": "100.00",
-        "date": "2026-12-14",
-        "tier": 5
-      },
-      {
-        "name": "TJX Rewards",
-        "amount": "36.00",
-        "date": "2026-12-04",
-        "tier": 5
-      },
-      {
-        "name": "Netflix",
-        "amount": "21.31",
-        "date": "2026-11-23",
-        "tier": 5
-      },
-      {
-        "name": "Netflix",
-        "amount": "21.31",
-        "date": "2026-12-23",
-        "tier": 5
-      },
-      {
-        "name": "Loew & Patel braces",
-        "amount": "400.00",
-        "date": "2026-12-15",
-        "tier": 4
-      },
-      {
-        "name": "Capital One CC",
-        "amount": "163.00",
-        "date": "2026-11-17",
-        "tier": 3
-      },
-      {
-        "name": "Capital One CC",
-        "amount": "163.00",
-        "date": "2026-12-17",
-        "tier": 3
-      }
-    ],
+    "summary": "No shortfall to solve.",
+    "shortfall": "0.00",
+    "problem_day": null,
+    "candidates": [],
     "covered": true
   },
   "deferral_window": [
-    {
-      "id": "mortgage",
-      "name": "Mortgage",
-      "date": "2026-11-16",
-      "amount": "1801.62",
-      "tier": 1,
-      "deferrable": false,
-      "secured": true,
-      "deferred": false,
-      "in_week": true
-    },
     {
       "id": "capital-one",
       "name": "Capital One CC",
@@ -889,20 +788,6 @@
   "lookahead_days": 14,
   "bills": [
     {
-      "id": "mortgage",
-      "name": "Mortgage",
-      "amount": "1801.62",
-      "due_day": null,
-      "frequency": "biweekly",
-      "next_date": "2026-11-16",
-      "tier": 1,
-      "active": true,
-      "variable": false,
-      "needs_review": true,
-      "source": "statement",
-      "note": "CORRECTED from semimonthly to biweekly. 15 consecutive payments 12/15/2025-06/29/2026 are exactly 14 days apart. Semimonthly modelled 24/yr; biweekly is 26/yr, a $3,603.24/yr difference. Extra same-week entries in the statements are failed-payment retries, not additional payments."
-    },
-    {
       "id": "capital-one",
       "name": "Capital One CC",
       "amount": "105.00",
@@ -1139,6 +1024,20 @@
       "needs_review": false,
       "source": "statement",
       "note": ""
+    },
+    {
+      "id": "mortgage",
+      "name": "Mortgage",
+      "amount": "1801.62",
+      "due_day": null,
+      "frequency": "biweekly",
+      "next_date": "2026-11-30",
+      "tier": 1,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "statement",
+      "note": "CORRECTED from semimonthly to biweekly. 15 consecutive payments 12/15/2025-06/29/2026 are exactly 14 days apart. Semimonthly modelled 24/yr; biweekly is 26/yr, a $3,603.24/yr difference. Extra same-week entries in the statements are failed-payment retries, not additional payments."
     },
     {
       "id": "electric",

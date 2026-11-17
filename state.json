@@ -83,32 +83,7 @@
       "date": "2026-09-11"
     }
   ],
-  "risks": {
-    "secured_payment:mortgage:2026-12-28": {
-      "type": "secured_payment",
-      "severity": "critical",
-      "amount": "402.85",
-      "when": "2026-12-28",
-      "first_seen": "2026-11-09T16:14:58.080949-05:00",
-      "last_seen": "2026-11-16T22:18:07.192436-05:00"
-    },
-    "negative_balance:2026-12-28": {
-      "type": "negative_balance",
-      "severity": "critical",
-      "amount": "1316.39",
-      "when": "2026-12-28",
-      "first_seen": "2026-11-16T15:46:13.185866-05:00",
-      "last_seen": "2026-11-16T22:18:07.192436-05:00"
-    },
-    "large_payment:mortgage:2026-12-28": {
-      "type": "large_payment",
-      "severity": "high",
-      "amount": "402.85",
-      "when": "2026-12-28",
-      "first_seen": "2026-11-09T16:14:58.080949-05:00",
-      "last_seen": "2026-11-16T22:18:07.192436-05:00"
-    }
-  },
+  "risks": {},
   "last_daily_sent": "2026-08-31T14:19:49.288583-04:00",
   "_migrated_from": {
     "last_run_iso": "2026-08-10T14:34:07.133815-04:00",
