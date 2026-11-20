@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-11-19T20:56:42.165218-05:00",
-  "today": "2026-11-19",
+  "generated_at": "2026-11-20T13:56:19.463875-05:00",
+  "today": "2026-11-20",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "3381.18",
-  "end_of_week": "6709.71",
-  "end_of_month": "4018.99",
+  "end_of_day": "7424.57",
+  "end_of_week": "6926.71",
+  "end_of_month": "4235.99",
   "week_end": "2026-11-22",
-  "minimum_balance": "1442.42",
+  "minimum_balance": "1659.42",
   "minimum_date": "2027-01-14",
   "shortfall": "0.00",
   "allowance": "0.00",
   "discretionary": {
-    "safe": "3304.98",
+    "safe": "3521.98",
     "explain": [
       [
         "Balance now",
@@ -25,66 +25,44 @@
       ],
       [
         "Bills over the next 30 days",
-        "-10342.17"
+        "-11215.70"
       ],
       [
-        "Where that ends up, 18 Dec",
-        "6473.18"
+        "Where that ends up, 19 Dec",
+        "5599.65"
       ],
       [
         "Lowest point along the way, 17 Dec",
-        "3304.98"
+        "3521.98"
       ],
       [
         "Available to spend",
-        "3304.98"
+        "3521.98"
       ]
     ],
-    "headroom": "3304.98",
+    "headroom": "3521.98",
     "headroom_day": "2026-12-17",
-    "per_day": "113.96",
+    "per_day": "125.79",
     "per_day_day": "2026-12-17",
     "window_days": 30,
-    "window_end": "2026-12-18",
+    "window_end": "2026-12-19",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-12-18"
+      "window_end": "2026-12-19"
     }
   },
-  "today_bills": [
+  "today_bills": [],
+  "today_income": [
     {
-      "name": "IRS state",
-      "amount": "114.00",
-      "tier": 2,
-      "autopay": false,
-      "deferred": false
+      "name": "Leslie payroll",
+      "amount": "2957.39"
     },
     {
-      "name": "IRS federal",
-      "amount": "103.00",
-      "tier": 2,
-      "autopay": false,
-      "deferred": false
+      "name": "NJ unemployment",
+      "amount": "869.00"
     }
   ],
-  "today_income": [],
   "this_week": [
-    {
-      "date": "2026-11-19",
-      "name": "IRS state",
-      "amount": "114.00",
-      "direction": "out",
-      "tier": 2,
-      "deferred": false
-    },
-    {
-      "date": "2026-11-19",
-      "name": "IRS federal",
-      "amount": "103.00",
-      "direction": "out",
-      "tier": 2,
-      "deferred": false
-    },
     {
       "date": "2026-11-20",
       "name": "Leslie payroll",
@@ -200,244 +178,244 @@
   ],
   "curve": [
     {
-      "date": "2026-11-19",
-      "closing": "3381.18"
-    },
-    {
       "date": "2026-11-20",
-      "closing": "7207.57"
+      "closing": "7424.57"
     },
     {
       "date": "2026-11-21",
-      "closing": "7207.57"
+      "closing": "7424.57"
     },
     {
       "date": "2026-11-22",
-      "closing": "6709.71"
+      "closing": "6926.71"
     },
     {
       "date": "2026-11-23",
-      "closing": "6688.40"
+      "closing": "6905.40"
     },
     {
       "date": "2026-11-24",
-      "closing": "5608.14"
+      "closing": "5825.14"
     },
     {
       "date": "2026-11-25",
-      "closing": "5608.14"
+      "closing": "5825.14"
     },
     {
       "date": "2026-11-26",
-      "closing": "5608.14"
+      "closing": "5825.14"
     },
     {
       "date": "2026-11-27",
-      "closing": "6392.36"
+      "closing": "6609.36"
     },
     {
       "date": "2026-11-28",
-      "closing": "6392.36"
+      "closing": "6609.36"
     },
     {
       "date": "2026-11-29",
-      "closing": "5820.61"
+      "closing": "6037.61"
     },
     {
       "date": "2026-11-30",
-      "closing": "4018.99"
+      "closing": "4235.99"
     },
     {
       "date": "2026-12-01",
-      "closing": "4018.99"
+      "closing": "4235.99"
     },
     {
       "date": "2026-12-02",
-      "closing": "4018.99"
+      "closing": "4235.99"
     },
     {
       "date": "2026-12-03",
-      "closing": "3857.89"
+      "closing": "4074.89"
     },
     {
       "date": "2026-12-04",
-      "closing": "7340.58"
+      "closing": "7557.58"
     },
     {
       "date": "2026-12-05",
-      "closing": "7340.58"
+      "closing": "7557.58"
     },
     {
       "date": "2026-12-06",
-      "closing": "6542.48"
+      "closing": "6759.48"
     },
     {
       "date": "2026-12-07",
-      "closing": "6542.48"
+      "closing": "6759.48"
     },
     {
       "date": "2026-12-08",
-      "closing": "6392.48"
+      "closing": "6609.48"
     },
     {
       "date": "2026-12-09",
-      "closing": "6392.48"
+      "closing": "6609.48"
     },
     {
       "date": "2026-12-10",
-      "closing": "6392.48"
+      "closing": "6609.48"
     },
     {
       "date": "2026-12-11",
-      "closing": "7054.73"
+      "closing": "7271.73"
     },
     {
       "date": "2026-12-12",
-      "closing": "6476.46"
+      "closing": "6693.46"
     },
     {
       "date": "2026-12-13",
-      "closing": "6066.60"
+      "closing": "6283.60"
     },
     {
       "date": "2026-12-14",
-      "closing": "4164.98"
+      "closing": "4381.98"
     },
     {
       "date": "2026-12-15",
-      "closing": "3603.98"
+      "closing": "3820.98"
     },
     {
       "date": "2026-12-16",
-      "closing": "3603.98"
+      "closing": "3820.98"
     },
     {
       "date": "2026-12-17",
-      "closing": "3304.98"
+      "closing": "3521.98"
     },
     {
       "date": "2026-12-18",
-      "closing": "6473.18"
+      "closing": "6690.18"
     },
     {
       "date": "2026-12-19",
-      "closing": "5382.65"
+      "closing": "5599.65"
     },
     {
       "date": "2026-12-20",
-      "closing": "4972.79"
+      "closing": "5189.79"
     },
     {
       "date": "2026-12-21",
-      "closing": "4972.79"
+      "closing": "5189.79"
     },
     {
       "date": "2026-12-22",
-      "closing": "4884.79"
+      "closing": "5101.79"
     },
     {
       "date": "2026-12-23",
-      "closing": "4863.48"
+      "closing": "5080.48"
     },
     {
       "date": "2026-12-24",
-      "closing": "3783.22"
+      "closing": "4000.22"
     },
     {
       "date": "2026-12-25",
-      "closing": "4652.22"
+      "closing": "4869.22"
     },
     {
       "date": "2026-12-26",
-      "closing": "4652.22"
+      "closing": "4869.22"
     },
     {
       "date": "2026-12-27",
-      "closing": "4157.58"
+      "closing": "4374.58"
     },
     {
       "date": "2026-12-28",
-      "closing": "2355.96"
+      "closing": "2572.96"
     },
     {
       "date": "2026-12-29",
-      "closing": "2194.07"
+      "closing": "2411.07"
     },
     {
       "date": "2026-12-30",
-      "closing": "2194.07"
+      "closing": "2411.07"
     },
     {
       "date": "2026-12-31",
-      "closing": "2194.07"
+      "closing": "2411.07"
     },
     {
       "date": "2027-01-01",
-      "closing": "6020.46"
+      "closing": "6237.46"
     },
     {
       "date": "2027-01-02",
-      "closing": "6020.46"
+      "closing": "6237.46"
     },
     {
       "date": "2027-01-03",
-      "closing": "5431.04"
+      "closing": "5648.04"
     },
     {
       "date": "2027-01-04",
-      "closing": "5087.34"
+      "closing": "5304.34"
     },
     {
       "date": "2027-01-05",
-      "closing": "5087.34"
+      "closing": "5304.34"
     },
     {
       "date": "2027-01-06",
-      "closing": "4699.10"
+      "closing": "4916.10"
     },
     {
       "date": "2027-01-07",
-      "closing": "4521.80"
+      "closing": "4738.80"
     },
     {
       "date": "2027-01-08",
-      "closing": "5240.80"
+      "closing": "5457.80"
     },
     {
       "date": "2027-01-09",
-      "closing": "5240.80"
+      "closing": "5457.80"
     },
     {
       "date": "2027-01-10",
-      "closing": "4830.94"
+      "closing": "5047.94"
     },
     {
       "date": "2027-01-11",
-      "closing": "2638.19"
+      "closing": "2855.19"
     },
     {
       "date": "2027-01-12",
-      "closing": "1542.42"
+      "closing": "1759.42"
     },
     {
       "date": "2027-01-13",
-      "closing": "1542.42"
+      "closing": "1759.42"
     },
     {
       "date": "2027-01-14",
-      "closing": "1442.42"
+      "closing": "1659.42"
     },
     {
       "date": "2027-01-15",
-      "closing": "4707.81"
+      "closing": "4924.81"
     },
     {
       "date": "2027-01-16",
-      "closing": "4707.81"
+      "closing": "4924.81"
     },
     {
       "date": "2027-01-17",
-      "closing": "3998.95"
+      "closing": "4215.95"
+    },
+    {
+      "date": "2027-01-18",
+      "closing": "3557.76"
     }
   ],
   "risks": [],
@@ -449,28 +427,6 @@
     "covered": true
   },
   "deferral_window": [
-    {
-      "id": "irs-state",
-      "name": "IRS state",
-      "date": "2026-11-19",
-      "amount": "114.00",
-      "tier": 2,
-      "deferrable": false,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
-    {
-      "id": "irs-federal",
-      "name": "IRS federal",
-      "date": "2026-11-19",
-      "amount": "103.00",
-      "tier": 2,
-      "deferrable": false,
-      "secured": false,
-      "deferred": false,
-      "in_week": true
-    },
     {
       "id": "groceries",
       "name": "Groceries",
@@ -673,34 +629,6 @@
   "deferred_total": "0.00",
   "lookahead_days": 14,
   "bills": [
-    {
-      "id": "irs-federal",
-      "name": "IRS federal",
-      "amount": "103.00",
-      "due_day": 19,
-      "frequency": "monthly",
-      "next_date": "2026-11-19",
-      "tier": 2,
-      "active": true,
-      "variable": false,
-      "needs_review": false,
-      "source": "household",
-      "note": "New instalment plan, $103.00/month, per the household. Not yet visible in any statement. Non-deferrable: missing an IRS instalment can void the agreement."
-    },
-    {
-      "id": "irs-state",
-      "name": "IRS state",
-      "amount": "114.00",
-      "due_day": 19,
-      "frequency": "monthly",
-      "next_date": "2026-11-19",
-      "tier": 2,
-      "active": true,
-      "variable": false,
-      "needs_review": true,
-      "source": "household",
-      "note": "New, $114.00/month, per the household. Due day assumed the same as the federal instalment; confirm. Not yet visible in any statement."
-    },
     {
       "id": "chase-united",
       "name": "Chase CC United",
@@ -1092,6 +1020,34 @@
       "needs_review": false,
       "source": "household",
       "note": "Renegotiated to $86.36 (household, 11 Aug 2026). Was $287.85."
+    },
+    {
+      "id": "irs-federal",
+      "name": "IRS federal",
+      "amount": "103.00",
+      "due_day": 19,
+      "frequency": "monthly",
+      "next_date": "2026-12-19",
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": false,
+      "source": "household",
+      "note": "New instalment plan, $103.00/month, per the household. Not yet visible in any statement. Non-deferrable: missing an IRS instalment can void the agreement."
+    },
+    {
+      "id": "irs-state",
+      "name": "IRS state",
+      "amount": "114.00",
+      "due_day": 19,
+      "frequency": "monthly",
+      "next_date": "2026-12-19",
+      "tier": 2,
+      "active": true,
+      "variable": false,
+      "needs_review": true,
+      "source": "household",
+      "note": "New, $114.00/month, per the household. Due day assumed the same as the federal instalment; confirm. Not yet visible in any statement."
     },
     {
       "id": "clinton-water",
