@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-11-26T22:22:25.976965-05:00",
-  "today": "2026-11-26",
+  "generated_at": "2026-11-27T14:45:38.684707-05:00",
+  "today": "2026-11-27",
   "balance": "3598.18",
   "balance_is_fresh": false,
   "balance_entered_at": null,
-  "end_of_day": "3598.18",
+  "end_of_day": "4382.40",
   "end_of_week": "3810.65",
   "end_of_month": "2009.03",
   "week_end": "2026-11-29",
-  "minimum_balance": "-567.54",
-  "minimum_date": "2027-01-14",
-  "shortfall": "567.54",
+  "minimum_balance": "-1418.25",
+  "minimum_date": "2027-01-25",
+  "shortfall": "1418.25",
   "allowance": "0.00",
   "discretionary": {
     "safe": "1295.02",
@@ -28,7 +28,7 @@
         "-11215.70"
       ],
       [
-        "Where that ends up, 25 Dec",
+        "Where that ends up, 26 Dec",
         "2642.26"
       ],
       [
@@ -42,17 +42,30 @@
     ],
     "headroom": "1295.02",
     "headroom_day": "2026-12-17",
-    "per_day": "58.86",
+    "per_day": "61.67",
     "per_day_day": "2026-12-17",
     "window_days": 30,
-    "window_end": "2026-12-25",
+    "window_end": "2026-12-26",
     "components": {
       "balance": "3598.18",
-      "window_end": "2026-12-25"
+      "window_end": "2026-12-26"
     }
   },
-  "today_bills": [],
-  "today_income": [],
+  "today_bills": [
+    {
+      "name": "Barclay Old Navy",
+      "amount": "84.78",
+      "tier": 3,
+      "autopay": true,
+      "deferred": false
+    }
+  ],
+  "today_income": [
+    {
+      "name": "NJ unemployment",
+      "amount": "869.00"
+    }
+  ],
   "this_week": [
     {
       "date": "2026-11-27",
@@ -176,10 +189,6 @@
     }
   ],
   "curve": [
-    {
-      "date": "2026-11-26",
-      "closing": "3598.18"
-    },
     {
       "date": "2026-11-27",
       "closing": "4382.40"
@@ -415,6 +424,10 @@
     {
       "date": "2027-01-24",
       "closing": "383.37"
+    },
+    {
+      "date": "2027-01-25",
+      "closing": "-1418.25"
     }
   ],
   "risks": [
@@ -423,14 +436,32 @@
       "type": "negative_balance",
       "severity": "critical",
       "title": "Balance goes negative Tue 12 Jan",
-      "detail": "Projected -$467.54 on Tue 12 Jan. Lowest point is -$567.54 on Thu 14 Jan.",
-      "amount": "567.54",
+      "detail": "Projected -$467.54 on Tue 12 Jan. Lowest point is -$1,418.25 on Mon 25 Jan.",
+      "amount": "1418.25",
       "when": "2027-01-12"
+    },
+    {
+      "id": "secured_payment:mortgage:2027-01-25",
+      "type": "secured_payment",
+      "severity": "critical",
+      "title": "Mortgage may not clear",
+      "detail": "Mortgage of $1,801.62 is due Mon 25 Jan with only $383.37 available that day.",
+      "amount": "1418.25",
+      "when": "2027-01-25"
+    },
+    {
+      "id": "large_payment:mortgage:2027-01-25",
+      "type": "large_payment",
+      "severity": "high",
+      "title": "Mortgage $1,801.62 may be short",
+      "detail": "Mortgage of $1,801.62 is due Mon 25 Jan against a projected opening balance of $383.37.",
+      "amount": "1418.25",
+      "when": "2027-01-25"
     }
   ],
   "plan": {
-    "summary": "Deferring Culligan $307.70, Culligan $307.70 before 12 Jan frees $615.40 and covers the $567.54 shortfall.",
-    "shortfall": "567.54",
+    "summary": "Deferring Culligan $307.70, Culligan $307.70, Lowes $126.00, Home Depot $100.00, TJX Rewards $36.00, TJX Rewards $36.00, Netflix $21.31, NJ Total Select 2of4 $517.50 before 12 Jan frees $1,452.21 and covers the $1,418.25 shortfall.",
+    "shortfall": "1418.25",
     "problem_day": "2027-01-12",
     "candidates": [
       {
@@ -444,6 +475,42 @@
         "amount": "307.70",
         "date": "2027-01-04",
         "tier": 5
+      },
+      {
+        "name": "Lowes",
+        "amount": "126.00",
+        "date": "2026-12-18",
+        "tier": 5
+      },
+      {
+        "name": "Home Depot",
+        "amount": "100.00",
+        "date": "2026-12-14",
+        "tier": 5
+      },
+      {
+        "name": "TJX Rewards",
+        "amount": "36.00",
+        "date": "2026-12-04",
+        "tier": 5
+      },
+      {
+        "name": "TJX Rewards",
+        "amount": "36.00",
+        "date": "2027-01-04",
+        "tier": 5
+      },
+      {
+        "name": "Netflix",
+        "amount": "21.31",
+        "date": "2026-12-23",
+        "tier": 5
+      },
+      {
+        "name": "NJ Total Select 2of4",
+        "amount": "517.50",
+        "date": "2027-01-12",
+        "tier": 4
       }
     ],
     "covered": true
